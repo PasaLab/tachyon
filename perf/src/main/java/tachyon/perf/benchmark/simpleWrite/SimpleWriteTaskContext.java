@@ -1,4 +1,4 @@
-package tachyon.perf.benchmark.simpleWrite;
+package tachyon.perf.benchmark.simplewrite;
 
 import java.util.ArrayList;
 import java.util.HashMap;

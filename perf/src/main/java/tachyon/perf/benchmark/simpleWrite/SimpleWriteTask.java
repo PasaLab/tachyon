@@ -1,4 +1,4 @@
-package tachyon.perf.benchmark.simpleWrite;
+package tachyon.perf.benchmark.simplewrite;
 
 import tachyon.perf.basic.PerfTaskContext;
 import tachyon.perf.benchmark.SimpleTask;

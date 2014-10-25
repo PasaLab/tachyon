@@ -1,4 +1,4 @@
-package tachyon.perf.benchmark.simpleRead;
+package tachyon.perf.benchmark.simpleread;
 
 import java.io.IOException;
 

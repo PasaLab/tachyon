@@ -1,4 +1,4 @@
-package tachyon.perf.benchmark.skipRead;
+package tachyon.perf.benchmark.skipread;
 
 import java.util.ArrayList;
 import java.util.HashMap;

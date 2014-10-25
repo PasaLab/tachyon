@@ -22,7 +22,7 @@ public class TaskConfiguration {
   public static final long DEFAULT_LONG = 0;
   public static final String DEFAULT_STRING = "";
 
-  private static TaskConfiguration TASK_CONF = null;
+  private static TaskConfiguration sTaskConf = null;
 
   /**
    * Get the configuration.
@@ -33,10 +33,10 @@ public class TaskConfiguration {
    * @return the task configuration
    */
   public static synchronized TaskConfiguration get(String type, boolean fromFile) {
-    if (TASK_CONF == null) {
+    if (sTaskConf == null) {
       if (fromFile) {
         try {
-          TASK_CONF =
+          sTaskConf =
               new TaskConfiguration(PerfConf.get().TACHYON_PERF_HOME + "/conf/testSuite/" + type
                   + ".xml");
         } catch (Exception e) {
@@ -44,10 +44,10 @@ public class TaskConfiguration {
           throw new RuntimeException("Failed to parse conf/testSuite/" + type + ".xml");
         }
       } else {
-        TASK_CONF = new TaskConfiguration();
+        sTaskConf = new TaskConfiguration();
       }
     }
-    return TASK_CONF;
+    return sTaskConf;
   }
 
   private Map<String, String> mProperties;

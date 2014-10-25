@@ -85,7 +85,8 @@ public class SlaveStatus {
   }
 
   public synchronized int finished(boolean failedThenAbort, int failedPercentage) {
-    int success, failed;
+    int success;
+    int failed;
     failed = mFailedSlaves.size();
     success = mSuccessSlaves.size();
     if (failedThenAbort && (failed > (failedPercentage * mSlavesNum / 100))) {
@@ -99,7 +100,9 @@ public class SlaveStatus {
 
   public synchronized String getFinishStatus(boolean debug) {
     StringBuffer sbStatus = new StringBuffer();
-    int running, success, failed;
+    int running;
+    int success;
+    int failed;
     failed = mFailedSlaves.size();
     success = mSuccessSlaves.size();
     running = mReadySlaves.size() - failed - success;

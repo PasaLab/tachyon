@@ -10,13 +10,13 @@ import org.apache.log4j.Logger;
 public class PerfConf extends Utils {
   private static final Logger LOG = Logger.getLogger("");
 
-  private static PerfConf PERF_CONF = null;
+  private static PerfConf sPerfConf = null;
 
   public static synchronized PerfConf get() {
-    if (PERF_CONF == null) {
-      PERF_CONF = new PerfConf();
+    if (sPerfConf == null) {
+      sPerfConf = new PerfConf();
     }
-    return PERF_CONF;
+    return sPerfConf;
   }
 
   public final String TACHYON_PERF_HOME;
@@ -35,7 +35,7 @@ public class PerfConf extends Utils {
 
   private PerfConf() {
     if (System.getProperty("tachyon.perf.home") == null) {
-      LOG.warn("tachyon.perf.home is not set. Using /tmp/tachyon_perf_default_home as the default value.");
+      LOG.warn("tachyon.perf.home is not set. Using /tmp/tachyon_perf_default_home as default.");
       File file = new File("/tmp/tachyon_perf_default_home");
       if (!file.exists()) {
         file.mkdirs();
