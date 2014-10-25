@@ -138,7 +138,7 @@ public class TachyonPerfMaster {
       if (state == -1) {
         System.err.println("Enough slaves failed. Abort all the slaves.");
         LOG.error("Enough slaves failed. Abort all the slaves.");
-        return false;
+        return true;
       }
       if (state == 1) {
         return true;
