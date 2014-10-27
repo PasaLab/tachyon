@@ -8,7 +8,6 @@ import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.benchmark.ListGenerator;
 import tachyon.perf.benchmark.Operators;
-import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
 public class MassiveThread extends PerfThread {
@@ -19,8 +18,8 @@ public class MassiveThread extends PerfThread {
   private int mBufferSize;
   private long mFileLength;
   private PerfFileSystem mFileSystem;
-  private String mReadType;
   private long mLimitTimeMs;
+  private String mReadType;
   private boolean mShuffle;
   private String mWorkDir;
   private String mWriteType;
@@ -29,6 +28,16 @@ public class MassiveThread extends PerfThread {
   private double mReadThroughput; // in MB/s
   private boolean mSuccess;
   private double mWriteThroughput; // in MB/s
+
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
 
   public double getBasicWriteThroughput() {
     return mBasicWriteThroughput;
@@ -48,19 +57,6 @@ public class MassiveThread extends PerfThread {
 
   private void initSyncBarrier() throws IOException {
     mFileSystem.createEmptyFile(mWorkDir + "/sync/" + mTaskId + "-" + mId);
-  }
-
-  private void syncBarrier() throws IOException {
-    String syncDirPath = mWorkDir + "/sync";
-    String syncFileName = mTaskId + "-" + mId;
-    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
-    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
-      try {
-        Thread.sleep(300);
-      } catch (InterruptedException e) {
-        LOG.error("Error in Sync Barrier", e);
-      }
-    }
   }
 
   @Override
@@ -164,14 +160,16 @@ public class MassiveThread extends PerfThread {
     return true;
   }
 
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+  private void syncBarrier() throws IOException {
+    String syncDirPath = mWorkDir + "/sync";
+    String syncFileName = mTaskId + "-" + mId;
+    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
+    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
+      try {
+        Thread.sleep(300);
+      } catch (InterruptedException e) {
+        LOG.error("Error in Sync Barrier", e);
+      }
     }
-    return true;
   }
-
 }

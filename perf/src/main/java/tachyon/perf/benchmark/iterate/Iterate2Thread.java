@@ -27,15 +27,12 @@ public class Iterate2Thread extends IterateThread {
         String fileName = mTaskId + "-" + mId + "-" + w;
         Operators.writeSingleFile(mFileSystem, dataDir + "/" + fileName, mFileLength, mBlockSize,
             mBufferSize, mWriteType);
-        // writeBytes += mFileLength;
       } catch (IOException e) {
         LOG.error("Failed to write file", e);
         mSuccess = false;
         break;
       }
     }
-    // tTimeMs = System.currentTimeMillis() - tTimeMs;
-    // writeTimeMs += tTimeMs;
 
     String smallFilePath = null;
     for (int i = 0; i < mIterations; i ++) {

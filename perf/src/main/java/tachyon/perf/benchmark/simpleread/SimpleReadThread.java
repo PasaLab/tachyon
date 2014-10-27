@@ -19,6 +19,16 @@ public class SimpleReadThread extends PerfThread {
   private boolean mSuccess;
   private double mThroughput; // in MB/s
 
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
+
   public boolean getSuccess() {
     return mSuccess;
   }
@@ -70,16 +80,6 @@ public class SimpleReadThread extends PerfThread {
     }
     mSuccess = false;
     mThroughput = 0;
-    return true;
-  }
-
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
-    }
     return true;
   }
 }

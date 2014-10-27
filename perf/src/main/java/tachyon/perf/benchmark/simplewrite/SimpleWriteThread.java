@@ -7,7 +7,6 @@ import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.benchmark.ListGenerator;
 import tachyon.perf.benchmark.Operators;
-import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
 public class SimpleWriteThread extends PerfThread {
@@ -20,6 +19,16 @@ public class SimpleWriteThread extends PerfThread {
 
   private boolean mSuccess;
   private double mThroughput; // in MB/s
+
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
 
   public boolean getSuccess() {
     return mSuccess;
@@ -67,15 +76,4 @@ public class SimpleWriteThread extends PerfThread {
     mThroughput = 0;
     return true;
   }
-
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
-    }
-    return true;
-  }
-
 }

@@ -5,7 +5,6 @@ import java.io.IOException;
 import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.benchmark.Operators;
-import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
 public class MetadataThread extends PerfThread {
@@ -16,6 +15,18 @@ public class MetadataThread extends PerfThread {
 
   private double mRate; // in ops/sec
   private boolean mSuccess;
+
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    for (int i = 0; i < mClientsNum; i ++) {
+      try {
+        mClients[i].close();
+      } catch (IOException e) {
+        LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+      }
+    }
+    return true;
+  }
 
   public double getRate() {
     return mRate;
@@ -62,17 +73,4 @@ public class MetadataThread extends PerfThread {
     mSuccess = false;
     return true;
   }
-
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    for (int i = 0; i < mClientsNum; i ++) {
-      try {
-        mClients[i].close();
-      } catch (IOException e) {
-        LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
-      }
-    }
-    return true;
-  }
-
 }

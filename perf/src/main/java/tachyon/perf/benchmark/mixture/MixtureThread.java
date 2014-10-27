@@ -8,7 +8,6 @@ import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.benchmark.ListGenerator;
 import tachyon.perf.benchmark.Operators;
-import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
 public class MixtureThread extends PerfThread {
@@ -30,6 +29,16 @@ public class MixtureThread extends PerfThread {
   private boolean mSuccess;
   private double mWriteThroughput; // in MB/s
 
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
+
   public double getBasicWriteThroughput() {
     return mBasicWriteThroughput;
   }
@@ -48,19 +57,6 @@ public class MixtureThread extends PerfThread {
 
   private void initSyncBarrier() throws IOException {
     mFileSystem.createEmptyFile(mWorkDir + "/sync/" + mId);
-  }
-
-  private void syncBarrier() throws IOException {
-    String syncDirPath = mWorkDir + "/sync";
-    String syncFileName = "" + mId;
-    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
-    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
-      try {
-        Thread.sleep(300);
-      } catch (InterruptedException e) {
-        LOG.error("Error in Sync Barrier", e);
-      }
-    }
   }
 
   @Override
@@ -161,14 +157,16 @@ public class MixtureThread extends PerfThread {
     return true;
   }
 
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+  private void syncBarrier() throws IOException {
+    String syncDirPath = mWorkDir + "/sync";
+    String syncFileName = "" + mId;
+    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
+    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
+      try {
+        Thread.sleep(300);
+      } catch (InterruptedException e) {
+        LOG.error("Error in Sync Barrier", e);
+      }
     }
-    return true;
   }
-
 }

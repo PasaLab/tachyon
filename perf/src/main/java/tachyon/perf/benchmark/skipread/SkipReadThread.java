@@ -17,11 +17,21 @@ public class SkipReadThread extends PerfThread {
   private List<String> mReadFiles;
   private String mReadType;
   private long mSkipBytes;
-  private int mSkipTimes;
   private String mSkipMode;
+  private int mSkipTimes;
 
   private boolean mSuccess;
   private double mThroughput; // in MB/s
+
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
 
   public boolean getSuccess() {
     return mSuccess;
@@ -86,16 +96,6 @@ public class SkipReadThread extends PerfThread {
     }
     mSuccess = false;
     mThroughput = 0;
-    return true;
-  }
-
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
-    }
     return true;
   }
 }

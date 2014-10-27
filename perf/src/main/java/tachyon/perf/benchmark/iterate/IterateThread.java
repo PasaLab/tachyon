@@ -7,7 +7,6 @@ import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.benchmark.ListGenerator;
 import tachyon.perf.benchmark.Operators;
-import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
 public class IterateThread extends PerfThread {
@@ -27,6 +26,16 @@ public class IterateThread extends PerfThread {
   protected boolean mSuccess;
   protected double mWriteThroughput; // in MB/s
 
+  @Override
+  public boolean cleanupThread(TaskConfiguration taskConf) {
+    try {
+      mFileSystem.close();
+    } catch (IOException e) {
+      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+    }
+    return true;
+  }
+
   public double getReadThroughput() {
     return mReadThroughput;
   }
@@ -43,19 +52,6 @@ public class IterateThread extends PerfThread {
     String syncFileName = mTaskId + "-" + mId;
     for (int i = 0; i < mIterations; i ++) {
       mFileSystem.createEmptyFile(mWorkDir + "/sync/" + i + "/" + syncFileName);
-    }
-  }
-
-  protected void syncBarrier(int iteration) throws IOException {
-    String syncDirPath = mWorkDir + "/sync/" + iteration;
-    String syncFileName = mTaskId + "-" + mId;
-    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
-    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
-      try {
-        Thread.sleep(300);
-      } catch (InterruptedException e) {
-        LOG.error("Error in Sync Barrier", e);
-      }
     }
   }
 
@@ -138,14 +134,16 @@ public class IterateThread extends PerfThread {
     return true;
   }
 
-  @Override
-  public boolean cleanupThread(TaskConfiguration taskConf) {
-    try {
-      mFileSystem.close();
-    } catch (IOException e) {
-      LOG.warn("Error when close file system, task " + mTaskId + " - thread " + mId, e);
+  protected void syncBarrier(int iteration) throws IOException {
+    String syncDirPath = mWorkDir + "/sync/" + iteration;
+    String syncFileName = mTaskId + "-" + mId;
+    mFileSystem.delete(syncDirPath + "/" + syncFileName, false);
+    while (!mFileSystem.listFullPath(syncDirPath).isEmpty()) {
+      try {
+        Thread.sleep(300);
+      } catch (InterruptedException e) {
+        LOG.error("Error in Sync Barrier", e);
+      }
     }
-    return true;
   }
-
 }
