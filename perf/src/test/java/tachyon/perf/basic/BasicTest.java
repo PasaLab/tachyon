@@ -61,7 +61,7 @@ public class BasicTest {
     Assert.assertEquals("Foo", task.getCleanupDir());
 
     PerfTaskContext taskContext = TaskType.get().getTaskContextClass(taskType);
-    taskContext.initial(taskId, nodeName, taskType, taskConf);
+    taskContext.initialSet(taskId, nodeName, taskType, taskConf);
     Assert.assertEquals(taskId, taskContext.mId);
     Assert.assertEquals(nodeName, taskContext.mNodeName);
     Assert.assertEquals(taskType, taskContext.mTaskType);

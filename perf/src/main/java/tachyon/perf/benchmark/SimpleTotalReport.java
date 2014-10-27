@@ -11,6 +11,10 @@ import java.util.Map;
 import tachyon.perf.basic.PerfTaskContext;
 import tachyon.perf.basic.PerfTotalReport;
 
+/**
+ * An simple example to extend PerfTotalReport. It generate report from SimpleTaskContext and can be
+ * used to quickly implement a new benchmark.
+ */
 public class SimpleTotalReport extends PerfTotalReport {
   protected String mFailedSlaves = "";
   protected int mFailedTasks = 0;
@@ -59,14 +63,6 @@ public class SimpleTotalReport extends PerfTotalReport {
     return sbSlaveDetail.toString();
   }
 
-  private String generateTaskConf() {
-    StringBuffer sbReadConf = new StringBuffer();
-    for (Map.Entry<String, String> entry : mConf.entrySet()) {
-      sbReadConf.append(entry.getKey()).append("\t").append(entry.getValue()).append("\n");
-    }
-    return sbReadConf.toString();
-  }
-
   private String generateStatistics() {
     StringBuffer sbStatistics = new StringBuffer("SlaveName");
     Map<String, List<Double>> sample = mStatistics.get(0);
@@ -101,6 +97,14 @@ public class SimpleTotalReport extends PerfTotalReport {
     return sbStatistics.toString();
   }
 
+  private String generateTaskConf() {
+    StringBuffer sbReadConf = new StringBuffer();
+    for (Map.Entry<String, String> entry : mConf.entrySet()) {
+      sbReadConf.append(entry.getKey()).append("\t").append(entry.getValue()).append("\n");
+    }
+    return sbReadConf.toString();
+  }
+
   @Override
   public void writeToFile(File file) throws IOException {
     BufferedWriter fout = new BufferedWriter(new FileWriter(file));
@@ -120,5 +124,4 @@ public class SimpleTotalReport extends PerfTotalReport {
     }
     fout.close();
   }
-
 }

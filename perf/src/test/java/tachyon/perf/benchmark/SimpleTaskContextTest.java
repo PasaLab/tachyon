@@ -31,7 +31,7 @@ public class SimpleTaskContextTest {
   public void writeLoadTest() throws IOException {
     TaskConfiguration taskConf = TaskConfiguration.get("Foo", false);
     SimpleTaskContext context1 = new SimpleTaskContext();
-    context1.initial(0, "", "Foo", taskConf);
+    context1.initialSet(0, "", "Foo", taskConf);
     context1.setFromThread(new PerfThread[1]);
     File contextFile = new File(J_TMP_DIR + "/tachyon-perf-test/context-test");
     context1.writeToFile(contextFile);

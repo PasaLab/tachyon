@@ -51,7 +51,7 @@ public class TaskType {
   /**
    * Get the task class of specified task. The class should be a subclass of PerfTask.
    * 
-   * @param type the type of the benchmark task
+   * @param type the type of the task
    * @return the task class
    * @throws Exception
    */
@@ -63,7 +63,7 @@ public class TaskType {
   /**
    * Get the task context class of specified task. The class should be a subclass of TaskContext.
    * 
-   * @param type the type of the benchmark task
+   * @param type the type of the task
    * @return the task context class
    * @throws Exception
    */
@@ -75,8 +75,8 @@ public class TaskType {
   /**
    * Get the task thread class of specified task. The class should be a subclass of PerfThread.
    * 
-   * @param type
-   * @return
+   * @param type the type of the task
+   * @return the task thread class
    * @throws Exception
    */
   public PerfThread getTaskThreadClass(String type) throws Exception {
@@ -86,11 +86,9 @@ public class TaskType {
 
   /**
    * Get the task total report of specified task. The class should be a subclass of PerfTotalReport.
-   * Note that this is not necessary for a benchmark. It only used when you want
-   * TachyonPerfCollector to support to generate a total report for the benchmark.
    * 
-   * @param type the type of the benchmark task
-   * @return the task context class
+   * @param type the type of the task
+   * @return the task total report class
    * @throws Exception
    */
   public PerfTotalReport getTotalReportClass(String type) throws Exception {

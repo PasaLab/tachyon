@@ -8,7 +8,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * This class is used to parse the configuration file for specified benchmark
+ * This class is used to parse the configuration file for specified benchmark.
  */
 public class SAXConfiguration extends DefaultHandler {
   private String mCurrentName = null;
@@ -17,25 +17,6 @@ public class SAXConfiguration extends DefaultHandler {
 
   public Map<String, String> getProperties() {
     return mProperties;
-  }
-
-  @Override
-  public void startDocument() throws SAXException {
-    mProperties = new HashMap<String, String>();
-  }
-
-  @Override
-  public void startElement(String uri, String localName, String qName, Attributes attributes)
-      throws SAXException {
-    mCurrentTag = qName;
-  }
-
-  @Override
-  public void endElement(String uri, String localName, String qName) throws SAXException {
-    if ("property".equals(qName)) {
-      mCurrentName = null;
-    }
-    mCurrentTag = null;
   }
 
   @Override
@@ -48,5 +29,24 @@ public class SAXConfiguration extends DefaultHandler {
         mProperties.put(mCurrentName, content);
       }
     }
+  }
+
+  @Override
+  public void endElement(String uri, String localName, String qName) throws SAXException {
+    if ("property".equals(qName)) {
+      mCurrentName = null;
+    }
+    mCurrentTag = null;
+  }
+
+  @Override
+  public void startDocument() throws SAXException {
+    mProperties = new HashMap<String, String>();
+  }
+
+  @Override
+  public void startElement(String uri, String localName, String qName, Attributes attributes)
+      throws SAXException {
+    mCurrentTag = qName;
   }
 }

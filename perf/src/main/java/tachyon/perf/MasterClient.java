@@ -16,6 +16,9 @@ import tachyon.perf.thrift.MasterService;
 import tachyon.perf.thrift.SlaveAlreadyRegisterException;
 import tachyon.perf.thrift.SlaveNotRegisterException;
 
+/**
+ * The client side of Tachyon-Perf Master.
+ */
 public class MasterClient implements Closeable {
   private static final Logger LOG = Logger.getLogger(PerfConstants.PERF_LOGGER_TYPE);
   private static final int MAX_CONNECT_TRY = 5;
@@ -37,6 +40,9 @@ public class MasterClient implements Closeable {
     mClient = new MasterService.Client(mProtocol);
   }
 
+  /**
+   * Clean the connect.
+   */
   @Override
   public synchronized void close() throws IOException {
     if (mConnected) {
@@ -48,6 +54,11 @@ public class MasterClient implements Closeable {
     }
   }
 
+  /**
+   * Try to connect to the Tachyon-Perf Master.
+   * 
+   * @return true if success, false otherwise
+   */
   private synchronized boolean connect() {
     if (!mConnected) {
       try {
@@ -61,6 +72,11 @@ public class MasterClient implements Closeable {
     return mConnected;
   }
 
+  /**
+   * Connects to the Tachyon-Perf Master. An exception is thrown if this fails.
+   * 
+   * @throws IOException
+   */
   public synchronized void mustConnect() throws IOException {
     int tries = 0;
     while (tries ++ < MAX_CONNECT_TRY) {
@@ -71,6 +87,14 @@ public class MasterClient implements Closeable {
     throw new IOException("Failed to connect to the Tachyon-Perf Master");
   }
 
+  /**
+   * Check if all the slaves are ready so this slave can start to run.
+   * 
+   * @param taskId the id of this slave
+   * @param nodeName the name of this slave
+   * @return true if all the slaves are ready to run
+   * @throws IOException
+   */
   public synchronized boolean slave_canRun(int taskId, String nodeName) throws IOException {
     mustConnect();
     try {
@@ -83,6 +107,14 @@ public class MasterClient implements Closeable {
     }
   }
 
+  /**
+   * Notify Tachyon-Perf Master that this slave is finished.
+   * 
+   * @param taskId the id of this slave
+   * @param nodeName the name of this slave
+   * @param successFinish true if this slave finished successfully, false otherwise
+   * @throws IOException
+   */
   public synchronized void slave_finish(int taskId, String nodeName, boolean successFinish)
       throws IOException {
     mustConnect();
@@ -96,7 +128,16 @@ public class MasterClient implements Closeable {
     }
   }
 
-  public void slave_ready(int taskId, String nodeName, boolean successSetup) throws IOException {
+  /**
+   * Notify Tachyon-Perf Master that this slave is ready to run.
+   * 
+   * @param taskId the id of this slave
+   * @param nodeName the name of this slave
+   * @param successSetup true if this slave setup successfully, false otherwise
+   * @throws IOException
+   */
+  public synchronized void slave_ready(int taskId, String nodeName, boolean successSetup)
+      throws IOException {
     mustConnect();
     try {
       mClient.slave_ready(taskId, nodeName, successSetup);
@@ -108,7 +149,17 @@ public class MasterClient implements Closeable {
     }
   }
 
-  public boolean slave_register(int taskId, String nodeName, String cleanupDir) throws IOException {
+  /**
+   * Register this slave to the Tachyon-Perf Master.
+   * 
+   * @param taskId the id of this slave
+   * @param nodeName the name of this slave
+   * @param cleanupDir if not null, it will cleanup this directory after all the slaves are finished
+   * @return true if register successfully, false otherwise
+   * @throws IOException
+   */
+  public synchronized boolean slave_register(int taskId, String nodeName, String cleanupDir)
+      throws IOException {
     if (!connect()) {
       return false;
     }

@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * The abstract class of Tachyon-Perf Total Report. For new test, if you want TachyonPerfCollector
- * to generate a total report for you, you should create a new class which extends this.
+ * The abstract class for the total report, which is used to generate a test report by the
+ * TachyonPerfCollector tool. For new test, you should create a new class which extends this.
  */
 public abstract class PerfTotalReport {
 

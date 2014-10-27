@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 import tachyon.perf.PerfConstants;
 
 /**
- * The abstract class for all test statistics. For new test, you should implement your own
- * PerfTaskContext.
+ * The abstract class for the context, which contains the statistics of the test. For new test, you
+ * should create a new class which extends this.
  */
 public abstract class PerfTaskContext {
   protected static final Logger LOG = Logger.getLogger(PerfConstants.PERF_LOGGER_TYPE);
@@ -18,17 +18,22 @@ public abstract class PerfTaskContext {
   protected String mNodeName;
   protected String mTaskType;
 
+  // The basic statistics of a test.
   protected long mFinishTimeMs;
   protected long mStartTimeMs;
   protected boolean mSuccess;
 
-  public void initial(int id, String nodeName, String taskType, TaskConfiguration taskConf) {
+  public void initialSet(int id, String nodeName, String taskType, TaskConfiguration taskConf) {
     mId = id;
     mNodeName = nodeName;
     mTaskType = taskType;
     mStartTimeMs = System.currentTimeMillis();
     mFinishTimeMs = mStartTimeMs;
     mSuccess = true;
+  }
+
+  public long getFinishTimeMs() {
+    return mFinishTimeMs;
   }
 
   public int getId() {
@@ -39,14 +44,6 @@ public abstract class PerfTaskContext {
     return mNodeName;
   }
 
-  public String getTaskType() {
-    return mTaskType;
-  }
-
-  public long getFinishTimeMs() {
-    return mFinishTimeMs;
-  }
-
   public long getStartTimeMs() {
     return mStartTimeMs;
   }
@@ -55,32 +52,36 @@ public abstract class PerfTaskContext {
     return mSuccess;
   }
 
-  public void setStartTimeMs(long startTimeMs) {
-    mStartTimeMs = startTimeMs;
-  }
-
-  public void setFinishTimeMs(long finishTimeMs) {
-    mFinishTimeMs = finishTimeMs;
-  }
-
-  public void setSuccess(boolean success) {
-    mSuccess = success;
+  public String getTaskType() {
+    return mTaskType;
   }
 
   /**
-   * Load this task context from file
+   * Load this task context from file.
    * 
    * @param file the input file
    * @throws IOException
    */
   public abstract void loadFromFile(File file) throws IOException;
 
+  public void setFinishTimeMs(long finishTimeMs) {
+    mFinishTimeMs = finishTimeMs;
+  }
+
   /**
-   * Set contexts from test threads.
+   * Set those statistics from the threads' results.
    * 
    * @param threads
    */
   public abstract void setFromThread(PerfThread[] threads);
+
+  public void setStartTimeMs(long startTimeMs) {
+    mStartTimeMs = startTimeMs;
+  }
+
+  public void setSuccess(boolean success) {
+    mSuccess = success;
+  }
 
   /**
    * Output this task context to file.

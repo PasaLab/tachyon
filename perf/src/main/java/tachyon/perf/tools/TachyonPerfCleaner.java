@@ -6,6 +6,9 @@ import tachyon.conf.MasterConf;
 import tachyon.perf.conf.PerfConf;
 import tachyon.perf.fs.PerfFileSystem;
 
+/**
+ * A tool to clean the workspace on Tachyon.
+ */
 public class TachyonPerfCleaner {
   public static void main(String[] args) {
     String tachyonAddress = MasterConf.get().MASTER_ADDRESS;

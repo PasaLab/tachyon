@@ -6,6 +6,9 @@ import tachyon.perf.thrift.MasterService;
 import tachyon.perf.thrift.SlaveAlreadyRegisterException;
 import tachyon.perf.thrift.SlaveNotRegisterException;
 
+/**
+ * The thrift server side of Tachyon-Perf Master.
+ */
 public class MasterServiceHandler implements MasterService.Iface {
   private final SlaveStatus mSlaveStatus;
 

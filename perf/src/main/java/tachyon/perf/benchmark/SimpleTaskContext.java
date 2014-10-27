@@ -16,24 +16,28 @@ import tachyon.perf.basic.PerfTaskContext;
 import tachyon.perf.basic.PerfThread;
 import tachyon.perf.basic.TaskConfiguration;
 
+/**
+ * An simple example to extend PerfTaskContext. This context maintains additive statistics and can
+ * be used to quickly implement a new benchmark.
+ */
 public class SimpleTaskContext extends PerfTaskContext {
   protected Map<String, String> mConf;
 
   protected Map<String, List<Double>> mAdditiveStatistics;
 
   @Override
-  public void initial(int id, String nodeName, String taskType, TaskConfiguration taskConf) {
-    super.initial(id, nodeName, taskType, taskConf);
+  public void initialSet(int id, String nodeName, String taskType, TaskConfiguration taskConf) {
+    super.initialSet(id, nodeName, taskType, taskConf);
     mConf = taskConf.getAllProperties();
     mConf.put("tachyon.master.address", MasterConf.get().MASTER_ADDRESS);
   }
 
-  public Map<String, String> getConf() {
-    return mConf;
-  }
-
   public Map<String, List<Double>> getAdditiveStatistics() {
     return mAdditiveStatistics;
+  }
+
+  public Map<String, String> getConf() {
+    return mConf;
   }
 
   @Override

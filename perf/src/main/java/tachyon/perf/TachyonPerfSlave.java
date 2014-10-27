@@ -7,6 +7,9 @@ import tachyon.perf.basic.PerfTaskContext;
 import tachyon.perf.basic.TaskConfiguration;
 import tachyon.perf.basic.TaskType;
 
+/**
+ * Entry point for the Tachyon-Perf Slave program.
+ */
 public class TachyonPerfSlave {
   private static final Logger LOG = Logger.getLogger(PerfConstants.PERF_LOGGER_TYPE);
 
@@ -34,7 +37,7 @@ public class TachyonPerfSlave {
       PerfTask task = TaskType.get().getTaskClass(taskType);
       task.initialSet(taskId, nodeName, taskConf, taskType);
       PerfTaskContext taskContext = TaskType.get().getTaskContextClass(taskType);
-      taskContext.initial(taskId, nodeName, taskType, taskConf);
+      taskContext.initialSet(taskId, nodeName, taskType, taskConf);
 
       MasterClient masterClient = new MasterClient();
       while (!masterClient.slave_register(taskId, nodeName, task.getCleanupDir())) {

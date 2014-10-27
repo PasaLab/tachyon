@@ -31,69 +31,6 @@ public abstract class PerfTask {
     mTaskType = taskType;
   }
 
-  /**
-   * If you want to cleanup certain work directory after the whole test finished, return in here.
-   * Otherwise return null.
-   * 
-   * @return the work directory to cleanup, otherwise null;
-   */
-  public abstract String getCleanupDir();
-
-  /**
-   * Setup the task. Do some preparations.
-   * 
-   * @param taskContext The statistics of this task
-   * @return true if setup successfully, false otherwise
-   */
-  protected abstract boolean setupTask(PerfTaskContext taskContext);
-
-  /**
-   * Cleanup the task. Do some following work.
-   * 
-   * @param taskContext The statistics of this task
-   * @return true if cleanup successfully, false otherwise
-   */
-  protected abstract boolean cleanupTask(PerfTaskContext taskContext);
-
-  public boolean setup(PerfTaskContext taskContext) {
-    taskContext.setStartTimeMs(System.currentTimeMillis());
-    boolean ret = setupTask(taskContext);
-    mThreads = new PerfThread[PerfConf.get().THREADS_NUM];
-    try {
-      for (int i = 0; i < mThreads.length; i ++) {
-        mThreads[i] = TaskType.get().getTaskThreadClass(mTaskType);
-        mThreads[i].initialSet(i, mId, mNodeName, mTaskType);
-        ret &= mThreads[i].setupThread(mTaskConf);
-      }
-    } catch (Exception e) {
-      LOG.error("Error to create task thread", e);
-      return false;
-    }
-    return ret;
-  }
-
-  public boolean run(PerfTaskContext taskContext) {
-    List<Thread> threadList = new ArrayList<Thread>(mThreads.length);
-    try {
-      for (int i = 0; i < mThreads.length; i ++) {
-        Thread t = new Thread(mThreads[i]);
-        threadList.add(t);
-      }
-      for (Thread t : threadList) {
-        t.start();
-      }
-      for (Thread t : threadList) {
-        t.join();
-      }
-    } catch (InterruptedException e) {
-      LOG.error("Error when wait all threads", e);
-      return false;
-    } catch (Exception e) {
-      LOG.error("Error to create task thread", e);
-      return false;
-    }
-    return true;
-  }
 
   public boolean cleanup(PerfTaskContext taskContext) {
     boolean ret = true;
@@ -119,4 +56,68 @@ public abstract class PerfTask {
     }
     return ret;
   }
+
+  /**
+   * Cleanup the task. Do some following work.
+   * 
+   * @param taskContext the context of this task
+   * @return true if cleanup successfully, false otherwise
+   */
+  protected abstract boolean cleanupTask(PerfTaskContext taskContext);
+
+  /**
+   * If you want to cleanup certain work directory after the whole test finished, return in here.
+   * Otherwise return null.
+   * 
+   * @return the work directory to cleanup, otherwise null
+   */
+  public abstract String getCleanupDir();
+
+  public boolean run(PerfTaskContext taskContext) {
+    List<Thread> threadList = new ArrayList<Thread>(mThreads.length);
+    try {
+      for (int i = 0; i < mThreads.length; i ++) {
+        Thread t = new Thread(mThreads[i]);
+        threadList.add(t);
+      }
+      for (Thread t : threadList) {
+        t.start();
+      }
+      for (Thread t : threadList) {
+        t.join();
+      }
+    } catch (InterruptedException e) {
+      LOG.error("Error when wait all threads", e);
+      return false;
+    } catch (Exception e) {
+      LOG.error("Error to create task thread", e);
+      return false;
+    }
+    return true;
+  }
+
+  public boolean setup(PerfTaskContext taskContext) {
+    taskContext.setStartTimeMs(System.currentTimeMillis());
+    boolean ret = setupTask(taskContext);
+    mThreads = new PerfThread[PerfConf.get().THREADS_NUM];
+    try {
+      for (int i = 0; i < mThreads.length; i ++) {
+        mThreads[i] = TaskType.get().getTaskThreadClass(mTaskType);
+        mThreads[i].initialSet(i, mId, mNodeName, mTaskType);
+        ret &= mThreads[i].setupThread(mTaskConf);
+      }
+    } catch (Exception e) {
+      LOG.error("Error to create task thread", e);
+      return false;
+    }
+    return ret;
+  }
+
+  /**
+   * Setup the task. Do some preparations.
+   * 
+   * @param taskContext the context of this task
+   * @return true if setup successfully, false otherwise
+   */
+  protected abstract boolean setupTask(PerfTaskContext taskContext);
 }

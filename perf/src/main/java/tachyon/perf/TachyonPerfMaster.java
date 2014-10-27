@@ -3,7 +3,6 @@ package tachyon.perf;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -14,8 +13,11 @@ import org.apache.thrift.transport.TNonblockingServerSocket;
 import tachyon.perf.conf.PerfConf;
 import tachyon.perf.thrift.MasterService;
 
+/**
+ * Entry point for the Tachyon-Perf Master program.
+ */
 public class TachyonPerfMaster {
-  public class MasterServiceThread extends Thread {
+  class MasterServiceThread extends Thread {
     TNonblockingServerSocket mServerTNonblockingServerSocket = null;
     TServer mMasterServiceServer = null;
 
@@ -97,12 +99,26 @@ public class TachyonPerfMaster {
     }
   }
 
-  private SlaveStatus mSlaveStatus;
   private MasterServiceThread mMasterServiceThread;
+  private SlaveStatus mSlaveStatus;
 
   public TachyonPerfMaster(int slavesNum, Set<String> slaves) {
     mSlaveStatus = new SlaveStatus(slavesNum, slaves);
     mMasterServiceThread = new MasterServiceThread();
+  }
+
+  public boolean start() {
+    if (!startMasterService()) {
+      return false;
+    }
+    System.out.println("Wait all slaves register...");
+    LOG.info("Wait all slaves register...");
+    if (!waitRegister()) {
+      return false;
+    }
+    System.out.println("Wait all slaves finished...");
+    LOG.info("Wait all slaves finished...");
+    return waitFinish();
   }
 
   private boolean startMasterService() {
@@ -116,6 +132,11 @@ public class TachyonPerfMaster {
     }
     mMasterServiceThread.start();
     return true;
+  }
+
+  public void stop() throws Exception {
+    mSlaveStatus.cleanup();
+    stopMasterService();
   }
 
   private void stopMasterService() throws Exception {
@@ -160,7 +181,7 @@ public class TachyonPerfMaster {
         return true;
       }
     }
-    List<String> remains = mSlaveStatus.getUnregisterSlaves();
+    Set<String> remains = mSlaveStatus.getUnregisterSlaves();
     StringBuffer sbInfo = new StringBuffer("Unregister time out:");
     for (String slave : remains) {
       sbInfo.append(" ").append(slave);
@@ -168,24 +189,5 @@ public class TachyonPerfMaster {
     System.err.println(sbInfo.toString());
     LOG.error(sbInfo.toString());
     return false;
-  }
-
-  public boolean start() {
-    if (!startMasterService()) {
-      return false;
-    }
-    System.out.println("Wait all slaves register...");
-    LOG.info("Wait all slaves register...");
-    if (!waitRegister()) {
-      return false;
-    }
-    System.out.println("Wait all slaves finished...");
-    LOG.info("Wait all slaves finished...");
-    return waitFinish();
-  }
-
-  public void stop() throws Exception {
-    mSlaveStatus.cleanup();
-    stopMasterService();
   }
 }

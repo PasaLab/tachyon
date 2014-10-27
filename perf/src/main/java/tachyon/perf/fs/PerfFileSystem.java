@@ -19,6 +19,10 @@ import tachyon.conf.MasterConf;
 import tachyon.perf.PerfConstants;
 import tachyon.thrift.ClientFileInfo;
 
+/**
+ * The interface layer to communicate with Tachyon. Now Tachyon Client APIs may change and this
+ * layer can keep the modifications of Tachyon-Perf in this single file.
+ */
 public class PerfFileSystem {
   protected static final Logger LOG = Logger.getLogger(PerfConstants.PERF_LOGGER_TYPE);
 
@@ -38,7 +42,7 @@ public class PerfFileSystem {
   }
 
   /**
-   * Close the connection to the file system
+   * Close the connection to Tachyon
    * 
    * @throws IOException
    */
@@ -47,7 +51,7 @@ public class PerfFileSystem {
   }
 
   /**
-   * Create a file. Use the default block size and write type if supported.
+   * Create a file. Use the default block size and TRY_CACHE write type.
    * 
    * @param path the file's full path
    * @return the output stream of the created file
@@ -62,7 +66,7 @@ public class PerfFileSystem {
   }
 
   /**
-   * Create a file with the specified block size. Use the default write type if supported.
+   * Create a file with the specified block size. Use the TRY_CACHE write type.
    * 
    * @param path the file's full path
    * @param blockSizeByte the block size of the file
@@ -219,7 +223,7 @@ public class PerfFileSystem {
   }
 
   /**
-   * Open a file and return it's input stream. Use the default read type if supported.
+   * Open a file and return it's input stream. Use the NO_CACHE read type.
    * 
    * @param path the file's full path
    * @return the input stream of the opened file

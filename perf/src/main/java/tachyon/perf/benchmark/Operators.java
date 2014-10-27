@@ -7,6 +7,9 @@ import java.util.Random;
 
 import tachyon.perf.fs.PerfFileSystem;
 
+/**
+ * This class contains a set of file operators which can be used in different benchmarks.
+ */
 public class Operators {
   private static final Random RAND = new Random(System.currentTimeMillis());
 
@@ -20,7 +23,7 @@ public class Operators {
    * @param readBytes
    * @param readType
    * @param times
-   * @return
+   * @return the actual number of bytes read
    * @throws IOException
    */
   public static long forwardSkipRead(PerfFileSystem fs, String filePath, int bufferSize,
@@ -37,33 +40,32 @@ public class Operators {
   }
 
   /**
-   * Do metadata operations.
+   * Do metadata operations. These metadata operations consist of mkdir, touch, exists, rename and
+   * delete.
    * 
    * @param fs
    * @param filePath
-   * @return
+   * @return the actual number of finished metadata operations
    * @throws IOException
    */
   public static int metadataSample(PerfFileSystem fs, String filePath) throws IOException {
-    if (RAND.nextBoolean()) {
-      if (!fs.mkdirs(filePath, true)) {
-        return 0;
-      }
-    } else {
-      if (!fs.createEmptyFile(filePath)) {
-        return 0;
-      }
+    String emptyFilePath = filePath + "/metadata-test-file";
+    if (!fs.mkdirs(filePath, true)) {
+      return 0;
     }
-    if (!fs.exists(filePath)) {
+    if (!fs.createEmptyFile(emptyFilePath)) {
       return 1;
     }
-    if (!fs.rename(filePath, filePath + "-__-__-")) {
+    if (!fs.exists(emptyFilePath)) {
       return 2;
     }
-    if (!fs.delete(filePath + "-__-__-", true)) {
+    if (!fs.rename(emptyFilePath, emptyFilePath + "-__-__-")) {
       return 3;
     }
-    return 4;
+    if (!fs.delete(filePath, true)) {
+      return 4;
+    }
+    return 5;
   }
 
   /**
@@ -75,7 +77,7 @@ public class Operators {
    * @param readBytes
    * @param readType
    * @param times
-   * @return
+   * @return the actual number of bytes read
    * @throws IOException
    */
   public static long randomSkipRead(PerfFileSystem fs, String filePath, int bufferSize,
@@ -102,7 +104,7 @@ public class Operators {
    * @param fs
    * @param filePath
    * @param bufferSize
-   * @return
+   * @return the actual number of bytes read
    * @throws IOException
    */
   public static long readSingleFile(PerfFileSystem fs, String filePath, int bufferSize)
@@ -117,7 +119,7 @@ public class Operators {
    * @param filePath
    * @param bufferSize
    * @param readType
-   * @return
+   * @return the actual number of bytes read
    * @throws IOException
    */
   public static long readSingleFile(PerfFileSystem fs, String filePath, int bufferSize,
