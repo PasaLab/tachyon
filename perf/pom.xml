@@ -12,6 +12,10 @@
   <description>Tachyon-Perf: A Performance Test Framework for Tachyon</description>
   <name>Tachyon Project Perf</name>
 
+  <properties>
+    <failIfNoTests>false</failIfNoTests>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.tachyonproject</groupId>
