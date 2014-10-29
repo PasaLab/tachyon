@@ -2,16 +2,16 @@
 <taskTypes>
   <type>
     <name>SimpleRead</name>
-    <taskClass>tachyon.perf.benchmark.simpleRead.SimpleReadTask</taskClass>
-    <taskContextClass>tachyon.perf.benchmark.simpleRead.SimpleReadTaskContext</taskContextClass>
-    <taskThreadClass>tachyon.perf.benchmark.simpleRead.SimpleReadThread</taskThreadClass>
+    <taskClass>tachyon.perf.benchmark.simpleread.SimpleReadTask</taskClass>
+    <taskContextClass>tachyon.perf.benchmark.simpleread.SimpleReadTaskContext</taskContextClass>
+    <taskThreadClass>tachyon.perf.benchmark.simpleread.SimpleReadThread</taskThreadClass>
     <totalReportClass>tachyon.perf.benchmark.SimpleTotalReport</totalReportClass>
   </type>
   <type>
     <name>SimpleWrite</name>
-    <taskClass>tachyon.perf.benchmark.simpleWrite.SimpleWriteTask</taskClass>
-    <taskContextClass>tachyon.perf.benchmark.simpleWrite.SimpleWriteTaskContext</taskContextClass>
-    <taskThreadClass>tachyon.perf.benchmark.simpleWrite.SimpleWriteThread</taskThreadClass>
+    <taskClass>tachyon.perf.benchmark.simplewrite.SimpleWriteTask</taskClass>
+    <taskContextClass>tachyon.perf.benchmark.simplewrite.SimpleWriteTaskContext</taskContextClass>
+    <taskThreadClass>tachyon.perf.benchmark.simplewrite.SimpleWriteThread</taskThreadClass>
     <totalReportClass>tachyon.perf.benchmark.SimpleTotalReport</totalReportClass>
   </type>
   <type>
@@ -23,16 +23,9 @@
   </type>
   <type>
     <name>SkipRead</name>
-    <taskClass>tachyon.perf.benchmark.skipRead.SkipReadTask</taskClass>
-    <taskContextClass>tachyon.perf.benchmark.skipRead.SkipReadTaskContext</taskContextClass>
-    <taskThreadClass>tachyon.perf.benchmark.skipRead.SkipReadThread</taskThreadClass>
-    <totalReportClass>tachyon.perf.benchmark.SimpleTotalReport</totalReportClass>
-  </type>
-  <type>
-    <name>SkipRead2</name>
-    <taskClass>tachyon.perf.benchmark.skipRead.SkipReadTask</taskClass>
-    <taskContextClass>tachyon.perf.benchmark.skipRead.SkipReadTaskContext</taskContextClass>
-    <taskThreadClass>tachyon.perf.benchmark.skipRead.SkipRead2Thread</taskThreadClass>
+    <taskClass>tachyon.perf.benchmark.skipread.SkipReadTask</taskClass>
+    <taskContextClass>tachyon.perf.benchmark.skipread.SkipReadTaskContext</taskContextClass>
+    <taskThreadClass>tachyon.perf.benchmark.skipread.SkipReadThread</taskThreadClass>
     <totalReportClass>tachyon.perf.benchmark.SimpleTotalReport</totalReportClass>
   </type>
   <type>
