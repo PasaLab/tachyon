@@ -28,8 +28,6 @@ import tachyon.TestUtils;
 import tachyon.conf.WorkerConf;
 import tachyon.master.LocalTachyonCluster;
 import tachyon.thrift.ClientBlockInfo;
-import tachyon.thrift.FileAlreadyExistException;
-import tachyon.thrift.InvalidPathException;
 import tachyon.util.CommonUtils;
 
 /**
@@ -38,6 +36,7 @@ import tachyon.util.CommonUtils;
 public class TachyonFileTest {
   private static final int WORKER_CAPACITY_BYTES = 1000;
   private static final int USER_QUOTA_UNIT_BYTES = 100;
+  private static final int FILE_BUFFER_BYTES = WORKER_CAPACITY_BYTES / 4;
   private static final int WORKER_TO_MASTER_HEARTBEAT_INTERVAL_MS =
       WorkerConf.get().TO_MASTER_HEARTBEAT_INTERVAL_MS;
   private static final int MAX_FILES = WORKER_CAPACITY_BYTES / USER_QUOTA_UNIT_BYTES;
@@ -53,11 +52,13 @@ public class TachyonFileTest {
   public final void after() throws Exception {
     mLocalTachyonCluster.stop();
     System.clearProperty("tachyon.user.quota.unit.bytes");
+    System.clearProperty("tachyon.user.file.buffer.bytes");
   }
 
   @Before
   public final void before() throws IOException {
     System.setProperty("tachyon.user.quota.unit.bytes", USER_QUOTA_UNIT_BYTES + "");
+    System.setProperty("tachyon.user.file.buffer.bytes", FILE_BUFFER_BYTES + "");
     mLocalTachyonCluster = new LocalTachyonCluster(WORKER_CAPACITY_BYTES);
     mLocalTachyonCluster.start();
     mTfs = mLocalTachyonCluster.getClient();
@@ -66,12 +67,10 @@ public class TachyonFileTest {
   /**
    * Basic isInMemory Test.
    * 
-   * @throws InvalidPathException
-   * @throws FileAlreadyExistException
    * @throws IOException
    */
   @Test
-  public void isInMemoryTest() throws InvalidPathException, FileAlreadyExistException, IOException {
+  public void isInMemoryTest() throws IOException {
     int fileId =
         TestUtils.createByteFile(mTfs, "/file1", WriteType.MUST_CACHE, USER_QUOTA_UNIT_BYTES);
     TachyonFile file = mTfs.getFile(fileId);
@@ -104,12 +103,10 @@ public class TachyonFileTest {
   /**
    * Test LRU Cache Eviction.
    * 
-   * @throws InvalidPathException
-   * @throws FileAlreadyExistException
    * @throws IOException
    */
   @Test
-  public void isInMemoryTest2() throws InvalidPathException, FileAlreadyExistException, IOException {
+  public void isInMemoryTest2() throws IOException {
     for (int k = 0; k < MAX_FILES; k ++) {
       int fileId =
           TestUtils.createByteFile(mTfs, "/file" + k, WriteType.MUST_CACHE, USER_QUOTA_UNIT_BYTES);
@@ -143,12 +140,10 @@ public class TachyonFileTest {
   /**
    * Test LRU Cache Eviction + PIN.
    * 
-   * @throws InvalidPathException
-   * @throws FileAlreadyExistException
    * @throws IOException
    */
   @Test
-  public void isInMemoryTest3() throws InvalidPathException, FileAlreadyExistException, IOException {
+  public void isInMemoryTest3() throws IOException {
     TachyonURI pin = new TachyonURI("/pin");
     mTfs.mkdir(pin);
     mTfs.pinFile(mTfs.getFileId(pin));

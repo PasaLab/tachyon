@@ -58,6 +58,11 @@ public class MasterConf extends Utils {
   public final int SERVER_THREADS;
   public final int WORKER_TIMEOUT_MS;
   public final int WEB_THREAD_COUNT;
+  
+  public final String KEYTAB_KEY;
+  public final String KEYTAB;
+  public final String PRINCIPAL_KEY;
+  public final String PRINCIPAL;
 
   public final ArrayList<String> WHITELIST = new ArrayList<String>();
 
@@ -76,7 +81,7 @@ public class MasterConf extends Utils {
         (CommonConf.get().USE_ZOOKEEPER ? Constants.HEADER_FT : Constants.HEADER) + HOSTNAME + ":"
             + PORT;
     WEB_PORT = getIntProperty("tachyon.master.web.port", Constants.DEFAULT_MASTER_WEB_PORT);
-    WEB_THREAD_COUNT = getIntProperty("tachyon.master.web.threads", 9);
+    WEB_THREAD_COUNT = getIntProperty("tachyon.master.web.threads", 1);
     TEMPORARY_FOLDER = getProperty("tachyon.master.temporary.folder", "/tmp");
 
     HEARTBEAT_INTERVAL_MS =
@@ -88,6 +93,11 @@ public class MasterConf extends Utils {
             .availableProcessors());
     WORKER_TIMEOUT_MS =
         getIntProperty("tachyon.master.worker.timeout.ms", 10 * Constants.SECOND_MS);
+    
+    KEYTAB_KEY = "tachyon.master.keytab.file";
+    KEYTAB = getProperty(KEYTAB_KEY, null);
+    PRINCIPAL_KEY = "tachyon.master.principal";
+    PRINCIPAL = getProperty(PRINCIPAL_KEY, null);
 
     WHITELIST.addAll(Arrays.asList(getProperty("tachyon.master.whitelist", TachyonURI.SEPARATOR)
         .split(",")));

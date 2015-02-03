@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import com.google.common.base.Preconditions;
+
 import tachyon.conf.CommonConf;
 
 /**
@@ -48,7 +50,8 @@ public abstract class UnderFileSystem {
    * Get the UnderFileSystem instance according to its schema.
    * 
    * @param path file path storing over the ufs.
-   * @return null for any unknown scheme.
+   * @throws IllegalArgumentException for unknown scheme
+   * @return instance of the under layer file system
    */
   public static UnderFileSystem get(String path) {
     return get(path, null);
@@ -59,9 +62,12 @@ public abstract class UnderFileSystem {
    * 
    * @param path file path storing over the ufs
    * @param conf the configuration object for ufs only
-   * @return null for any unknown scheme.
+   * @throws IllegalArgumentException for unknown scheme
+   * @return instance of the under layer file system
    */
   public static UnderFileSystem get(String path, Object conf) {
+    Preconditions.checkArgument(path != null, "path may not be null");
+
     if (isHadoopUnderFS(path)) {
       return UnderFileSystemHdfs.getClient(path, conf);
     } else if (path.startsWith(TachyonURI.SEPARATOR) || path.startsWith("file://")) {
@@ -97,9 +103,7 @@ public abstract class UnderFileSystem {
    *         address is "/" and the path starts with "/".
    */
   public static Pair<String, String> parse(TachyonURI path) {
-    if (path == null) {
-      return null;
-    }
+    Preconditions.checkArgument(path != null, "path may not be null");
 
     if (path.hasScheme()) {
       String header = path.getScheme() + "://";

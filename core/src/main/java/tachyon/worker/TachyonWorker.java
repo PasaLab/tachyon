@@ -31,11 +31,12 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Throwables;
 
 import tachyon.Constants;
+import tachyon.UnderFileSystem;
+import tachyon.UnderFileSystemHdfs;
 import tachyon.Users;
 import tachyon.Version;
 import tachyon.conf.CommonConf;
 import tachyon.conf.WorkerConf;
-import tachyon.thrift.BlockInfoException;
 import tachyon.thrift.Command;
 import tachyon.thrift.NetAddress;
 import tachyon.thrift.WorkerService;
@@ -249,6 +250,18 @@ public class TachyonWorker implements Runnable {
     return mWorkerServiceHandler;
   }
 
+  private void login() throws IOException {
+    WorkerConf wConf = WorkerConf.get();
+    if (wConf.KEYTAB == null || wConf.PRINCIPAL == null) {
+      return;
+    }
+    UnderFileSystem ufs = UnderFileSystem.get(CommonConf.get().UNDERFS_ADDRESS);
+    if (ufs instanceof UnderFileSystemHdfs) {
+      ((UnderFileSystemHdfs) ufs).login(wConf.KEYTAB_KEY, wConf.KEYTAB, wConf.PRINCIPAL_KEY,
+          wConf.PRINCIPAL, NetworkUtils.getFqdnHost(mWorkerAddress));
+    }
+  }
+
   @Override
   public void run() {
     long lastHeartbeatMs = System.currentTimeMillis();
@@ -266,8 +279,6 @@ public class TachyonWorker implements Runnable {
         cmd = mWorkerStorage.heartbeat();
 
         lastHeartbeatMs = System.currentTimeMillis();
-      } catch (BlockInfoException e) {
-        LOG.error(e.getMessage(), e);
       } catch (IOException e) {
         LOG.error(e.getMessage(), e);
         mWorkerStorage.resetMasterClient();
@@ -310,7 +321,9 @@ public class TachyonWorker implements Runnable {
   /**
    * Start the data server thread and heartbeat thread of this TachyonWorker.
    */
-  public void start() {
+  public void start() throws IOException {
+    login();
+
     mHeartbeatThread.start();
 
     LOG.info("The worker server started @ " + mWorkerAddress);

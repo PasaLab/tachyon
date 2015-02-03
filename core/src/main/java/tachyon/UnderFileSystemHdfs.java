@@ -30,6 +30,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.permission.FsPermission;
 import org.apache.hadoop.hdfs.DistributedFileSystem;
+import org.apache.hadoop.security.SecurityUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -284,6 +285,14 @@ public class UnderFileSystemHdfs extends UnderFileSystem {
     }
   }
 
+  public void login(String keytabFileKey, String keytabFile, String principalKey, String principal,
+      String hostname) throws IOException {
+    Configuration conf = new Configuration();
+    conf.set(keytabFileKey, keytabFile);
+    conf.set(principalKey, principal);
+    SecurityUtil.login(conf, keytabFileKey, principalKey, hostname);
+  }
+
   @Override
   public boolean mkdirs(String path, boolean createParent) throws IOException {
     IOException te = null;
@@ -325,10 +334,12 @@ public class UnderFileSystemHdfs extends UnderFileSystem {
     LOG.debug("Renaming from {} to {}", src, dst);
     if (!exists(src)) {
       LOG.error("File " + src + " does not exist. Therefore rename to " + dst + " failed.");
+      return false;
     }
 
     if (exists(dst)) {
       LOG.error("File " + dst + " does exist. Therefore rename from " + src + " failed.");
+      return false;
     }
 
     int cnt = 0;

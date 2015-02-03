@@ -35,12 +35,12 @@ The common configuration contains constants which specify paths and the log appe
 </tr>
 <tr>
   <td>tachyon.data.folder</td>
-  <td>$tachyon.underfs.address + "/tachyon/data"</td>
+  <td>$tachyon.underfs.address + "/tmp/tachyon/data"</td>
   <td>Tachyon's data folder in the underlayer file system.</td>
 </tr>
 <tr>
   <td>tachyon.workers.folder</td>
-  <td>$tachyon.underfs.address + "/tachyon/workers"</td>
+  <td>$tachyon.underfs.address + "/tmp/tachyon/workers"</td>
   <td>Tachyon's workers folders in the underlayer file system.</td>
 </tr>
 <tr>
@@ -108,6 +108,11 @@ The common configuration contains constants which specify paths and the log appe
   <td>hdfs:// s3:// s3n:// glusterfs:///</td>
   <td>Optionally specify which prefixes should run through the Apache Hadoop's implementation of UnderFileSystem.  The delimiter is any whitespace and/or ','</td>
 </tr>
+<tr>
+  <td>tachyon.master.retry</td>
+  <td>29</td>
+  <td>How many times to try to reconnect with master.</td>
+</tr>
 </table>
 
 # Master Configuration
@@ -144,8 +149,18 @@ number.
 </tr>
 <tr>
   <td>tachyon.master.web.threads</td>
-  <td>9</td>
+  <td>1</td>
   <td>How many threads to use for the web server.</td>
+</tr>
+<tr>
+  <td>tachyon.master.keytab.file</td>
+  <td></td>
+  <td>Kerberos keytab file for Tachyon master.</td>
+</tr>
+<tr>
+  <td>tachyon.master.principal</td>
+  <td></td>
+  <td>Kerberos principal for Tachyon master.</td>
 </tr>
 </table>
 
@@ -168,13 +183,43 @@ number.
 </tr>
 <tr>
   <td>tachyon.worker.data.folder</td>
-  <td>/mnt/ramdisk</td>
-  <td>The path to the data folder for Tachyon's worker nodes. Note for macs the value should be "/Volumes/"</td>
+  <td>/tachyonworker/</td>
+  <td>The relative path in each storage directory as the data folder for Tachyon's worker nodes.</td>
 </tr>
 <tr>
   <td>tachyon.worker.memory.size</td>
   <td>128 MB</td>
   <td>Memory capacity of each worker node.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.hierarchystore.level.max</td>
+  <td>1</td>
+  <td>The max level of storage layers.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.hierarchystore.level0.alias</td>
+  <td>MEM</td>
+  <td>The alias of top storage layer.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.hierarchystore.level0.dirs.path</td>
+  <td>/mnt/ramdisk/</td>
+  <td>The path of storage directory path for top storage layer. Note for macs the value should be "/Volumes/"</td>
+</tr>
+<tr>
+  <td>tachyon.worker.hierarchystore.level0.dirs.quota</td>
+  <td>${tachyon.worker.memory.size}</td>
+  <td>The capacity of top storage layer.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.allocate.strategy</td>
+  <td>MAX_FREE</td>
+  <td>The strategy that worker allocate space among storage directories in certain storage layer.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.evict.strategy</td>
+  <td>LRU</td>
+  <td>The strategy that worker evict block files when a storage layer runs out of space.</td>
 </tr>
 <tr>
   <td>tachyon.worker.network.type</td>
@@ -225,6 +270,16 @@ number.
   <td>tachyon.worker.network.netty.buffer.receive</td>
   <td>platform specific</td>
   <td>Sets SO_RCVBUF for the socket; more details can be found in the socket man page.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.keytab.file</td>
+  <td></td>
+  <td>Kerberos keytab file for Tachyon worker.</td>
+</tr>
+<tr>
+  <td>tachyon.worker.principal</td>
+  <td></td>
+  <td>Kerberos principal for Tachyon worker.</td>
 </tr>
 </table>
 
