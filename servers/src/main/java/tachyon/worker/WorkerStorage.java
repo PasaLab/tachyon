@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -182,6 +183,15 @@ public class WorkerStorage {
           }
 
           if (fileId == -1) {
+            synchronized (mAsyncCheckpointLock) {
+              if (!mAsyncCheckpointFiles.isEmpty()) {
+                fileId = mAsyncCheckpointFiles.get(0);
+                mAsyncCheckpointFiles.remove(0);
+              }
+            }
+          }
+
+          if (fileId == -1) {
             LOG.debug("Thread {} has nothing to checkpoint. Sleep for 1 sec.", mId);
             CommonUtils.sleepMs(LOG, Constants.SECOND_MS, true);
             continue;
@@ -230,6 +240,7 @@ public class WorkerStorage {
                 }
                 byteBuffer.get(buf, 0, writeLen);
                 os.write(buf, 0, writeLen);
+                fileSizeByte += writeLen;
               }
               CommonUtils.cleanDirectBuffer(byteBuffer);
             }
@@ -286,7 +297,9 @@ public class WorkerStorage {
 
   private Users mUsers;
   // Dependency related lock
+  private final Object mAsyncCheckpointLock = new Object();
   private final Object mDependencyLock = new Object();
+  private final List<Integer> mAsyncCheckpointFiles = new LinkedList<Integer>();
   private final Set<Integer> mUncheckpointFiles = new HashSet<Integer>();
   // From dependencyId to files in that set.
   private final Map<Integer, Set<Integer>> mDepIdToFiles = new HashMap<Integer, Set<Integer>>();
@@ -480,9 +493,12 @@ public class WorkerStorage {
         mDepIdToFiles.get(fileInfo.getDependencyId()).add(fileId);
       }
       return true;
+    } else {
+      synchronized (mAsyncCheckpointLock) {
+        mAsyncCheckpointFiles.add(fileId);
+      }
+      return true;
     }
-
-    return false;
   }
 
   /**
