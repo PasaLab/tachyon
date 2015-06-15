@@ -81,7 +81,7 @@ public class EvictStrategyTest {
     createBlockFile(mStorageDirs[2], BlockInfo.computeBlockId(6, 0), 500);
 
     Set<Integer> pinList = new HashSet<Integer>();
-    EvictStrategy eviction = new EvictLRU(true);
+    EvictStrategy eviction = new EvictLRU(true, null);
 
     pinList.add(1);
     Pair<StorageDir, List<tachyon.worker.tiered.BlockInfo>> lruResult =
@@ -96,7 +96,7 @@ public class EvictStrategyTest {
     Assert.assertEquals(1, lruResult.getSecond().size());
     Assert.assertEquals(lruResult.getSecond().get(0).getBlockId(), BlockInfo.computeBlockId(3, 0));
 
-    eviction = new EvictLRU(false);
+    eviction = new EvictLRU(false, null);
     lruResult = eviction.getDirCandidate(mStorageDirs, pinList, 300);
     Assert.assertEquals(mStorageDirs[0], lruResult.getFirst());
     Assert.assertEquals(1, lruResult.getSecond().size());
@@ -116,7 +116,7 @@ public class EvictStrategyTest {
     createBlockFile(mStorageDirs[2], BlockInfo.computeBlockId(6, 0), 450);
 
     Set<Integer> pinList = new HashSet<Integer>();
-    EvictStrategy eviction = new EvictPartialLRU(true);
+    EvictStrategy eviction = new EvictPartialLRU(true, null);
 
     pinList.add(1);
     Pair<StorageDir, List<tachyon.worker.tiered.BlockInfo>> lruResult =
@@ -132,7 +132,7 @@ public class EvictStrategyTest {
     Assert.assertEquals(lruResult.getSecond().get(0).getBlockId(), BlockInfo.computeBlockId(3, 0));
     Assert.assertEquals(lruResult.getSecond().get(1).getBlockId(), BlockInfo.computeBlockId(6, 0));
 
-    eviction = new EvictLRU(false);
+    eviction = new EvictLRU(false, null);
     lruResult = eviction.getDirCandidate(mStorageDirs, pinList, 400);
     Assert.assertEquals(mStorageDirs[0], lruResult.getFirst());
     Assert.assertEquals(1, lruResult.getSecond().size());
