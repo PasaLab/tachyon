@@ -123,7 +123,10 @@ public class StorageTier {
     mBlockEvictor =
         EvictStrategies.getEvictStrategy(
             tachyonConf.getEnum(Constants.WORKER_EVICT_STRATEGY_TYPE, EvictStrategyType.LRU),
-            isLastTier());
+            this);
+    for (int i = 0; i < dirPaths.length; i ++) {
+      mDirs[i].setEvictor(mBlockEvictor);
+    }
   }
 
   /**
