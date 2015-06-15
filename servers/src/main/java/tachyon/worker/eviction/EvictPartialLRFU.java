@@ -4,7 +4,7 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
@@ -26,17 +26,18 @@ import tachyon.worker.tiered.StorageDir;
 import tachyon.worker.tiered.StorageTier;
 
 /**
- * Used to evict blocks in certain StorageDir by LRU strategy.
+ * Used to evict blocks in certain StorageDir by LRFU strategy.
  */
-public final class EvictPartialLRU extends EvictLRUBase {
+public final class EvictPartialLRFU extends EvictLRFUBase {
 
-  public EvictPartialLRU(boolean isLastTier, StorageTier storageTier) {
+  public EvictPartialLRFU(boolean isLastTier, StorageTier storageTier) {
     super(isLastTier, storageTier);
   }
 
   @Override
   public synchronized Pair<StorageDir, List<BlockInfo>> getDirCandidate(StorageDir[] storageDirs,
       Set<Integer> pinList, long requestBytes) {
+    onMiss();
     List<BlockInfo> blockInfoList = new ArrayList<BlockInfo>();
     Set<StorageDir> ignoredDirs = new HashSet<StorageDir>();
     StorageDir dirSelected = getDirWithMaxFreeSpace(requestBytes, storageDirs, ignoredDirs);
@@ -46,7 +47,7 @@ public final class EvictPartialLRU extends EvictLRUBase {
       Set<Long> blockIdSet = new HashSet<Long>();
       long sizeToEvict = 0;
       while (sizeToEvict + dirSelected.getAvailableBytes() < requestBytes) {
-        Pair<Long, Long> oldestAccess = getLRUBlock(dirSelected, blockIdSet, pinList);
+        Pair<Long, Double> oldestAccess = getLRFUBlock(dirSelected, blockIdSet, pinList);
         if (oldestAccess.getFirst() == -1) {
           break;
         }

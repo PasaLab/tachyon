@@ -6,7 +6,7 @@
  * copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -28,7 +28,7 @@ import tachyon.worker.tiered.StorageDir;
  * one really attempts to evict blocks, some candidate blocks may not be allowed to evict any more.
  * As a result, one may have to try multiple times to get enough space.
  */
-public interface EvictStrategy {
+public abstract class EvictStrategy {
 
   /**
    * Get a StorageDir allocated and a list of blocks to evict among StorageDir candidates
@@ -39,6 +39,51 @@ public interface EvictStrategy {
    * @return a pair of StorageDir allocated and a list of blockInfo which contains the information
    *         of blocks to evict, null if no allocated directory is found
    */
-  Pair<StorageDir, List<BlockInfo>> getDirCandidate(StorageDir[] storageDirs,
+  public abstract Pair<StorageDir, List<BlockInfo>> getDirCandidate(StorageDir[] storageDirs,
       Set<Integer> pinList, long requestBytes);
+
+  /**
+   * Actions to take when the new block is added
+   */
+  public void onAdd(long blockId) {}
+
+  /**
+   * Actions to take when cache the block
+   */
+  public void onCache(long blockId) {}
+
+  /**
+   * Actions to take when cancel the block
+   */
+  public void onCancel(long blockId) {}
+
+  /**
+   * Actions to take when copy the block
+   */
+  public void onCopy(long blockId) {}
+
+  /**
+   * Actions to take when delete the block
+   */
+  public void onDelete(long blockId) {}
+
+  /**
+   * Actions to take when lock the block
+   */
+  public void onLock(long blockId) {}
+
+  /**
+   * Actions to take when move the block
+   */
+  public void onMove(long blockId) {}
+
+  /**
+   * Actions to take when read the block
+   */
+  public void onRead(long blockId) {}
+
+  /**
+   * Actions to take when unlock the block
+   */
+  public void onUnLock(long blockId) {}
 }
