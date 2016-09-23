@@ -3,7 +3,7 @@ layout: global
 title: 架构概述
 nickname: 架构概述
 group: User Guide
-priority: 1
+priority: 2
 ---
 
 * Table of Contents
