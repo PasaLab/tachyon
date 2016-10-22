@@ -6,7 +6,7 @@ group: Frameworks
 priority: 2
 ---
 
-This guide describes how to run [Apache Hive](http://hive.apache.org/), so
+This guide describes how to run [Apache Hive](http://hive.apache.org/) with Alluxio, so
 that you can easily store Hive tables into Alluxio at various storage level.
 
 # Prerequisites
@@ -59,7 +59,8 @@ $ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/core/client/target/alluxio-core-cli
 ```
 
 Distributing the Alluxio Client Jar in Hadoop MapReduce:
-you must place the client jar
+
+- You must place the client jar
 `alluxio-core-client-{{site.ALLUXIO_RELEASED_VERSION}}-jar-with-dependencies.jar`
 (located in the `/<PATH_TO_ALLUXIO>/core/client/target/` directory), in the `$HADOOP_HOME/lib`
 (may be `$HADOOP_HOME/share/hadoop/common/lib` for different versions of Hadoop) directory of every
@@ -103,6 +104,7 @@ Then you can follow the [Hive documentation](https://cwiki.apache.org/confluence
 # Hive cli examples
 
 Create a table in Hive and load a file in local path into Hive:
+
 You can download the data file from  [http://grouplens.org/datasets/movielens/](http://grouplens.org/datasets/movielens/)
 
 ```
@@ -120,7 +122,7 @@ hive> LOAD DATA LOCAL INPATH '<path_to_ml-100k>/u.user'
 OVERWRITE INTO TABLE u_user;
 ```
 
-View Alluxio WebUI at [http://<master_hostname>:19999](http://<master_hostname>:19999) and you can see the directory and file Hive creates:
+View Alluxio WebUI at `http://master_hostname:19999` and you can see the directory and file Hive creates:
 
 ![HiveTableInAlluxio]({{site.data.img.screenshot_hive_table_in_alluxio}})
 
