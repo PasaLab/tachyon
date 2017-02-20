@@ -169,6 +169,7 @@ public enum PropertyKey {
   WORKER_DATA_SERVER_CLASS(Name.WORKER_DATA_SERVER_CLASS, "alluxio.worker.netty.NettyDataServer"),
   WORKER_DATA_TMP_FOLDER(Name.WORKER_DATA_TMP_FOLDER, ".tmp_blocks"),
   WORKER_DATA_TMP_SUBDIR_MAX(Name.WORKER_DATA_TMP_SUBDIR_MAX, 1024),
+  WORKER_PROMOTE_AUTO_ENABLED(Name.WORKER_PROMOTE_AUTO_ENABLED, true),
   WORKER_PROMOTE_CHECK_TIME(Name.WORKER_PROMOTE_CHECK_TIME, 1000),
   WORKER_PROMOTE_LRFU_STEP_FACTOR(Name.WORKER_PROMOTE_LRFU_STEP_FACTOR, 0.02),
   WORKER_PROMOTE_CLASS(Name.WORKER_PROMOTE_CLASS, "alluxio.worker.block.promote.LFUPromote"),
@@ -571,8 +572,10 @@ public enum PropertyKey {
     public static final String WORKER_DATA_SERVER_CLASS = "alluxio.worker.data.server.class";
     public static final String WORKER_DATA_TMP_FOLDER = "alluxio.worker.data.folder.tmp";
     public static final String WORKER_DATA_TMP_SUBDIR_MAX = "alluxio.worker.data.tmp.subdir.max";
+    public static final String WORKER_PROMOTE_AUTO_ENABLED =
+        "alluxio.worker.promote.auto.enabled";
     public static final String WORKER_PROMOTE_CHECK_TIME =
-        "worker.promote.check.time";
+        "alluxio.worker.promote.check.time";
     public static final String WORKER_PROMOTE_LRFU_STEP_FACTOR =
         "alluxio.worker.promote.lrfu.step.factor";
     public static final String WORKER_PROMOTE_CLASS = "alluxio.worker.promote.class";

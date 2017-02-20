@@ -146,7 +146,9 @@ public final class TieredBlockStore implements BlockStore {
     if (mPromote instanceof BlockStoreEventListener) {
       registerBlockStoreEventListener((BlockStoreEventListener) mPromote);
     }
-    mExecutor.submit(new PromoteThread());
+    if (Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
+      mExecutor.submit(new PromoteThread());
+    }
     mStorageTierAssoc = new WorkerStorageTierAssoc();
   }
 
