@@ -14,6 +14,7 @@ package alluxio.worker.block;
 import alluxio.Configuration;
 import alluxio.Constants;
 import alluxio.PropertyKey;
+import alluxio.Sessions;
 import alluxio.StorageTierAssoc;
 import alluxio.WorkerStorageTierAssoc;
 import alluxio.collections.Pair;
@@ -23,6 +24,7 @@ import alluxio.exception.ExceptionMessage;
 import alluxio.exception.InvalidWorkerStateException;
 import alluxio.exception.WorkerOutOfSpaceException;
 import alluxio.resource.LockResource;
+import alluxio.util.ThreadFactoryUtils;
 import alluxio.util.io.FileUtils;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
@@ -35,6 +37,8 @@ import alluxio.worker.block.io.LocalFileBlockWriter;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.TempBlockMeta;
+import alluxio.worker.block.promote.Promote;
+import alluxio.worker.block.promote.PromotePlan;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
@@ -51,6 +55,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -89,6 +96,7 @@ public final class TieredBlockStore implements BlockStore {
   private final BlockLockManager mLockManager;
   private final Allocator mAllocator;
   private final Evictor mEvictor;
+  private final Promote mPromote;
 
   private final List<BlockStoreEventListener> mBlockStoreEventListeners = new ArrayList<>();
 
@@ -106,6 +114,12 @@ public final class TieredBlockStore implements BlockStore {
 
   /** Association between storage tier aliases and ordinals. */
   private final StorageTierAssoc mStorageTierAssoc;
+
+  private final ExecutorService mExecutor =
+          Executors.newFixedThreadPool(1, ThreadFactoryUtils.build("Promote", true));
+
+  /** Save the total access times. */
+  private AtomicLong mAccessCount = new AtomicLong();
 
   /**
    * Creates a new instance of {@link TieredBlockStore}.
@@ -128,6 +142,11 @@ public final class TieredBlockStore implements BlockStore {
       registerBlockStoreEventListener((BlockStoreEventListener) mEvictor);
     }
 
+    mPromote = Promote.Factory.create(initManagerView, mAllocator);
+    if (mPromote instanceof BlockStoreEventListener) {
+      registerBlockStoreEventListener((BlockStoreEventListener) mPromote);
+    }
+    mExecutor.submit(new PromoteThread());
     mStorageTierAssoc = new WorkerStorageTierAssoc();
   }
 
@@ -307,8 +326,10 @@ public final class TieredBlockStore implements BlockStore {
   @Override
   public void accessBlock(long sessionId, long blockId) throws BlockDoesNotExistException {
     boolean hasBlock;
+    long accessCount;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
       hasBlock = mMetaManager.hasBlockMeta(blockId);
+      accessCount = mAccessCount.incrementAndGet();
     }
     if (!hasBlock) {
       throw new BlockDoesNotExistException(ExceptionMessage.NO_BLOCK_ID_FOUND, blockId);
@@ -317,6 +338,9 @@ public final class TieredBlockStore implements BlockStore {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onAccessBlock(sessionId, blockId);
       }
+    }
+    if (accessCount % 10 == 0) {
+      promoteBlocksInternal(sessionId);
     }
   }
 
@@ -571,6 +595,84 @@ public final class TieredBlockStore implements BlockStore {
         throw Throwables.propagate(e); // we shall never reach here
       }
       return new Pair<>(true, null);
+    }
+  }
+
+  /**
+   * Promote the hot blocks in lower tiers to the higher tiers. This method should be
+   * called periodically.
+   *
+   * @param sessionId the session id
+   */
+  private void promoteBlocksInternal(long sessionId) {
+    PromotePlan plan;
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      plan = mPromote.reorganizeBlocks(getUpdatedView());
+    }
+    if (plan == null || plan.isEmpty()) {
+      // No blocks need to be promoted
+      return;
+    }
+    Map<String, Set<BlockTransferInfo>> promoteGroupByDestTier = new HashMap<>();
+    for (BlockTransferInfo info : plan.toPromote()) {
+      String alias = info.getDstLocation().tierAlias();
+      if (!promoteGroupByDestTier.containsKey(alias)) {
+        promoteGroupByDestTier.put(alias, new HashSet<BlockTransferInfo>());
+      }
+      promoteGroupByDestTier.get(alias).add(info);
+    }
+    // promote blocks in the order from top to bottom
+    for (int i = 0; i < mStorageTierAssoc.size() - 1; i++) {
+      Set<BlockTransferInfo> transfers = promoteGroupByDestTier.get(mStorageTierAssoc.getAlias(i));
+      if (transfers == null) {
+        transfers = new HashSet<>();
+      }
+      for (BlockTransferInfo transfer : transfers) {
+        long blockId = transfer.getBlockId();
+        BlockStoreLocation srcLocation = transfer.getSrcLocation();
+        BlockStoreLocation dstLocation = transfer.getDstLocation();
+        MoveBlockResult moveResult;
+        try {
+          BlockMeta meta = mMetaManager.getBlockMeta(blockId);
+          if (!meta.getBlockLocation().belongsTo(srcLocation)) {
+            // The location of the block has been changed
+            continue;
+          }
+          long blockSize = meta.getBlockSize();
+          //TODO(shupeng) if need to free space multiple times
+          freeSpaceInternal(sessionId, blockSize, dstLocation);
+        } catch (BlockDoesNotExistException bdne) {
+          LOG.error("The location of block {} to be promoted has changed.", blockId);
+          continue;
+        } catch (WorkerOutOfSpaceException woos) {
+          continue;
+        } catch (IOException ioe) {
+          continue;
+        }
+        try {
+          moveResult = moveBlockInternal(sessionId, blockId, srcLocation, dstLocation);
+        } catch (InvalidWorkerStateException e) {
+          // Evictor is not working properly
+          LOG.error("Failed to evict blockId {}, this is temp block", blockId);
+          continue;
+        } catch (BlockAlreadyExistsException e) {
+          LOG.error("Failed to move blockId {}, it could be already exists.", blockId);
+          continue;
+        } catch (BlockDoesNotExistException e) {
+          LOG.info("Failed to move blockId {}, it could be already deleted", blockId);
+          continue;
+        } catch (IOException ioe) {
+          continue;
+        }
+        if (moveResult.getSuccess()) {
+          synchronized (mBlockStoreEventListeners) {
+            for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
+              listener.onMoveBlockByWorker(sessionId, blockId, moveResult.getSrcLocation(),
+                      dstLocation);
+            }
+          }
+        }
+      }
     }
   }
 
@@ -862,6 +964,25 @@ public final class TieredBlockStore implements BlockStore {
      */
     BlockStoreLocation getDstLocation() {
       return mDstLocation;
+    }
+  }
+
+  /**
+   * Periodically check if need to promote blocks to the upper tiers.
+   */
+  class PromoteThread implements Runnable {
+    public PromoteThread() {}
+
+    @Override
+    public void run() {
+      while (true) {
+        try {
+          Thread.sleep(Configuration.getLong(PropertyKey.WORKER_PROMOTE_CHECK_TIME));
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        promoteBlocksInternal(Sessions.MIGRATE_DATA_SESSION_ID);
+      }
     }
   }
 }

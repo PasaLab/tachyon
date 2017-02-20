@@ -619,7 +619,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <version>1.4.0</version>
         <inherited>false</inherited>
-        <executions>
+        <!-- executions>
           <execution>
             <id>Check that there are no Windows line endings</id>
             <phase>compile</phase>
@@ -630,7 +630,7 @@
               <executable>${build.path}/style/check_no_windows_line_endings.sh</executable>
             </configuration>
           </execution>
-        </executions>
+        </executions-->
       </plugin>
     </plugins>
   </build>
