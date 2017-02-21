@@ -607,6 +607,7 @@ public final class TieredBlockStore implements BlockStore {
    * @param sessionId the session id
    */
   private void promoteBlocksInternal(long sessionId) {
+    long st = System.currentTimeMillis();
     PromotePlan plan;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
       plan = mPromote.reorganizeBlocks(getUpdatedView());
@@ -676,6 +677,8 @@ public final class TieredBlockStore implements BlockStore {
         }
       }
     }
+    long ed = System.currentTimeMillis();
+    System.out.println("promoteBlocksInternal took " + (ed - st) + " ms.");
   }
 
   /**

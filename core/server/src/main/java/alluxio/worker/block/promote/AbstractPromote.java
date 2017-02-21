@@ -48,8 +48,11 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
 
   @Override
   public PromotePlan reorganizeBlocks(BlockMetadataManagerView managerView) {
+    long st = System.currentTimeMillis();
     mManagerView = managerView;
     List<Long> blocks = getBlocksInDescendingOrder();
+    long ed1 = System.currentTimeMillis();
+    System.out.println("get descending blocks took " + (ed1 - st) + " ms.");
     List<BlockTransferInfo> toPromote = new ArrayList<>();
     int tiers = mManagerView.getTierViews().size();
     long[] totalBytesByTiers = new long[tiers];
@@ -101,6 +104,8 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
         // TODO(shupeng) remove block
       }
     }
+    long ed = System.currentTimeMillis();
+    System.out.println("reorganize took " + (ed - st) + " ms.");
     return new PromotePlan(toPromote);
   }
 
