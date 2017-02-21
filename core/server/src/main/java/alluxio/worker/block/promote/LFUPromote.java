@@ -77,9 +77,9 @@ public class LFUPromote extends AbstractPromote {
           int tierOrd =
               mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierOrdinal();
           if (tierOrd == 0) {
-            entry.setValue(entry.getValue() + 1.0f);
+            entry.setValue(entry.getValue() + 2.0f);
           } else if (tierOrd == 1) {
-            entry.setValue(entry.getValue() + 0.5f);
+            entry.setValue(entry.getValue() + 1.0f);
           }
         }
       } catch (BlockDoesNotExistException e) {
