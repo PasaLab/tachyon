@@ -616,6 +616,8 @@ public final class TieredBlockStore implements BlockStore {
       // No blocks need to be promoted
       return;
     }
+    long ed1 = System.currentTimeMillis();
+    System.out.println("reorganize took " + (ed1 - st) + " ms.");
     Map<String, Set<BlockTransferInfo>> promoteGroupByDestTier = new HashMap<>();
     for (BlockTransferInfo info : plan.toPromote()) {
       String alias = info.getDstLocation().tierAlias();
@@ -635,6 +637,7 @@ public final class TieredBlockStore implements BlockStore {
         BlockStoreLocation srcLocation = transfer.getSrcLocation();
         BlockStoreLocation dstLocation = transfer.getDstLocation();
         MoveBlockResult moveResult;
+        long s1 = System.currentTimeMillis();
         try {
           BlockMeta meta = mMetaManager.getBlockMeta(blockId);
           if (!meta.getBlockLocation().belongsTo(srcLocation)) {
@@ -652,6 +655,8 @@ public final class TieredBlockStore implements BlockStore {
         } catch (IOException ioe) {
           continue;
         }
+        long s2 = System.currentTimeMillis();
+        System.out.println("free space took " + (s2 - s1) + " ms.");
         try {
           moveResult = moveBlockInternal(sessionId, blockId, srcLocation, dstLocation);
         } catch (InvalidWorkerStateException e) {
@@ -667,6 +672,8 @@ public final class TieredBlockStore implements BlockStore {
         } catch (IOException ioe) {
           continue;
         }
+        long s3 = System.currentTimeMillis();
+        System.out.println("move " + blockId + " took " + (s3 - s2) + " ms.");
         if (moveResult.getSuccess()) {
           synchronized (mBlockStoreEventListeners) {
             for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
@@ -678,6 +685,7 @@ public final class TieredBlockStore implements BlockStore {
       }
     }
     long ed = System.currentTimeMillis();
+    System.out.println("move totally took " + (ed - ed1) + " ms.");
     System.out.println("promoteBlocksInternal took " + (ed - st) + " ms.");
   }
 
