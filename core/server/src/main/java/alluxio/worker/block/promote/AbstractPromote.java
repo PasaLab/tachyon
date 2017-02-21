@@ -90,7 +90,7 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
           long blockSize = blockMeta.getBlockSize();
           for (int i = 0; i < tierOrd; i++) {
             // Some blocks may be locked
-            long limitBytes = (long) (totalBytesByTiers[i] * 0.95);
+            long limitBytes = (long) (totalBytesByTiers[i] * 0.9);
             if (bytesBeforeInTier[i].get(blockId) + blockSize <= limitBytes) {
               // TODO(shupeng) find the dest storage dir.
               String tierAlias = mManagerView.getTierViews().get(i).getTierViewAlias();
