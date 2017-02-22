@@ -13,6 +13,7 @@ package alluxio.worker.block.promote;
 
 import alluxio.Configuration;
 import alluxio.PropertyKey;
+import alluxio.collections.Pair;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.worker.block.BlockMetadataManagerView;
 import alluxio.worker.block.BlockStoreLocation;
@@ -68,33 +69,37 @@ public class LFUPromote extends AbstractPromote {
   @Override
   public List<Long> getBlocksInDescendingOrder() {
     updateCRFValue();
-    List<Map.Entry<Long, Float>> sortedCRF = new ArrayList<>(mBlockIdToCRFValue.entrySet());
-    for (Map.Entry<Long, Float> entry : sortedCRF) {
+    List<Pair<Long, Float>> sortedCRF = new ArrayList<>();
+    for (Map.Entry<Long, Float> entry : mBlockIdToCRFValue.entrySet()) {
+      sortedCRF.add(new Pair<Long, Float>(entry.getKey(), entry.getValue()));
+    }
+    for (Pair<Long, Float> pair : sortedCRF) {
       try {
-        long blockId = entry.getKey();
+        long blockId = pair.getFirst();
         BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
         if (blockMeta != null) {
           int tierOrd =
               mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierOrdinal();
           if (tierOrd == 0) {
-            entry.setValue(entry.getValue() + 2.2f);
+            pair.setSecond(pair.getSecond() + 2.2f);
           } else if (tierOrd == 1) {
-            entry.setValue(entry.getValue() + 1.1f);
+            pair.setSecond(pair.getSecond() + 1.1f);
           }
         }
       } catch (BlockDoesNotExistException e) {
         // TODO(shupeng) remove block
       }
     }
-    Collections.sort(sortedCRF, new Comparator<Map.Entry<Long, Float>>() {
+    Collections.sort(sortedCRF, new Comparator<Pair<Long, Float>>() {
       @Override
-      public int compare(Map.Entry<Long, Float> o1, Map.Entry<Long, Float> o2) {
-        return -Float.compare(o1.getValue(), o2.getValue());
+      public int compare(Pair<Long, Float> o1, Pair<Long, Float> o2) {
+        return -Float.compare(o1.getSecond(), o2.getSecond());
       }
     });
     List<Long> sortedBlocks = new ArrayList<>();
-    for (Map.Entry<Long, Float> entry : sortedCRF) {
-      sortedBlocks.add(entry.getKey());
+    for (Pair<Long, Float> pair : sortedCRF) {
+      System.out.println(pair.getFirst() + " : " + pair.getSecond());
+      sortedBlocks.add(pair.getFirst());
     }
     return sortedBlocks;
   }
