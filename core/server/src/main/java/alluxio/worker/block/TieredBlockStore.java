@@ -341,7 +341,8 @@ public final class TieredBlockStore implements BlockStore {
         listener.onAccessBlock(sessionId, blockId);
       }
     }
-    if (accessCount % 10 == 0) {
+    if (accessCount % 10 == 0
+            && Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
       promoteBlocksInternal(sessionId);
     }
   }
