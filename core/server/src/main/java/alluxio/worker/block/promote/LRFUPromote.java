@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * This class evaluate the importance of blocks according to frequency. The frequency will decline
  * with the time passing.
  */
-public class LFUPromote extends AbstractPromote {
+public class LRFUPromote extends AbstractPromote {
   // Map from block id to the last updated logic time count
   private final Map<Long, Long> mBlockIdToLastUpdateTime = new ConcurrentHashMapV8<>();
   // Map from block id to the CRF value of the block
@@ -47,12 +47,12 @@ public class LFUPromote extends AbstractPromote {
   private AtomicLong mLogicTimeCount = new AtomicLong(0L);
 
   /**
-   * Create an instance of {@link LFUPromote}.
+   * Create an instance of {@link LRFUPromote}.
    *
    * @param managerView a view of block metadata information
    * @param allocator an allocation policy
    */
-  public LFUPromote(BlockMetadataManagerView managerView, Allocator allocator) {
+  public LRFUPromote(BlockMetadataManagerView managerView, Allocator allocator) {
     super(managerView, allocator);
     mStepFactor = Configuration.getFloat(PropertyKey.WORKER_PROMOTE_LRFU_STEP_FACTOR);
     Preconditions.checkArgument(mStepFactor >= 0.0 && mStepFactor <= 1);
