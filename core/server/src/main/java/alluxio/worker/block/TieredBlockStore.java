@@ -341,6 +341,7 @@ public final class TieredBlockStore implements BlockStore {
         listener.onAccessBlock(sessionId, blockId);
       }
     }
+    System.out.println("Access");
     if (accessCount % 10 == 0
             && Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
       promoteBlocksInternal(sessionId);
@@ -861,6 +862,11 @@ public final class TieredBlockStore implements BlockStore {
         // WorkerOutOfSpaceException is only possible if session id gets cleaned between
         // createBlockMetaInternal and moveBlockMeta.
         throw Throwables.propagate(e); // we shall never reach here
+      }
+      int srcOrd = mStorageTierAssoc.getOrdinal(srcLocation.tierAlias());
+      int dstOrd = mStorageTierAssoc.getOrdinal(dstLocation.tierAlias());
+      if (srcOrd < dstOrd) {
+        System.out.println("Miss");
       }
 
       return new MoveBlockResult(true, blockSize, srcLocation, dstLocation);
