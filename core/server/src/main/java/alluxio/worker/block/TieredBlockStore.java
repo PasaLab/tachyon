@@ -121,6 +121,9 @@ public final class TieredBlockStore implements BlockStore {
   /** Save the total access times. */
   private AtomicLong mAccessCount = new AtomicLong();
 
+  /** Record the last time the promote is executed. */
+  private AtomicLong mLastPromoteUpdateTime = new AtomicLong();
+
   /**
    * Creates a new instance of {@link TieredBlockStore}.
    */
@@ -149,6 +152,7 @@ public final class TieredBlockStore implements BlockStore {
     if (Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
       mExecutor.submit(new PromoteThread());
     }
+    mLastPromoteUpdateTime.set(System.currentTimeMillis());
     mStorageTierAssoc = new WorkerStorageTierAssoc();
   }
 
@@ -345,6 +349,7 @@ public final class TieredBlockStore implements BlockStore {
     if (accessCount % 10 == 0
             && Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
       promoteBlocksInternal(sessionId);
+      mLastPromoteUpdateTime.set(System.currentTimeMillis());
     }
   }
 
@@ -996,12 +1001,18 @@ public final class TieredBlockStore implements BlockStore {
     @Override
     public void run() {
       while (true) {
+        long checkTimeInterval = Configuration.getLong(PropertyKey.WORKER_PROMOTE_CHECK_TIME);
         try {
-          Thread.sleep(Configuration.getLong(PropertyKey.WORKER_PROMOTE_CHECK_TIME));
+          Thread.sleep(checkTimeInterval);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-        promoteBlocksInternal(Sessions.MIGRATE_DATA_SESSION_ID);
+        if (mAccessCount.get() > 0L
+                && System.currentTimeMillis() - mLastPromoteUpdateTime.get() > checkTimeInterval) {
+          promoteBlocksInternal(Sessions.MIGRATE_DATA_SESSION_ID);
+          mLastPromoteUpdateTime.set(System.currentTimeMillis());
+          mAccessCount.set(0L);
+        }
       }
     }
   }

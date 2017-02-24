@@ -98,7 +98,6 @@ public class LRFUPromote extends AbstractPromote {
     });
     List<Long> sortedBlocks = new ArrayList<>();
     for (Pair<Long, Float> pair : sortedCRF) {
-      System.out.println(pair.getFirst() + " : " + pair.getSecond());
       sortedBlocks.add(pair.getFirst());
     }
     return sortedBlocks;
