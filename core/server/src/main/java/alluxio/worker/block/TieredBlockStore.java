@@ -346,6 +346,12 @@ public final class TieredBlockStore implements BlockStore {
       }
     }
     System.out.println("Access");
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      BlockMeta blockMeta = mMetaManager.getBlockMeta(blockId);
+      if (blockMeta.getParentDir().getParentTier().getTierOrdinal() != 0) {
+        System.out.println("Miss");
+      }
+    }
     if (accessCount % 10 == 0
             && Configuration.getBoolean(PropertyKey.WORKER_PROMOTE_AUTO_ENABLED)) {
       promoteBlocksInternal(sessionId);
@@ -526,6 +532,8 @@ public final class TieredBlockStore implements BlockStore {
           | WorkerOutOfSpaceException e) {
         throw Throwables.propagate(e); // we shall never reach here
       }
+      System.out.println("Access");
+      System.out.println("Miss");
       return loc;
     } finally {
       mLockManager.unlockBlock(lockId);
@@ -870,7 +878,7 @@ public final class TieredBlockStore implements BlockStore {
       }
       int srcOrd = mStorageTierAssoc.getOrdinal(srcLocation.tierAlias());
       int dstOrd = mStorageTierAssoc.getOrdinal(dstLocation.tierAlias());
-      if (srcOrd < dstOrd) {
+      if (srcOrd > dstOrd) {
         System.out.println("Miss");
       }
 
