@@ -221,4 +221,15 @@ public class BlockMetadataManagerView {
       return null;
     }
   }
+
+  /**
+   * Return the block meta even the block is locked.
+   *
+   * @param blockId id of the block
+   * @return metadata of the block
+   * @throws BlockDoesNotExistException if no {@link BlockMeta} for this block id is found
+   */
+  public BlockMeta getExistingBlockMeta(long blockId) throws BlockDoesNotExistException {
+    return mMetadataManager.getBlockMeta(blockId);
+  }
 }

@@ -71,20 +71,17 @@ public class LRFUPromote extends AbstractPromote {
     updateCRFValue();
     List<Pair<Long, Float>> sortedCRF = new ArrayList<>();
     for (Map.Entry<Long, Float> entry : mBlockIdToCRFValue.entrySet()) {
-      sortedCRF.add(new Pair<Long, Float>(entry.getKey(), entry.getValue()));
+      sortedCRF.add(new Pair<>(entry.getKey(), entry.getValue()));
     }
     for (Pair<Long, Float> pair : sortedCRF) {
       try {
         long blockId = pair.getFirst();
-        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-        if (blockMeta != null) {
-          int tierOrd =
-              mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierOrdinal();
-          if (tierOrd == 0) {
-            pair.setSecond(pair.getSecond() + 2.2f);
-          } else if (tierOrd == 1) {
-            pair.setSecond(pair.getSecond() + 1.1f);
-          }
+        BlockMeta blockMeta = mManagerView.getExistingBlockMeta(blockId);
+        int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+        if (tierOrd == 0) {
+          pair.setSecond(pair.getSecond() + 2.2f);
+        } else if (tierOrd == 1) {
+          pair.setSecond(pair.getSecond() + 1.1f);
         }
       } catch (BlockDoesNotExistException e) {
         // TODO(shupeng) remove block

@@ -296,6 +296,11 @@ public final class TieredBlockStore implements BlockStore {
     for (int i = 0; i < MAX_RETRIES + 1; i++) {
       MoveBlockResult moveResult = moveBlockInternal(sessionId, blockId, oldLocation, newLocation);
       if (moveResult.getSuccess()) {
+        int srcOrd = mMetaManager.getTier(oldLocation.tierAlias()).getTierOrdinal();
+        int dstOrd = mMetaManager.getTier(newLocation.tierAlias()).getTierOrdinal();
+        if (dstOrd == 0 && srcOrd != 0) {
+          System.out.println("Miss");
+        }
         synchronized (mBlockStoreEventListeners) {
           for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
             listener.onMoveBlockByClient(sessionId, blockId, moveResult.getSrcLocation(),
@@ -875,11 +880,6 @@ public final class TieredBlockStore implements BlockStore {
         // WorkerOutOfSpaceException is only possible if session id gets cleaned between
         // createBlockMetaInternal and moveBlockMeta.
         throw Throwables.propagate(e); // we shall never reach here
-      }
-      int srcOrd = mStorageTierAssoc.getOrdinal(srcLocation.tierAlias());
-      int dstOrd = mStorageTierAssoc.getOrdinal(dstLocation.tierAlias());
-      if (srcOrd > dstOrd) {
-        System.out.println("Miss");
       }
 
       return new MoveBlockResult(true, blockSize, srcLocation, dstLocation);

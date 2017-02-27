@@ -62,14 +62,12 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
     }
     for (long blockId : blocks) {
       try {
-        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-        if (blockMeta != null) {
-          int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
-          long blockSize = blockMeta.getBlockSize();
-          totalBytesByTiers[tierOrd] += blockSize;
-          for (int i = 0; i < tiers; i++) {
-            bytesBeforeInTier[i].put(blockId, totalBytesByTiers[i]);
-          }
+        BlockMeta blockMeta = mManagerView.getExistingBlockMeta(blockId);
+        int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+        long blockSize = blockMeta.getBlockSize();
+        totalBytesByTiers[tierOrd] += blockSize;
+        for (int i = 0; i < tiers; i++) {
+          bytesBeforeInTier[i].put(blockId, totalBytesByTiers[i]);
         }
       } catch (BlockDoesNotExistException e) {
         // TODO(shupeng) remove block
@@ -84,22 +82,19 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
     // promote plan only move blocks from low tiers to higher tiers now.
     for (long blockId : blocks) {
       try {
-        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-        if (blockMeta != null) {
-          int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
-          long blockSize = blockMeta.getBlockSize();
-          for (int i = 0; i < tierOrd; i++) {
-            // Some blocks may be locked
-            long limitBytes = (long) (totalBytesByTiers[i] * 0.9);
-            if (bytesBeforeInTier[i].get(blockId) + blockSize <= limitBytes) {
-              // TODO(shupeng) find the dest storage dir.
-              String tierAlias = mManagerView.getTierViews().get(i).getTierViewAlias();
-              BlockStoreLocation dstLocation = BlockStoreLocation.anyDirInTier(tierAlias);
-              toPromote
-                  .add(new BlockTransferInfo(blockId, blockMeta.getBlockLocation(), dstLocation));
-              totalBytesByTiers[i] -= blockSize;
-              break;
-            }
+        BlockMeta blockMeta = mManagerView.getExistingBlockMeta(blockId);
+        int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+        long blockSize = blockMeta.getBlockSize();
+        for (int i = 0; i < tierOrd; i++) {
+          // Some blocks may be locked
+          if (bytesBeforeInTier[i].get(blockId) <= totalBytesByTiers[i]) {
+            // TODO(shupeng) find the dest storage dir.
+            String tierAlias = mManagerView.getTierViews().get(i).getTierViewAlias();
+            BlockStoreLocation dstLocation = BlockStoreLocation.anyDirInTier(tierAlias);
+            toPromote
+                    .add(new BlockTransferInfo(blockId, blockMeta.getBlockLocation(), dstLocation));
+            totalBytesByTiers[i] -= blockSize;
+            break;
           }
         }
       } catch (BlockDoesNotExistException e) {
