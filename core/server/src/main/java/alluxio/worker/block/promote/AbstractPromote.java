@@ -93,7 +93,7 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
               String tierAlias = mManagerView.getTierViews().get(i).getTierViewAlias();
               BlockStoreLocation dstLocation = BlockStoreLocation.anyDirInTier(tierAlias);
               toPromote
-                      .add(new BlockTransferInfo(blockId, blockMeta.getBlockLocation(), dstLocation));
+                  .add(new BlockTransferInfo(blockId, blockMeta.getBlockLocation(), dstLocation));
               totalBytesByTiers[i] -= blockSize;
               break;
             }
