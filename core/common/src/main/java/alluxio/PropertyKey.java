@@ -30,6 +30,7 @@ public enum PropertyKey {
   LOGGER_TYPE(Name.LOGGER_TYPE, "Console"),
   LOGS_DIR(Name.LOGS_DIR, String.format("${%s}/logs", Name.WORK_DIR)),
   TRACE_LOGGER_HEAD(Name.TRACE_LOGGER_HEAD, ":::TRACE:::"),
+  TRACE_LOGGER_TYPE(Name.TRACE_LOGGER_TYPE, "TRACE_LOGGER"),
   METRICS_CONF_FILE(Name.METRICS_CONF_FILE,
       String.format("${%s}/metrics.properties", Name.CONF_DIR)),
   NETWORK_HOST_RESOLUTION_TIMEOUT_MS(Name.NETWORK_HOST_RESOLUTION_TIMEOUT_MS, 5000),

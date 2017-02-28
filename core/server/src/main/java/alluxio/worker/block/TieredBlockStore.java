@@ -82,7 +82,8 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1624)
 public final class TieredBlockStore implements BlockStore {
   private static final Logger LOG = LoggerFactory.getLogger(Constants.LOGGER_TYPE);
-  private static final Logger TRACE_LOG = LoggerFactory.getLogger(Constants.TRACE_LOGGER_TYPE);
+  private static final org.apache.log4j.Logger TRACE_LOG =
+          org.apache.log4j.Logger.getLogger(Configuration.get(PropertyKey.TRACE_LOGGER_TYPE));
   private static final int MAX_RETRIES =
           Configuration.getInt(PropertyKey.WORKER_TIERED_STORE_RETRY);
 
@@ -333,7 +334,6 @@ public final class TieredBlockStore implements BlockStore {
   @Override
   public void removeBlock(long sessionId, long blockId, BlockStoreLocation location)
       throws InvalidWorkerStateException, BlockDoesNotExistException, IOException {
-    removeBlockInternal(sessionId, blockId, location);
     {
       /** Attach trace logs. */
       BlockMeta blockMeta = null;
@@ -346,6 +346,7 @@ public final class TieredBlockStore implements BlockStore {
                 + blockSize + "::remove::");
       }
     }
+    removeBlockInternal(sessionId, blockId, location);
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onRemoveBlockByClient(sessionId, blockId);

@@ -22,6 +22,7 @@ import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import io.netty.util.internal.chmv8.ConcurrentHashMapV8;
+import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,6 +71,21 @@ public final class Configuration {
 
   /** File to set customized properties for Alluxio server (both master and worker) and client. */
   public static final String SITE_PROPERTIES = "alluxio-site.properties";
+
+  private static final Properties TRACE_LOG_PROPERTY = new Properties(System.getProperties());
+
+  static {
+    TRACE_LOG_PROPERTY.setProperty("log4j.appender.TRACE_LOGGER",
+            "org.apache.log4j.FileAppender");
+    TRACE_LOG_PROPERTY.setProperty("log4j.appender.TRACE_LOGGER.File",
+            Configuration.get(PropertyKey.HOME) + "/logs/trace.log");
+    TRACE_LOG_PROPERTY.setProperty("log4j.appender.TRACE_LOGGER.layout",
+            "org.apache.log4j.PatternLayout");
+    TRACE_LOG_PROPERTY.setProperty(
+            "log4j.appender.TRACE_LOGGER.layout.ConversionPattern",
+            "%d{ISO8601} %-5p %c{2} (%F:%M) - %m%n");
+    PropertyConfigurator.configure(TRACE_LOG_PROPERTY);
+  }
 
   static {
     defaultInit();
