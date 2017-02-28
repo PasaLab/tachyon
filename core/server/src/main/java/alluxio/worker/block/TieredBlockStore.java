@@ -82,6 +82,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1624)
 public final class TieredBlockStore implements BlockStore {
   private static final Logger LOG = LoggerFactory.getLogger(Constants.LOGGER_TYPE);
+  private static final Logger TRACE_LOG = LoggerFactory.getLogger(Constants.TRACE_LOGGER_TYPE);
   private static final int MAX_RETRIES =
           Configuration.getInt(PropertyKey.WORKER_TIERED_STORE_RETRY);
 
@@ -221,6 +222,18 @@ public final class TieredBlockStore implements BlockStore {
   public void commitBlock(long sessionId, long blockId) throws BlockAlreadyExistsException,
       InvalidWorkerStateException, BlockDoesNotExistException, IOException {
     BlockStoreLocation loc = commitBlockInternal(sessionId, blockId);
+    {
+      /** Attach trace logs. */
+      BlockMeta blockMeta = null;
+      try (LockResource r = new LockResource(mMetadataReadLock)) {
+        blockMeta = mMetaManager.getBlockMeta(blockId);
+      }
+      if (blockMeta != null) {
+        long blockSize = blockMeta.getBlockSize();
+        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+                + blockSize + "::commit::");
+      }
+    }
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onCommitBlock(sessionId, blockId, loc);
@@ -232,6 +245,18 @@ public final class TieredBlockStore implements BlockStore {
   public void abortBlock(long sessionId, long blockId) throws BlockAlreadyExistsException,
       BlockDoesNotExistException, InvalidWorkerStateException, IOException {
     abortBlockInternal(sessionId, blockId);
+    {
+      /** Attach trace logs. */
+      BlockMeta blockMeta = null;
+      try (LockResource r = new LockResource(mMetadataReadLock)) {
+        blockMeta = mMetaManager.getBlockMeta(blockId);
+      }
+      if (blockMeta != null) {
+        long blockSize = blockMeta.getBlockSize();
+        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+                + blockSize + "::abort::");
+      }
+    }
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onAbortBlock(sessionId, blockId);
@@ -271,6 +296,18 @@ public final class TieredBlockStore implements BlockStore {
     for (int i = 0; i < MAX_RETRIES + 1; i++) {
       MoveBlockResult moveResult = moveBlockInternal(sessionId, blockId, oldLocation, newLocation);
       if (moveResult.getSuccess()) {
+        {
+          /** Attach trace logs. */
+          BlockMeta blockMeta = null;
+          try (LockResource r = new LockResource(mMetadataReadLock)) {
+            blockMeta = mMetaManager.getBlockMeta(blockId);
+          }
+          if (blockMeta != null) {
+            long blockSize = blockMeta.getBlockSize();
+            TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+                    + blockSize + "::move::");
+          }
+        }
         synchronized (mBlockStoreEventListeners) {
           for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
             listener.onMoveBlockByClient(sessionId, blockId, moveResult.getSrcLocation(),
@@ -297,6 +334,18 @@ public final class TieredBlockStore implements BlockStore {
   public void removeBlock(long sessionId, long blockId, BlockStoreLocation location)
       throws InvalidWorkerStateException, BlockDoesNotExistException, IOException {
     removeBlockInternal(sessionId, blockId, location);
+    {
+      /** Attach trace logs. */
+      BlockMeta blockMeta = null;
+      try (LockResource r = new LockResource(mMetadataReadLock)) {
+        blockMeta = mMetaManager.getBlockMeta(blockId);
+      }
+      if (blockMeta != null) {
+        long blockSize = blockMeta.getBlockSize();
+        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+                + blockSize + "::remove::");
+      }
+    }
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onRemoveBlockByClient(sessionId, blockId);
@@ -312,6 +361,18 @@ public final class TieredBlockStore implements BlockStore {
     }
     if (!hasBlock) {
       throw new BlockDoesNotExistException(ExceptionMessage.NO_BLOCK_ID_FOUND, blockId);
+    }
+    {
+      /** Attach trace logs. */
+      BlockMeta blockMeta = null;
+      try (LockResource r = new LockResource(mMetadataReadLock)) {
+        blockMeta = mMetaManager.getBlockMeta(blockId);
+      }
+      if (blockMeta != null) {
+        long blockSize = blockMeta.getBlockSize();
+        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+                + blockSize + "::access::");
+      }
     }
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {

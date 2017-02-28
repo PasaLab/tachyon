@@ -29,6 +29,7 @@ public enum PropertyKey {
   KEY_VALUE_PARTITION_SIZE_BYTES_MAX(Name.KEY_VALUE_PARTITION_SIZE_BYTES_MAX, "512MB"),
   LOGGER_TYPE(Name.LOGGER_TYPE, "Console"),
   LOGS_DIR(Name.LOGS_DIR, String.format("${%s}/logs", Name.WORK_DIR)),
+  TRACE_LOGGER_HEAD(Name.TRACE_LOGGER_HEAD, ":::TRACE:::"),
   METRICS_CONF_FILE(Name.METRICS_CONF_FILE,
       String.format("${%s}/metrics.properties", Name.CONF_DIR)),
   NETWORK_HOST_RESOLUTION_TIMEOUT_MS(Name.NETWORK_HOST_RESOLUTION_TIMEOUT_MS, 5000),
@@ -402,6 +403,8 @@ public enum PropertyKey {
     public static final String KEY_VALUE_PARTITION_SIZE_BYTES_MAX =
         "alluxio.keyvalue.partition.size.bytes.max";
     public static final String LOGGER_TYPE = "alluxio.logger.type";
+    public static final String TRACE_LOGGER_TYPE = "alluxio.trace.logger.type";
+    public static final String TRACE_LOGGER_HEAD = "alluxio.trace.logger.head";
     public static final String LOGS_DIR = "alluxio.logs.dir";
     public static final String METRICS_CONF_FILE = "alluxio.metrics.conf.file";
     public static final String NETWORK_HOST_RESOLUTION_TIMEOUT_MS =
