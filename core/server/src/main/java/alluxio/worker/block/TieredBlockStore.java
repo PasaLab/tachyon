@@ -82,8 +82,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1624)
 public final class TieredBlockStore implements BlockStore {
   private static final Logger LOG = LoggerFactory.getLogger(Constants.LOGGER_TYPE);
-  private static final org.apache.log4j.Logger TRACE_LOG =
-          org.apache.log4j.Logger.getLogger(Configuration.get(PropertyKey.TRACE_LOGGER_TYPE));
   private static final int MAX_RETRIES =
           Configuration.getInt(PropertyKey.WORKER_TIERED_STORE_RETRY);
 
@@ -231,7 +229,7 @@ public final class TieredBlockStore implements BlockStore {
       }
       if (blockMeta != null) {
         long blockSize = blockMeta.getBlockSize();
-        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+        LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
                 + blockSize + "::commit::");
       }
     }
@@ -254,7 +252,7 @@ public final class TieredBlockStore implements BlockStore {
       }
       if (blockMeta != null) {
         long blockSize = blockMeta.getBlockSize();
-        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+        LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
                 + blockSize + "::abort::");
       }
     }
@@ -305,7 +303,7 @@ public final class TieredBlockStore implements BlockStore {
           }
           if (blockMeta != null) {
             long blockSize = blockMeta.getBlockSize();
-            TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+            LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
                     + blockSize + "::move::");
           }
         }
@@ -342,7 +340,7 @@ public final class TieredBlockStore implements BlockStore {
       }
       if (blockMeta != null) {
         long blockSize = blockMeta.getBlockSize();
-        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+        LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
                 + blockSize + "::remove::");
       }
     }
@@ -371,7 +369,7 @@ public final class TieredBlockStore implements BlockStore {
       }
       if (blockMeta != null) {
         long blockSize = blockMeta.getBlockSize();
-        TRACE_LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
+        LOG.info(blockId + Configuration.get(PropertyKey.TRACE_LOGGER_HEAD)
                 + blockSize + "::access::");
       }
     }
