@@ -33,10 +33,21 @@ public class ResourcePoolTest {
   class TestResourcePool extends ResourcePool<Integer> {
     int mPort = 0;
 
+    /**
+     * Creates a {@link TestResourcePool} with a specified maximum capacity.
+     *
+     * @param maxCapacity the maximum capacity of resources
+     */
     public TestResourcePool(int maxCapacity) {
       super(maxCapacity);
     }
 
+    /**
+     * Creates a {@link TestResourcePool} with a specified maximum capacity and a blocking queue.
+     *
+     * @param maxCapacity the maximum cappacity of resources
+     * @param resources blocking queue to use
+     */
     public TestResourcePool(int maxCapacity, ConcurrentLinkedQueue<Integer> resources) {
       super(maxCapacity, resources);
     }
