@@ -59,4 +59,12 @@ public interface Promote {
    * @return a promote plan
    */
   PromotePlan reorganizeBlocks(BlockMetadataManagerView view);
+
+  /**
+   * Reorganize the distribution of blocks among the tiers.
+   *
+   * @param view a view of block metadata information
+   * @return a promote plan
+   */
+  PromotePlan promoteWithView(BlockMetadataManagerView view);
 }

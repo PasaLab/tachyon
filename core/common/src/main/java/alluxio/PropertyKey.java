@@ -172,7 +172,8 @@ public enum PropertyKey {
   WORKER_PROMOTE_AUTO_ENABLED(Name.WORKER_PROMOTE_AUTO_ENABLED, true),
   WORKER_PROMOTE_CHECK_TIME(Name.WORKER_PROMOTE_CHECK_TIME, 10000),
   WORKER_PROMOTE_LRFU_STEP_FACTOR(Name.WORKER_PROMOTE_LRFU_STEP_FACTOR, 0.02),
-  WORKER_PROMOTE_CLASS(Name.WORKER_PROMOTE_CLASS, "alluxio.worker.block.promote.LRFUPromote"),
+  WORKER_PROMOTE_WLFU_WINDOW_LENGTH(Name.WORKER_PROMOTE_WLFU_WINDOW_LENGTH, "12GB"),
+  WORKER_PROMOTE_CLASS(Name.WORKER_PROMOTE_CLASS, "alluxio.worker.block.promote.WLFUPromote"),
   WORKER_EVICTOR_CLASS(Name.WORKER_EVICTOR_CLASS, "alluxio.worker.block.evictor.LRUEvictor"),
   WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR(Name.WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR, 2.0),
   WORKER_EVICTOR_LRFU_STEP_FACTOR(Name.WORKER_EVICTOR_LRFU_STEP_FACTOR, 0.25),
@@ -578,6 +579,8 @@ public enum PropertyKey {
         "alluxio.worker.promote.check.time";
     public static final String WORKER_PROMOTE_LRFU_STEP_FACTOR =
         "alluxio.worker.promote.lrfu.step.factor";
+    public static final String WORKER_PROMOTE_WLFU_WINDOW_LENGTH =
+        "alluxio.worker.promote.wlfu.window.length";
     public static final String WORKER_PROMOTE_CLASS = "alluxio.worker.promote.class";
     public static final String WORKER_EVICTOR_CLASS = "alluxio.worker.evictor.class";
     public static final String WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR =

@@ -11,6 +11,7 @@
 
 package alluxio.worker.block.promote;
 
+import alluxio.Constants;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.worker.block.AbstractBlockStoreEventListener;
 import alluxio.worker.block.BlockMetadataManagerView;
@@ -22,6 +23,8 @@ import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.StorageTierView;
 
 import com.google.common.base.Preconditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +35,7 @@ import java.util.Map;
  * This class provide the basic implementations of all promotes.
  */
 public abstract class AbstractPromote extends AbstractBlockStoreEventListener implements Promote {
+  private static final Logger LOG = LoggerFactory.getLogger(Constants.LOGGER_TYPE);
   protected BlockMetadataManagerView mManagerView;
   protected final Allocator mAllocator;
 
@@ -105,6 +109,68 @@ public abstract class AbstractPromote extends AbstractBlockStoreEventListener im
     }
     long ed = System.currentTimeMillis();
     System.out.println("reorganize took " + (ed - st) + " ms.");
+    return new PromotePlan(toPromote);
+  }
+
+  @Override
+  public PromotePlan promoteWithView(BlockMetadataManagerView managerView) {
+    mManagerView = managerView;
+    List<Long> blocks = getBlocksInDescendingOrder();
+    List<BlockTransferInfo> toPromote = new ArrayList<>();
+    int tiers = mManagerView.getTierViews().size();
+    long[] totalBytesByTiers = new long[tiers];
+    long[] usedBytesByTiers = new long[tiers];
+    for (int i = 0; i < tiers; i++) {
+      StorageTierView tierView = mManagerView.getTierViews().get(i);
+      for (StorageDirView dirView : tierView.getDirViews()) {
+        totalBytesByTiers[i] += dirView.getAvailableBytes() + dirView.getEvitableBytes();
+      }
+      usedBytesByTiers[i] = 0L;
+    }
+    Map<Long, Long>[] bytesAfterInTier = new Map[tiers];
+    for (int i = 0; i < tiers; i++) {
+      bytesAfterInTier[i] = new HashMap<>();
+    }
+    for (long blockId : blocks) {
+      try {
+        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+        if (blockMeta != null) {
+          int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+          long blockSize = blockMeta.getBlockSize();
+          usedBytesByTiers[tierOrd] += blockSize;
+          for (int i = 0; i < tiers; i++) {
+            bytesAfterInTier[i].put(blockId, totalBytesByTiers[i] - usedBytesByTiers[i]);
+          }
+        }
+      } catch (BlockDoesNotExistException e) {
+        LOG.info("Failed to get block {}.", blockId);
+      }
+    }
+    long[] promoteBytesByTiers = new long[tiers];
+    for (int i = 0; i < tiers; i++) {
+      promoteBytesByTiers[i] = 0L;
+    }
+    for (long blockId : blocks) {
+      try {
+        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+        if (blockMeta != null) {
+          int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+          long blockSize = blockMeta.getBlockSize();
+          for (int i = 0; i < tierOrd; i++) {
+            if (bytesAfterInTier[i].get(blockId) - promoteBytesByTiers[i] > 2 * blockSize) {
+              BlockStoreLocation oldLocation = blockMeta.getBlockLocation();
+              BlockStoreLocation newLocation = BlockStoreLocation
+                  .anyDirInTier(mManagerView.getTierViews().get(i).getTierViewAlias());
+              toPromote.add(new BlockTransferInfo(blockId, oldLocation, newLocation));
+              promoteBytesByTiers[i] += blockSize;
+              break;
+            }
+          }
+        }
+      } catch (BlockDoesNotExistException e) {
+        LOG.info("Failed to get block {}.", blockId);
+      }
+    }
     return new PromotePlan(toPromote);
   }
 

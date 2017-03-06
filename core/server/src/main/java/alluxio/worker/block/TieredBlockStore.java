@@ -296,10 +296,9 @@ public final class TieredBlockStore implements BlockStore {
     for (int i = 0; i < MAX_RETRIES + 1; i++) {
       MoveBlockResult moveResult = moveBlockInternal(sessionId, blockId, oldLocation, newLocation);
       if (moveResult.getSuccess()) {
-        int srcOrd = mMetaManager.getTier(oldLocation.tierAlias()).getTierOrdinal();
         int dstOrd = mMetaManager.getTier(newLocation.tierAlias()).getTierOrdinal();
-        if (dstOrd == 0 && srcOrd != 0) {
-          System.out.println("Miss");
+        if (dstOrd == 0) {
+          System.out.println("Promote Miss");
         }
         synchronized (mBlockStoreEventListeners) {
           for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
@@ -630,7 +629,7 @@ public final class TieredBlockStore implements BlockStore {
     long st = System.currentTimeMillis();
     PromotePlan plan;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
-      plan = mPromote.reorganizeBlocks(getUpdatedView());
+      plan = mPromote.promoteWithView(getUpdatedView());
     }
     if (plan == null || plan.isEmpty()) {
       // No blocks need to be promoted
@@ -665,8 +664,9 @@ public final class TieredBlockStore implements BlockStore {
             continue;
           }
           long blockSize = meta.getBlockSize();
-          //TODO(shupeng) if need to free space multiple times
-          freeSpaceInternal(sessionId, blockSize, dstLocation);
+          for (int j = 0; j < MAX_RETRIES; j++) {
+            freeSpaceInternal(sessionId, blockSize, dstLocation);
+          }
         } catch (BlockDoesNotExistException bdne) {
           LOG.error("The location of block {} to be promoted has changed.", blockId);
           continue;

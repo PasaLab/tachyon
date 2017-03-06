@@ -76,12 +76,14 @@ public class LRFUPromote extends AbstractPromote {
     for (Pair<Long, Float> pair : sortedCRF) {
       try {
         long blockId = pair.getFirst();
-        BlockMeta blockMeta = mManagerView.getExistingBlockMeta(blockId);
-        int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
-        if (tierOrd == 0) {
-          pair.setSecond(pair.getSecond() + 2.2f);
-        } else if (tierOrd == 1) {
-          pair.setSecond(pair.getSecond() + 1.1f);
+        BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+        if (blockMeta != null) {
+          int tierOrd = blockMeta.getParentDir().getParentTier().getTierOrdinal();
+          if (tierOrd == 0) {
+            pair.setSecond(pair.getSecond() + 2.2f);
+          } else if (tierOrd == 1) {
+            pair.setSecond(pair.getSecond() + 1.1f);
+          }
         }
       } catch (BlockDoesNotExistException e) {
         // TODO(shupeng) remove block
