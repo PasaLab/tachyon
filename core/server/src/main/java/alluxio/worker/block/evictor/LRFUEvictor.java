@@ -150,21 +150,25 @@ public final class LRFUEvictor extends AbstractEvictor {
 
   @Override
   public void onAccessBlock(long userId, long blockId) {
+    System.out.println("LRFU access block " + blockId);
     updateOnAccessAndCommit(blockId);
   }
 
   @Override
   public void onCommitBlock(long userId, long blockId, BlockStoreLocation location) {
+    System.out.println("LRFU commit block " + blockId);
     updateOnAccessAndCommit(blockId);
   }
 
   @Override
   public void onRemoveBlockByClient(long userId, long blockId) {
+    System.out.println("LRFU remove block " + blockId);
     updateOnRemoveBlock(blockId);
   }
 
   @Override
   public void onRemoveBlockByWorker(long userId, long blockId) {
+    System.out.println("LRFU remove block " + blockId);
     updateOnRemoveBlock(blockId);
   }
 

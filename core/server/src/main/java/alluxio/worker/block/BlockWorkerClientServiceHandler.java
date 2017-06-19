@@ -160,7 +160,8 @@ public final class BlockWorkerClientServiceHandler implements BlockWorkerClientS
       @Override
       public Boolean call() throws AlluxioException, IOException {
         // TODO(calvin): Make the top level configurable.
-        mWorker.moveBlock(Sessions.MIGRATE_DATA_SESSION_ID, blockId, mStorageTierAssoc.getAlias(0));
+        //mWorker.
+        // moveBlock(Sessions.MIGRATE_DATA_SESSION_ID, blockId, mStorageTierAssoc.getAlias(0));
         return true;
       }
     });

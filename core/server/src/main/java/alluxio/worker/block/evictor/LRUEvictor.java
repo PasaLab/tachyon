@@ -74,22 +74,26 @@ public class LRUEvictor extends AbstractEvictor {
 
   @Override
   public void onAccessBlock(long sessionId, long blockId) {
+    System.out.println("LRU access block " + blockId);
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
   }
 
   @Override
   public void onCommitBlock(long sessionId, long blockId, BlockStoreLocation location) {
+    System.out.println("LRU commit block " + blockId);
     // Since the temp block has been committed, update Evictor about the new added blocks
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
   }
 
   @Override
   public void onRemoveBlockByClient(long sessionId, long blockId) {
+    System.out.println("LRU remove block " + blockId);
     mLRUCache.remove(blockId);
   }
 
   @Override
   public void onRemoveBlockByWorker(long sessionId, long blockId) {
+    System.out.println("LRU remove block " + blockId);
     mLRUCache.remove(blockId);
   }
 
