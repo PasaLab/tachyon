@@ -211,8 +211,8 @@ public final class BlockWorkerClientRestServiceHandler {
       @Override
       public Void call() throws Exception {
         Preconditions.checkNotNull(blockId, "required 'blockId' parameter is missing");
-        mBlockWorker
-            .moveBlock(Sessions.MIGRATE_DATA_SESSION_ID, blockId, mStorageTierAssoc.getAlias(0));
+        //mBlockWorker
+        //    .moveBlock(Sessions.MIGRATE_DATA_SESSION_ID, blockId, mStorageTierAssoc.getAlias(0));
         return null;
       }
     });

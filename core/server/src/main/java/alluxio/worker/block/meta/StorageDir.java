@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -67,6 +69,49 @@ public final class StorageDir {
     mBlockIdToBlockMap = new HashMap<>(200);
     mBlockIdToTempBlockMap = new HashMap<>(200);
     mSessionIdToTempBlockIdsMap = new HashMap<>(200);
+  }
+
+  /**
+   * Create an instance of {@link StorageDir}.
+   *
+   * @param tier parent storage tier
+   * @param dir the storage directory to be copied
+   */
+  public StorageDir(StorageTier tier, StorageDir dir) {
+    mTier = Preconditions.checkNotNull(tier);
+    mDirIndex = dir.getDirIndex();
+    mCapacityBytes = dir.getCapacityBytes();
+    mAvailableBytes = new AtomicLong(dir.getAvailableBytes());
+    mCommittedBytes = new AtomicLong(dir.getCommittedBytes());
+    mDirPath = dir.getDirPath();
+    mBlockIdToBlockMap = new HashMap<>(200);
+    for (BlockMeta blockMeta : dir.getBlocks()) {
+      mBlockIdToBlockMap.put(blockMeta.getBlockId(), new BlockMeta(blockMeta, this));
+    }
+    mBlockIdToTempBlockMap = new HashMap<>(200);
+    for (TempBlockMeta tempBlockMeta : dir.getTempBlocks()) {
+      mBlockIdToTempBlockMap.put(tempBlockMeta.getBlockId(),
+              new TempBlockMeta(this, tempBlockMeta));
+    }
+    mSessionIdToTempBlockIdsMap = dir.copySessionToTempBlockIdsMap();
+  }
+
+  /**
+   * Deep copy {@link #mSessionIdToTempBlockIdsMap}.
+   *
+   * @return the copied map
+   */
+  public Map<Long, Set<Long>> copySessionToTempBlockIdsMap() {
+    Map<Long, Set<Long>> res = new HashMap<>(200);
+    for (Iterator<Map.Entry<Long, Set<Long>>> it =
+         mSessionIdToTempBlockIdsMap.entrySet().iterator(); it.hasNext();) {
+      Map.Entry<Long, Set<Long>> entry = it.next();
+      long sessionId = entry.getKey();
+      Set<Long> tempBlockIds = new HashSet<>();
+      tempBlockIds.addAll(entry.getValue());
+      res.put(sessionId, tempBlockIds);
+    }
+    return res;
   }
 
   /**
@@ -261,6 +306,15 @@ public final class StorageDir {
       throw new BlockDoesNotExistException(ExceptionMessage.TEMP_BLOCK_META_NOT_FOUND, blockId);
     }
     return tempBlockMeta;
+  }
+
+  /**
+   * Return the list of temp blocks stored in the dir.
+   *
+   * @return list of temp blocks
+   */
+  public List<TempBlockMeta> getTempBlocks() {
+    return new ArrayList<>(mBlockIdToTempBlockMap.values());
   }
 
   /**

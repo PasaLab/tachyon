@@ -171,9 +171,14 @@ public enum PropertyKey {
   WORKER_DATA_SERVER_CLASS(Name.WORKER_DATA_SERVER_CLASS, "alluxio.worker.netty.NettyDataServer"),
   WORKER_DATA_TMP_FOLDER(Name.WORKER_DATA_TMP_FOLDER, ".tmp_blocks"),
   WORKER_DATA_TMP_SUBDIR_MAX(Name.WORKER_DATA_TMP_SUBDIR_MAX, 1024),
+  WORKER_SCAN_WINDOW_LENGTH(Name.WORKER_SCAN_WINDOW_LENGTH, "12GB"),
+  WORKER_SKIP_WINDOW_LENGTH(Name.WORKER_SKIP_WINDOW_LENGTH, "1GB"),
+  WORKER_MODEL_PREDICT_EPS(Name.WORKER_MODEL_PREDICT_EPS, 0.1),
+  WORKER_EVICTOR_AUTO_ENABLED(Name.WORKER_EVICTOR_AUTO_ENABLED, true),
   WORKER_EVICTOR_CLASS(Name.WORKER_EVICTOR_CLASS, "alluxio.worker.block.evictor.LRUEvictor"),
   WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR(Name.WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR, 2.0),
   WORKER_EVICTOR_LRFU_STEP_FACTOR(Name.WORKER_EVICTOR_LRFU_STEP_FACTOR, 0.25),
+  WORKER_EVICTOR_LIRS_HIR_PERCENT(Name.WORKER_EVICTOR_LIRS_HIR_PERCENT, 0.25),
   WORKER_FILE_PERSIST_POOL_SIZE(Name.WORKER_FILE_PERSIST_POOL_SIZE, 64),
   WORKER_FILE_PERSIST_RATE_LIMIT(Name.WORKER_FILE_PERSIST_RATE_LIMIT, "2GB"),
   WORKER_FILE_PERSIST_RATE_LIMIT_ENABLED(Name.WORKER_FILE_PERSIST_RATE_LIMIT_ENABLED, false),
@@ -573,11 +578,17 @@ public enum PropertyKey {
     public static final String WORKER_DATA_SERVER_CLASS = "alluxio.worker.data.server.class";
     public static final String WORKER_DATA_TMP_FOLDER = "alluxio.worker.data.folder.tmp";
     public static final String WORKER_DATA_TMP_SUBDIR_MAX = "alluxio.worker.data.tmp.subdir.max";
+    public static final String WORKER_SCAN_WINDOW_LENGTH = "alluxio.worker.scan.window.length";
+    public static final String WORKER_SKIP_WINDOW_LENGTH = "alluxio.worker.skip.window.length";
+    public static final String WORKER_MODEL_PREDICT_EPS = "alluxio.worker.model.predict.eps";
+    public static final String WORKER_EVICTOR_AUTO_ENABLED = "alluxio.worker.evictor.auto.enabled";
     public static final String WORKER_EVICTOR_CLASS = "alluxio.worker.evictor.class";
     public static final String WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR =
         "alluxio.worker.evictor.lrfu.attenuation.factor";
     public static final String WORKER_EVICTOR_LRFU_STEP_FACTOR =
         "alluxio.worker.evictor.lrfu.step.factor";
+    public static final String WORKER_EVICTOR_LIRS_HIR_PERCENT =
+        "alluxio.worker.evictor.lirs.hir.percent";
     public static final String WORKER_FILESYSTEM_HEARTBEAT_INTERVAL_MS =
         "alluxio.worker.filesystem.heartbeat.interval.ms";
     public static final String WORKER_FILE_PERSIST_POOL_SIZE =

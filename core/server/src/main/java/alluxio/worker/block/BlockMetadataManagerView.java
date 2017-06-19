@@ -221,4 +221,15 @@ public class BlockMetadataManagerView {
       return null;
     }
   }
+
+  /**
+   * Return the block size if the block exists.
+   *
+   * @param blockId the block id
+   * @return the size of the block
+   * @throws BlockDoesNotExistException if no {@link BlockMeta} for this block id is found
+   */
+  public long getBlockSize(long blockId) throws BlockDoesNotExistException {
+    return mMetadataManager.getBlockMeta(blockId).getBlockSize();
+  }
 }

@@ -35,6 +35,18 @@ public final class TempBlockMeta extends AbstractBlockMeta {
     mTempBlockSize = initialBlockSize;
   }
 
+  /**
+   * Create a new instance of {@link TempBlockMeta}.
+   *
+   * @param dir parent storage directory
+   * @param tempBlockMeta {@link TempBlockMeta} to be copied
+   */
+  public TempBlockMeta(StorageDir dir, TempBlockMeta tempBlockMeta) {
+    super(tempBlockMeta.getBlockId(), dir);
+    mSessionId = tempBlockMeta.getSessionId();
+    mTempBlockSize = tempBlockMeta.getBlockSize();
+  }
+
   @Override
   public long getBlockSize() {
     return mTempBlockSize;

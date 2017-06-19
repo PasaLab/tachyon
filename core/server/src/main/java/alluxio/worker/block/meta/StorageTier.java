@@ -56,6 +56,21 @@ public final class StorageTier {
     mTierOrdinal = new WorkerStorageTierAssoc().getOrdinal(tierAlias);
   }
 
+  /**
+   * Create an instance of {@link StorageTier}.
+   *
+   * @param tier {@link StorageTier} to be copied
+   */
+  public StorageTier(StorageTier tier) {
+    mTierAlias = tier.getTierAlias();
+    mTierOrdinal = tier.getTierOrdinal();
+    mCapacityBytes = tier.getCapacityBytes();
+    mDirs = new ArrayList<>();
+    for (StorageDir dir : tier.getStorageDirs()) {
+      mDirs.add(new StorageDir(this, dir));
+    }
+  }
+
   private void initStorageTier()
       throws BlockAlreadyExistsException, IOException, WorkerOutOfSpaceException {
     String workerDataFolder = Configuration.get(PropertyKey.WORKER_DATA_FOLDER);
