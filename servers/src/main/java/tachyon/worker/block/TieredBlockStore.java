@@ -134,6 +134,7 @@ public final class TieredBlockStore implements BlockStore {
       return lockId;
     }
     mLockManager.unlockBlock(lockId);
+    System.out.println("aaaaaaaaaaaa block not found in tierstore");
     throw new BlockDoesNotExistException(
         ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_BLOCK_AND_SESSION, blockId, sessionId);
   }
@@ -274,7 +275,12 @@ public final class TieredBlockStore implements BlockStore {
       BlockAlreadyExistsException, InvalidWorkerStateException, WorkerOutOfSpaceException,
       IOException {
     for (int i = 0; i < MAX_RETRIES + 1; i ++) {
+      System.out.println("before move block " + blockId);
       MoveBlockResult moveResult = moveBlockInternal(sessionId, blockId, oldLocation, newLocation);
+      System.out.println("after move block " + blockId);
+      if (moveResult == null) {
+        return;
+      }
       if (moveResult.success()) {
         synchronized (mBlockStoreEventListeners) {
           for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
@@ -466,6 +472,7 @@ public final class TieredBlockStore implements BlockStore {
 
       mMetadataWriteLock.lock();
       try {
+        System.out.println("TieredBlockStore: abort tmp block " + tempBlockMeta.getBlockId());
         mMetaManager.abortTempBlockMeta(tempBlockMeta);
       } catch (BlockDoesNotExistException nfe) {
         throw Throwables.propagate(nfe); // We shall never reach here
@@ -694,6 +701,9 @@ public final class TieredBlockStore implements BlockStore {
           LOG.info("Failed to move blockId " + blockId + ", it could be already deleted");
           continue;
         }
+        if (moveResult == null) {
+          return;
+        }
         if (moveResult.success()) {
           synchronized (mBlockStoreEventListeners) {
             for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
@@ -738,6 +748,18 @@ public final class TieredBlockStore implements BlockStore {
       BlockStoreLocation oldLocation, BlockStoreLocation newLocation)
       throws BlockDoesNotExistException, BlockAlreadyExistsException, InvalidWorkerStateException,
       IOException {
+    mMetadataReadLock.lock();
+    try {
+      if (mMetaManager.hasBlockMeta(blockId)) {
+        BlockMeta srcBlockMeta = mMetaManager.getBlockMeta(blockId);
+        BlockStoreLocation srcLocation = srcBlockMeta.getBlockLocation();
+        if (srcLocation.belongTo(newLocation)) {
+          return null;
+        }
+      }
+    } finally {
+      mMetadataReadLock.unlock();
+    }
     long lockId = mLockManager.lockBlock(sessionId, blockId, BlockLockType.WRITE);
     try {
       long blockSize;
@@ -778,6 +800,7 @@ public final class TieredBlockStore implements BlockStore {
       // When the dstLocation belongs to srcLocation, simply abort the tempBlockMeta just created
       // internally from the newLocation and return success with specific block location.
       if (dstLocation.belongTo(srcLocation)) {
+        System.out.println("TieredBlockStore: abort block in moveInternal " + blockId);
         mMetaManager.abortTempBlockMeta(dstTempBlock);
         return new MoveBlockResult(true, blockSize, srcLocation, dstLocation);
       }

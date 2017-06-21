@@ -371,7 +371,8 @@ abstract class AbstractTFS extends FileSystem {
     }
 
     if (!mTFS.exist(tPath)) {
-      throw new FileNotFoundException("File does not exist: " + path);
+      //throw new FileNotFoundException("File does not exist: " + path);
+      return null;
     }
 
     List<FileInfo> files = mTFS.listStatus(tPath);

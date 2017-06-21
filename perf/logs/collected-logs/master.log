@@ -1,0 +1,2521 @@
+2016-03-02 19:07:23,378 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 19:07:33,382 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitRegister) - Unregister time out: 0@slave001 2@slave003 1@slave002 3@slave004
+2016-03-02 19:07:33,386 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:main) - Error when start Tachyon-Perf Master
+2016-03-02 19:07:33,463 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:07:33,473 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:07:33,498 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 19:12:23,854 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 19:12:24,857 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 19:12:26,857 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:28,858 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:30,858 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:32,861 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:34,861 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:36,862 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:38,862 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:40,863 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:42,863 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:44,864 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:46,864 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:48,865 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:50,865 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:52,865 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:54,868 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:56,869 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:12:58,869 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:00,870 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:02,870 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:04,871 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:06,871 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:08,871 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:10,872 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:12,872 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:14,873 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:16,873 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:18,874 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:20,874 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:24,485 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:26,485 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:29,875 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:31,876 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:33,876 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:35,877 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:37,877 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:39,877 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:41,878 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:43,878 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:45,879 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:47,879 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:49,880 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:51,880 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:53,881 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:55,881 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:57,882 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:13:59,882 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:01,883 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:03,883 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:06,037 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:08,037 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:10,038 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:12,038 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:14,039 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:16,039 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:18,040 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:20,040 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:22,067 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:24,068 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:26,068 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:28,069 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:30,069 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:32,070 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:34,070 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:36,071 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:38,071 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:40,072 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:42,072 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:44,073 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:46,073 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:48,165 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:50,166 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:52,166 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:54,167 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:56,167 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:14:58,168 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:15:17,645 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 2 slaves. Success: 0 slaves. Failed: 2 slaves.
+	Running: 0@slave001 2@slave003
+	Success:
+	Failed: 1@slave002 3@slave004
+
+2016-03-02 19:15:17,645 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 19:15:17,730 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:15:17,735 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:15:17,755 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:15:17,756 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:15:17,801 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 19:29:50,405 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 19:29:51,407 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 19:29:53,408 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:29:55,408 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:29:57,409 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:29:59,412 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:01,412 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:03,413 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:05,413 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:07,414 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:09,414 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:11,415 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:13,416 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:15,416 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:17,417 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:19,417 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:21,420 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:23,421 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:25,422 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:27,422 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:34,042 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:30:45,755 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 3 slaves. Success: 0 slaves. Failed: 1 slaves.
+	Running: 0@slave001 2@slave003 3@slave004
+	Success:
+	Failed: 1@slave002
+
+2016-03-02 19:30:45,755 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 19:30:45,831 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:30:45,835 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:30:45,853 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:30:45,853 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:30:45,887 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 19:35:37,124 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 19:35:38,126 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 19:35:40,127 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:42,127 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:44,127 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:46,130 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:48,130 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:50,131 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:52,131 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:54,132 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:56,132 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:35:58,133 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:00,133 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:02,134 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:04,134 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:06,134 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:08,137 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:10,138 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:12,138 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:14,139 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:16,139 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:18,139 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:25,445 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:27,445 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:29,446 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:39,706 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:41,706 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:43,707 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:45,707 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:47,708 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:49,708 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:51,709 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:53,709 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:55,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:57,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:36:59,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:01,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:03,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:05,712 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:07,712 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:09,713 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:12,434 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:14,435 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:16,435 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:18,436 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:20,436 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:22,436 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:24,437 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:26,437 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:28,438 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:30,438 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:34,376 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:41,133 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:43,586 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:45,587 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:47,587 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:49,588 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:37:58,566 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:00,566 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:02,567 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:04,567 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:06,568 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:08,568 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:12,846 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:19,186 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:21,187 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:23,187 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:38:36,837 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 2 slaves. Success: 0 slaves. Failed: 2 slaves.
+	Running: 0@slave001 2@slave003
+	Success:
+	Failed: 1@slave002 3@slave004
+
+2016-03-02 19:38:36,837 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 19:38:36,912 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:38:36,917 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:38:36,935 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:38:36,935 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:38:36,977 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 19:47:46,410 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 19:47:47,412 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 19:47:49,413 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:47:51,413 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:47:53,414 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:47:55,416 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:47:57,417 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:47:59,417 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:01,417 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:03,418 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:05,418 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:07,419 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:09,419 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:11,420 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:15,660 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:17,661 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:23,071 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:25,072 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:27,072 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:29,072 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:31,073 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:33,073 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:35,074 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:37,074 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:42,377 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:44,377 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:46,378 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:48:48,378 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:00,874 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:02,874 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:04,875 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:06,875 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:08,876 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:10,876 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:12,877 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:14,877 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:16,878 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:18,878 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:20,878 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:25,131 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:48,822 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:50,822 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:52,823 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:54,823 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:56,823 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:49:58,824 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:00,824 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:02,825 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:04,825 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:06,826 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:08,826 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:11,371 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:13,372 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:18,351 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 19:50:34,079 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 19:50:34,165 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:50:34,171 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:50:34,191 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:50:34,191 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 19:50:34,226 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 20:32:37,171 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 20:32:38,173 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 20:32:40,174 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:42,174 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:44,175 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:46,177 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:48,178 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:50,178 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:52,179 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:54,179 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:56,180 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:32:58,180 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:00,181 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:02,181 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:04,181 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:06,182 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:08,184 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:10,185 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:12,185 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:14,186 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:20,030 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:22,031 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:24,031 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:39,634 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:41,634 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:43,635 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:45,635 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:47,635 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:49,636 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:51,967 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:53,968 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:55,968 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:33:57,969 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:06,086 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:13,277 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:15,278 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:17,278 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:19,279 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:21,279 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:23,279 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:25,280 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:27,280 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:29,281 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:31,281 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:33,282 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:35,282 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:37,283 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:39,283 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:41,283 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:43,284 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:45,284 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:47,285 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:52,211 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:34:58,526 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:35:00,527 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:35:02,527 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:35:16,188 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 3 slaves. Success: 0 slaves. Failed: 1 slaves.
+	Running: 0@slave001 2@slave003 1@slave002
+	Success:
+	Failed: 3@slave004
+
+2016-03-02 20:35:16,188 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 20:35:16,263 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:35:16,268 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:35:16,286 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:35:16,286 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:35:16,325 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 20:40:35,498 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 20:40:36,501 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 20:40:38,501 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 0 slaves. Success: 4 slaves. Failed: 0 slaves.
+	Running:
+	Success: 0@slave001 2@slave003 1@slave002 3@slave004
+	Failed:
+
+2016-03-02 20:40:38,576 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:40:38,583 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:40:38,601 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:40:38,601 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:40:38,628 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 20:40:52,707 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 20:40:53,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 20:40:55,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:40:57,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:40:59,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:01,714 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:03,714 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:05,715 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:07,715 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:09,716 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 20:41:11,716 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 2 slaves. Success: 2 slaves. Failed: 0 slaves.
+	Running: 2@slave003 1@slave002
+	Success: 0@slave001 3@slave004
+	Failed:
+
+2016-03-02 20:41:13,717 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 0 slaves. Success: 4 slaves. Failed: 0 slaves.
+	Running:
+	Success: 0@slave001 2@slave003 1@slave002 3@slave004
+	Failed:
+
+2016-03-02 20:41:17,129 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:17,134 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:17,152 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:17,153 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:17,193 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 20:41:27,030 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 20:41:28,032 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 20:41:30,033 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 0 slaves. Success: 4 slaves. Failed: 0 slaves.
+	Running:
+	Success: 0@slave001 2@slave003 1@slave002 3@slave004
+	Failed:
+
+2016-03-02 20:41:30,107 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:30,113 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:30,131 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:30,131 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 20:41:30,157 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 21:21:04,786 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 21:21:05,789 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 21:21:07,789 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:09,790 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:11,790 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:13,793 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:15,794 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:17,794 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:19,794 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:21,795 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:23,795 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:25,796 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:27,796 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:21:29,797 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 3 slaves. Success: 0 slaves. Failed: 1 slaves.
+	Running: 0@slave001 2@slave003 1@slave002
+	Success:
+	Failed: 3@slave004
+
+2016-03-02 21:21:29,797 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 21:21:29,880 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ localhost/127.0.0.1:19998
+2016-03-02 21:21:29,887 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ localhost/127.0.0.1:19998
+2016-03-02 21:21:29,906 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ localhost/127.0.0.1:19998
+2016-03-02 21:21:29,906 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ localhost/127.0.0.1:19998
+2016-03-02 21:21:29,969 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 21:26:47,940 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 21:26:48,943 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 21:26:50,943 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:26:52,944 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:26:54,944 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:26:56,947 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:26:58,947 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:00,948 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:02,948 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:04,949 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:06,949 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:08,950 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:10,950 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:12,951 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:14,951 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:16,952 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:18,955 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:20,955 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:22,956 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:28,117 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:35,671 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:37,672 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:52,100 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:54,101 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:56,101 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:27:58,824 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:00,824 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:02,825 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:04,825 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:06,826 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:08,826 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:10,827 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:13,983 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:15,984 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:22,354 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:24,354 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:26,355 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:28:39,900 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 1 slaves. Success: 0 slaves. Failed: 3 slaves.
+	Running: 0@slave001
+	Success:
+	Failed: 2@slave003 1@slave002 3@slave004
+
+2016-03-02 21:28:39,900 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 21:28:39,977 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:28:39,981 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:28:40,000 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:28:40,000 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:28:40,039 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 21:44:47,746 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 21:44:48,749 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 21:44:50,749 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:44:52,750 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:44:54,750 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:44:56,753 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:44:58,753 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:00,754 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:02,754 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:04,755 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:06,755 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:08,756 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:10,756 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:12,757 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:14,757 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:16,838 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:18,841 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:20,841 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:22,842 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:24,842 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:28,642 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:30,642 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:34,709 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:36,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:38,710 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:40,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:42,711 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:44,712 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:46,712 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 21:45:48,713 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 1 slaves. Success: 0 slaves. Failed: 3 slaves.
+	Running: 3@slave004
+	Success:
+	Failed: 0@slave001 2@slave003 1@slave002
+
+2016-03-02 21:45:48,713 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 21:45:48,790 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:45:48,794 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:45:48,813 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:45:48,814 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 21:45:48,849 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 22:03:58,074 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 22:03:59,078 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 22:04:01,078 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:03,079 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:05,079 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:07,082 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:09,082 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:11,083 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:13,083 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:15,084 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:17,084 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:19,085 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:21,085 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:23,086 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:25,086 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:27,087 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:29,089 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:31,090 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:33,090 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:35,091 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:37,091 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:39,092 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:41,092 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:43,588 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:45,589 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:04:47,589 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed:
+
+2016-03-02 22:05:01,269 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 3 slaves. Success: 0 slaves. Failed: 1 slaves.
+	Running: 2@slave003 3@slave004 1@slave002
+	Success:
+	Failed: 0@slave001
+
+2016-03-02 22:05:01,269 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 22:05:01,345 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:05:01,350 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:05:01,368 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:05:01,369 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:05:01,401 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 22:29:40,612 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 22:29:41,614 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 22:29:43,615 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:45,615 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:47,616 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:49,618 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:51,619 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:53,619 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:55,620 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:57,620 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:29:59,621 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:01,621 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:03,622 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:05,622 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:07,623 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:09,623 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:11,626 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:13,626 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:15,627 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:17,627 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:30:43,407 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 1 slaves. Success: 0 slaves. Failed: 3 slaves.
+	Running: 0@slave001
+	Success:
+	Failed: 2@slave003 1@slave002 3@slave004
+
+2016-03-02 22:30:43,407 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 22:30:43,489 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:30:43,494 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:30:43,514 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:30:43,514 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:30:43,552 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 22:35:51,265 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 22:35:52,267 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 22:35:54,268 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:35:56,268 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:35:58,269 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:00,272 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:02,272 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:04,273 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:06,273 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:08,274 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:10,274 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:12,275 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:14,879 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:16,879 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:18,880 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:20,980 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:22,982 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:24,983 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:26,983 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:28,984 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:33,576 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 22:36:54,539 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 3 slaves. Success: 0 slaves. Failed: 1 slaves.
+	Running: 0@slave001 1@slave002 3@slave004
+	Success:
+	Failed: 2@slave003
+
+2016-03-02 22:36:54,539 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 22:36:54,617 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:36:54,621 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:36:54,639 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:36:54,640 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 22:36:54,675 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)
+2016-03-02 23:09:41,220 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves register...
+2016-03-02 23:09:42,223 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:start) - Wait all slaves finished...
+2016-03-02 23:09:44,223 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:46,224 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:48,224 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:50,229 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:52,229 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:54,230 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:56,230 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:09:58,231 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:00,231 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:02,232 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:04,645 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:06,646 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:08,646 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:10,647 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:12,649 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:14,650 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:16,651 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:18,651 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:20,652 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:22,652 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:45,809 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:47,810 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:49,810 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:51,811 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:53,811 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:55,812 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:57,812 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:10:59,812 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:11:01,813 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:11:03,813 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:11:05,814 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:11:09,962 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 4 slaves. Success: 0 slaves. Failed: 0 slaves.
+	Running: 0@slave001 2@slave003 1@slave002 3@slave004
+	Success:
+	Failed:
+
+2016-03-02 23:11:33,619 INFO  PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Running: 1 slaves. Success: 0 slaves. Failed: 3 slaves.
+	Running: 0@slave001
+	Success:
+	Failed: 2@slave003 1@slave002 3@slave004
+
+2016-03-02 23:11:33,619 ERROR PERF_MASTER_LOGGER (TachyonPerfMaster.java:waitFinish) - Enough slaves failed. Abort all the slaves.
+2016-03-02 23:11:33,695 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:11:33,700 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:11:33,718 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:11:33,718 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:11:33,754 ERROR server.TThreadedSelectorServer (TThreadedSelectorServer.java:waitForShutdown) - Interrupted while joining threads!
+java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Thread.join(Thread.java:1281)
+	at java.lang.Thread.join(Thread.java:1355)
+	at org.apache.thrift.server.TThreadedSelectorServer.joinThreads(TThreadedSelectorServer.java:251)
+	at org.apache.thrift.server.TThreadedSelectorServer.waitForShutdown(TThreadedSelectorServer.java:241)
+	at org.apache.thrift.server.AbstractNonblockingServer.serve(AbstractNonblockingServer.java:95)
+	at tachyon.perf.TachyonPerfMaster$MasterServiceThread.run(TachyonPerfMaster.java:54)

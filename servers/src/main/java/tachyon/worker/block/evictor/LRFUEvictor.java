@@ -32,6 +32,7 @@ import com.google.common.collect.Iterators;
 import tachyon.Constants;
 import tachyon.collections.Pair;
 import tachyon.conf.TachyonConf;
+import tachyon.exception.BlockDoesNotExistException;
 import tachyon.worker.WorkerContext;
 import tachyon.worker.block.BlockMetadataManagerView;
 import tachyon.worker.block.BlockStoreLocation;
@@ -162,6 +163,7 @@ public final class LRFUEvictor extends EvictorBase {
 
   @Override
   public void onAccessBlock(long userId, long blockId) {
+    System.out.println("Access increment");
     updateOnAccessAndCommit(blockId);
   }
 
@@ -186,6 +188,21 @@ public final class LRFUEvictor extends EvictorBase {
     mBlockIdToCRFValue.remove(blockId);
   }
 
+  @Override
+  public void onMoveBlockByClient(long sessionId, long blockId, BlockStoreLocation oldLocation,
+      BlockStoreLocation newLocation) {
+    if (newLocation.tierAlias() < oldLocation.tierAlias()) {
+      System.out.println("Miss increment");
+    }
+  }
+
+  @Override
+  public void onMoveBlockByWorker(long sessionId, long blockId, BlockStoreLocation oldLocation,
+      BlockStoreLocation newLocation) {
+    if (newLocation.tierAlias() < oldLocation.tierAlias()) {
+      System.out.println("Miss increment");
+    }
+  }
   /**
    * This function is used to update CRF of all the blocks according to current logic time. When
    * some block is accessed in some time, only CRF of that block itself will be updated to current

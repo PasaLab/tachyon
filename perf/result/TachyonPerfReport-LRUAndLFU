@@ -1,0 +1,34 @@
+LRUAndLFU Test - ID : 1458135775340
+Finished Successfully
+********** Task Configurations **********
+block.size.bytes	268435456
+lru.iterations	5
+lru.files.per.thread	32
+lfu.cold.files.per.thread	12
+file.length.bytes	268435456
+iterations	2
+lfu.files.per.thread	20
+buffer.size.bytes	4194304
+write.type	TRY_CACHE
+read.type	CACHE_PROMOTE
+lfu.iterations	12
+********** Statistics **********
+SlaveName	totalTime(s)
+3@slave004	2057449.0
+1@slave002	2154535.0
+0@slave001	1721177.0
+2@slave003	2027114.0
+Total	7960275.0
+********** Slave Details **********
+3@slave004's totalTime(s) for each threads:
+	[ 2057449.0 ]
+
+1@slave002's totalTime(s) for each threads:
+	[ 2154535.0 ]
+
+0@slave001's totalTime(s) for each threads:
+	[ 1721177.0 ]
+
+2@slave003's totalTime(s) for each threads:
+	[ 2027114.0 ]
+

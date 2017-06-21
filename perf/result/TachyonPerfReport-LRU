@@ -1,0 +1,54 @@
+LRU Test - ID : 1458123499911
+Finished Successfully
+********** Task Configurations **********
+block.size.bytes	268435456
+files.per.thread	32
+file.length.bytes	268435456
+buffer.size.bytes	4194304
+write.type	TRY_CACHE
+file.read.times	5
+read.type	CACHE_PROMOTE
+********** Statistics **********
+SlaveName	BasicWriteThroughput(MB/s)	ReadTime(s)	ReadThroughput(MB/s)	BasicWriteTime(s)
+1@slave002	820.5128205128206	103.5	791.4975845410628	9.984
+2@slave003	701.4899811611576	110.824	739.1900671334729	11.678
+3@slave004	847.682119205298	101.429	807.6585591891865	9.664
+0@slave001	822.6551516368748	110.067	744.2739422351841	9.958
+Total	3192.3400725161514	425.82000000000005	3082.6201530989065	41.284
+********** Slave Details **********
+1@slave002's BasicWriteThroughput(MB/s) for each threads:
+	[ 820.5128205128206 ]
+1@slave002's ReadTime(s) for each threads:
+	[ 103.5 ]
+1@slave002's ReadThroughput(MB/s) for each threads:
+	[ 791.4975845410628 ]
+1@slave002's BasicWriteTime(s) for each threads:
+	[ 9.984 ]
+
+2@slave003's BasicWriteThroughput(MB/s) for each threads:
+	[ 701.4899811611576 ]
+2@slave003's ReadTime(s) for each threads:
+	[ 110.824 ]
+2@slave003's ReadThroughput(MB/s) for each threads:
+	[ 739.1900671334729 ]
+2@slave003's BasicWriteTime(s) for each threads:
+	[ 11.678 ]
+
+3@slave004's BasicWriteThroughput(MB/s) for each threads:
+	[ 847.682119205298 ]
+3@slave004's ReadTime(s) for each threads:
+	[ 101.429 ]
+3@slave004's ReadThroughput(MB/s) for each threads:
+	[ 807.6585591891865 ]
+3@slave004's BasicWriteTime(s) for each threads:
+	[ 9.664 ]
+
+0@slave001's BasicWriteThroughput(MB/s) for each threads:
+	[ 822.6551516368748 ]
+0@slave001's ReadTime(s) for each threads:
+	[ 110.067 ]
+0@slave001's ReadThroughput(MB/s) for each threads:
+	[ 744.2739422351841 ]
+0@slave001's BasicWriteTime(s) for each threads:
+	[ 9.958 ]
+

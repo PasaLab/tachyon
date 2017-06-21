@@ -1,0 +1,1118 @@
+2016-03-03 00:59:02,344 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 00:59:02,355 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 00:59:02,382 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 00:59:02,382 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:01:19,995 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:01:20,007 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:01:20,035 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:01:20,035 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:07:46,800 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:07:46,812 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:07:46,844 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:07:46,844 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:12:35,827 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:12:35,839 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:12:35,865 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:12:35,865 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:18:46,307 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:18:46,320 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:18:46,349 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 01:18:46,349 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 17:57:35,021 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 17:57:35,046 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 17:57:35,074 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 17:57:35,075 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 18:31:59,256 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 18:31:59,278 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 18:31:59,305 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 18:31:59,305 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:24:12,560 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:24:12,581 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:24:12,609 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:24:12,609 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:30:34,930 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:30:34,943 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:30:34,972 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 19:30:34,972 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:19:19,101 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:19:19,128 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:19:19,154 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:19:19,154 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:41:49,871 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:41:49,883 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:41:49,910 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 20:41:49,911 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 21:23:26,354 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 21:23:26,441 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 21:23:26,468 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 21:23:26,468 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:05:47,680 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:05:47,701 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:05:47,728 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:05:47,728 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:33:24,643 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:33:24,665 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:33:24,691 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 22:33:24,692 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:10:02,022 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:10:02,048 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:10:02,074 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:10:02,074 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:34:44,134 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:34:44,157 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:34:44,184 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:34:44,185 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:40:21,546 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:40:21,569 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:40:21,596 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-03 23:40:21,596 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:21:09,006 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:21:09,026 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:21:09,052 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:21:09,052 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:59:41,266 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:59:41,288 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:59:41,316 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 00:59:41,316 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 01:34:16,175 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 01:34:16,194 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 01:34:16,220 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 01:34:16,220 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 02:06:49,579 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 02:06:49,607 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 02:06:49,634 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 02:06:49,635 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:32:55,889 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:32:55,901 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:32:55,930 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:32:55,930 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:48:02,704 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:48:02,726 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:48:02,752 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 09:48:02,752 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:05:29,451 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:05:29,462 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:05:29,488 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:05:29,488 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:30:41,940 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:30:41,951 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:30:41,977 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:30:41,978 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:56:47,852 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:56:47,874 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:56:47,901 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 10:56:47,901 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:20:37,495 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:20:37,519 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:20:37,546 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:20:37,546 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:26:32,461 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:26:32,473 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:26:32,502 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:26:32,503 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:44:05,345 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:44:05,364 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:44:05,391 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 11:44:05,392 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:01:07,366 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:01:07,388 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:01:07,414 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:01:07,414 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:16:15,889 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:16:15,900 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:16:15,926 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:16:15,927 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:34:05,148 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:34:05,171 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:34:05,198 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:34:05,198 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:38:03,528 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:38:03,539 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:38:03,565 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:38:03,565 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:44:30,599 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:44:30,612 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:44:30,640 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:44:30,641 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:47:35,495 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:47:35,507 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:47:35,538 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 12:47:35,538 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:03:48,350 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:03:48,373 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:03:48,399 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:03:48,400 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:18:21,275 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:18:21,286 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:18:21,313 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 13:18:21,313 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:00:43,143 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:00:43,155 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:00:43,181 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:00:43,181 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:03:31,965 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:03:31,977 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:03:32,004 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:03:32,004 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:10:11,330 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:10:11,342 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:10:11,368 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:10:11,368 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:12:55,248 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:12:55,260 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:12:55,287 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:12:55,288 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:17:04,802 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:17:04,814 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:17:04,840 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:17:04,840 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:19:17,570 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:19:17,582 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:19:17,608 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:19:17,608 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:23:40,030 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:23:40,043 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:23:40,072 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:23:40,072 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:26:30,675 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:26:30,687 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:26:30,713 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:26:30,714 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:30:52,535 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:30:52,546 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:30:52,573 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:30:52,573 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:33:46,846 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:33:46,858 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:33:46,884 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:33:46,884 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:38:13,776 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:38:13,788 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:38:13,814 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:38:13,815 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:40:53,944 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:40:53,955 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:40:53,981 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:40:53,982 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:45:15,828 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:45:15,840 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:45:15,867 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:45:15,867 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:48:02,052 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:48:02,064 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:48:02,090 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:48:02,091 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:51:38,670 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:51:38,683 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:51:38,711 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:51:38,711 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:53:33,517 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:53:33,529 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:53:33,558 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:53:33,558 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:58:01,757 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:58:01,770 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:58:01,797 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-04 23:58:01,798 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 00:00:37,597 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 00:00:37,608 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 00:00:37,634 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 00:00:37,635 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:28:51,312 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:28:51,324 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:28:51,352 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:28:51,353 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:29:40,290 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:29:40,301 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:29:40,327 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:29:40,328 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:09,827 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:09,838 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:09,864 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:09,864 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:58,757 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:58,768 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:58,794 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:32:58,794 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:35:28,664 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:35:28,675 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:35:28,701 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:35:28,702 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:36:17,598 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:36:17,610 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:36:17,637 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:36:17,637 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:38:45,388 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:38:45,399 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:38:45,425 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:38:45,426 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:39:34,326 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:39:34,338 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:39:34,365 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:39:34,365 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:02,609 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:02,621 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:02,649 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:02,649 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:53,553 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:53,564 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:53,590 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:42:53,590 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:45:22,912 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:45:22,924 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:45:22,950 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:45:22,950 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:46:13,826 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:46:13,838 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:46:13,864 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:46:13,865 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:48:41,442 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:48:41,453 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:48:41,479 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:48:41,480 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:49:30,362 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:49:30,374 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:49:30,401 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:49:30,401 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:51:58,547 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:51:58,558 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:51:58,584 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:51:58,584 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:52:47,486 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:52:47,498 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:52:47,525 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-05 15:52:47,526 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:37:01,408 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:37:01,419 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:37:01,445 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:37:01,446 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:48:41,899 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:48:41,910 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:48:41,936 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 10:48:41,936 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:06:22,243 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:06:22,255 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:06:22,281 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:06:22,282 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:24:40,975 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:24:40,987 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:24:41,014 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:24:41,015 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:14,836 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:14,847 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:14,873 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:14,873 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:43,013 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:43,024 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:43,051 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:32:43,051 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:21,306 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:21,317 ERROR  (ClientBase.java:connect) - Failed to connect (0) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:21,369 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:21,370 ERROR  (ClientBase.java:connect) - Failed to connect (1) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:21,470 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:21,471 ERROR  (ClientBase.java:connect) - Failed to connect (2) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:21,721 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:21,722 ERROR  (ClientBase.java:connect) - Failed to connect (3) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:22,422 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:22,422 ERROR  (ClientBase.java:connect) - Failed to connect (4) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:23,423 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:23,423 ERROR  (ClientBase.java:connect) - Failed to connect (5) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:24,423 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:24,424 ERROR  (ClientBase.java:connect) - Failed to connect (6) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:25,424 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:25,424 ERROR  (ClientBase.java:connect) - Failed to connect (7) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:26,427 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:26,427 ERROR  (ClientBase.java:connect) - Failed to connect (8) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:27,428 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:27,428 ERROR  (ClientBase.java:connect) - Failed to connect (9) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:28,428 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:28,429 ERROR  (ClientBase.java:connect) - Failed to connect (10) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:29,429 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:29,430 ERROR  (ClientBase.java:connect) - Failed to connect (11) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:30,430 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:30,430 ERROR  (ClientBase.java:connect) - Failed to connect (12) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:31,431 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:31,431 ERROR  (ClientBase.java:connect) - Failed to connect (13) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:32,431 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:32,432 ERROR  (ClientBase.java:connect) - Failed to connect (14) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:33,432 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:33,432 ERROR  (ClientBase.java:connect) - Failed to connect (15) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:34,433 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:34,433 ERROR  (ClientBase.java:connect) - Failed to connect (16) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:39:35,433 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:39:35,434 ERROR  (ClientBase.java:connect) - Failed to connect (17) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:09,523 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:09,534 ERROR  (ClientBase.java:connect) - Failed to connect (0) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:09,586 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:09,587 ERROR  (ClientBase.java:connect) - Failed to connect (1) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:09,687 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:09,687 ERROR  (ClientBase.java:connect) - Failed to connect (2) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:09,887 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:09,888 ERROR  (ClientBase.java:connect) - Failed to connect (3) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:10,138 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:10,138 ERROR  (ClientBase.java:connect) - Failed to connect (4) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:10,589 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:10,589 ERROR  (ClientBase.java:connect) - Failed to connect (5) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:11,039 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:11,040 ERROR  (ClientBase.java:connect) - Failed to connect (6) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:11,590 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:11,591 ERROR  (ClientBase.java:connect) - Failed to connect (7) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:12,593 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:12,593 ERROR  (ClientBase.java:connect) - Failed to connect (8) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:13,594 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:13,594 ERROR  (ClientBase.java:connect) - Failed to connect (9) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:14,594 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:14,595 ERROR  (ClientBase.java:connect) - Failed to connect (10) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:15,595 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:15,596 ERROR  (ClientBase.java:connect) - Failed to connect (11) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:16,596 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:16,596 ERROR  (ClientBase.java:connect) - Failed to connect (12) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:17,597 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:17,597 ERROR  (ClientBase.java:connect) - Failed to connect (13) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:18,598 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:18,598 ERROR  (ClientBase.java:connect) - Failed to connect (14) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:19,598 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:19,599 ERROR  (ClientBase.java:connect) - Failed to connect (15) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:20,599 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:20,600 ERROR  (ClientBase.java:connect) - Failed to connect (16) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:21,600 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:21,600 ERROR  (ClientBase.java:connect) - Failed to connect (17) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 11:40:22,600 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 11:40:22,601 ERROR  (ClientBase.java:connect) - Failed to connect (18) to BlockMaster master @ slave001/192.168.100.11:19998 : java.net.ConnectException: Connection refused
+2016-03-10 12:18:15,383 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:18:15,395 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:18:15,422 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:18:15,422 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:24:16,612 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:24:16,625 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:24:16,653 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:24:16,654 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:41:17,506 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:41:17,528 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:41:17,555 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:41:17,555 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:44:43,814 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:44:43,826 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:44:43,855 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:44:43,855 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:52:05,845 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:52:05,856 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:52:05,882 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:52:05,882 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:57:16,223 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:57:16,235 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:57:16,729 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 12:57:16,729 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:10:30,823 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:10:30,834 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:10:30,861 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:10:30,861 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:22:19,258 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:22:19,269 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:22:19,296 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:22:19,297 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:34:26,764 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:34:26,776 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:34:26,801 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:34:26,802 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:45:44,810 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:45:44,821 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:45:44,847 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:45:44,848 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:54:11,645 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:54:11,658 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:54:11,687 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 13:54:11,687 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:07:40,230 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:07:40,241 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:07:40,268 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:07:40,268 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:19:01,128 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:19:01,139 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:19:01,165 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:19:01,165 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:24:09,861 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:24:09,872 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:24:09,898 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:24:09,899 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:48:18,654 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:48:18,665 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:48:18,691 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:48:18,691 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:56:25,443 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:56:25,454 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:56:25,480 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 14:56:25,480 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:10:34,505 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:10:34,516 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:10:34,542 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:10:34,543 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:22:09,635 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:22:09,646 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:22:09,672 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 15:22:09,673 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:19:03,813 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:19:03,824 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:19:03,850 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:19:03,851 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:30:46,296 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:30:46,307 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:30:46,334 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 19:30:46,334 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:11:54,458 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:11:54,469 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:11:54,495 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:11:54,496 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:24:00,102 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:24:00,113 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:24:00,139 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:24:00,140 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:43:41,822 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:43:41,833 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:43:41,860 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:43:41,860 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:46:32,296 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:46:32,308 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:46:32,334 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:46:32,334 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:55:06,885 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:55:06,897 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:55:06,923 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:55:06,923 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:57:23,361 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:57:23,373 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:57:23,400 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 20:57:23,400 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:04:47,553 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:04:47,564 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:04:47,590 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:04:47,591 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:07:03,705 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:07:03,718 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:07:03,745 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:07:03,745 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:11:26,074 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:11:26,085 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:11:26,111 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:11:26,112 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:14:04,234 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:14:04,246 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:14:04,272 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:14:04,272 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:18:19,499 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:18:19,511 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:18:19,538 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:18:19,538 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:21:04,029 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:21:04,040 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:21:04,066 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:21:04,066 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:25:32,692 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:25:32,703 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:25:32,729 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:25:32,730 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:28:24,962 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:28:24,974 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:28:25,000 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:28:25,000 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:32:50,158 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:32:50,170 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:32:50,197 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:32:50,197 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:35:34,784 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:35:34,795 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:35:34,822 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:35:34,822 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:39:11,485 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:39:11,496 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:39:11,522 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:39:11,522 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:40:58,883 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:40:58,895 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:40:58,921 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:40:58,922 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:45:23,244 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:45:23,255 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:45:23,281 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:45:23,282 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:47:51,497 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:47:51,508 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:47:51,534 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-10 21:47:51,534 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:24:19,784 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:24:19,796 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:24:19,822 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:24:19,822 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:25:09,308 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:25:09,320 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:25:09,346 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:25:09,347 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:28:17,426 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:28:17,437 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:28:17,464 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:28:17,464 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:29:08,977 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:29:08,988 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:29:09,014 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:29:09,014 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:31:38,330 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:31:38,342 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:31:38,368 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:31:38,368 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:32:27,841 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:32:27,853 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:32:27,879 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:32:27,879 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:34:58,061 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:34:58,072 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:34:58,099 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:34:58,099 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:35:49,591 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:35:49,603 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:35:49,629 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:35:49,630 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:50:03,358 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:50:03,383 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:50:03,409 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 11:50:03,409 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:01:51,438 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:01:51,449 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:01:51,475 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:01:51,475 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:09:35,282 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:09:35,293 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:09:35,320 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:09:35,320 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:24:03,498 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:24:03,509 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:24:03,536 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:24:03,536 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:38:17,005 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:38:17,030 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:38:17,056 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:38:17,057 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:49:36,403 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:49:36,414 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:49:36,441 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:49:36,441 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:59:23,625 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:59:23,659 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:59:23,687 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 12:59:23,687 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:08:53,073 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:08:53,084 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:08:53,111 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:08:53,111 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:16:52,983 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:16:52,999 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:16:53,027 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:16:53,028 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:26:32,827 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:26:32,838 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:26:32,864 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:26:32,864 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:34:22,858 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:34:22,869 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:34:22,910 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:34:22,911 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:43:59,999 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:44:00,011 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:44:00,039 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:44:00,039 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:51:33,651 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:51:33,662 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:51:33,689 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 13:51:33,689 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:02:03,863 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:02:03,888 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:02:03,915 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:02:03,915 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:10:04,636 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:10:04,647 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:10:04,673 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:10:04,674 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:20:12,279 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:20:12,291 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:20:12,319 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:20:12,320 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:28:25,761 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:28:25,772 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:28:25,799 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 14:28:25,799 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:09:20,092 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:09:20,103 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:09:20,129 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:09:20,129 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:21:27,624 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:21:27,635 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:21:27,662 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:21:27,663 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:41:41,321 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:41:41,333 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:41:41,360 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 15:41:41,361 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:03:25,165 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:03:25,176 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:03:25,203 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:03:25,203 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:22:47,596 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:22:47,608 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:22:47,634 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:22:47,635 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:41:38,679 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:41:38,690 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:41:38,716 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:41:38,717 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:57:32,898 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:57:32,910 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:57:32,936 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 16:57:32,937 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:12:02,665 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:12:02,677 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:12:02,704 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:12:02,704 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:26:47,589 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:26:47,600 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:26:47,626 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:26:47,626 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:38:57,752 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:38:57,764 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:38:57,790 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:38:57,791 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:52:03,730 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:52:03,741 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:52:03,768 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 17:52:03,768 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:03:43,780 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:03:43,791 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:03:43,818 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:03:43,818 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:17:52,876 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:17:52,888 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:17:52,915 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:17:52,915 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:31:40,384 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:31:40,412 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:31:40,438 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:31:40,439 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:45:11,960 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:45:11,971 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:45:11,998 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:45:11,998 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:56:36,560 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:56:36,571 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:56:36,597 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-11 18:56:36,598 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:08:36,124 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:08:36,145 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:08:36,173 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:08:36,173 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:17:36,600 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:17:36,625 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:17:36,651 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:17:36,652 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:30:42,587 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:30:42,598 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:30:42,624 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:30:42,624 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:41:57,377 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:41:57,388 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:41:57,421 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:41:57,421 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:54:39,645 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:54:39,657 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:54:39,683 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 15:54:39,684 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:06:27,231 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:06:27,243 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:06:27,269 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:06:27,269 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:18:17,850 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:18:17,861 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:18:17,887 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:18:17,888 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:27:58,029 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:27:58,040 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:27:58,066 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:27:58,067 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:38:53,326 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:38:53,337 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:38:53,363 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:38:53,364 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:47:48,700 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:47:48,712 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:47:48,738 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:47:48,739 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:58:34,773 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:58:34,785 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:58:34,811 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 16:58:34,812 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:06:54,906 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:06:54,917 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:06:54,944 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:06:54,944 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:17:46,249 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:17:46,260 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:17:46,286 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:17:46,286 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:27:30,123 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:27:30,135 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:27:30,162 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:27:30,162 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:36:41,133 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:36:41,144 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:36:41,171 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:36:41,171 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:44:44,216 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:44:44,227 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:44:44,253 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 17:44:44,253 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 22:27:05,779 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 22:27:05,801 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 22:27:05,828 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 22:27:05,828 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:00:53,246 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:00:53,270 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:00:53,297 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:00:53,297 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:35:14,780 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:35:14,803 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:35:14,830 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-15 23:35:14,830 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 00:23:26,515 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 00:23:26,533 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 00:23:26,559 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 00:23:26,560 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:11:04,469 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:11:04,489 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:11:04,516 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:11:04,516 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:58:19,820 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:58:19,835 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:58:19,861 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 01:58:19,861 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 02:43:09,582 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 02:43:09,606 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 02:43:09,633 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 02:43:09,634 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 03:28:20,477 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 03:28:20,497 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 03:28:20,523 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 03:28:20,523 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:10:44,335 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:10:44,361 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:10:44,387 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:10:44,388 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:48:00,888 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:48:00,978 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:48:01,006 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 04:48:01,006 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:23:44,788 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:23:44,805 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:23:44,831 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:23:44,832 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:59:22,077 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:59:22,101 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:59:22,128 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 05:59:22,128 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 06:36:42,730 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 06:36:42,750 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 06:36:42,777 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 06:36:42,777 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:12:17,421 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:12:17,447 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:12:17,473 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:12:17,474 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:47:14,987 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:47:15,228 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:47:15,255 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 07:47:15,255 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 10:59:23,056 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 10:59:23,078 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 10:59:23,105 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 10:59:23,105 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 11:35:40,237 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 11:35:40,262 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 11:35:40,289 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 11:35:40,289 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:12:23,099 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:12:23,121 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:12:23,148 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:12:23,148 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:44:33,938 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:44:33,965 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:44:33,992 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 12:44:33,992 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:15:14,386 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:15:14,410 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:15:14,438 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:15:14,438 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:44:51,299 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:44:51,315 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:44:51,342 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 13:44:51,342 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 15:59:23,712 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 15:59:23,724 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 15:59:23,750 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 15:59:23,751 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:02:04,223 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:02:04,235 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:02:04,261 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:02:04,262 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:04:48,380 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:04:48,392 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:04:48,420 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:04:48,420 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:08:40,977 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:08:40,988 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:08:41,014 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:08:41,015 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:11:02,659 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:11:02,671 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:11:02,697 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:11:02,697 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:13:31,767 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:13:31,778 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:13:31,806 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:13:31,806 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:17:52,987 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:17:52,998 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:17:53,025 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:17:53,026 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:20:33,302 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:20:33,314 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:20:33,341 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:20:33,342 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:23:10,724 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:23:10,735 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:23:10,761 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:23:10,762 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:27:35,489 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:27:35,500 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:27:35,526 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:27:35,527 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:30:15,304 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:30:15,315 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:30:15,341 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:30:15,342 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:32:58,503 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:32:58,515 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:32:58,541 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:32:58,541 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:37:20,036 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:37:20,048 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:37:20,075 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:37:20,075 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:39:58,458 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:39:58,469 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:39:58,496 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:39:58,496 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:42:46,955 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:42:46,967 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:42:46,993 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:42:46,994 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:46:16,008 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:46:16,020 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:46:16,046 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:46:16,046 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:48:11,617 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:48:11,629 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:48:11,656 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:48:11,656 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:50:08,862 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:50:08,873 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:50:08,900 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:50:08,900 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:54:43,905 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:54:43,917 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:54:43,944 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:54:43,944 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:57:09,621 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:57:09,633 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:57:09,660 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:57:09,661 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:59:43,157 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:59:43,168 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:59:43,195 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 16:59:43,196 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:04:17,728 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:04:17,739 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:04:17,765 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:04:17,765 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:06:59,927 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:06:59,938 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:06:59,965 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:06:59,965 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:09:48,378 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:09:48,389 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:09:48,416 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:09:48,416 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:15:32,946 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:15:32,957 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:15:32,984 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:15:32,984 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:19:51,315 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:19:51,326 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:19:51,352 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:19:51,353 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:24:00,109 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:24:00,120 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:24:00,146 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:24:00,146 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:29:32,128 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:29:32,140 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:29:32,165 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:29:32,166 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:33:17,229 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:33:17,241 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:33:17,267 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:33:17,267 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:37:15,812 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:37:15,823 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:37:15,850 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:37:15,850 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:41:56,599 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:41:56,610 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:41:56,637 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:41:56,637 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:44:59,442 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:44:59,453 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:44:59,480 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:44:59,480 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:48:10,035 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:48:10,046 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:48:10,073 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:48:10,073 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:52:32,571 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:52:32,582 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:52:32,608 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:52:32,609 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:55:17,968 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:55:17,980 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:55:18,006 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:55:18,006 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:57:59,434 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:57:59,446 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:57:59,472 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 17:57:59,472 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:03:27,150 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:03:27,161 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:03:27,187 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:03:27,188 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:07:11,193 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:07:11,205 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:07:11,232 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:07:11,232 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:10:55,112 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:10:55,123 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:10:55,149 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:10:55,150 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:15:17,738 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:15:17,750 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:15:17,776 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:15:17,776 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:17:52,566 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:17:52,578 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:17:52,604 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:17:52,604 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:20:24,974 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:20:24,985 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:20:25,013 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:20:25,014 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:25:10,773 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:25:10,784 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:25:10,814 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:25:10,814 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:28:19,591 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:28:19,602 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:28:19,631 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:28:19,632 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:31:54,759 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:31:54,770 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:31:54,800 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:31:54,801 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:35:45,131 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:35:45,142 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:35:45,174 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:35:45,175 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:37:48,250 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:37:48,261 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:37:48,292 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:37:48,293 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:39:57,350 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:39:57,362 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:39:57,393 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:39:57,394 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:43:42,732 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:43:42,743 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:43:42,774 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:43:42,775 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:46:09,061 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:46:09,073 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:46:09,103 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:46:09,103 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:48:13,181 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:48:13,192 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:48:13,222 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:48:13,222 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:52:20,138 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:52:20,150 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:52:20,181 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:52:20,182 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:54:30,617 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:54:30,629 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:54:30,659 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:54:30,659 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:56:31,068 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:56:31,080 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:56:31,111 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 18:56:31,112 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:01:46,371 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:01:46,382 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:01:46,413 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:01:46,413 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:05:00,105 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:05:00,116 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:05:00,147 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:05:00,148 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:08:27,438 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:08:27,449 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:08:27,478 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:08:27,479 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:12:46,599 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:12:46,611 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:12:46,642 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:12:46,643 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:15:00,601 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:15:00,612 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:15:00,643 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:15:00,644 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:17:22,751 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:17:22,762 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:17:22,789 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:17:22,790 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:21:04,827 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:21:04,838 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:21:04,869 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:21:04,870 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:23:00,496 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:23:00,507 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:23:00,540 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:23:00,540 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:25:29,318 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:25:29,330 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:25:29,364 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 19:25:29,365 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:08:48,285 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:08:48,308 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:08:48,336 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:08:48,336 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:42:27,259 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:42:27,280 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:42:27,307 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 21:42:27,307 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 22:18:55,414 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 22:18:55,437 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-16 22:18:55,463 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-16 22:18:55,463 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998

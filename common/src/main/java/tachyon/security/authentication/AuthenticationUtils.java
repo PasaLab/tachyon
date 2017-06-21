@@ -104,7 +104,7 @@ public final class AuthenticationUtils {
   public static TSocket createTSocket(InetSocketAddress address) {
     // TODO(gpang): make the timeout configurable.
     return new TSocket(NetworkAddressUtils.getFqdnHost(address), address.getPort(),
-        30 * Constants.SECOND_MS);
+        30000 * Constants.SECOND_MS);
   }
 
   private AuthenticationUtils() {} // prevent instantiation

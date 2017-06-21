@@ -99,6 +99,7 @@ public class BlockMetadataManager {
    */
   public void abortTempBlockMeta(TempBlockMeta tempBlockMeta) throws BlockDoesNotExistException {
     StorageDir dir = tempBlockMeta.getParentDir();
+    System.out.println("BlockMetadataManager: abort tmp block " + tempBlockMeta.getBlockId());
     dir.removeTempBlockMeta(tempBlockMeta);
   }
 
@@ -127,7 +128,9 @@ public class BlockMetadataManager {
       BlockAlreadyExistsException, BlockDoesNotExistException {
     BlockMeta block = new BlockMeta(Preconditions.checkNotNull(tempBlockMeta));
     StorageDir dir = tempBlockMeta.getParentDir();
+    System.out.println("BlockMetadataManager: before commit tmp block " + block.getBlockId());
     dir.removeTempBlockMeta(tempBlockMeta);
+    System.out.println("BlockMetadataManager: after commit tmp block " + block.getBlockId());
     dir.addBlockMeta(block);
   }
 
@@ -249,6 +252,7 @@ public class BlockMetadataManager {
         }
       }
     }
+    System.out.println("$$$$$$$ temp block " + blockId + "not found!!");
     throw new BlockDoesNotExistException(ExceptionMessage.TEMP_BLOCK_META_NOT_FOUND, blockId);
   }
 
@@ -358,6 +362,7 @@ public class BlockMetadataManager {
     srcDir.removeBlockMeta(blockMeta);
     BlockMeta newBlockMeta =
         new BlockMeta(blockMeta.getBlockId(), blockMeta.getBlockSize(), dstDir);
+    System.out.println("BlockMetadataManager: move tmp block " + tempBlockMeta.getBlockId());
     dstDir.removeTempBlockMeta(tempBlockMeta);
     dstDir.addBlockMeta(newBlockMeta);
     return newBlockMeta;

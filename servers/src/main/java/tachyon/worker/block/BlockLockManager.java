@@ -120,8 +120,10 @@ public final class BlockLockManager {
     synchronized (mSharedMapsLock) {
       LockRecord record = mLockIdToRecordMap.get(lockId);
       if (record == null) {
-        throw new BlockDoesNotExistException(ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_LOCK_ID,
-            lockId);
+        System.out.println("bbbbbbbbbbbbbbbbbb unlock failed!");
+        //throw new BlockDoesNotExistException(ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_LOCK_ID,
+            //lockId);
+        return;
       }
       long sessionId = record.sessionId();
       lock = record.lock();
@@ -139,9 +141,14 @@ public final class BlockLockManager {
   public void unlockBlock(long sessionId, long blockId) throws BlockDoesNotExistException {
     synchronized (mSharedMapsLock) {
       Set<Long> sessionLockIds = mSessionIdToLockIdsMap.get(sessionId);
+      if (sessionLockIds == null) {
+        mSessionIdToLockIdsMap.remove(sessionId);
+        return;
+      }
       for (long lockId : sessionLockIds) {
         LockRecord record = mLockIdToRecordMap.get(lockId);
         if (record == null) {
+          System.out.println("cccccccccccccc unlock failed!");
           throw new BlockDoesNotExistException(ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_LOCK_ID,
               lockId);
         }
@@ -176,6 +183,7 @@ public final class BlockLockManager {
     synchronized (mSharedMapsLock) {
       LockRecord record = mLockIdToRecordMap.get(lockId);
       if (record == null) {
+        System.out.println("dddddddddddddddddddd validate lock failed");
         throw new BlockDoesNotExistException(ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_LOCK_ID,
             lockId);
       }
@@ -204,6 +212,7 @@ public final class BlockLockManager {
       for (long lockId : sessionLockIds) {
         LockRecord record = mLockIdToRecordMap.get(lockId);
         if (record == null) {
+          System.out.println("eeeeeeeeeeeeee clean up session");
           LOG.error(ExceptionMessage.LOCK_RECORD_NOT_FOUND_FOR_LOCK_ID.getMessage(lockId));
           continue;
         }

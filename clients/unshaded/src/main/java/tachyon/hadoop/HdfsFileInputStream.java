@@ -93,7 +93,7 @@ public class HdfsFileInputStream extends InputStream implements Seekable, Positi
           + " is not found.");
     }
     mTachyonFile.setUFSConf(mHadoopConf);
-    mTachyonFileInputStream = mTachyonFile.getInStream(ReadType.CACHE);
+    mTachyonFileInputStream = mTachyonFile.getInStream(ReadType.CACHE_PROMOTE);
   }
 
   /**

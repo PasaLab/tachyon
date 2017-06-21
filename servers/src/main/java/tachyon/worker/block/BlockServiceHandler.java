@@ -53,7 +53,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   @Override
   public void accessBlock(long blockId) throws TachyonTException {
     try {
+      System.out.println("BlockServiceHandler: before access block " + blockId);
       mWorker.accessBlock(Sessions.ACCESS_BLOCK_SESSION_ID, blockId);
+      System.out.println("BlockServiceHandler: after access block " + blockId);
     } catch (TachyonException e) {
       throw e.toTachyonTException();
     }
@@ -72,7 +74,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   public void persistFile(long fileId, long nonce, String path)
       throws TachyonTException, ThriftIOException {
     try {
+      System.out.println("BlockServiceHandler: before persist file " + fileId);
       mWorker.persistFile(fileId, nonce, path);
+      System.out.println("BlockServiceHandler: after persist file " + fileId);
     } catch (IOException e) {
       throw new ThriftIOException(e.getMessage());
     } catch (TachyonException e) {
@@ -100,7 +104,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   @Override
   public void cacheBlock(long sessionId, long blockId) throws TachyonTException, ThriftIOException {
     try {
+      System.out.println("BlockServiceHandler: before cache block " + blockId);
       mWorker.commitBlock(sessionId, blockId);
+      System.out.println("BlockServiceHandler: after cache block " + blockId);
     } catch (IOException e) {
       throw new ThriftIOException(e.getMessage());
     } catch (TachyonException e) {
@@ -121,7 +127,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   public void cancelBlock(long sessionId, long blockId)
       throws TachyonTException, ThriftIOException {
     try {
+      System.out.println("BlockServiceHandler: before cancel block " + blockId);
       mWorker.abortBlock(sessionId, blockId);
+      System.out.println("BlockServiceHandler: after cancel block " + blockId);
     } catch (TachyonException e) {
       throw e.toTachyonTException();
     } catch (IOException e) {
@@ -140,8 +148,11 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   @Override
   public String lockBlock(long blockId, long sessionId) throws TachyonTException {
     try {
+      System.out.println("BlockServiceHandler: before lock block " + blockId);
       long lockId = mWorker.lockBlock(sessionId, blockId);
-      return mWorker.readBlock(sessionId, blockId, lockId);
+      String result = mWorker.readBlock(sessionId, blockId, lockId);
+      System.out.println("BlockServiceHandler: after lock block " + blockId);
+      return result;
     } catch (TachyonException e) {
       throw e.toTachyonTException();
     }
@@ -161,8 +172,12 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   public boolean promoteBlock(long blockId) throws TachyonTException, ThriftIOException {
     try {
       // TODO(calvin): Make the top level configurable.
+      System.out.println("____before promote block " + blockId + "____");
+      //if (mWorker.getVolatileBlockMeta(blockId).getBlockLocation().tierAlias() != 1) {
       mWorker.moveBlock(Sessions.MIGRATE_DATA_SESSION_ID, blockId,
           StorageLevelAlias.MEM.getValue());
+      //}
+      System.out.println("____after promote block " + blockId + "____");
       return true;
     } catch (TachyonException e) {
       throw e.toTachyonTException();
@@ -189,8 +204,11 @@ public final class BlockServiceHandler implements WorkerService.Iface {
       throws TachyonTException, ThriftIOException {
     try {
       // NOTE: right now, we ask allocator to allocate new blocks in MEM tier
-      return mWorker.createBlock(sessionId, blockId, StorageLevelAlias.MEM.getValue(),
+      System.out.println("BlockServiceHandler: before request block location " + blockId);
+      String result =  mWorker.createBlock(sessionId, blockId, StorageLevelAlias.MEM.getValue(),
           initialBytes);
+      System.out.println("BlockServiceHandler: after request block location " + blockId);
+      return result;
     } catch (TachyonException e) {
       throw e.toTachyonTException();
     } catch (IOException e) {
@@ -209,7 +227,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   @Override
   public boolean requestSpace(long sessionId, long blockId, long requestBytes) {
     try {
+      System.out.println("BlockServiceHandler: before request space " + blockId);
       mWorker.requestSpace(sessionId, blockId, requestBytes);
+      System.out.println("BlockServiceHandler: after request space " + blockId);
       return true;
     } catch (Exception e) {
       LOG.error("Failed to request " + requestBytes + " bytes for block: " + blockId, e);
@@ -229,7 +249,9 @@ public final class BlockServiceHandler implements WorkerService.Iface {
   @Override
   public boolean unlockBlock(long blockId, long sessionId) throws TachyonTException {
     try {
+      System.out.println("BlockServiceHandler: before unlock block " + blockId);
       mWorker.unlockBlock(sessionId, blockId);
+      System.out.println("BlockServiceHandler: after unlock block " + blockId);
       return true;
     } catch (TachyonException e) {
       throw e.toTachyonTException();

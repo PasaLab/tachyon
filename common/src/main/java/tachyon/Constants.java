@@ -217,6 +217,12 @@ public final class Constants {
       "tachyon.worker.evictor.lrfu.step.factor";
   public static final String WORKER_EVICTOR_LRFU_ATTENUATION_FACTOR =
       "tachyon.worker.evictor.lrfu.attenuation.factor";
+  public static final String WORKER_EVICTOR_ARC_HOT_LIMIT =
+      "tachyon.worker.evictor.arc.hot.limit";
+  public static final String WORKER_EVICTOR_LIRS_HIR_PERCENT =
+      "tachyon.worker.evictor.lirs.hir.percent";
+  public static final String WORKER_EVICTOR_LIRS_HOT_LIMIT =
+      "tachyon.worker.evictor.lirs.hot.limit";
   public static final String WORKER_TIERED_STORAGE_LEVEL_MAX =
       "tachyon.worker.tieredstore.level.max";
   public static final String WORKER_LINEAGE_HEARTBEAT_INTERVAL_MS =

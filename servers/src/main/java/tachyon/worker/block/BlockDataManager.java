@@ -214,7 +214,9 @@ public final class BlockDataManager implements Testable<BlockDataManager> {
 
     // TODO)(calvin): Reconsider how to do this without heavy locking.
     // Block successfully committed, update master with new block metadata
+    System.out.println("before lock block " + blockId);
     Long lockId = mBlockStore.lockBlock(sessionId, blockId);
+    System.out.println("after lock block " + blockId);
     try {
       BlockMeta meta = mBlockStore.getBlockMeta(sessionId, blockId, lockId);
       BlockStoreLocation loc = meta.getBlockLocation();
@@ -227,7 +229,9 @@ public final class BlockDataManager implements Testable<BlockDataManager> {
     } catch (IOException ioe) {
       throw new IOException("Failed to commit block to master.", ioe);
     } finally {
+      System.out.println("before unlock block " + blockId);
       mBlockStore.unlockBlock(lockId);
+      System.out.println("after unlock block " + blockId);
     }
   }
 
@@ -385,6 +389,16 @@ public final class BlockDataManager implements Testable<BlockDataManager> {
       throws BlockDoesNotExistException, BlockAlreadyExistsException, InvalidWorkerStateException,
       WorkerOutOfSpaceException, IOException {
     BlockStoreLocation dst = BlockStoreLocation.anyDirInTier(tierAlias);
+    long lockId = mBlockStore.lockBlock(sessionId, blockId);
+    try {
+      BlockMeta meta = mBlockStore.getBlockMeta(sessionId, blockId, lockId);
+      if (meta.getBlockLocation().belongTo(dst)) {
+        return;
+      }
+    } finally {
+      mBlockStore.unlockBlock(lockId);
+    }
+    // Execute the block move if necessary
     mBlockStore.moveBlock(sessionId, blockId, dst);
   }
 

@@ -362,6 +362,7 @@ public final class StorageDir {
     final long blockId = tempBlockMeta.getBlockId();
     final long sessionId = tempBlockMeta.getSessionId();
     TempBlockMeta deletedTempBlockMeta = mBlockIdToTempBlockMap.remove(blockId);
+    System.out.println("!!!!!!!!!!!!remove tmp block " + blockId);
     if (deletedTempBlockMeta == null) {
       throw new BlockDoesNotExistException(ExceptionMessage.BLOCK_META_NOT_FOUND, blockId);
     }
@@ -417,6 +418,7 @@ public final class StorageDir {
       }
       sessionTempBlocks.remove(tempBlockId);
       TempBlockMeta tempBlockMeta = mBlockIdToTempBlockMap.remove(tempBlockId);
+      System.out.println("@@@@ remove temp block " + tempBlockId + " when clean up seesion");
       if (tempBlockMeta != null) {
         reclaimSpace(tempBlockMeta.getBlockSize(), false);
       } else {

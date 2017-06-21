@@ -1,0 +1,72 @@
+LFU Test - ID : 1458127407870
+Finished Successfully
+********** Task Configurations **********
+block.size.bytes	268435456
+cold.data.files.num.per.iteration	12
+file.length.bytes	268435456
+iterations	4
+hot.data.files.num	20
+hot.files.read.times	3
+buffer.size.bytes	4194304
+write.type	TRY_CACHE
+read.type	CACHE_PROMOTE
+********** Statistics **********
+SlaveName	BasicWriteThroughput(MB/s)	TmpWriteThroughput(MB/s)	ReadTime(s)	ReadThroughput(MB/s)	BasicWriteTime(s)	TmpWriteTime(s)
+2@slave003	1223.7093690248566	229.16394696107866	46.067	1333.7095968914841	4.184	53.621
+3@slave004	1202.4424612494129	191.80819180819182	22.912	2681.564245810056	4.258	64.064
+0@slave001	1271.1022840119167	214.81390836144956	23.04	2666.666666666667	4.028	57.203
+1@slave002	1240.0096875756842	161.87803817729122	23.972	2562.9901551810444	4.129	75.909
+Total	4937.263801861871	797.6640853080112	115.99100000000001	9244.93066454925	16.598999999999997	250.79700000000003
+********** Slave Details **********
+2@slave003's BasicWriteThroughput(MB/s) for each threads:
+	[ 1223.7093690248566 ]
+2@slave003's TmpWriteThroughput(MB/s) for each threads:
+	[ 229.16394696107866 ]
+2@slave003's ReadTime(s) for each threads:
+	[ 46.067 ]
+2@slave003's ReadThroughput(MB/s) for each threads:
+	[ 1333.7095968914841 ]
+2@slave003's BasicWriteTime(s) for each threads:
+	[ 4.184 ]
+2@slave003's TmpWriteTime(s) for each threads:
+	[ 53.621 ]
+
+3@slave004's BasicWriteThroughput(MB/s) for each threads:
+	[ 1202.4424612494129 ]
+3@slave004's TmpWriteThroughput(MB/s) for each threads:
+	[ 191.80819180819182 ]
+3@slave004's ReadTime(s) for each threads:
+	[ 22.912 ]
+3@slave004's ReadThroughput(MB/s) for each threads:
+	[ 2681.564245810056 ]
+3@slave004's BasicWriteTime(s) for each threads:
+	[ 4.258 ]
+3@slave004's TmpWriteTime(s) for each threads:
+	[ 64.064 ]
+
+0@slave001's BasicWriteThroughput(MB/s) for each threads:
+	[ 1271.1022840119167 ]
+0@slave001's TmpWriteThroughput(MB/s) for each threads:
+	[ 214.81390836144956 ]
+0@slave001's ReadTime(s) for each threads:
+	[ 23.04 ]
+0@slave001's ReadThroughput(MB/s) for each threads:
+	[ 2666.666666666667 ]
+0@slave001's BasicWriteTime(s) for each threads:
+	[ 4.028 ]
+0@slave001's TmpWriteTime(s) for each threads:
+	[ 57.203 ]
+
+1@slave002's BasicWriteThroughput(MB/s) for each threads:
+	[ 1240.0096875756842 ]
+1@slave002's TmpWriteThroughput(MB/s) for each threads:
+	[ 161.87803817729122 ]
+1@slave002's ReadTime(s) for each threads:
+	[ 23.972 ]
+1@slave002's ReadThroughput(MB/s) for each threads:
+	[ 2562.9901551810444 ]
+1@slave002's BasicWriteTime(s) for each threads:
+	[ 4.129 ]
+1@slave002's TmpWriteTime(s) for each threads:
+	[ 75.909 ]
+

@@ -1,0 +1,470 @@
+2016-03-02 23:30:46,192 INFO  PERF_SLAVE_LOGGER (MasterClient.java:connect) - Connect to Tachyon-Perf Master slave001:23333
+2016-03-02 23:30:46,207 INFO  PERF_SLAVE_LOGGER (MixedLRUAndLFUTask.java:setupTask) - Work dir /tmp/tachyon-perf-workspace/MixedLRUAndLFU/2
+2016-03-02 23:30:46,287 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,292 INFO   (ClientBase.java:connect) - Client registered with BlockMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,308 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,309 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,367 INFO   (ClientBase.java:connect) - Tachyon client (version 0.8.3-SNAPSHOT) is trying to connect with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,368 INFO   (ClientBase.java:connect) - Client registered with FileSystemMaster master @ slave001/192.168.100.11:19998
+2016-03-02 23:30:46,375 INFO   (WorkerClient.java:connect) - Connecting local worker @ slave003/192.168.100.13:29998
+2016-03-02 23:30:46,414 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2526375252981438961 was created!
+2016-03-02 23:30:46,416 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2526375252981438961/134217728
+2016-03-02 23:30:46,617 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:46,665 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6407796298364692252 was created!
+2016-03-02 23:30:46,666 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6407796298364692252/201326592
+2016-03-02 23:30:46,848 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:46,861 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3251473542517597251 was created!
+2016-03-02 23:30:46,864 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3251473542517597251/268435456
+2016-03-02 23:30:47,044 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:47,057 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/309884515005127361 was created!
+2016-03-02 23:30:47,058 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/309884515005127361/335544320
+2016-03-02 23:30:47,239 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:47,252 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5196276433613553040 was created!
+2016-03-02 23:30:47,253 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5196276433613553040/402653184
+2016-03-02 23:30:47,433 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:47,446 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/77847501463331767 was created!
+2016-03-02 23:30:47,448 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/77847501463331767/469762048
+2016-03-02 23:30:47,630 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:47,642 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1573416283733080137 was created!
+2016-03-02 23:30:47,643 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1573416283733080137/536870912
+2016-03-02 23:30:47,823 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:47,834 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5365390332116441127 was created!
+2016-03-02 23:30:47,835 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5365390332116441127/603979776
+2016-03-02 23:30:48,016 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,029 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6484150613839572 was created!
+2016-03-02 23:30:48,030 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6484150613839572/654311424
+2016-03-02 23:30:48,210 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,223 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1963190871807937840 was created!
+2016-03-02 23:30:48,224 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1963190871807937840/721420288
+2016-03-02 23:30:48,401 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,413 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7890918687230336467 was created!
+2016-03-02 23:30:48,414 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7890918687230336467/788529152
+2016-03-02 23:30:48,595 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,608 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8015956255484398022 was created!
+2016-03-02 23:30:48,609 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8015956255484398022/855638016
+2016-03-02 23:30:48,791 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,802 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3825464920449209585 was created!
+2016-03-02 23:30:48,804 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3825464920449209585/922746880
+2016-03-02 23:30:48,981 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:48,992 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1942728285664519066 was created!
+2016-03-02 23:30:48,993 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1942728285664519066/989855744
+2016-03-02 23:30:49,171 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:49,183 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2978308411850169004 was created!
+2016-03-02 23:30:49,184 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2978308411850169004/1040187392
+2016-03-02 23:30:49,363 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:49,374 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7469023991774460569 was created!
+2016-03-02 23:30:49,375 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7469023991774460569/1107296256
+2016-03-02 23:30:49,553 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:49,565 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6405405092777585692 was created!
+2016-03-02 23:30:49,566 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6405405092777585692/1174405120
+2016-03-02 23:30:49,743 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:49,756 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7417070241082263468 was created!
+2016-03-02 23:30:49,757 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7417070241082263468/1241513984
+2016-03-02 23:30:49,933 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:49,946 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7518177841056393315 was created!
+2016-03-02 23:30:49,947 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7518177841056393315/1308622848
+2016-03-02 23:30:50,121 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:50,133 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5073499545179684629 was created!
+2016-03-02 23:30:50,134 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5073499545179684629/1375731712
+2016-03-02 23:30:50,312 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:50,323 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1852651465026757704 was created!
+2016-03-02 23:30:50,324 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1852651465026757704/1442840576
+2016-03-02 23:30:50,504 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:50,516 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7887324657365140631 was created!
+2016-03-02 23:30:50,517 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7887324657365140631/1509949440
+2016-03-02 23:30:50,695 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:50,706 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4578100863870171841 was created!
+2016-03-02 23:30:50,707 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4578100863870171841/1577058304
+2016-03-02 23:30:50,883 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:50,895 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8739376982496509029 was created!
+2016-03-02 23:30:50,896 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8739376982496509029/1644167168
+2016-03-02 23:30:51,072 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:51,083 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2860954970222127195 was created!
+2016-03-02 23:30:51,084 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2860954970222127195/1711276032
+2016-03-02 23:30:51,261 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:51,271 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6614956252632356862 was created!
+2016-03-02 23:30:51,272 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6614956252632356862/1778384896
+2016-03-02 23:30:51,448 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:51,458 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8690308242225096435 was created!
+2016-03-02 23:30:51,460 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8690308242225096435/1845493760
+2016-03-02 23:30:51,639 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:51,649 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1836251533316008067 was created!
+2016-03-02 23:30:51,650 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1836251533316008067/1912602624
+2016-03-02 23:30:51,827 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:51,839 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/687289876789258941 was created!
+2016-03-02 23:30:51,840 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/687289876789258941/1979711488
+2016-03-02 23:30:52,018 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,029 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1073106184558011892 was created!
+2016-03-02 23:30:52,030 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1073106184558011892/2046820352
+2016-03-02 23:30:52,209 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,220 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1875457560937655247 was created!
+2016-03-02 23:30:52,221 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1875457560937655247/2113929216
+2016-03-02 23:30:52,398 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,409 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8871440187825404953 was created!
+2016-03-02 23:30:52,410 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8871440187825404953/2181038080
+2016-03-02 23:30:52,584 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,594 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7802446019324466583 was created!
+2016-03-02 23:30:52,595 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7802446019324466583/2248146944
+2016-03-02 23:30:52,772 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,783 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/430157855212174898 was created!
+2016-03-02 23:30:52,784 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/430157855212174898/2315255808
+2016-03-02 23:30:52,959 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:52,970 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6597786221113406894 was created!
+2016-03-02 23:30:52,971 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6597786221113406894/2382364672
+2016-03-02 23:30:53,147 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:53,158 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8685104241266150040 was created!
+2016-03-02 23:30:53,159 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8685104241266150040/2449473536
+2016-03-02 23:30:53,335 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:53,346 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6247223076430502776 was created!
+2016-03-02 23:30:53,348 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6247223076430502776/2516582400
+2016-03-02 23:30:53,523 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:53,533 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1872882373650366941 was created!
+2016-03-02 23:30:53,534 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1872882373650366941/2583691264
+2016-03-02 23:30:53,711 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:53,722 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1160674542474052180 was created!
+2016-03-02 23:30:53,723 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1160674542474052180/2650800128
+2016-03-02 23:30:53,899 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:30:53,909 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3320587460690961467 was created!
+2016-03-02 23:30:53,910 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3320587460690961467/2717908992
+2016-03-02 23:30:54,085 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:01,773 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5554321992452599438 was created!
+2016-03-02 23:31:01,774 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5554321992452599438/2768240640
+2016-03-02 23:31:01,945 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:01,953 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8531706220035426857 was created!
+2016-03-02 23:31:01,954 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8531706220035426857/2801795072
+2016-03-02 23:31:02,131 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:02,139 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8858886688738321706 was created!
+2016-03-02 23:31:02,140 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8858886688738321706/2835349504
+2016-03-02 23:31:02,309 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:02,317 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4245100848321972148 was created!
+2016-03-02 23:31:02,318 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4245100848321972148/2885681152
+2016-03-02 23:31:02,494 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:02,508 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3962461624526826451 was created!
+2016-03-02 23:31:02,509 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3962461624526826451/2952790016
+2016-03-02 23:31:02,682 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:02,690 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6223984366479368140 was created!
+2016-03-02 23:31:02,691 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6223984366479368140/3019898880
+2016-03-02 23:31:02,862 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:02,871 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8303018523114268882 was created!
+2016-03-02 23:31:02,872 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8303018523114268882/3087007744
+2016-03-02 23:31:03,044 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:03,052 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3552167976321455599 was created!
+2016-03-02 23:31:03,053 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3552167976321455599/3154116608
+2016-03-02 23:31:03,227 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:03,686 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4243502617388581126 was created!
+2016-03-02 23:31:03,687 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4243502617388581126/3221225472
+2016-03-02 23:31:03,860 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:04,288 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2814299828338298084 was created!
+2016-03-02 23:31:04,289 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2814299828338298084/3372220416
+2016-03-02 23:31:04,464 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:04,892 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1070645112411508205 was created!
+2016-03-02 23:31:04,893 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1070645112411508205/3422552064
+2016-03-02 23:31:05,068 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:05,493 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3585145715308653464 was created!
+2016-03-02 23:31:05,494 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3585145715308653464/3489660928
+2016-03-02 23:31:05,668 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:06,093 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8290303771400567202 was created!
+2016-03-02 23:31:06,094 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8290303771400567202/3556769792
+2016-03-02 23:31:06,266 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:06,685 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7565372869519260811 was created!
+2016-03-02 23:31:06,686 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7565372869519260811/3623878656
+2016-03-02 23:31:06,858 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:07,286 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/961074282874775906 was created!
+2016-03-02 23:31:07,287 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/961074282874775906/3690987520
+2016-03-02 23:31:07,462 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:07,889 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7952235775304539817 was created!
+2016-03-02 23:31:07,891 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7952235775304539817/3758096384
+2016-03-02 23:31:08,065 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:08,489 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8144581930301804729 was created!
+2016-03-02 23:31:08,490 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8144581930301804729/3825205248
+2016-03-02 23:31:08,662 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:09,085 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4382892988374016277 was created!
+2016-03-02 23:31:09,086 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4382892988374016277/3875536896
+2016-03-02 23:31:09,259 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:09,680 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4375654603666445140 was created!
+2016-03-02 23:31:09,681 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4375654603666445140/3925868544
+2016-03-02 23:31:09,852 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:10,270 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3253309461713153490 was created!
+2016-03-02 23:31:10,271 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3253309461713153490/3959422976
+2016-03-02 23:31:10,445 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:10,872 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6798175634592352292 was created!
+2016-03-02 23:31:10,873 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6798175634592352292/4009754624
+2016-03-02 23:31:11,046 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:12,043 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2398247054553103121 was created!
+2016-03-02 23:31:12,044 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2398247054553103121/4093640704
+2016-03-02 23:31:12,215 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:12,630 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/705829248376899798 was created!
+2016-03-02 23:31:12,631 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/705829248376899798/4160749568
+2016-03-02 23:31:12,799 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:13,224 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3020179379345752995 was created!
+2016-03-02 23:31:13,226 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3020179379345752995/4194304000
+2016-03-02 23:31:13,401 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:13,818 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4008476226501505331 was created!
+2016-03-02 23:31:13,819 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4008476226501505331/4261412864
+2016-03-02 23:31:13,994 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:14,412 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/447907059318239165 was created!
+2016-03-02 23:31:14,413 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/447907059318239165/4328521728
+2016-03-02 23:31:14,586 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:15,009 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2625042392927200135 was created!
+2016-03-02 23:31:15,010 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2625042392927200135/4395630592
+2016-03-02 23:31:15,184 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:15,599 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4992762516426249812 was created!
+2016-03-02 23:31:15,601 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4992762516426249812/4445962240
+2016-03-02 23:31:15,775 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:16,193 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2138522813552233520 was created!
+2016-03-02 23:31:16,195 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2138522813552233520/4496293888
+2016-03-02 23:31:16,377 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:16,856 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2591932709251112112 was created!
+2016-03-02 23:31:16,857 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2591932709251112112/4529848320
+2016-03-02 23:31:17,034 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:17,461 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3702285062389867950 was created!
+2016-03-02 23:31:17,462 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3702285062389867950/4563402752
+2016-03-02 23:31:17,636 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:18,057 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1500184012890316931 was created!
+2016-03-02 23:31:18,058 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1500184012890316931/4613734400
+2016-03-02 23:31:18,230 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:18,651 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4332693643382038635 was created!
+2016-03-02 23:31:18,652 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4332693643382038635/4680843264
+2016-03-02 23:31:18,826 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:19,247 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8970075264328494780 was created!
+2016-03-02 23:31:19,248 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8970075264328494780/4747952128
+2016-03-02 23:31:19,423 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:19,835 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6012198020790083758 was created!
+2016-03-02 23:31:19,836 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6012198020790083758/4815060992
+2016-03-02 23:31:20,018 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:20,439 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5586206530830481291 was created!
+2016-03-02 23:31:20,440 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5586206530830481291/4882169856
+2016-03-02 23:31:20,616 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:21,045 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6773919706653473122 was created!
+2016-03-02 23:31:21,046 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6773919706653473122/4949278720
+2016-03-02 23:31:21,221 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:24,171 WARN   (SleepingTimer.java:tick) - Worker Client last execution took 2787 ms. Longer than the interval 1000
+2016-03-02 23:31:24,593 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6837802304689435129 was created!
+2016-03-02 23:31:24,594 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6837802304689435129/4982833152
+2016-03-02 23:31:24,768 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:25,182 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/676672791141118207 was created!
+2016-03-02 23:31:25,183 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/676672791141118207/5033164800
+2016-03-02 23:31:25,365 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:25,785 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4075203171068228725 was created!
+2016-03-02 23:31:25,786 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4075203171068228725/5100273664
+2016-03-02 23:31:25,964 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:31:31,231 ERROR PERF_SLAVE_LOGGER (MixedLRUAndLFUThread.java:run) - Error in Sync Barrier
+java.io.IOException: Path /tmp/tachyon-perf-workspace/MixedLRUAndLFU/2/sync/0 does not exist
+	at tachyon.client.TachyonFS.getValidFileId(TachyonFS.java:548)
+	at tachyon.client.TachyonFS.delete(TachyonFS.java:375)
+	at tachyon.client.AbstractTachyonFS.delete(AbstractTachyonFS.java:109)
+	at tachyon.client.TachyonFS.delete(TachyonFS.java:66)
+	at tachyon.perf.fs.TachyonPerfFS.delete(TachyonPerfFS.java:137)
+	at tachyon.perf.benchmark.pattern.lruAndlfu.MixedLRUAndLFUThread.syncBarrier(MixedLRUAndLFUThread.java:181)
+	at tachyon.perf.benchmark.pattern.lruAndlfu.MixedLRUAndLFUThread.run(MixedLRUAndLFUThread.java:95)
+	at java.lang.Thread.run(Thread.java:745)
+2016-03-02 23:31:33,323 WARN   (SleepingTimer.java:tick) - Worker Client last execution took 1152 ms. Longer than the interval 1000
+2016-03-02 23:32:17,923 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6718654391932535404 was created!
+2016-03-02 23:32:17,924 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6718654391932535404/5452595200
+2016-03-02 23:32:18,094 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:18,510 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4782551109033798595 was created!
+2016-03-02 23:32:18,512 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4782551109033798595/5469372416
+2016-03-02 23:32:18,683 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:19,087 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8715620062480717027 was created!
+2016-03-02 23:32:19,088 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8715620062480717027/5486149632
+2016-03-02 23:32:19,259 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:19,668 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/617080311718777659 was created!
+2016-03-02 23:32:19,669 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/617080311718777659/5502926848
+2016-03-02 23:32:19,840 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:20,664 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4446609130913534982 was created!
+2016-03-02 23:32:20,665 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4446609130913534982/5519704064
+2016-03-02 23:32:20,835 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:21,241 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/50613779322631206 was created!
+2016-03-02 23:32:21,242 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/50613779322631206/5536481280
+2016-03-02 23:32:21,414 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:21,815 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8423824723955720128 was created!
+2016-03-02 23:32:21,816 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8423824723955720128/5553258496
+2016-03-02 23:32:21,983 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:22,387 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1076520525953859959 was created!
+2016-03-02 23:32:22,388 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1076520525953859959/5570035712
+2016-03-02 23:32:22,558 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:22,960 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5038095343592669360 was created!
+2016-03-02 23:32:22,961 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5038095343592669360/5586812928
+2016-03-02 23:32:23,134 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:23,543 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1886537563926291460 was created!
+2016-03-02 23:32:23,544 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1886537563926291460/5603590144
+2016-03-02 23:32:23,713 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:24,121 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1613068061289989544 was created!
+2016-03-02 23:32:24,123 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1613068061289989544/5620367360
+2016-03-02 23:32:24,291 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:24,695 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4320286234713378210 was created!
+2016-03-02 23:32:24,696 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4320286234713378210/5637144576
+2016-03-02 23:32:24,864 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:25,711 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2650509086223303890 was created!
+2016-03-02 23:32:25,712 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2650509086223303890/5653921792
+2016-03-02 23:32:25,884 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:26,290 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5866062563759189589 was created!
+2016-03-02 23:32:26,291 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5866062563759189589/5670699008
+2016-03-02 23:32:26,460 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:26,866 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4716216092102273918 was created!
+2016-03-02 23:32:26,867 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4716216092102273918/5687476224
+2016-03-02 23:32:27,038 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:27,439 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8710872797323888431 was created!
+2016-03-02 23:32:27,440 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8710872797323888431/5704253440
+2016-03-02 23:32:27,614 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:28,019 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6417721204718219653 was created!
+2016-03-02 23:32:28,020 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6417721204718219653/5721030656
+2016-03-02 23:32:28,192 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:28,591 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1667003973313565732 was created!
+2016-03-02 23:32:28,592 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1667003973313565732/5737807872
+2016-03-02 23:32:28,762 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:29,165 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3364724628763024232 was created!
+2016-03-02 23:32:29,166 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3364724628763024232/5754585088
+2016-03-02 23:32:29,336 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:29,741 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4395190337965728032 was created!
+2016-03-02 23:32:29,742 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4395190337965728032/5771362304
+2016-03-02 23:32:29,937 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:30,353 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7714132308283383035 was created!
+2016-03-02 23:32:30,354 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7714132308283383035/5788139520
+2016-03-02 23:32:30,526 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:31,253 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8739935564483018243 was created!
+2016-03-02 23:32:31,254 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8739935564483018243/5804916736
+2016-03-02 23:32:31,423 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:31,841 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5127516153955233205 was created!
+2016-03-02 23:32:31,842 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5127516153955233205/5821693952
+2016-03-02 23:32:32,013 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:32,419 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2014902917680152484 was created!
+2016-03-02 23:32:32,420 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2014902917680152484/5838471168
+2016-03-02 23:32:32,591 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:33,034 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4195609481465958933 was created!
+2016-03-02 23:32:33,035 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4195609481465958933/5855248384
+2016-03-02 23:32:33,207 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:33,617 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5556056858007282634 was created!
+2016-03-02 23:32:33,618 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5556056858007282634/5872025600
+2016-03-02 23:32:33,787 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:34,261 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6395978809767260084 was created!
+2016-03-02 23:32:34,262 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6395978809767260084/5888802816
+2016-03-02 23:32:34,434 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:34,898 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4757094636307719922 was created!
+2016-03-02 23:32:34,900 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4757094636307719922/5905580032
+2016-03-02 23:32:35,072 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:35,541 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4135094414933225321 was created!
+2016-03-02 23:32:35,542 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4135094414933225321/5922357248
+2016-03-02 23:32:35,710 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:39,545 WARN   (SleepingTimer.java:tick) - Worker Client last execution took 3216 ms. Longer than the interval 1000
+2016-03-02 23:32:39,546 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8708814754869306228 was created!
+2016-03-02 23:32:39,547 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8708814754869306228/5939134464
+2016-03-02 23:32:39,715 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:40,188 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3247630938789812016 was created!
+2016-03-02 23:32:40,190 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3247630938789812016/6023020544
+2016-03-02 23:32:40,359 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:40,822 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5893341211808127358 was created!
+2016-03-02 23:32:40,823 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5893341211808127358/6073352192
+2016-03-02 23:32:40,993 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:41,952 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/438944041293321094 was created!
+2016-03-02 23:32:41,953 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/438944041293321094/6090129408
+2016-03-02 23:32:42,130 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:42,594 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1668433943172976993 was created!
+2016-03-02 23:32:42,596 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1668433943172976993/6123683840
+2016-03-02 23:32:42,761 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:43,222 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/756676817034308996 was created!
+2016-03-02 23:32:43,223 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/756676817034308996/6157238272
+2016-03-02 23:32:43,393 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:43,853 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2166903322488851651 was created!
+2016-03-02 23:32:43,854 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2166903322488851651/6207569920
+2016-03-02 23:32:44,026 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:44,487 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6812358504615993048 was created!
+2016-03-02 23:32:44,488 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6812358504615993048/6257901568
+2016-03-02 23:32:44,654 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:45,114 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7827315749366046616 was created!
+2016-03-02 23:32:45,115 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7827315749366046616/6341787648
+2016-03-02 23:32:45,289 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:45,743 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1921456210197821237 was created!
+2016-03-02 23:32:45,744 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1921456210197821237/6392119296
+2016-03-02 23:32:45,911 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:50,024 WARN   (SleepingTimer.java:tick) - Worker Client last execution took 3478 ms. Longer than the interval 1000
+2016-03-02 23:32:50,481 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6207840250481674396 was created!
+2016-03-02 23:32:50,483 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6207840250481674396/6442450944
+2016-03-02 23:32:50,655 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:32:50,657 ERROR PERF_SLAVE_LOGGER (MixedLRUAndLFUThread.java:run) - Error in Sync Barrier
+java.io.IOException: Path /tmp/tachyon-perf-workspace/MixedLRUAndLFU/2/sync/0 does not exist
+	at tachyon.client.TachyonFS.getValidFileId(TachyonFS.java:548)
+	at tachyon.client.TachyonFS.delete(TachyonFS.java:375)
+	at tachyon.client.AbstractTachyonFS.delete(AbstractTachyonFS.java:109)
+	at tachyon.client.TachyonFS.delete(TachyonFS.java:66)
+	at tachyon.perf.fs.TachyonPerfFS.delete(TachyonPerfFS.java:137)
+	at tachyon.perf.benchmark.pattern.lruAndlfu.MixedLRUAndLFUThread.syncBarrier(MixedLRUAndLFUThread.java:181)
+	at tachyon.perf.benchmark.pattern.lruAndlfu.MixedLRUAndLFUThread.run(MixedLRUAndLFUThread.java:95)
+	at java.lang.Thread.run(Thread.java:745)
+2016-03-02 23:33:16,890 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/3930104350701378634 was created!
+2016-03-02 23:33:16,891 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/3930104350701378634/7046430720
+2016-03-02 23:33:17,060 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:17,517 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5509075188630429302 was created!
+2016-03-02 23:33:17,518 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5509075188630429302/7079985152
+2016-03-02 23:33:17,690 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:18,146 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7133720468393196742 was created!
+2016-03-02 23:33:18,147 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7133720468393196742/7113539584
+2016-03-02 23:33:18,321 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:18,781 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4916621864675430605 was created!
+2016-03-02 23:33:18,782 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4916621864675430605/7147094016
+2016-03-02 23:33:18,952 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:19,411 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/4183940267242219149 was created!
+2016-03-02 23:33:19,412 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/4183940267242219149/7214202880
+2016-03-02 23:33:19,584 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:20,041 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/586413933009997695 was created!
+2016-03-02 23:33:20,042 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/586413933009997695/7264534528
+2016-03-02 23:33:20,208 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:20,677 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/9040322657138863597 was created!
+2016-03-02 23:33:20,678 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/9040322657138863597/7331643392
+2016-03-02 23:33:20,844 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:21,315 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/9059547479166555978 was created!
+2016-03-02 23:33:21,316 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/9059547479166555978/7381975040
+2016-03-02 23:33:21,485 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:21,937 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/7922584957631648385 was created!
+2016-03-02 23:33:21,938 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/7922584957631648385/7432306688
+2016-03-02 23:33:22,106 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:22,568 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/1313010382383001663 was created!
+2016-03-02 23:33:22,569 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/1313010382383001663/7482638336
+2016-03-02 23:33:22,736 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:23,192 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/6099915289880846668 was created!
+2016-03-02 23:33:23,193 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/6099915289880846668/7532969984
+2016-03-02 23:33:23,367 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:23,771 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/2154807231436168462 was created!
+2016-03-02 23:33:23,772 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/2154807231436168462/7566524416
+2016-03-02 23:33:23,939 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:33,840 WARN   (SleepingTimer.java:tick) - Worker Client last execution took 9811 ms. Longer than the interval 1000
+2016-03-02 23:33:49,969 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/641775102730282054 was created!
+2016-03-02 23:33:49,970 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/641775102730282054/7600078848
+2016-03-02 23:33:50,134 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:50,586 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/5343218348427988257 was created!
+2016-03-02 23:33:50,587 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/5343218348427988257/7650410496
+2016-03-02 23:33:50,756 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:51,211 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/106910721342490367 was created!
+2016-03-02 23:33:51,212 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/106910721342490367/7683964928
+2016-03-02 23:33:51,382 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:51,844 INFO   (FileUtils.java:createStorageDirPath) - Folder /mnt/ramdisk/tachyonworker/8337154511051711739 was created!
+2016-03-02 23:33:51,845 INFO   (LocalBlockOutStream.java:<init>) - LocalBlockOutStream created new file block, block path: /mnt/ramdisk/tachyonworker/8337154511051711739/7717519360
+2016-03-02 23:33:52,013 ERROR  (BufferUtils.java:cleanDirectBuffer) - Failed to get cleaner for ByteBuffer
+2016-03-02 23:33:52,024 ERROR PERF_SLAVE_LOGGER (MixedLRUAndLFUThread.java:run) - Failed to write LFU file -15 in 0 iteration
+java.io.IOException: tachyon.exception.TachyonException: Inode id 7734296575 does not exist.
+	at tachyon.client.file.FileOutStream.close(FileOutStream.java:174)
+	at tachyon.perf.benchmark.Operators.writeSingleFile(Operators.java:238)
+	at tachyon.perf.benchmark.pattern.lruAndlfu.MixedLRUAndLFUThread.run(MixedLRUAndLFUThread.java:120)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: tachyon.exception.TachyonException: Inode id 7734296575 does not exist.
+	at tachyon.client.FileSystemMasterClient.completeFile(FileSystemMasterClient.java:265)
+	at tachyon.client.file.FileOutStream.close(FileOutStream.java:172)
+	... 3 more
+2016-03-02 23:33:52,030 ERROR PERF_SLAVE_LOGGER (TachyonPerfSlave.java:main) - Error in task
+java.io.IOException: org.apache.thrift.transport.TTransportException
+	at tachyon.perf.MasterClient.slave_finish(MasterClient.java:142)
+	at tachyon.perf.TachyonPerfSlave.main(TachyonPerfSlave.java:72)
+Caused by: org.apache.thrift.transport.TTransportException
+	at org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+	at org.apache.thrift.transport.TFramedTransport.readFrame(TFramedTransport.java:129)
+	at org.apache.thrift.transport.TFramedTransport.read(TFramedTransport.java:101)
+	at org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)
+	at org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:429)
+	at org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:318)
+	at org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:219)
+	at org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:69)
+	at tachyon.perf.thrift.MasterService$Client.recv_slave_finish(MasterService.java:126)
+	at tachyon.perf.thrift.MasterService$Client.slave_finish(MasterService.java:111)
+	at tachyon.perf.MasterClient.slave_finish(MasterClient.java:137)
+	... 1 more

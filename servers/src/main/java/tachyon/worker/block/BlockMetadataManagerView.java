@@ -223,4 +223,8 @@ public class BlockMetadataManagerView {
       return null;
     }
   }
+
+  public BlockMeta getBlockMetaTmpMethod(long blockId) throws BlockDoesNotExistException {
+    return mMetadataManager.getBlockMeta(blockId);
+  }
 }

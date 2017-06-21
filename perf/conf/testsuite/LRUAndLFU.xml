@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property>
+    <name>lru.files.per.thread</name>
+    <value>32</value>
+    <description>the number of global files to write at the beginning for each thread</description>
+  </property>
+  <property>
+    <name>lfu.files.per.thread</name>
+    <value>20</value>
+    <description>the number of global files to write at the beginning for each thread</description>
+  </property>
+  <property>
+    <name>lfu.cold.files.per.thread</name>
+    <value>12</value>
+    <description>the number of global files to write at the beginning for each thread</description>
+  </property>
+  <property>
+    <name>lru.iterations</name>
+    <value>5</value>
+    <description>lru iterations</description>
+  </property>
+  <property>
+    <name>lfu.iterations</name>
+    <value>12</value>
+    <description>lfu iterations</description>
+  </property>
+  <property>
+    <name>iterations</name>
+    <value>2</value>
+    <description>iterations</description>
+  </property>
+  <property>
+    <name>block.size.bytes</name>
+    <value>268435456</value>
+    <description>the block size of a file</description>
+  </property>
+  <property>
+    <name>file.length.bytes</name>
+    <value>268435456</value>
+    <description>the file size in bytes</description>
+  </property>
+  <property>
+    <name>buffer.size.bytes</name>
+    <value>4194304</value>
+    <description>the size of the buffer read and write once</description>
+  </property>
+  <property>
+    <name>read.type</name>
+    <value>CACHE_PROMOTE</value>
+    <description>the ReadType of the read operation, now only used for TachyonFS</description>
+  </property>
+  <property>
+    <name>write.type</name>
+    <value>TRY_CACHE</value>
+    <description>the WriteType of the write operation, now only used for TachyonFS</description>
+  </property>
+</configuration>
+

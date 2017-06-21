@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import tachyon.exception.BlockDoesNotExistException;
 import tachyon.worker.block.BlockMetadataManagerView;
 import tachyon.worker.block.BlockStoreLocation;
 import tachyon.worker.block.allocator.Allocator;
@@ -69,6 +70,7 @@ public class LRUEvictor extends EvictorBase {
 
   @Override
   public void onAccessBlock(long sessionId, long blockId) {
+    System.out.println("Access increment");
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
   }
 
@@ -91,5 +93,21 @@ public class LRUEvictor extends EvictorBase {
   @Override
   protected void onRemoveBlockFromIterator(long blockId) {
     mLRUCache.remove(blockId);
+  }
+
+  @Override
+  public void onMoveBlockByClient(long sessionId, long blockId, BlockStoreLocation oldLocation,
+      BlockStoreLocation newLocation) {
+    if (newLocation.tierAlias() < oldLocation.tierAlias()) {
+      System.out.println("Miss increment");
+    }
+  }
+
+  @Override
+  public void onMoveBlockByWorker(long sessionId, long blockId, BlockStoreLocation oldLocation,
+      BlockStoreLocation newLocation) {
+    if (newLocation.tierAlias() < oldLocation.tierAlias()) {
+      System.out.println("Miss increment");
+    }
   }
 }
