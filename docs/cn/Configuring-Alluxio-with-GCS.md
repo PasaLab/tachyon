@@ -29,7 +29,7 @@ priority: 0
 如果你刚接触GCS，请先阅读GCS[文档](https://cloud.google.com/storage/docs/overview)。
 
 ## 配置Alluxio
-配置
+配置Alluxiofor
 
 为了配置Alluxio以使用GCS作为其底层文件系统，需要修改`conf/alluxio-env.sh`文件。第一个需要修改的地方就是指定一个已有的bucket以及bucket中的目录作为底层文件系统。你可以通过向`conf/alluxio-env.sh`文件添加以下代码来指定：
 
