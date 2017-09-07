@@ -1,0 +1,61 @@
+# Druid 测试
+
+## 环境配置
+
+在/home/druid/software/druid/conf/druid/_common/core-site.xml中添加：
+
+```xml
+<configuration>
+<property>
+        <name>fs.defaultFS</name>
+        <value>alluxio-ft://alluxio01:19998</value>
+</property>
+<property>
+        <name>alluxio.zookeeper.address</name>
+        <value>alluxio01:2015,alluxio02:2015,alluxio03:2015,alluxio04:2015,alluxio05:2015</value>
+</property>
+<property>
+        <name>ha.zookeeper.quorum</name>
+        <value>alluxio01:2015,alluxio02:2015,alluxio03:2015,alluxio04:2015,alluxio05:2015</value>
+</property>
+<property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/proxyTest/tmp</value>
+        <final>true</final>
+</property>
+<property>
+        <name>fs.alluxio.impl</name>
+        <value>alluxio.hadoop.FileSystem</value>
+</property>
+<property>
+        <name>fs.alluxio-ft.impl</name>
+        <value>alluxio.hadoop.FaultTolerantFileSystem</value>
+</property>
+<property>
+         <name>fs.AbstractFileSystem.alluxio.impl</name>
+         <value>alluxio.hadoop.AlluxioFileSystem</value>
+</property>
+<property>
+         <name>fs.AbstractFileSystem.alluxio-ft.impl</name>
+         <value>alluxio.hadoop.FaultTolerantAlluxioFileSystem</value>
+</property>
+<property>
+         <name>alluxio.user.mode.cache.enabled</name>
+         <value>true</value>
+</property>
+<property>
+         <name>alluxio.client.cache.enable</name>
+         <value>true</value>
+</property>
+</configuration>
+```
+
+
+
+将alluxio client的jar包添加到node.sh中
+
+```shell
+nohup java `cat $CONF_DIR/$nodeType/jvm.config | xargs` -cp $CONF_DIR/_common:$CONF_DIR/$nodeType:$LIB_DIR/*:/home/druid/software/druid/alluxio-core-client-1.4.1-SNAPSHOT-jar-with-dependencies.jar io.druid.cli.Main server $nodeType > $LOG_DIR/$nodeType.log &
+```
+
+
