@@ -33,8 +33,10 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -55,6 +57,10 @@ public final class BlockMetadataManager {
 
   /** A map from tier alias to {@link StorageTier}. */
   private final Map<String, StorageTier> mAliasToTiers;
+
+  //add by li
+  private final ConcurrentHashMap<String, HashSet<Long>> mUserBlocksMap = new
+      ConcurrentHashMap<>();
 
   private BlockMetadataManager() {
     try {
@@ -459,4 +465,13 @@ public final class BlockMetadataManager {
     StorageDir dir = tempBlockMeta.getParentDir();
     dir.resizeTempBlockMeta(tempBlockMeta, newSize);
   }
+
+  //add by li
+  public void addBlockForUser(String owner, long blockId) {
+    if(mUserBlocksMap.get(owner) == null) {
+      mUserBlocksMap.put(owner, new HashSet<Long>());
+    }
+    mUserBlocksMap.get(owner).add(blockId);
+  }
+
 }

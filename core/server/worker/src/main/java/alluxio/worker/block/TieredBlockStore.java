@@ -15,13 +15,16 @@ import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.StorageTierAssoc;
 import alluxio.WorkerStorageTierAssoc;
+import alluxio.collections.ConcurrentHashSet;
 import alluxio.collections.Pair;
 import alluxio.exception.BlockAlreadyExistsException;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.exception.ExceptionMessage;
 import alluxio.exception.InvalidWorkerStateException;
 import alluxio.exception.WorkerOutOfSpaceException;
+import alluxio.master.block.BlockId;
 import alluxio.resource.LockResource;
+import alluxio.thrift.BlockInfo;
 import alluxio.util.io.FileUtils;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
@@ -50,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -843,6 +847,14 @@ public final class TieredBlockStore implements BlockStore {
     synchronized (mPinnedInodes) {
       mPinnedInodes.clear();
       mPinnedInodes.addAll(Preconditions.checkNotNull(inodes));
+    }
+  }
+
+  //add by li
+  @Override
+  public void addBlockForUser(String owner, long blockId) {
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      mMetaManager.addBlockForUser(owner,blockId);
     }
   }
 

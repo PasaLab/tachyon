@@ -24,6 +24,7 @@ import alluxio.exception.InvalidPathException;
 import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.master.Master;
 import alluxio.master.file.meta.FileSystemMasterView;
+import alluxio.master.file.meta.Inode;
 import alluxio.master.file.meta.PersistenceState;
 import alluxio.master.file.options.CheckConsistencyOptions;
 import alluxio.master.file.options.CompleteFileOptions;
@@ -484,4 +485,8 @@ public interface FileSystemMaster extends Master {
    * @return a list of {@link WorkerInfo} objects representing the workers in Alluxio
    */
   List<WorkerInfo> getWorkerInfoList();
+
+  //add by li
+  Set<Inode> getInfoByUser(String owner);
+
 }

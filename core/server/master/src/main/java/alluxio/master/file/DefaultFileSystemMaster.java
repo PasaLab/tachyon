@@ -1291,6 +1291,8 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       mMountTable.checkUnderWritableMountPoint(path);
       deletedInodes = deleteAndJournal(inodePath, options, journalContext);
       auditContext.setSucceeded(true);
+      //add by li;
+      mInodeTree.deleteFromUser(inodePath);
     }
     deleteInodeBlocks(deletedInodes);
   }
@@ -1459,6 +1461,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   }
 
   private void deleteInodeBlocks(List<Inode<?>> deletedInodes) {
+
     List<Long> deletedBlockIds = new ArrayList<>();
     for (Inode<?> inode : deletedInodes) {
       if (inode.isFile()) {
@@ -3091,6 +3094,11 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       setAttributeInternal(inodePath, true, entry.getOpTimeMs(), options);
       // Intentionally not journaling the persisted inodes from setAttributeInternal
     }
+  }
+
+  //add by li
+  public Set<Inode> getInfoByUser(String owner) {
+    return mInodeTree.getInfoByUser(owner);
   }
 
   @Override

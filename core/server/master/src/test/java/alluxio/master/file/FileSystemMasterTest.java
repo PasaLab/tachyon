@@ -32,6 +32,7 @@ import alluxio.heartbeat.ManuallyScheduleHeartbeat;
 import alluxio.master.MasterRegistry;
 import alluxio.master.block.BlockMaster;
 import alluxio.master.block.BlockMasterFactory;
+import alluxio.master.file.meta.Inode;
 import alluxio.master.file.meta.PersistenceState;
 import alluxio.master.file.meta.TtlIntervalRule;
 import alluxio.master.file.options.CompleteFileOptions;
@@ -66,6 +67,7 @@ import alluxio.wire.WorkerNetAddress;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multiset;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -245,6 +247,53 @@ public final class FileSystemMasterTest {
     mThrown.expect(FileDoesNotExistException.class);
     mFileSystemMaster.getFileInfo(new AlluxioURI("/mnt/local/dir1/file1"),
         GetStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never));
+  }
+
+  //add by li
+  @Test
+  private void UserFileListTest() throws Exception{
+    AlluxioURI testUrl1 = new AlluxioURI("/nested/test/file1");
+    AlluxioURI testUrl2 = new AlluxioURI("/nested/test/file2");
+    AlluxioURI testUrl3 = new AlluxioURI("/nested/test/file3");
+
+    createFileByUser( "tester", testUrl1);
+    createFileByUser("tester", testUrl2);
+    createFileByUser("tester", testUrl3);
+    Set<Inode> s = mFileSystemMaster.getInfoByUser("tester");
+
+    Set<AlluxioURI> tempSet = new HashSet<>();
+    while(s.iterator().hasNext()) {
+      Inode t = s.iterator().next();
+      tempSet.add(mFileSystemMaster.getPath(t.getId()));
+    }
+    Assert.assertTrue(tempSet.contains(testUrl1));
+    Assert.assertTrue(tempSet.contains(testUrl2));
+    Assert.assertTrue(tempSet.contains(testUrl3));
+
+    mFileSystemMaster.delete(testUrl1, DeleteOptions.defaults().setRecursive(false));
+    mFileSystemMaster.delete(testUrl2, DeleteOptions.defaults().setRecursive(false));
+    mFileSystemMaster.delete(testUrl2, DeleteOptions.defaults().setRecursive(false));
+
+    tempSet.clear();
+    s = mFileSystemMaster.getInfoByUser("tester");
+    while(s.iterator().hasNext()) {
+      Inode t = s.iterator().next();
+      tempSet.add(mFileSystemMaster.getPath(t.getId()));
+    }
+    Assert.assertFalse(tempSet.contains(testUrl1));
+    Assert.assertFalse(tempSet.contains(testUrl2));
+    Assert.assertFalse(tempSet.contains(testUrl3));
+  }
+
+  private void createFileByUser(String owner, AlluxioURI testUrl) throws Exception{
+    CreateFileOptions tempOptions =
+        CreateFileOptions.defaults().setBlockSizeBytes(Constants.KB).setRecursive(true).setOwner
+            (owner);
+    mFileSystemMaster.createFile(testUrl, tempOptions);
+    long blockId = mFileSystemMaster.getNewBlockIdForFile(NESTED_FILE_URI);
+    mBlockMaster.commitBlock(mWorkerId1, Constants.KB, "MEM", blockId, Constants.KB);
+    CompleteFileOptions options = CompleteFileOptions.defaults().setUfsLength(Constants.KB);
+    mFileSystemMaster.completeFile(testUrl, options);
   }
 
   /**
