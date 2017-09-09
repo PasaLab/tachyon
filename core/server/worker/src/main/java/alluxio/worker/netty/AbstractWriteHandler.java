@@ -143,10 +143,12 @@ abstract class AbstractWriteHandler<T extends WriteRequestContext<?>>
         // update error in context.
         Preconditions.checkState(isNewContextCreated);
         initRequestContext(mContext);
+        addBlockForUser(writeRequest.getOwner(), writeRequest.getId());
       }
 
       // Validate the write request.
       validateWriteRequest(writeRequest, msg.getPayloadDataBuffer());
+
 
       // If we have seen an error, return early and release the data. This can only
       // happen for those mis-behaving clients who first sends some invalid requests, then
@@ -468,4 +470,7 @@ abstract class AbstractWriteHandler<T extends WriteRequestContext<?>>
     Preconditions.checkState(counter != null);
     counter.inc(bytesWritten);
   }
+
+  //add by li
+  protected abstract void addBlockForUser(String user, long blockId);
 }

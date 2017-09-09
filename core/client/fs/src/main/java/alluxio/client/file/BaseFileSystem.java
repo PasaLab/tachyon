@@ -40,6 +40,7 @@ import alluxio.exception.status.FailedPreconditionException;
 import alluxio.exception.status.InvalidArgumentException;
 import alluxio.exception.status.NotFoundException;
 import alluxio.exception.status.UnavailableException;
+import alluxio.wire.FileInfo;
 import alluxio.wire.LoadMetadataType;
 import alluxio.wire.MountPointInfo;
 
@@ -426,5 +427,23 @@ public class BaseFileSystem implements FileSystem {
     } finally {
       mFileSystemContext.releaseMasterClient(masterClient);
     }
+  }
+
+  //add by li
+  @Override
+  public void addUserForFile(AlluxioURI path, String owner)
+      throws FileDoesNotExistException, IOException, AlluxioException {
+    FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
+    try {
+      URIStatus status = masterClient.getStatus(path, GetStatusOptions.defaults());
+      masterClient.addUser(owner, status.getFileId());
+      LOG.debug("add User for {}, options: {}", path.getPath(), owner);
+    } catch (UnavailableException e) {
+      throw e;
+    } catch (AlluxioStatusException e) {
+      throw e.toAlluxioException();
+    } finally {
+      mFileSystemContext.releaseMasterClient(masterClient);
+    };
   }
 }

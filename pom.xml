@@ -1049,7 +1049,7 @@
         </executions>
       </plugin>
 
-      <!-- Checkstyle -->
+      <!-- Checkstyle
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -1073,7 +1073,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
 
       <!-- License Plugin -->
       <plugin>

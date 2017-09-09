@@ -107,6 +107,9 @@ public final class NettyPacketWriter implements PacketWriter {
   private Condition mBufferNotFullOrFailed = mLock.newCondition();
   /** This condition is met if there is nothing in the netty buffer. */
   private Condition mBufferEmptyOrFailed = mLock.newCondition();
+  //add by li
+  private OutStreamOptions mOptions;
+
 
   /**
    * @param context the file system context
@@ -158,6 +161,7 @@ public final class NettyPacketWriter implements PacketWriter {
     mPacketSize = packetSize;
     mChannel = channel;
     mChannel.pipeline().addLast(new PacketWriteHandler());
+    mOptions = options;
   }
 
   @Override
@@ -199,8 +203,15 @@ public final class NettyPacketWriter implements PacketWriter {
       buf.release();
       throw e;
     }
-
-    Protocol.WriteRequest writeRequest = mPartialRequest.toBuilder().setOffset(offset).build();
+    //add by li
+    Protocol.WriteRequest writeRequest;
+    if(offset == 0) {
+      writeRequest = mPartialRequest.toBuilder().setOffset(offset).setOwner(mOptions.getOwner())
+          .build();
+    }
+    else {
+      writeRequest = mPartialRequest.toBuilder().setOffset(offset).build();
+    }
     DataBuffer dataBuffer = new DataNettyBufferV2(buf);
     mChannel.writeAndFlush(new RPCProtoMessage(new ProtoMessage(writeRequest), dataBuffer))
         .addListener(new WriteListener(offset + len));

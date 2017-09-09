@@ -19,9 +19,11 @@ import alluxio.wire.FileInfo;
 import alluxio.wire.TtlAction;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.ArrayListMultimap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -50,6 +52,16 @@ public abstract class Inode<T> implements JournalEntryRepresentable {
   private String mOwner;
   private String mGroup;
   private short mMode;
+
+  //add by li
+  private boolean mIsShare = false;
+  private ArrayList<String> mOwners = new ArrayList();
+  public void addUser(String users) { mOwners.add(users); }
+  public void setShare() { mIsShare =true;
+
+  }
+  public boolean isShare() { return mIsShare; }
+  public ArrayList<String> getOwners(){ return mOwners; }
 
   private final ReentrantReadWriteLock mLock;
 

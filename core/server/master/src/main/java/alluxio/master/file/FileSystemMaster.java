@@ -489,4 +489,9 @@ public interface FileSystemMaster extends Master {
   //add by li
   Set<Inode> getInfoByUser(String owner);
 
+  void addUser(String user, long fileId) throws FileDoesNotExistException ;
+
+  List<String> getUsersByUrl(AlluxioURI uri) throws InvalidPathException,
+      FileDoesNotExistException;
+
 }

@@ -1199,13 +1199,13 @@ public class InodeTree implements JournalEntryIterable {
     return TraversalResult.createFoundResult(nonPersistedInodes, inodes, lockList);
   }
   /*===============================add By Li==================================================*/
-  private void putFile(String owner, InodeFile inodeFile) {
+  private void putFile(String owner, InodeFile inodeFile) {//TODO(li)
     if(mUserFileLists.get(owner) == null ) {
       synchronized (mUserFileLists) {
         if(mUserFileLists.get(owner) == null) {
           HashSet<InodeFile> tempSet = new HashSet<>();
           tempSet.add(inodeFile);
-          mUserFileLists.put(owner, tempSet);
+          mUserFileLists.putIfAbsent(owner, tempSet);
           return;
         }
       }
@@ -1219,13 +1219,28 @@ public class InodeTree implements JournalEntryIterable {
 
   public void deleteFromUser(LockedInodePath inodePath) {
     try {
-      String owner = inodePath.getInode().getOwner();
+      //only handle inodeFile.
       Inode inode = inodePath.getInode();
+      String owner = inode.getOwner();
+
       mUserFileLists.get(owner).remove(inode);
+      if(inode.isShare()) {
+        for(String s : inodePath.getInode().getOwners()) {
+          mUserFileLists.get(s).remove(inode);
+        }
+      }
     } catch (FileDoesNotExistException e) {
       //TODO(li) handle exception
     }
+  }
 
+  public void addUser(String user, long fileId) {
+    Inode<?> inode = mInodes.getFirst(fileId);
+    inode.lockWrite();
+    inode.setShare();
+    inode.addUser(user);
+    putFile(user, (InodeFile)inode);
+    inode.unlockWrite();
   }
   /*===============================add By Li==================================================*/
 

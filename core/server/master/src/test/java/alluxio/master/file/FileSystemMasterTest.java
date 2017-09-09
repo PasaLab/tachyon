@@ -88,6 +88,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -251,7 +252,7 @@ public final class FileSystemMasterTest {
 
   //add by li
   @Test
-  private void UserFileListTest() throws Exception{
+  public void UserFileListTest() throws Exception {
     AlluxioURI testUrl1 = new AlluxioURI("/nested/test/file1");
     AlluxioURI testUrl2 = new AlluxioURI("/nested/test/file2");
     AlluxioURI testUrl3 = new AlluxioURI("/nested/test/file3");
@@ -259,25 +260,31 @@ public final class FileSystemMasterTest {
     createFileByUser( "tester", testUrl1);
     createFileByUser("tester", testUrl2);
     createFileByUser("tester", testUrl3);
+
     Set<Inode> s = mFileSystemMaster.getInfoByUser("tester");
 
     Set<AlluxioURI> tempSet = new HashSet<>();
-    while(s.iterator().hasNext()) {
-      Inode t = s.iterator().next();
+    Iterator<Inode> i = s.iterator();
+    while(i.hasNext()) {
+      Inode t = i.next();
       tempSet.add(mFileSystemMaster.getPath(t.getId()));
     }
+
     Assert.assertTrue(tempSet.contains(testUrl1));
     Assert.assertTrue(tempSet.contains(testUrl2));
     Assert.assertTrue(tempSet.contains(testUrl3));
 
+
     mFileSystemMaster.delete(testUrl1, DeleteOptions.defaults().setRecursive(false));
     mFileSystemMaster.delete(testUrl2, DeleteOptions.defaults().setRecursive(false));
-    mFileSystemMaster.delete(testUrl2, DeleteOptions.defaults().setRecursive(false));
+    mFileSystemMaster.delete(testUrl3, DeleteOptions.defaults().setRecursive(false));
+
 
     tempSet.clear();
     s = mFileSystemMaster.getInfoByUser("tester");
-    while(s.iterator().hasNext()) {
-      Inode t = s.iterator().next();
+    Iterator<Inode> i1 = s.iterator();
+    while(i1.hasNext()) {
+      Inode t = i1.next();
       tempSet.add(mFileSystemMaster.getPath(t.getId()));
     }
     Assert.assertFalse(tempSet.contains(testUrl1));
@@ -285,16 +292,64 @@ public final class FileSystemMasterTest {
     Assert.assertFalse(tempSet.contains(testUrl3));
   }
 
+  @Test
+  public void addUserTest() throws Exception {
+    AlluxioURI testUrl1 = new AlluxioURI("/nested/test/file1");
+    AlluxioURI testUrl2 = new AlluxioURI("/nested/test/file2");
+    AlluxioURI testUrl3 = new AlluxioURI("/nested/test/file3");
+
+    createFileByUser( "tester", testUrl1);
+    createFileByUser( "tester", testUrl2);
+    createFileByUser( "tester2", testUrl3);
+
+    FileInfo tempInfo = mFileSystemMaster.getFileInfo(testUrl1, GET_STATUS_OPTIONS);
+    mFileSystemMaster.addUser("tester2", tempInfo.getFileId());
+    mFileSystemMaster.addUser("tester3", tempInfo.getFileId());
+    mFileSystemMaster.addUser("tester4", tempInfo.getFileId());
+
+    List<String> res = mFileSystemMaster.getUsersByUrl(testUrl1);
+    Assert.assertTrue(res.contains("tester"));
+    Assert.assertTrue(res.contains("tester2"));
+    Assert.assertTrue(res.contains("tester3"));
+    Assert.assertTrue(res.contains("tester4"));
+
+    mFileSystemMaster.delete(testUrl1, DeleteOptions.defaults().setRecursive(false));
+    try {
+      mFileSystemMaster.getUsersByUrl(testUrl1);
+      Assert.fail("getFileInfo() for a non-existent URI (before mounting) should fail.");
+    } catch (FileDoesNotExistException e) {
+      // Expected case.
+    }
+    Set<AlluxioURI> tempSet = new HashSet<>();
+
+    Set<Inode> s = mFileSystemMaster.getInfoByUser("tester");
+
+    s.addAll(mFileSystemMaster.getInfoByUser("tester2"));
+    s.addAll(mFileSystemMaster.getInfoByUser("tester3"));
+    s.addAll(mFileSystemMaster.getInfoByUser("tester4"));
+    Iterator<Inode> i1 = s.iterator();
+    while(i1.hasNext()) {
+      Inode t = i1.next();
+      tempSet.add(mFileSystemMaster.getPath(t.getId()));
+    }
+    Assert.assertFalse(tempSet.contains(testUrl1));
+    Assert.assertTrue(tempSet.contains(testUrl2));
+    Assert.assertTrue(tempSet.contains(testUrl3));
+
+
+  }
+
   private void createFileByUser(String owner, AlluxioURI testUrl) throws Exception{
     CreateFileOptions tempOptions =
         CreateFileOptions.defaults().setBlockSizeBytes(Constants.KB).setRecursive(true).setOwner
             (owner);
     mFileSystemMaster.createFile(testUrl, tempOptions);
-    long blockId = mFileSystemMaster.getNewBlockIdForFile(NESTED_FILE_URI);
+    long blockId = mFileSystemMaster.getNewBlockIdForFile(testUrl);
     mBlockMaster.commitBlock(mWorkerId1, Constants.KB, "MEM", blockId, Constants.KB);
     CompleteFileOptions options = CompleteFileOptions.defaults().setUfsLength(Constants.KB);
     mFileSystemMaster.completeFile(testUrl, options);
   }
+
 
   /**
    * Tests the {@link FileSystemMaster#delete(AlluxioURI, DeleteOptions)} method with a

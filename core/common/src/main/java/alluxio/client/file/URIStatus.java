@@ -11,6 +11,7 @@
 
 package alluxio.client.file;
 
+import alluxio.AlluxioURI;
 import alluxio.annotation.PublicApi;
 import alluxio.wire.FileBlockInfo;
 import alluxio.wire.FileInfo;

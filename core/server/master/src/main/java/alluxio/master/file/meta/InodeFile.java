@@ -87,6 +87,9 @@ public final class InodeFile extends Inode<InodeFile> {
     ret.setMode(getMode());
     ret.setPersistenceState(getPersistenceState().toString());
     ret.setMountPoint(false);
+    ret.setShare(super.isShare());
+    ret.addOwners(super.getOwners());
+
     return ret;
   }
 

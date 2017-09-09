@@ -469,7 +469,7 @@ public final class BlockMetadataManager {
   //add by li
   public void addBlockForUser(String owner, long blockId) {
     if(mUserBlocksMap.get(owner) == null) {
-      mUserBlocksMap.put(owner, new HashSet<Long>());
+      mUserBlocksMap.putIfAbsent(owner, new HashSet<Long>());
     }
     mUserBlocksMap.get(owner).add(blockId);
   }

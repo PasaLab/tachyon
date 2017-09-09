@@ -61,6 +61,8 @@ message WriteRequest {
 
   // This is only applicable for ufs writes.
   optional CreateUfsFileOptions create_ufs_file_options = 7;
+  //add by li
+  optional string owner = 8;
 }
 
 // Options to create a UFS file.
