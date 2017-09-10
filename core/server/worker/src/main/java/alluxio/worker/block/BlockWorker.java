@@ -392,4 +392,6 @@ public interface BlockWorker extends Worker, SessionCleanable {
 
   //add by li
   void addBlockAndUserInfo(String ower, long blockId);
+
+  void FairRideDelay(String user, long blockId, int len);
 }

@@ -500,6 +500,11 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   }
 
   @Override
+  public void FairRideDelay(String user, long blockId, int len) {
+    mBlockStore.fairRideDelay(user, blockId, len);
+  }
+
+  @Override
   public void cleanupSession(long sessionId) {
     mBlockStore.cleanupSession(sessionId);
     mUnderFileSystemBlockStore.cleanupSession(sessionId);

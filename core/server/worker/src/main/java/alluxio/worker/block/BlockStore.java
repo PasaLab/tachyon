@@ -343,4 +343,6 @@ public interface BlockStore extends SessionCleanable {
 
   //add by li
   void addBlockAndUserInfo(String owner, long blockId);
+
+  void fairRideDelay(String user, long blockId, long len);
 }

@@ -98,6 +98,8 @@ public final class BlockReadHandler extends AbstractReadHandler<BlockReadRequest
     @Override
     protected DataBuffer getDataBuffer(BlockReadRequestContext context, Channel channel,
         long offset, int len) throws Exception {
+      //add by li
+      mWorker.FairRideDelay(context.getRequest().getUser(), context.getRequest().getId(), len);
       openBlock(context, channel);
       BlockReader blockReader = context.getBlockReader();
       Preconditions.checkState(blockReader != null);

@@ -26,6 +26,7 @@ import alluxio.master.block.BlockId;
 import alluxio.resource.LockResource;
 import alluxio.thrift.BlockInfo;
 import alluxio.util.io.FileUtils;
+import alluxio.worker.DelayExecutor;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
 import alluxio.worker.block.evictor.EvictionPlan;
@@ -861,6 +862,23 @@ public final class TieredBlockStore implements BlockStore {
       mMetaManager.addBlockForUser(owner,blockId);
       mMetaManager.addUserForBlock(owner,blockId);
     }
+  }
+
+  @Override
+  public void fairRideDelay(String user, long blockId, long len) {
+    boolean isValidUser;
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      isValidUser = mMetaManager.isUserOwnBlock(user, blockId);
+    }
+    if(isValidUser) {
+      return;
+    }
+    int users;
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      users = mMetaManager.blockUsersNum(blockId);
+    }
+    DelayExecutor delayExecutor = new DelayExecutor(users, len);
+    delayExecutor.delay();
   }
 
   /**

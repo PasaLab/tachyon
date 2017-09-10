@@ -379,6 +379,8 @@ abstract class AbstractReadHandler<T extends ReadRequestContext<?>>
 
         if (packet != null) {
           RPCProtoMessage response = RPCProtoMessage.createOkResponse(packet);
+          //add by li
+
           mChannel.writeAndFlush(response).addListener(new WriteListener(start + packetSize));
         }
       }

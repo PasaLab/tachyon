@@ -494,5 +494,16 @@ public final class BlockMetadataManager {
       }
     }
   }
+
+  public boolean isUserOwnBlock(String user, long blockId) {
+    if(mUserBlocksMap.containsKey(user)) {
+      return mUserBlocksMap.get(user).contains(blockId);
+    }
+    return false;
+  }
+
+  public int blockUsersNum(long blockId) {
+    return mBlockUsersMap.get(blockId).size();
+  }
   //=========================================add by li=============================================
 }
