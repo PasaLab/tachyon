@@ -354,4 +354,10 @@ public interface FileSystem {
    * @param options options to associate with this operation
    */
   void unmount(AlluxioURI path, UnmountOptions options) throws IOException, AlluxioException;
+
+  //add by li
+  void addUserForFile(AlluxioURI path, String owner)
+      throws FileDoesNotExistException, IOException, AlluxioException;
+
+
 }

@@ -59,6 +59,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -131,6 +132,9 @@ public class InodeTree implements JournalEntryIterable {
    * inode.
    */
   private InodeDirectory mCachedInode;
+
+  private final ConcurrentHashMap<String, HashSet<InodeFile>> mUserFileLists = new
+      ConcurrentHashMap<>();
 
   /**
    * @param containerIdGenerator the container id generator to use to get new container ids
@@ -695,6 +699,9 @@ public class InodeTree implements JournalEntryIterable {
 
         // Update state while holding the write lock.
         mInodes.add(lastInode);
+        if (lastInode instanceof InodeFile) {
+          putFile(options.getOwner(), (InodeFile)lastInode);
+        }
 
         createdInodes.add(lastInode);
         extensibleInodePath.getInodes().add(lastInode);
@@ -1191,6 +1198,51 @@ public class InodeTree implements JournalEntryIterable {
     }
     return TraversalResult.createFoundResult(nonPersistedInodes, inodes, lockList);
   }
+  /*===============================add By Li==================================================*/
+  private void putFile(String owner, InodeFile inodeFile) {//TODO(li)
+    if(mUserFileLists.get(owner) == null ) {
+      synchronized (mUserFileLists) {
+        if(mUserFileLists.get(owner) == null) {
+          HashSet<InodeFile> tempSet = new HashSet<>();
+          tempSet.add(inodeFile);
+          mUserFileLists.putIfAbsent(owner, tempSet);
+          return;
+        }
+      }
+    }
+    mUserFileLists.get(owner).add(inodeFile);
+  }
+
+  public Set<Inode> getInfoByUser(String owner) {
+    return (Set)mUserFileLists.get(owner);
+  }
+
+  public void deleteFromUser(LockedInodePath inodePath) {
+    try {
+      //only handle inodeFile.
+      Inode inode = inodePath.getInode();
+      String owner = inode.getOwner();
+
+      mUserFileLists.get(owner).remove(inode);
+      if(inode.isShare()) {
+        for(String s : inodePath.getInode().getOwners()) {
+          mUserFileLists.get(s).remove(inode);
+        }
+      }
+    } catch (FileDoesNotExistException e) {
+      //TODO(li) handle exception
+    }
+  }
+
+  public void addUser(String user, long fileId) {
+    Inode<?> inode = mInodes.getFirst(fileId);
+    inode.lockWrite();
+    inode.setShare();
+    inode.addUser(user);
+    putFile(user, (InodeFile)inode);
+    inode.unlockWrite();
+  }
+  /*===============================add By Li==================================================*/
 
   private static final class TraversalResult {
     /** True if the traversal found the target inode, false otherwise. */

@@ -493,6 +493,12 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     mUnderFileSystemBlockStore.releaseAccess(sessionId, blockId);
   }
 
+  //add by li
+  @Override
+  public void addBlockAndUserInfo(String ower, long blockId) {
+    mBlockStore.addBlockAndUserInfo(ower, blockId);
+  }
+
   @Override
   public void cleanupSession(long sessionId) {
     mBlockStore.cleanupSession(sessionId);

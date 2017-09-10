@@ -34,6 +34,7 @@ import alluxio.thrift.LoadMetadataTOptions;
 import alluxio.thrift.RenameTOptions;
 import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
 import alluxio.thrift.UnmountTOptions;
+import alluxio.thrift.addUserTOptions;
 import alluxio.wire.MountPointInfo;
 import alluxio.wire.ThriftUtils;
 
@@ -288,6 +289,18 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
       @Override
       public Void call() throws TException {
         mClient.unmount(alluxioPath.toString(), new UnmountTOptions());
+        return null;
+      }
+    });
+  }
+
+  //add by li
+  @Override
+  public void addUser(final String owner, final long fileId) throws IOException{
+    retryRPC(new RpcCallable<Void>() {
+      @Override
+      public Void call() throws TException {
+        mClient.addUser(new addUserTOptions(owner, fileId));
         return null;
       }
     });

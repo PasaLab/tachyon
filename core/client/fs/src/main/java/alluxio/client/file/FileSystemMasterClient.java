@@ -190,4 +190,7 @@ public interface FileSystemMasterClient extends Client {
    * @param alluxioPath the Alluxio path
    */
   void unmount(AlluxioURI alluxioPath) throws IOException;
+
+  //add by li
+  void addUser(String owner, long fileId) throws IOException;
 }

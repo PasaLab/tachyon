@@ -340,4 +340,7 @@ public interface BlockStore extends SessionCleanable {
    * @param inodes a set of inodes that are currently pinned
    */
   void updatePinnedInodes(Set<Long> inodes);
+
+  //add by li
+  void addBlockAndUserInfo(String owner, long blockId);
 }

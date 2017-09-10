@@ -2544,6 +2544,33 @@ public final class Protocol {
      * </pre>
      */
     alluxio.proto.dataserver.Protocol.CreateUfsFileOptionsOrBuilder getCreateUfsFileOptionsOrBuilder();
+
+    // optional string owner = 8;
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    boolean hasOwner();
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    java.lang.String getOwner();
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getOwnerBytes();
   }
   /**
    * Protobuf type {@code alluxio.proto.dataserver.WriteRequest}
@@ -2648,6 +2675,11 @@ public final class Protocol {
                 createUfsFileOptions_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000040;
+              break;
+            }
+            case 66: {
+              bitField0_ |= 0x00000080;
+              owner_ = input.readBytes();
               break;
             }
           }
@@ -2836,6 +2868,61 @@ public final class Protocol {
       return createUfsFileOptions_;
     }
 
+    // optional string owner = 8;
+    public static final int OWNER_FIELD_NUMBER = 8;
+    private java.lang.Object owner_;
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public boolean hasOwner() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          owner_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string owner = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        owner_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       type_ = alluxio.proto.dataserver.Protocol.RequestType.ALLUXIO_BLOCK;
       id_ = 0L;
@@ -2844,6 +2931,7 @@ public final class Protocol {
       eof_ = false;
       cancel_ = false;
       createUfsFileOptions_ = alluxio.proto.dataserver.Protocol.CreateUfsFileOptions.getDefaultInstance();
+      owner_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2877,6 +2965,9 @@ public final class Protocol {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(7, createUfsFileOptions_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, getOwnerBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -2914,6 +3005,10 @@ public final class Protocol {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, createUfsFileOptions_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, getOwnerBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3055,6 +3150,8 @@ public final class Protocol {
           createUfsFileOptionsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
+        owner_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -3115,6 +3212,10 @@ public final class Protocol {
         } else {
           result.createUfsFileOptions_ = createUfsFileOptionsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.owner_ = owner_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3151,6 +3252,11 @@ public final class Protocol {
         }
         if (other.hasCreateUfsFileOptions()) {
           mergeCreateUfsFileOptions(other.getCreateUfsFileOptions());
+        }
+        if (other.hasOwner()) {
+          bitField0_ |= 0x00000080;
+          owner_ = other.owner_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3563,6 +3669,104 @@ public final class Protocol {
           createUfsFileOptions_ = null;
         }
         return createUfsFileOptionsBuilder_;
+      }
+
+      // optional string owner = 8;
+      private java.lang.Object owner_ = "";
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public boolean hasOwner() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          owner_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          owner_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setOwner(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        owner_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder clearOwner() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        owner_ = getDefaultInstance().getOwner();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string owner = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setOwnerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        owner_ = value;
+        onChanged();
+        return this;
       }
 
       // @@protoc_insertion_point(builder_scope:alluxio.proto.dataserver.WriteRequest)
@@ -7335,6 +7539,33 @@ public final class Protocol {
      * </pre>
      */
     boolean getOnlyReserveSpace();
+
+    // optional string owner = 6;
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    boolean hasOwner();
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    java.lang.String getOwner();
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getOwnerBytes();
   }
   /**
    * Protobuf type {@code alluxio.proto.dataserver.LocalBlockCreateRequest}
@@ -7409,6 +7640,11 @@ public final class Protocol {
             case 40: {
               bitField0_ |= 0x00000008;
               onlyReserveSpace_ = input.readBool();
+              break;
+            }
+            case 50: {
+              bitField0_ |= 0x00000010;
+              owner_ = input.readBytes();
               break;
             }
           }
@@ -7523,11 +7759,67 @@ public final class Protocol {
       return onlyReserveSpace_;
     }
 
+    // optional string owner = 6;
+    public static final int OWNER_FIELD_NUMBER = 6;
+    private java.lang.Object owner_;
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public boolean hasOwner() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          owner_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string owner = 6;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        owner_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       blockId_ = 0L;
       tier_ = 0;
       spaceToReserve_ = 0L;
       onlyReserveSpace_ = false;
+      owner_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -7553,6 +7845,9 @@ public final class Protocol {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBool(5, onlyReserveSpace_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(6, getOwnerBytes());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -7577,6 +7872,10 @@ public final class Protocol {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(5, onlyReserveSpace_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, getOwnerBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7706,6 +8005,8 @@ public final class Protocol {
         bitField0_ = (bitField0_ & ~0x00000004);
         onlyReserveSpace_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
+        owner_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -7750,6 +8051,10 @@ public final class Protocol {
           to_bitField0_ |= 0x00000008;
         }
         result.onlyReserveSpace_ = onlyReserveSpace_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.owner_ = owner_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -7777,6 +8082,11 @@ public final class Protocol {
         }
         if (other.hasOnlyReserveSpace()) {
           setOnlyReserveSpace(other.getOnlyReserveSpace());
+        }
+        if (other.hasOwner()) {
+          bitField0_ |= 0x00000010;
+          owner_ = other.owner_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -7949,6 +8259,104 @@ public final class Protocol {
       public Builder clearOnlyReserveSpace() {
         bitField0_ = (bitField0_ & ~0x00000008);
         onlyReserveSpace_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional string owner = 6;
+      private java.lang.Object owner_ = "";
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public boolean hasOwner() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          owner_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          owner_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setOwner(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        owner_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder clearOwner() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        owner_ = getDefaultInstance().getOwner();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string owner = 6;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setOwnerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        owner_ = value;
         onChanged();
         return this;
       }
@@ -9013,30 +9421,31 @@ public final class Protocol {
       "\026\n\016offset_in_file\030\002 \001(\003\022\022\n\nblock_size\030\003 " +
       "\001(\003\022\035\n\025maxUfsReadConcurrency\030\004 \001(\005\022\017\n\007mo",
       "untId\030\005 \001(\003\022\020\n\010no_cache\030\006 \001(\010\022\014\n\004user\030\007 " +
-      "\001(\t\"\333\001\n\014WriteRequest\0223\n\004type\030\001 \001(\0162%.all" +
+      "\001(\t\"\352\001\n\014WriteRequest\0223\n\004type\030\001 \001(\0162%.all" +
       "uxio.proto.dataserver.RequestType\022\n\n\002id\030" +
       "\002 \001(\003\022\016\n\006offset\030\003 \001(\003\022\014\n\004tier\030\004 \001(\005\022\013\n\003e" +
       "of\030\005 \001(\010\022\016\n\006cancel\030\006 \001(\010\022O\n\027create_ufs_f" +
       "ile_options\030\007 \001(\0132..alluxio.proto.datase" +
-      "rver.CreateUfsFileOptions\"f\n\024CreateUfsFi" +
-      "leOptions\022\020\n\010ufs_path\030\001 \001(\t\022\r\n\005owner\030\002 \001" +
-      "(\t\022\r\n\005group\030\003 \001(\t\022\014\n\004mode\030\004 \001(\005\022\020\n\010mount" +
-      "_id\030\005 \001(\003\"J\n\010Response\022-\n\006status\030\001 \001(\0162\035.",
-      "alluxio.proto.status.PStatus\022\017\n\007message\030" +
-      "\002 \001(\t\"i\n\014ReadResponse\0229\n\004type\030\001 \001(\0162+.al" +
-      "luxio.proto.dataserver.ReadResponse.Type" +
-      "\"\036\n\004Type\022\026\n\022UFS_READ_HEARTBEAT\020\001\"\013\n\tHear" +
-      "tbeat\":\n\025LocalBlockOpenRequest\022\020\n\010block_" +
-      "id\030\001 \001(\003\022\017\n\007promote\030\002 \001(\010\"&\n\026LocalBlockO" +
-      "penResponse\022\014\n\004path\030\001 \001(\t\"*\n\026LocalBlockC" +
-      "loseRequest\022\020\n\010block_id\030\001 \001(\003\"o\n\027LocalBl" +
-      "ockCreateRequest\022\020\n\010block_id\030\001 \001(\003\022\014\n\004ti" +
-      "er\030\003 \001(\005\022\030\n\020space_to_reserve\030\004 \001(\003\022\032\n\022on",
-      "ly_reserve_space\030\005 \001(\010\"(\n\030LocalBlockCrea" +
-      "teResponse\022\014\n\004path\030\001 \001(\t\"=\n\031LocalBlockCo" +
-      "mpleteRequest\022\020\n\010block_id\030\001 \001(\003\022\016\n\006cance" +
-      "l\030\002 \001(\010*.\n\013RequestType\022\021\n\rALLUXIO_BLOCK\020" +
-      "\000\022\014\n\010UFS_FILE\020\001"
+      "rver.CreateUfsFileOptions\022\r\n\005owner\030\010 \001(\t" +
+      "\"f\n\024CreateUfsFileOptions\022\020\n\010ufs_path\030\001 \001" +
+      "(\t\022\r\n\005owner\030\002 \001(\t\022\r\n\005group\030\003 \001(\t\022\014\n\004mode" +
+      "\030\004 \001(\005\022\020\n\010mount_id\030\005 \001(\003\"J\n\010Response\022-\n\006",
+      "status\030\001 \001(\0162\035.alluxio.proto.status.PSta" +
+      "tus\022\017\n\007message\030\002 \001(\t\"i\n\014ReadResponse\0229\n\004" +
+      "type\030\001 \001(\0162+.alluxio.proto.dataserver.Re" +
+      "adResponse.Type\"\036\n\004Type\022\026\n\022UFS_READ_HEAR" +
+      "TBEAT\020\001\"\013\n\tHeartbeat\":\n\025LocalBlockOpenRe" +
+      "quest\022\020\n\010block_id\030\001 \001(\003\022\017\n\007promote\030\002 \001(\010" +
+      "\"&\n\026LocalBlockOpenResponse\022\014\n\004path\030\001 \001(\t" +
+      "\"*\n\026LocalBlockCloseRequest\022\020\n\010block_id\030\001" +
+      " \001(\003\"~\n\027LocalBlockCreateRequest\022\020\n\010block" +
+      "_id\030\001 \001(\003\022\014\n\004tier\030\003 \001(\005\022\030\n\020space_to_rese",
+      "rve\030\004 \001(\003\022\032\n\022only_reserve_space\030\005 \001(\010\022\r\n" +
+      "\005owner\030\006 \001(\t\"(\n\030LocalBlockCreateResponse" +
+      "\022\014\n\004path\030\001 \001(\t\"=\n\031LocalBlockCompleteRequ" +
+      "est\022\020\n\010block_id\030\001 \001(\003\022\016\n\006cancel\030\002 \001(\010*.\n" +
+      "\013RequestType\022\021\n\rALLUXIO_BLOCK\020\000\022\014\n\010UFS_F" +
+      "ILE\020\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -9060,7 +9469,7 @@ public final class Protocol {
           internal_static_alluxio_proto_dataserver_WriteRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_alluxio_proto_dataserver_WriteRequest_descriptor,
-              new java.lang.String[] { "Type", "Id", "Offset", "Tier", "Eof", "Cancel", "CreateUfsFileOptions", });
+              new java.lang.String[] { "Type", "Id", "Offset", "Tier", "Eof", "Cancel", "CreateUfsFileOptions", "Owner", });
           internal_static_alluxio_proto_dataserver_CreateUfsFileOptions_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_alluxio_proto_dataserver_CreateUfsFileOptions_fieldAccessorTable = new
@@ -9108,7 +9517,7 @@ public final class Protocol {
           internal_static_alluxio_proto_dataserver_LocalBlockCreateRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_alluxio_proto_dataserver_LocalBlockCreateRequest_descriptor,
-              new java.lang.String[] { "BlockId", "Tier", "SpaceToReserve", "OnlyReserveSpace", });
+              new java.lang.String[] { "BlockId", "Tier", "SpaceToReserve", "OnlyReserveSpace", "Owner", });
           internal_static_alluxio_proto_dataserver_LocalBlockCreateResponse_descriptor =
             getDescriptor().getMessageTypes().get(11);
           internal_static_alluxio_proto_dataserver_LocalBlockCreateResponse_fieldAccessorTable = new

@@ -121,6 +121,8 @@ class ShortCircuitBlockWriteHandler extends ChannelInboundHandlerAdapter {
                 mSessionId = IdUtils.createSessionId();
                 String path = mBlockWorker.createBlock(mSessionId, request.getBlockId(),
                     mStorageTierAssoc.getAlias(request.getTier()), request.getSpaceToReserve());
+                //add by li
+                mBlockWorker.addBlockAndUserInfo(request.getOwner(), request.getBlockId());
                 Protocol.LocalBlockCreateResponse response =
                     Protocol.LocalBlockCreateResponse.newBuilder().setPath(path).build();
                 ctx.writeAndFlush(new RPCProtoMessage(new ProtoMessage(response)));

@@ -32,9 +32,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -55,6 +59,11 @@ public final class BlockMetadataManager {
 
   /** A map from tier alias to {@link StorageTier}. */
   private final Map<String, StorageTier> mAliasToTiers;
+
+  //add by li
+  private final ConcurrentHashMap<String, HashSet<Long>> mUserBlocksMap = new
+      ConcurrentHashMap<>();
+  private final ConcurrentHashMap<Long, HashSet<String>> mBlockUsersMap = new ConcurrentHashMap<>();
 
   private BlockMetadataManager() {
     try {
@@ -459,4 +468,31 @@ public final class BlockMetadataManager {
     StorageDir dir = tempBlockMeta.getParentDir();
     dir.resizeTempBlockMeta(tempBlockMeta, newSize);
   }
+
+  //=========================================add by li=============================================
+  public void addBlockForUser(String owner, long blockId) {
+    mUserBlocksMap.putIfAbsent(owner, new HashSet<Long>());
+    mUserBlocksMap.get(owner).add(blockId);
+  }
+
+  public void addUserForBlock(String owner, long blockId) {
+    mBlockUsersMap.putIfAbsent(blockId, new HashSet<String>());
+    mBlockUsersMap.get(blockId).add(owner);
+  }
+
+  public void removeUserBlockInfo(long blockId) {
+    if(mBlockUsersMap.containsKey(blockId)) {
+      HashSet<String> owners = mBlockUsersMap.get(blockId);
+      mBlockUsersMap.remove(blockId);
+      Iterator i = owners.iterator();
+      while(i.hasNext()) {
+        String owner = (String)i.next();
+        mUserBlocksMap.get(owner).remove(blockId);
+        if(mUserBlocksMap.get(owner).size() == 0) {
+          mUserBlocksMap.remove(owner);
+        }
+      }
+    }
+  }
+  //=========================================add by li=============================================
 }

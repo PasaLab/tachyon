@@ -53,6 +53,28 @@ public final class FileInfo implements Serializable {
   private ArrayList<FileBlockInfo> mFileBlockInfos = new ArrayList<>();
   private long mMountId;
   private int mInAlluxioPercentage;
+  //add by li
+
+  private boolean mIsShare = false;
+  private ArrayList<String> mOwners = new ArrayList<>();
+
+  public boolean isShare() {
+    return mIsShare;
+  }
+  public void setShare(boolean share) {
+    mIsShare = share;
+  }
+  public ArrayList<String> getmOwners() {
+    return mOwners;
+  }
+  public void addOwner(String owner) {
+    this.mOwners.add(owner);
+  }
+
+  public void addOwners(ArrayList<String> owners) {
+      mOwners = owners;
+  }
+
 
   /**
    * Creates a new instance of {@link FileInfo}.
@@ -95,6 +117,7 @@ public final class FileInfo implements Serializable {
     }
     mMountId = fileInfo.getMountId();
     mInAlluxioPercentage = fileInfo.getInAlluxioPercentage();
+    mIsShare = false;
   }
 
   /**
@@ -518,7 +541,7 @@ public final class FileInfo implements Serializable {
         mCreationTimeMs, mCompleted, mFolder, mPinned, mCacheable, mPersisted, mBlockIds,
         mInMemoryPercentage, mLastModificationTimeMs, mTtl, mOwner, mGroup, mMode,
         mPersistenceState, mMountPoint, fileBlockInfos, ThriftUtils.toThrift(mTtlAction), mMountId,
-        mInAlluxioPercentage);
+        mInAlluxioPercentage,mIsShare,mOwners);
     return info;
   }
 

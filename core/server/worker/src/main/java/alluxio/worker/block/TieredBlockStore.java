@@ -15,13 +15,16 @@ import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.StorageTierAssoc;
 import alluxio.WorkerStorageTierAssoc;
+import alluxio.collections.ConcurrentHashSet;
 import alluxio.collections.Pair;
 import alluxio.exception.BlockAlreadyExistsException;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.exception.ExceptionMessage;
 import alluxio.exception.InvalidWorkerStateException;
 import alluxio.exception.WorkerOutOfSpaceException;
+import alluxio.master.block.BlockId;
 import alluxio.resource.LockResource;
+import alluxio.thrift.BlockInfo;
 import alluxio.util.io.FileUtils;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
@@ -50,6 +53,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -475,6 +479,9 @@ public final class TieredBlockStore implements BlockStore {
 
     try (LockResource r = new LockResource(mMetadataWriteLock)) {
       mMetaManager.abortTempBlockMeta(tempBlockMeta);
+      //add by li
+      mMetaManager.removeUserBlockInfo(blockId);
+
     } catch (BlockDoesNotExistException e) {
       throw Throwables.propagate(e); // We shall never reach here
     }
@@ -806,9 +813,10 @@ public final class TieredBlockStore implements BlockStore {
       }
       // Heavy IO is guarded by block lock but not metadata lock. This may throw IOException.
       Files.delete(Paths.get(filePath));
-
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
         mMetaManager.removeBlockMeta(blockMeta);
+        mMetaManager.removeUserBlockInfo(blockId);
+
       } catch (BlockDoesNotExistException e) {
         throw Throwables.propagate(e); // we shall never reach here
       }
@@ -843,6 +851,15 @@ public final class TieredBlockStore implements BlockStore {
     synchronized (mPinnedInodes) {
       mPinnedInodes.clear();
       mPinnedInodes.addAll(Preconditions.checkNotNull(inodes));
+    }
+  }
+
+  //add by li
+  @Override
+  public void addBlockAndUserInfo(String owner, long blockId) {
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      mMetaManager.addBlockForUser(owner,blockId);
+      mMetaManager.addUserForBlock(owner,blockId);
     }
   }
 

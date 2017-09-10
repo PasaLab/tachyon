@@ -170,4 +170,11 @@ public final class BlockWriteHandler extends AbstractWriteHandler<BlockWriteRequ
       Preconditions.checkState(buf.readBytes(outputChannel, sz) == sz);
     }
   }
+
+  //add by li
+
+  @Override
+  protected void addBlockAndUserInfo(String user, long blockId) {
+    mWorker.addBlockAndUserInfo(user, blockId);
+  }
 }

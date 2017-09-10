@@ -389,4 +389,7 @@ public interface BlockWorker extends Worker, SessionCleanable {
   void closeUfsBlock(long sessionId, long blockId)
       throws BlockAlreadyExistsException, BlockDoesNotExistException, IOException,
       WorkerOutOfSpaceException;
+
+  //add by li
+  void addBlockAndUserInfo(String ower, long blockId);
 }

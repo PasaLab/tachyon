@@ -1291,6 +1291,9 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       mMountTable.checkUnderWritableMountPoint(path);
       deletedInodes = deleteAndJournal(inodePath, options, journalContext);
       auditContext.setSucceeded(true);
+      //add by li;
+      if(inodePath.getInode().isFile())
+        mInodeTree.deleteFromUser(inodePath);
     }
     deleteInodeBlocks(deletedInodes);
   }
@@ -1379,7 +1382,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       throw new InvalidPathException(ExceptionMessage.DELETE_ROOT_DIRECTORY.getMessage());
     }
 
-    List<Pair<AlluxioURI, Inode>> delInodes = new LinkedList<>();
+    List<Pair<AlluxioURI, Inode>> delInodes = new ArrayList<>();
     List<Inode<?>> deletedInodes = new ArrayList<>();
 
     Pair<AlluxioURI, Inode> inodePair = new Pair<AlluxioURI, Inode>(inodePath.getUri(), inode);
@@ -1459,6 +1462,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   }
 
   private void deleteInodeBlocks(List<Inode<?>> deletedInodes) {
+
     List<Long> deletedBlockIds = new ArrayList<>();
     for (Inode<?> inode : deletedInodes) {
       if (inode.isFile()) {
@@ -3098,6 +3102,31 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     return mBlockMaster.getWorkerInfoList();
   }
 
+  //=======================================add by li==========================================
+  //TODO(li) make it safe
+  @Override
+  public Set<Inode> getInfoByUser(String owner) {
+    return mInodeTree.getInfoByUser(owner);
+  }
+
+  @Override
+  public List<String> getUsersByUrl(AlluxioURI uri) throws InvalidPathException,
+      FileDoesNotExistException{
+    //only handle inodeFile
+    List<String> res = new ArrayList<>();
+    try (LockedInodePath inodePath = mInodeTree.lockInodePath(uri, InodeTree.LockMode.WRITE)){
+      res.addAll(inodePath.getInode().getOwners());
+      res.add(inodePath.getInode().getOwner());
+      return res;
+    }
+  }
+
+  @Override
+  public void addUser(String user, long fileId)  throws FileDoesNotExistException{
+    mInodeTree.addUser(user, fileId);
+
+  }
+  //=======================================add by li==========================================
   /**
    * Class that contains metrics for FileSystemMaster.
    * This class is public because the counter names are referenced in
@@ -3134,6 +3163,8 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     private static final Counter RENAME_PATH_OPS = MetricsSystem.masterCounter("RenamePathOps");
     private static final Counter SET_ATTRIBUTE_OPS = MetricsSystem.masterCounter("SetAttributeOps");
     private static final Counter UNMOUNT_OPS = MetricsSystem.masterCounter("UnmountOps");
+    //add by li
+    //private static final Counter ADD_USER_OPTS = MetricsSystem.masterCounter("addUserOpts");
 
     public static final String FILES_PINNED = "FilesPinned";
     public static final String PATHS_TOTAL = "PathsTotal";

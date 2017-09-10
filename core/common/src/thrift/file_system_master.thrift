@@ -78,6 +78,14 @@ struct LoadMetadataTResponse {
   1: i64 id
 }
 
+//add by li
+struct addUserTOptions {
+  1: string owner
+  2: i64 fileId
+}
+
+struct addUserTRseponse {}
+
 /**
 * Contains the information of a block in a file. In addition to the BlockInfo, it includes the
 * offset in the file, and the under file system locations of the block replicas.
@@ -115,6 +123,8 @@ struct FileInfo {
   24: common.TTtlAction ttlAction
   25: i64 mountId
   26: i32 inAlluxioPercentage
+  27: bool isShare
+  28: list<string> owners
 }
 
 struct MountTOptions {
@@ -342,6 +352,11 @@ service FileSystemMasterClientService extends common.AlluxioService {
     /** the method options */ 2: UnmountTOptions options,
     )
     throws (1: exception.AlluxioTException e)
+
+  addUserTRseponse addUser(
+  1: addUserTOptions options,
+    )
+   throws (1: exception.AlluxioTException e)
 }
 
 struct FileSystemHeartbeatTOptions {}

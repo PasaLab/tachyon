@@ -65,11 +65,14 @@ import alluxio.thrift.SetAttributeTOptions;
 import alluxio.thrift.SetAttributeTResponse;
 import alluxio.thrift.UnmountTOptions;
 import alluxio.thrift.UnmountTResponse;
+import alluxio.thrift.addUserTOptions;
+import alluxio.thrift.addUserTRseponse;
 import alluxio.wire.ThriftUtils;
 
 import alluxio.wire.MountPointInfo;
 
 import com.google.common.base.Preconditions;
+import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -421,4 +424,23 @@ public final class FileSystemMasterClientServiceHandler implements
       }
     });
   }
+
+  @Override
+  public addUserTRseponse addUser(final addUserTOptions options)
+      throws AlluxioTException, TException {
+    return RpcUtils.callAndLog(LOG, new RpcCallableThrowsIOException<addUserTRseponse>() {
+      @Override
+      public addUserTRseponse call() throws AlluxioException, IOException {
+        mFileSystemMaster.addUser(options.getOwner(), options.getFileId());
+        return new addUserTRseponse();
+      }
+
+      @Override
+      public String toString() {
+        return String.format("addUser: alluxioPath=%s, user=%s", options.getFileId(),
+            options.getOwner());
+      }
+    });
+  }
+
 }
