@@ -174,7 +174,7 @@ public final class BlockWriteHandler extends AbstractWriteHandler<BlockWriteRequ
   //add by li
 
   @Override
-  protected void addBlockForUser(String user, long blockId) {
-    mWorker.addBlockForUser(user, blockId);
+  protected void addBlockAndUserInfo(String user, long blockId) {
+    mWorker.addBlockAndUserInfo(user, blockId);
   }
 }

@@ -495,8 +495,8 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
 
   //add by li
   @Override
-  public void addBlockForUser(String ower, long blockId) {
-    mBlockStore.addBlockForUser(ower, blockId);
+  public void addBlockAndUserInfo(String ower, long blockId) {
+    mBlockStore.addBlockAndUserInfo(ower, blockId);
   }
 
   @Override

@@ -143,7 +143,7 @@ abstract class AbstractWriteHandler<T extends WriteRequestContext<?>>
         // update error in context.
         Preconditions.checkState(isNewContextCreated);
         initRequestContext(mContext);
-        addBlockForUser(writeRequest.getOwner(), writeRequest.getId());
+        addBlockAndUserInfo(writeRequest.getOwner(), writeRequest.getId());
       }
 
       // Validate the write request.
@@ -472,5 +472,5 @@ abstract class AbstractWriteHandler<T extends WriteRequestContext<?>>
   }
 
   //add by li
-  protected abstract void addBlockForUser(String user, long blockId);
+  protected abstract void addBlockAndUserInfo(String user, long blockId);
 }

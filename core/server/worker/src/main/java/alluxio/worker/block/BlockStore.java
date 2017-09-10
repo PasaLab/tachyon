@@ -342,5 +342,5 @@ public interface BlockStore extends SessionCleanable {
   void updatePinnedInodes(Set<Long> inodes);
 
   //add by li
-  void addBlockForUser(String owner, long blockId);
+  void addBlockAndUserInfo(String owner, long blockId);
 }

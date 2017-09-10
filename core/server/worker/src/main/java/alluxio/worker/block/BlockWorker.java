@@ -391,5 +391,5 @@ public interface BlockWorker extends Worker, SessionCleanable {
       WorkerOutOfSpaceException;
 
   //add by li
-  void addBlockForUser(String ower, long blockId);
+  void addBlockAndUserInfo(String ower, long blockId);
 }

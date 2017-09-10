@@ -479,6 +479,9 @@ public final class TieredBlockStore implements BlockStore {
 
     try (LockResource r = new LockResource(mMetadataWriteLock)) {
       mMetaManager.abortTempBlockMeta(tempBlockMeta);
+      //add by li
+      mMetaManager.removeUserBlockInfo(blockId);
+
     } catch (BlockDoesNotExistException e) {
       throw Throwables.propagate(e); // We shall never reach here
     }
@@ -810,9 +813,10 @@ public final class TieredBlockStore implements BlockStore {
       }
       // Heavy IO is guarded by block lock but not metadata lock. This may throw IOException.
       Files.delete(Paths.get(filePath));
-
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
         mMetaManager.removeBlockMeta(blockMeta);
+        mMetaManager.removeUserBlockInfo(blockId);
+
       } catch (BlockDoesNotExistException e) {
         throw Throwables.propagate(e); // we shall never reach here
       }
@@ -852,9 +856,10 @@ public final class TieredBlockStore implements BlockStore {
 
   //add by li
   @Override
-  public void addBlockForUser(String owner, long blockId) {
+  public void addBlockAndUserInfo(String owner, long blockId) {
     try (LockResource r = new LockResource(mMetadataReadLock)) {
       mMetaManager.addBlockForUser(owner,blockId);
+      mMetaManager.addUserForBlock(owner,blockId);
     }
   }
 

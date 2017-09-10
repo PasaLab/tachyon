@@ -162,4 +162,8 @@ public final class UfsFileWriteHandler extends AbstractWriteHandler<UfsFileWrite
       context.setCounter(counter);
     }
   }
+
+  @Override
+  protected void addBlockAndUserInfo(String user, long blockId) {
+  }
 }
