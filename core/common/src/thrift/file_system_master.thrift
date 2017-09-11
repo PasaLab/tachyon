@@ -86,6 +86,14 @@ struct addUserTOptions {
 
 struct addUserTRseponse {}
 
+struct getUserWorkersTOptions {
+  1: string user
+}
+
+struct getUserWorkersTResponse {
+  1: list<common.WorkerNetAddress> workerList
+}
+
 /**
 * Contains the information of a block in a file. In addition to the BlockInfo, it includes the
 * offset in the file, and the under file system locations of the block replicas.
@@ -353,10 +361,16 @@ service FileSystemMasterClientService extends common.AlluxioService {
     )
     throws (1: exception.AlluxioTException e)
 
+  //add by li
   addUserTRseponse addUser(
   1: addUserTOptions options,
     )
-   throws (1: exception.AlluxioTException e)
+    throws (1: exception.AlluxioTException e)
+
+  getUserWorkersTResponse getUserWorkers(
+  1: getUserWorkersTOptions options,
+    )
+    throws (1: exception.AlluxioTException e)
 }
 
 struct FileSystemHeartbeatTOptions {}

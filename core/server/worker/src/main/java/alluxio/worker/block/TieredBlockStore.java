@@ -11,6 +11,7 @@
 
 package alluxio.worker.block;
 
+import alluxio.ClientPolicy;
 import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.StorageTierAssoc;
@@ -114,6 +115,9 @@ public final class TieredBlockStore implements BlockStore {
 
   /** Association between storage tier aliases and ordinals. */
   private final StorageTierAssoc mStorageTierAssoc;
+
+  //add by li
+  private final ConcurrentHashMap<String, Evictor> mUserEvictor = new ConcurrentHashMap<>();
 
   /**
    * Creates a new instance of {@link TieredBlockStore}.
@@ -816,8 +820,8 @@ public final class TieredBlockStore implements BlockStore {
       Files.delete(Paths.get(filePath));
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
         mMetaManager.removeBlockMeta(blockMeta);
+        //add by li
         mMetaManager.removeUserBlockInfo(blockId);
-
       } catch (BlockDoesNotExistException e) {
         throw Throwables.propagate(e); // we shall never reach here
       }
@@ -879,6 +883,12 @@ public final class TieredBlockStore implements BlockStore {
     }
     DelayExecutor delayExecutor = new DelayExecutor(users, len);
     delayExecutor.delay();
+  }
+
+  @Override
+  public void setPolicy(String user, ClientPolicy policy) {
+    if(policy.)
+
   }
 
   /**

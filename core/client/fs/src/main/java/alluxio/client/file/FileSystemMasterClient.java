@@ -13,6 +13,7 @@ package alluxio.client.file;
 
 import alluxio.AlluxioURI;
 import alluxio.Client;
+import alluxio.ClientPolicy;
 import alluxio.client.file.options.CheckConsistencyOptions;
 import alluxio.client.file.options.CompleteFileOptions;
 import alluxio.client.file.options.CreateDirectoryOptions;
@@ -193,4 +194,6 @@ public interface FileSystemMasterClient extends Client {
 
   //add by li
   void addUser(String owner, long fileId) throws IOException;
+
+  List<alluxio.thrift.WorkerNetAddress>  getUserWorkers(String user) throws IOException;
 }

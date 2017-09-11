@@ -33,6 +33,7 @@ import alluxio.master.MasterRegistry;
 import alluxio.master.block.BlockMaster;
 import alluxio.master.block.BlockMasterFactory;
 import alluxio.master.file.meta.Inode;
+import alluxio.master.file.meta.InodeFile;
 import alluxio.master.file.meta.PersistenceState;
 import alluxio.master.file.meta.TtlIntervalRule;
 import alluxio.master.file.options.CompleteFileOptions;
@@ -261,10 +262,10 @@ public final class FileSystemMasterTest {
     createFileByUser("tester", testUrl2);
     createFileByUser("tester", testUrl3);
 
-    Set<Inode> s = mFileSystemMaster.getInfoByUser("tester");
+    HashSet<InodeFile> s = mFileSystemMaster.getInfoByUser("tester");
 
     Set<AlluxioURI> tempSet = new HashSet<>();
-    Iterator<Inode> i = s.iterator();
+    Iterator<InodeFile> i = s.iterator();
     while(i.hasNext()) {
       Inode t = i.next();
       tempSet.add(mFileSystemMaster.getPath(t.getId()));
@@ -282,7 +283,7 @@ public final class FileSystemMasterTest {
 
     tempSet.clear();
     s = mFileSystemMaster.getInfoByUser("tester");
-    Iterator<Inode> i1 = s.iterator();
+    Iterator<InodeFile> i1 = s.iterator();
     while(i1.hasNext()) {
       Inode t = i1.next();
       tempSet.add(mFileSystemMaster.getPath(t.getId()));
@@ -322,12 +323,12 @@ public final class FileSystemMasterTest {
     }
     Set<AlluxioURI> tempSet = new HashSet<>();
 
-    Set<Inode> s = mFileSystemMaster.getInfoByUser("tester");
+    HashSet<InodeFile> s = mFileSystemMaster.getInfoByUser("tester");
 
     s.addAll(mFileSystemMaster.getInfoByUser("tester2"));
     s.addAll(mFileSystemMaster.getInfoByUser("tester3"));
     s.addAll(mFileSystemMaster.getInfoByUser("tester4"));
-    Iterator<Inode> i1 = s.iterator();
+    Iterator<InodeFile> i1 = s.iterator();
     while(i1.hasNext()) {
       Inode t = i1.next();
       tempSet.add(mFileSystemMaster.getPath(t.getId()));

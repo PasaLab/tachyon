@@ -12,6 +12,7 @@
 package alluxio.master.file;
 
 import alluxio.AlluxioURI;
+import alluxio.ClientPolicy;
 import alluxio.Configuration;
 import alluxio.Constants;
 import alluxio.PropertyKey;
@@ -124,6 +125,8 @@ import alluxio.wire.MountPointInfo;
 import alluxio.wire.TtlAction;
 import alluxio.wire.WorkerInfo;
 
+import alluxio.wire.WorkerNetAddress;
+import alluxio.worker.Worker;
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.Gauge;
 import com.google.common.base.Preconditions;
@@ -133,6 +136,7 @@ import com.google.common.collect.Iterators;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.http.message.BasicLineFormatter;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -152,6 +156,7 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -323,6 +328,9 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
    * Log writer for user access audit log.
    */
   private AsyncUserAccessAuditLogWriter mAsyncAuditLogWriter;
+
+  private ConcurrentHashMap<String, ConcurrentHashMap<Long, Integer>> mUserWorkerInfo = new
+      ConcurrentHashMap<>();
 
   /**
    * Creates a new instance of {@link DefaultFileSystemMaster}.
@@ -1177,6 +1185,10 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       mUfsAbsentPathCache.processExisting(inodePath.getUri().getParent());
     }
 
+    //add by li
+    updateUserWorkerInfo(createResult.getCreated());
+
+
     Metrics.FILES_CREATED.inc();
     Metrics.DIRECTORIES_CREATED.inc();
     return createResult;
@@ -1292,8 +1304,10 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
       deletedInodes = deleteAndJournal(inodePath, options, journalContext);
       auditContext.setSucceeded(true);
       //add by li;
-      if(inodePath.getInode().isFile())
+      if(inodePath.getInode().isFile()) {
         mInodeTree.deleteFromUser(inodePath);
+        deleteUserWorkerInfo(inodePath.getInode());
+      }
     }
     deleteInodeBlocks(deletedInodes);
   }
@@ -3105,7 +3119,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   //=======================================add by li==========================================
   //TODO(li) make it safe
   @Override
-  public Set<Inode> getInfoByUser(String owner) {
+  public HashSet<InodeFile> getInfoByUser(String owner) {
     return mInodeTree.getInfoByUser(owner);
   }
 
@@ -3124,7 +3138,78 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   @Override
   public void addUser(String user, long fileId)  throws FileDoesNotExistException{
     mInodeTree.addUser(user, fileId);
+    Inode<?> inode = mInodeTree.getInodeByFileId(fileId);
+    updateUserWorkerInfoSingle(inode);
+  }
 
+  @Override
+  public List<alluxio.thrift.WorkerNetAddress> getUserWorkers(String user) {
+    List<Long> workers = getUserWorkerId(user);
+    List<alluxio.thrift.WorkerNetAddress> res = new ArrayList<>();
+    for(long worker : workers) {
+      WorkerNetAddress add = mBlockMaster.getWorkerAddressById(worker);
+      res.add(add.toThrift());
+    }
+    return res;
+  }
+
+  //TODO(li) make threadsafe
+  private void updateUserWorkerInfo(List<Inode<?>> nodeList) {
+    for(Inode i : nodeList) {
+      updateUserWorkerInfoSingle(i);
+    }
+  }
+
+  //TODO(li) make thread safe
+  private void updateUserWorkerInfoSingle(Inode<?> inode) {
+    if( inode instanceof  InodeFile) {
+      List<Long> blockIds = ((InodeFile) inode).getBlockIds();
+      for(Long id : blockIds) {
+        try {
+          List<BlockLocation> location = mBlockMaster.getBlockInfo(id).getLocations();
+          for (BlockLocation loca : location) {
+            if (mUserWorkerInfo.get(inode.getOwner()).containsKey(loca.getWorkerId())) {
+              int blockNum = mUserWorkerInfo.get(inode.getOwner()).get(loca.getWorkerId());
+              mUserWorkerInfo.get(inode.getOwner()).put(loca.getWorkerId(), blockNum+1);
+            }
+            else {
+              ConcurrentHashMap<Long, Integer> map = new ConcurrentHashMap<>();
+              map.put(loca.getWorkerId(), 1);
+              mUserWorkerInfo.put(inode.getOwner(), map);
+            }
+          }
+        } catch (BlockInfoException e) {
+          //TODO(li)
+        }
+      }
+    }
+  }
+
+  private void deleteUserWorkerInfo(Inode<?> inode) {
+    List<Long> blockIds = ((InodeFile) inode).getBlockIds();
+    for(Long id : blockIds) {
+      try {
+        List<BlockLocation> location = mBlockMaster.getBlockInfo(id).getLocations();
+        for (BlockLocation loca : location) {
+          int blockNum = mUserWorkerInfo.get(inode.getOwner()).get(loca.getWorkerId()) - 1;
+          if (blockNum == 0) {
+            mUserWorkerInfo.remove(inode.getOwner());
+          } else {
+            mUserWorkerInfo.get(inode.getOwner()).put(loca.getWorkerId(), blockNum);
+          }
+        }
+      } catch (BlockInfoException e) {
+        //TODO(li)
+      }
+    }
+  }
+
+  private List<Long> getUserWorkerId(String user) {
+    List<Long> res = new ArrayList<>();
+    for(Map.Entry entry : mUserWorkerInfo.get(user).entrySet()) {
+      res.add((Long)entry.getKey());
+    }
+    return res;
   }
   //=======================================add by li==========================================
   /**

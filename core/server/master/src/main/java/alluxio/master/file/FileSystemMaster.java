@@ -12,6 +12,7 @@
 package alluxio.master.file;
 
 import alluxio.AlluxioURI;
+import alluxio.ClientPolicy;
 import alluxio.exception.AccessControlException;
 import alluxio.exception.AlluxioException;
 import alluxio.exception.BlockInfoException;
@@ -25,6 +26,7 @@ import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.master.Master;
 import alluxio.master.file.meta.FileSystemMasterView;
 import alluxio.master.file.meta.Inode;
+import alluxio.master.file.meta.InodeFile;
 import alluxio.master.file.meta.PersistenceState;
 import alluxio.master.file.options.CheckConsistencyOptions;
 import alluxio.master.file.options.CompleteFileOptions;
@@ -47,6 +49,7 @@ import alluxio.wire.TtlAction;
 import alluxio.wire.WorkerInfo;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -487,11 +490,14 @@ public interface FileSystemMaster extends Master {
   List<WorkerInfo> getWorkerInfoList();
 
   //add by li
-  Set<Inode> getInfoByUser(String owner);
+  HashSet<InodeFile> getInfoByUser(String owner);
 
   void addUser(String user, long fileId) throws FileDoesNotExistException ;
 
   List<String> getUsersByUrl(AlluxioURI uri) throws InvalidPathException,
       FileDoesNotExistException;
+
+  //only set once
+  List<alluxio.thrift.WorkerNetAddress> getUserWorkers(String user);
 
 }

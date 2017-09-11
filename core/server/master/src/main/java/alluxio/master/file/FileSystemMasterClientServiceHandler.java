@@ -12,6 +12,7 @@
 package alluxio.master.file;
 
 import alluxio.AlluxioURI;
+import alluxio.ClientPolicy;
 import alluxio.Constants;
 import alluxio.RpcUtils;
 import alluxio.RpcUtils.RpcCallable;
@@ -67,6 +68,8 @@ import alluxio.thrift.UnmountTOptions;
 import alluxio.thrift.UnmountTResponse;
 import alluxio.thrift.addUserTOptions;
 import alluxio.thrift.addUserTRseponse;
+import alluxio.thrift.getUserWorkersTOptions;
+import alluxio.thrift.getUserWorkersTResponse;
 import alluxio.wire.ThriftUtils;
 
 import alluxio.wire.MountPointInfo;
@@ -425,6 +428,7 @@ public final class FileSystemMasterClientServiceHandler implements
     });
   }
 
+  //add by li
   @Override
   public addUserTRseponse addUser(final addUserTOptions options)
       throws AlluxioTException, TException {
@@ -439,6 +443,23 @@ public final class FileSystemMasterClientServiceHandler implements
       public String toString() {
         return String.format("addUser: alluxioPath=%s, user=%s", options.getFileId(),
             options.getOwner());
+      }
+    });
+  }
+
+  @Override
+  public getUserWorkersTResponse getUserWorkers(final getUserWorkersTOptions options) throws
+      AlluxioTException, TException {
+    return RpcUtils.callAndLog(LOG, new RpcCallableThrowsIOException<getUserWorkersTResponse>() {
+      @Override
+      public getUserWorkersTResponse call() throws AlluxioException, IOException {
+        mFileSystemMaster.getUserWorkers(options.getUser());
+        return new getUserWorkersTResponse();
+      }
+
+      @Override
+      public String toString() {
+        return String.format("setPolicy: option=%s", options);
       }
     });
   }

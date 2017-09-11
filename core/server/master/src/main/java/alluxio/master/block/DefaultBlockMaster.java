@@ -758,6 +758,12 @@ public final class DefaultBlockMaster extends AbstractMaster implements BlockMas
     mLostBlocks.addAll(blockIds);
   }
 
+  //add by li
+  @Override
+  public WorkerNetAddress getWorkerAddressById(long workerId) {
+    return mWorkers.getFirstByField(ID_INDEX, workerId).getWorkerAddress();
+  }
+
   /**
    * Lost worker periodic check.
    */

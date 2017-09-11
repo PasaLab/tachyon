@@ -11,6 +11,7 @@
 
 package alluxio.worker.block;
 
+import alluxio.ClientPolicy;
 import alluxio.exception.BlockAlreadyExistsException;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.exception.InvalidWorkerStateException;
@@ -394,4 +395,6 @@ public interface BlockWorker extends Worker, SessionCleanable {
   void addBlockAndUserInfo(String ower, long blockId);
 
   void FairRideDelay(String user, long blockId, int len);
+
+  void setPolicy(String user, ClientPolicy policy);
 }

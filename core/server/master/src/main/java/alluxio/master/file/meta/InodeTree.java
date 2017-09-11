@@ -699,6 +699,7 @@ public class InodeTree implements JournalEntryIterable {
 
         // Update state while holding the write lock.
         mInodes.add(lastInode);
+        //add by li
         if (lastInode instanceof InodeFile) {
           putFile(options.getOwner(), (InodeFile)lastInode);
         }
@@ -1213,8 +1214,8 @@ public class InodeTree implements JournalEntryIterable {
     mUserFileLists.get(owner).add(inodeFile);
   }
 
-  public Set<Inode> getInfoByUser(String owner) {
-    return (Set)mUserFileLists.get(owner);
+  public HashSet<InodeFile> getInfoByUser(String owner) {
+    return mUserFileLists.get(owner);
   }
 
   public void deleteFromUser(LockedInodePath inodePath) {
@@ -1241,6 +1242,10 @@ public class InodeTree implements JournalEntryIterable {
     inode.addUser(user);
     putFile(user, (InodeFile)inode);
     inode.unlockWrite();
+  }
+
+  public Inode<?> getInodeByFileId(long fileId) {
+    return mInodes.getFirst(fileId);
   }
   /*===============================add By Li==================================================*/
 

@@ -35,6 +35,7 @@ import alluxio.thrift.RenameTOptions;
 import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
 import alluxio.thrift.UnmountTOptions;
 import alluxio.thrift.addUserTOptions;
+import alluxio.thrift.getUserWorkersTOptions;
 import alluxio.wire.MountPointInfo;
 import alluxio.wire.ThriftUtils;
 
@@ -305,4 +306,16 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
       }
     });
   }
+
+  @Override
+  public synchronized List<alluxio.thrift.WorkerNetAddress> getUserWorkers(final String user)
+      throws IOException {
+    return retryRPC(new RpcCallable<List<alluxio.thrift.WorkerNetAddress>>() {
+      @Override
+      public List<alluxio.thrift.WorkerNetAddress> call() throws TException {
+        return mClient.getUserWorkers(new getUserWorkersTOptions(user)).getWorkerList();
+      }
+    });
+  }
+
 }

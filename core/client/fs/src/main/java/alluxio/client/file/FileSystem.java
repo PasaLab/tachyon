@@ -12,6 +12,7 @@
 package alluxio.client.file;
 
 import alluxio.AlluxioURI;
+import alluxio.ClientPolicy;
 import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.annotation.PublicApi;
@@ -359,5 +360,6 @@ public interface FileSystem {
   void addUserForFile(AlluxioURI path, String owner)
       throws FileDoesNotExistException, IOException, AlluxioException;
 
+  void setPolicy(ClientPolicy policy, String user) throws IOException;
 
 }

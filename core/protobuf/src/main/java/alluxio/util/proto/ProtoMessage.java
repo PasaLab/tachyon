@@ -114,6 +114,12 @@ public final class ProtoMessage {
     mMessage = heartbeat;
   }
 
+  //add by li
+  public ProtoMessage(Protocol.SetPolicyRequest request) {
+    mMessage = request;
+  }
+
+
   /**
    * Gets the read request or throws runtime exception if mMessage is not of type
    * {@link Protocol.ReadRequest}.
@@ -220,6 +226,17 @@ public final class ProtoMessage {
    */
   public boolean isLocalBlockOpenResponse() {
     return mMessage instanceof Protocol.LocalBlockOpenResponse;
+  }
+
+  //add by li
+  public boolean isSetPolicyRequest() {
+    return mMessage instanceof Protocol.SetPolicyRequest;
+  }
+
+  public Protocol.SetPolicyRequest asSetPolicyRequest() {
+    Preconditions.checkState(mMessage instanceof Protocol.SetPolicyRequest);
+
+    return (Protocol.SetPolicyRequest) mMessage;
   }
 
   /**

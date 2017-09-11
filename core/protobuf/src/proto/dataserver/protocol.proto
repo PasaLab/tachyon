@@ -11,6 +11,12 @@ enum RequestType {
   UFS_FILE = 1;
 }
 
+enum PolicyType {
+  LRU = 0;
+  GREDDY = 1;
+  LFU = 2;
+}
+
 // The read request.
 // next available id: 8
 message ReadRequest {
@@ -139,4 +145,10 @@ message LocalBlockCreateResponse {
 message LocalBlockCompleteRequest {
   optional int64 block_id = 1;
   optional bool cancel = 2;
+}
+
+//add by li
+message SetPolicyRequest {
+  optional string user = 1;
+  optional PolicyType policyType = 2;
 }

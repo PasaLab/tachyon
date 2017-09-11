@@ -12,6 +12,7 @@
 package alluxio.client.file;
 
 import alluxio.AlluxioURI;
+import alluxio.ClientPolicy;
 import alluxio.annotation.PublicApi;
 import alluxio.client.file.options.CreateDirectoryOptions;
 import alluxio.client.file.options.CreateFileOptions;
@@ -28,6 +29,8 @@ import alluxio.client.file.options.OutStreamOptions;
 import alluxio.client.file.options.RenameOptions;
 import alluxio.client.file.options.SetAttributeOptions;
 import alluxio.client.file.options.UnmountOptions;
+import alluxio.client.netty.NettyRPC;
+import alluxio.client.netty.NettyRPCContext;
 import alluxio.exception.AlluxioException;
 import alluxio.exception.DirectoryNotEmptyException;
 import alluxio.exception.ExceptionMessage;
@@ -40,10 +43,15 @@ import alluxio.exception.status.FailedPreconditionException;
 import alluxio.exception.status.InvalidArgumentException;
 import alluxio.exception.status.NotFoundException;
 import alluxio.exception.status.UnavailableException;
-import alluxio.wire.FileInfo;
+import alluxio.proto.dataserver.Protocol;
+import alluxio.util.proto.ProtoMessage;
 import alluxio.wire.LoadMetadataType;
 import alluxio.wire.MountPointInfo;
 
+import alluxio.wire.WorkerNetAddress;
+import com.google.common.base.Preconditions;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -445,5 +453,33 @@ public class BaseFileSystem implements FileSystem {
     } finally {
       mFileSystemContext.releaseMasterClient(masterClient);
     };
+  }
+
+  @Override
+  public void setPolicy(ClientPolicy policy, String user) throws IOException{
+    FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
+    try {
+      List<alluxio.thrift.WorkerNetAddress> res = masterClient.getUserWorkers(user);
+      for(alluxio.thrift.WorkerNetAddress addr : res) {
+        WorkerNetAddress workerNetAddress = new WorkerNetAddress(addr);
+        Channel channel = mFileSystemContext.acquireNettyChannel(new WorkerNetAddress(addr));
+        Protocol.SetPolicyRequest request =
+            Protocol.SetPolicyRequest.newBuilder().setUser(user)
+                .setPolicyType(policy.toProto()).build();
+        try {
+          ProtoMessage message = NettyRPC
+              .call(NettyRPCContext.defaults().setChannel(channel),
+                  new ProtoMessage(request));
+        } catch (Exception e) {
+          mFileSystemContext.releaseNettyChannel(workerNetAddress, channel);
+          throw e;
+        }
+      }
+    } catch (IOException e) {
+      throw e;
+    }
+    finally {
+      mFileSystemContext.releaseMasterClient(masterClient);
+    }
   }
 }

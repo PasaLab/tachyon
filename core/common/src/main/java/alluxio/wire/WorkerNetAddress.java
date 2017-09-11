@@ -44,7 +44,7 @@ public final class WorkerNetAddress implements Serializable {
    *
    * @param workerNetAddress the thrift net address
    */
-  protected WorkerNetAddress(alluxio.thrift.WorkerNetAddress workerNetAddress) {
+  public WorkerNetAddress(alluxio.thrift.WorkerNetAddress workerNetAddress) {
     mHost = workerNetAddress.getHost();
     mRpcPort = workerNetAddress.getRpcPort();
     mDataPort = workerNetAddress.getDataPort();
@@ -136,7 +136,7 @@ public final class WorkerNetAddress implements Serializable {
   /**
    * @return a net address of thrift construct
    */
-  protected alluxio.thrift.WorkerNetAddress toThrift() {
+  public alluxio.thrift.WorkerNetAddress toThrift() {
     return new alluxio.thrift.WorkerNetAddress(mHost, mRpcPort, mDataPort, mWebPort,
         mDomainSocketPath);
   }
