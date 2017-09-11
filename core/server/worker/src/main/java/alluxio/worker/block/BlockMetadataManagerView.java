@@ -225,4 +225,8 @@ public class BlockMetadataManagerView {
       return null;
     }
   }
+
+  public boolean isUserOwnBlock(String user, long blockId) {
+    return mMetadataManager.isUserOwnBlock(user, blockId);
+  }
 }
