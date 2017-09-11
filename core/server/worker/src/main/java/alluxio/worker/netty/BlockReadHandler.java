@@ -98,11 +98,11 @@ public final class BlockReadHandler extends AbstractReadHandler<BlockReadRequest
     @Override
     protected DataBuffer getDataBuffer(BlockReadRequestContext context, Channel channel,
         long offset, int len) throws Exception {
-      //add by li
-      mWorker.FairRideDelay(context.getRequest().getUser(), context.getRequest().getId(), len);
       openBlock(context, channel);
       BlockReader blockReader = context.getBlockReader();
       Preconditions.checkState(blockReader != null);
+      //add by li
+      mWorker.FairRideDelay(context.getRequest().getUser(), context.getRequest().getId(), len);
       if (mTransferType == FileTransferType.TRANSFER
           && (blockReader instanceof LocalFileBlockReader)) {
         return new DataFileChannel(new File(((LocalFileBlockReader) blockReader).getFilePath()),

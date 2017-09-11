@@ -207,6 +207,33 @@ public final class Protocol {
      * </pre>
      */
     alluxio.proto.dataserver.Protocol.OpenUfsBlockOptionsOrBuilder getOpenUfsBlockOptionsOrBuilder();
+
+    // optional string user = 8;
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    boolean hasUser();
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    java.lang.String getUser();
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getUserBytes();
   }
   /**
    * Protobuf type {@code alluxio.proto.dataserver.ReadRequest}
@@ -305,6 +332,11 @@ public final class Protocol {
             case 56: {
               bitField0_ |= 0x00000010;
               promote_ = input.readBool();
+              break;
+            }
+            case 66: {
+              bitField0_ |= 0x00000080;
+              user_ = input.readBytes();
               break;
             }
           }
@@ -501,6 +533,61 @@ public final class Protocol {
       return openUfsBlockOptions_;
     }
 
+    // optional string user = 8;
+    public static final int USER_FIELD_NUMBER = 8;
+    private java.lang.Object user_;
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public boolean hasUser() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public java.lang.String getUser() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          user_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string user = 8;</code>
+     *
+     * <pre>
+     *add by li
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getUserBytes() {
+      java.lang.Object ref = user_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        user_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       blockId_ = 0L;
       offset_ = 0L;
@@ -509,6 +596,7 @@ public final class Protocol {
       promote_ = false;
       packetSize_ = 0L;
       openUfsBlockOptions_ = alluxio.proto.dataserver.Protocol.OpenUfsBlockOptions.getDefaultInstance();
+      user_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -542,6 +630,9 @@ public final class Protocol {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBool(7, promote_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, getUserBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -579,6 +670,10 @@ public final class Protocol {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, promote_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, getUserBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -720,6 +815,8 @@ public final class Protocol {
           openUfsBlockOptionsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
+        user_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -780,6 +877,10 @@ public final class Protocol {
         } else {
           result.openUfsBlockOptions_ = openUfsBlockOptionsBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.user_ = user_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -816,6 +917,11 @@ public final class Protocol {
         }
         if (other.hasOpenUfsBlockOptions()) {
           mergeOpenUfsBlockOptions(other.getOpenUfsBlockOptions());
+        }
+        if (other.hasUser()) {
+          bitField0_ |= 0x00000080;
+          user_ = other.user_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1241,6 +1347,104 @@ public final class Protocol {
           openUfsBlockOptions_ = null;
         }
         return openUfsBlockOptionsBuilder_;
+      }
+
+      // optional string user = 8;
+      private java.lang.Object user_ = "";
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public boolean hasUser() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public java.lang.String getUser() {
+        java.lang.Object ref = user_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          user_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getUserBytes() {
+        java.lang.Object ref = user_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          user_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setUser(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        user_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder clearUser() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        user_ = getDefaultInstance().getUser();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string user = 8;</code>
+       *
+       * <pre>
+       *add by li
+       * </pre>
+       */
+      public Builder setUserBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        user_ = value;
+        onChanged();
+        return this;
       }
 
       // @@protoc_insertion_point(builder_scope:alluxio.proto.dataserver.ReadRequest)
@@ -9411,41 +9615,41 @@ public final class Protocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\031dataserver/protocol.proto\022\030alluxio.pro" +
-      "to.dataserver\032\027dataserver/status.proto\"\304" +
+      "to.dataserver\032\027dataserver/status.proto\"\322" +
       "\001\n\013ReadRequest\022\020\n\010block_id\030\001 \001(\003\022\016\n\006offs" +
       "et\030\002 \001(\003\022\016\n\006length\030\003 \001(\003\022\016\n\006cancel\030\004 \001(\010" +
       "\022\017\n\007promote\030\007 \001(\010\022\023\n\013packet_size\030\005 \001(\003\022M" +
       "\n\026open_ufs_block_options\030\006 \001(\0132-.alluxio" +
-      ".proto.dataserver.OpenUfsBlockOptions\"\243\001" +
-      "\n\023OpenUfsBlockOptions\022\020\n\010ufs_path\030\001 \001(\t\022" +
-      "\026\n\016offset_in_file\030\002 \001(\003\022\022\n\nblock_size\030\003 " +
-      "\001(\003\022\035\n\025maxUfsReadConcurrency\030\004 \001(\005\022\017\n\007mo",
-      "untId\030\005 \001(\003\022\020\n\010no_cache\030\006 \001(\010\022\014\n\004user\030\007 " +
-      "\001(\t\"\352\001\n\014WriteRequest\0223\n\004type\030\001 \001(\0162%.all" +
-      "uxio.proto.dataserver.RequestType\022\n\n\002id\030" +
-      "\002 \001(\003\022\016\n\006offset\030\003 \001(\003\022\014\n\004tier\030\004 \001(\005\022\013\n\003e" +
-      "of\030\005 \001(\010\022\016\n\006cancel\030\006 \001(\010\022O\n\027create_ufs_f" +
-      "ile_options\030\007 \001(\0132..alluxio.proto.datase" +
-      "rver.CreateUfsFileOptions\022\r\n\005owner\030\010 \001(\t" +
-      "\"f\n\024CreateUfsFileOptions\022\020\n\010ufs_path\030\001 \001" +
-      "(\t\022\r\n\005owner\030\002 \001(\t\022\r\n\005group\030\003 \001(\t\022\014\n\004mode" +
-      "\030\004 \001(\005\022\020\n\010mount_id\030\005 \001(\003\"J\n\010Response\022-\n\006",
-      "status\030\001 \001(\0162\035.alluxio.proto.status.PSta" +
-      "tus\022\017\n\007message\030\002 \001(\t\"i\n\014ReadResponse\0229\n\004" +
-      "type\030\001 \001(\0162+.alluxio.proto.dataserver.Re" +
-      "adResponse.Type\"\036\n\004Type\022\026\n\022UFS_READ_HEAR" +
-      "TBEAT\020\001\"\013\n\tHeartbeat\":\n\025LocalBlockOpenRe" +
-      "quest\022\020\n\010block_id\030\001 \001(\003\022\017\n\007promote\030\002 \001(\010" +
-      "\"&\n\026LocalBlockOpenResponse\022\014\n\004path\030\001 \001(\t" +
-      "\"*\n\026LocalBlockCloseRequest\022\020\n\010block_id\030\001" +
-      " \001(\003\"~\n\027LocalBlockCreateRequest\022\020\n\010block" +
-      "_id\030\001 \001(\003\022\014\n\004tier\030\003 \001(\005\022\030\n\020space_to_rese",
-      "rve\030\004 \001(\003\022\032\n\022only_reserve_space\030\005 \001(\010\022\r\n" +
-      "\005owner\030\006 \001(\t\"(\n\030LocalBlockCreateResponse" +
-      "\022\014\n\004path\030\001 \001(\t\"=\n\031LocalBlockCompleteRequ" +
-      "est\022\020\n\010block_id\030\001 \001(\003\022\016\n\006cancel\030\002 \001(\010*.\n" +
-      "\013RequestType\022\021\n\rALLUXIO_BLOCK\020\000\022\014\n\010UFS_F" +
-      "ILE\020\001"
+      ".proto.dataserver.OpenUfsBlockOptions\022\014\n" +
+      "\004user\030\010 \001(\t\"\243\001\n\023OpenUfsBlockOptions\022\020\n\010u" +
+      "fs_path\030\001 \001(\t\022\026\n\016offset_in_file\030\002 \001(\003\022\022\n" +
+      "\nblock_size\030\003 \001(\003\022\035\n\025maxUfsReadConcurren",
+      "cy\030\004 \001(\005\022\017\n\007mountId\030\005 \001(\003\022\020\n\010no_cache\030\006 " +
+      "\001(\010\022\014\n\004user\030\007 \001(\t\"\352\001\n\014WriteRequest\0223\n\004ty" +
+      "pe\030\001 \001(\0162%.alluxio.proto.dataserver.Requ" +
+      "estType\022\n\n\002id\030\002 \001(\003\022\016\n\006offset\030\003 \001(\003\022\014\n\004t" +
+      "ier\030\004 \001(\005\022\013\n\003eof\030\005 \001(\010\022\016\n\006cancel\030\006 \001(\010\022O" +
+      "\n\027create_ufs_file_options\030\007 \001(\0132..alluxi" +
+      "o.proto.dataserver.CreateUfsFileOptions\022" +
+      "\r\n\005owner\030\010 \001(\t\"f\n\024CreateUfsFileOptions\022\020" +
+      "\n\010ufs_path\030\001 \001(\t\022\r\n\005owner\030\002 \001(\t\022\r\n\005group" +
+      "\030\003 \001(\t\022\014\n\004mode\030\004 \001(\005\022\020\n\010mount_id\030\005 \001(\003\"J",
+      "\n\010Response\022-\n\006status\030\001 \001(\0162\035.alluxio.pro" +
+      "to.status.PStatus\022\017\n\007message\030\002 \001(\t\"i\n\014Re" +
+      "adResponse\0229\n\004type\030\001 \001(\0162+.alluxio.proto" +
+      ".dataserver.ReadResponse.Type\"\036\n\004Type\022\026\n" +
+      "\022UFS_READ_HEARTBEAT\020\001\"\013\n\tHeartbeat\":\n\025Lo" +
+      "calBlockOpenRequest\022\020\n\010block_id\030\001 \001(\003\022\017\n" +
+      "\007promote\030\002 \001(\010\"&\n\026LocalBlockOpenResponse" +
+      "\022\014\n\004path\030\001 \001(\t\"*\n\026LocalBlockCloseRequest" +
+      "\022\020\n\010block_id\030\001 \001(\003\"~\n\027LocalBlockCreateRe" +
+      "quest\022\020\n\010block_id\030\001 \001(\003\022\014\n\004tier\030\003 \001(\005\022\030\n",
+      "\020space_to_reserve\030\004 \001(\003\022\032\n\022only_reserve_" +
+      "space\030\005 \001(\010\022\r\n\005owner\030\006 \001(\t\"(\n\030LocalBlock" +
+      "CreateResponse\022\014\n\004path\030\001 \001(\t\"=\n\031LocalBlo" +
+      "ckCompleteRequest\022\020\n\010block_id\030\001 \001(\003\022\016\n\006c" +
+      "ancel\030\002 \001(\010*.\n\013RequestType\022\021\n\rALLUXIO_BL" +
+      "OCK\020\000\022\014\n\010UFS_FILE\020\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -9457,7 +9661,7 @@ public final class Protocol {
           internal_static_alluxio_proto_dataserver_ReadRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_alluxio_proto_dataserver_ReadRequest_descriptor,
-              new java.lang.String[] { "BlockId", "Offset", "Length", "Cancel", "Promote", "PacketSize", "OpenUfsBlockOptions", });
+              new java.lang.String[] { "BlockId", "Offset", "Length", "Cancel", "Promote", "PacketSize", "OpenUfsBlockOptions", "User", });
           internal_static_alluxio_proto_dataserver_OpenUfsBlockOptions_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_alluxio_proto_dataserver_OpenUfsBlockOptions_fieldAccessorTable = new

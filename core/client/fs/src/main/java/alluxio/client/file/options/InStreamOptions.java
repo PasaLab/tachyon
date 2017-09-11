@@ -45,6 +45,9 @@ public final class InStreamOptions {
   private int mMaxUfsReadConcurrency;
   /** The location policy to determine the worker location to serve UFS block reads. */
   private BlockLocationPolicy mUfsReadLocationPolicy;
+  //add by li
+  //TODO(li) change hashCode and equals
+  private String mUser;
 
   /**
    * @return the default {@link InStreamOptions}
@@ -201,6 +204,17 @@ public final class InStreamOptions {
     mUfsReadLocationPolicy = policy;
     return this;
   }
+
+  //add by li
+  public InStreamOptions setUser(String user) {
+    mUser = user;
+    return this;
+  }
+
+  public String getUser() {
+    return mUser;
+  }
+
 
   @Override
   public boolean equals(Object o) {

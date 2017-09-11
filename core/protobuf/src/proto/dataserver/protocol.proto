@@ -27,6 +27,9 @@ message ReadRequest {
 
   // This is only set for UFS block read.
   optional OpenUfsBlockOptions open_ufs_block_options = 6;
+
+  //add by li
+  optional string user = 8;
 }
 
 // Options to open a UFS block.

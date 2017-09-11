@@ -41,6 +41,9 @@ public final class OpenFileOptions {
   private int mMaxUfsReadConcurrency;
   /** The location policy to determine the worker location to serve UFS block reads. */
   private BlockLocationPolicy mUfsReadLocationPolicy;
+  //add by li
+  //TODO(li) change hashCode and equals
+  private String mUser = "";
 
   /**
    * @return the default {@link InStreamOptions}
@@ -233,13 +236,19 @@ public final class OpenFileOptions {
     return this;
   }
 
+  //add by li
+  public void setUser(String user) {
+    mUser = user;
+  }
+
   /**
    * @return the {@link InStreamOptions} representation of this object
    */
   public InStreamOptions toInStreamOptions() {
     return InStreamOptions.defaults().setReadType(mReadType).setLocationPolicy(mCacheLocationPolicy)
         .setMaxUfsReadConcurrency(mMaxUfsReadConcurrency)
-        .setUfsReadLocationPolicy(mUfsReadLocationPolicy);
+        .setUfsReadLocationPolicy(mUfsReadLocationPolicy)
+        .setUser(mUser);
   }
 
   @Override
