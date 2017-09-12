@@ -32,6 +32,7 @@ import alluxio.util.proto.ProtoMessage;
 import alluxio.worker.block.BlockLockManager;
 import alluxio.worker.block.BlockWorker;
 import alluxio.worker.block.UnderFileSystemBlockReader;
+import alluxio.worker.block.UserBlockStoreEventListener;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.LocalFileBlockReader;
 
@@ -161,6 +162,12 @@ public final class BlockReadHandler extends AbstractReadHandler<BlockReadRequest
             context.setBlockReader(reader);
             context.setCounter(MetricsSystem.workerCounter(metricName));
             mWorker.accessBlock(request.getSessionId(), request.getId());
+            //add by li
+            if(mWorker instanceof UserBlockStoreEventListener) {
+              ((UserBlockStoreEventListener) mWorker)
+                      .onAccessBlockByUser(request.getSessionId(), request.getId(), request.getUser());
+            }
+
             ((FileChannel) reader.getChannel()).position(request.getStart());
             return;
           } catch (Exception e) {

@@ -505,5 +505,19 @@ public final class BlockMetadataManager {
   public int blockUsersNum(long blockId) {
     return mBlockUsersMap.get(blockId).size();
   }
+
+  public HashSet<String> getUsersByBlockId(long blockId) {
+    return mBlockUsersMap.get(blockId);
+  }
+
+  public long getUserSpace(String user) {
+    int sum = 0;
+    HashSet<Long> blocks = mUserBlocksMap.get(user);
+    for(Long blockId : blocks) {
+      sum +=
+
+    }
+
+  }
   //=========================================add by li=============================================
 }

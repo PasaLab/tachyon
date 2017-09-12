@@ -23,6 +23,7 @@ import alluxio.util.IdUtils;
 import alluxio.util.proto.ProtoMessage;
 import alluxio.worker.block.BlockWorker;
 
+import alluxio.worker.block.UserBlockStoreEventListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
@@ -179,6 +180,12 @@ class ShortCircuitBlockWriteHandler extends ChannelInboundHandlerAdapter {
               mBlockWorker.abortBlock(mSessionId, request.getBlockId());
             } else {
               mBlockWorker.commitBlock(mSessionId, request.getBlockId());
+              //add by li
+              if(mBlockWorker instanceof UserBlockStoreEventListener) {
+                ((UserBlockStoreEventListener) mBlockWorker).
+                        onCommitBlockByUser(mSessionId, request.getBlockId(), request.getUser());
+              }
+
             }
             mSessionId = INVALID_SESSION_ID;
             ctx.writeAndFlush(RPCProtoMessage.createOkResponse(null));

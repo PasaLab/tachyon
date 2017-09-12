@@ -103,6 +103,7 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
         LOG.warn("Remove block {} from evictor cache because {}", blockId, e);
         it.remove();
         onRemoveBlockFromIterator(blockId);
+        //add by li
       }
     }
 

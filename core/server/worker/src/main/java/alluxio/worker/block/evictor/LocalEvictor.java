@@ -24,4 +24,8 @@ public interface LocalEvictor {
       }
     }
   }
+
+  void lock();
+
+  void unLock();
 }

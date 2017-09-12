@@ -55,6 +55,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -74,7 +75,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * Logic: {@link DefaultBlockWorker} (Logic for all block related storage operations)
  */
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1624)
-public final class DefaultBlockWorker extends AbstractWorker implements BlockWorker {
+public final class DefaultBlockWorker extends AbstractWorker implements BlockWorker, UserBlockStoreEventListener{
   private static final Logger LOG = LoggerFactory.getLogger(DefaultBlockWorker.class);
 
   /** Runnable responsible for heartbeating and registration with master. */
@@ -117,6 +118,8 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
    */
   private AtomicReference<Long> mWorkerId;
 
+  private final UserBlockStoreEventListener eventListener;
+
   /**
    * Constructs a default block worker.
    *
@@ -155,6 +158,12 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     mUnderFileSystemBlockStore = new UnderFileSystemBlockStore(mBlockStore, ufsManager);
 
     Metrics.registerGauges(this);
+
+    if(mBlockStore instanceof UserBlockStoreEventListener) {
+      eventListener = (UserBlockStoreEventListener)mBlockStore;
+    } else {
+      eventListener = null;
+    }
   }
 
   @Override
@@ -494,6 +503,13 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     mUnderFileSystemBlockStore.releaseAccess(sessionId, blockId);
   }
 
+
+  @Override
+  public void cleanupSession(long sessionId) {
+    mBlockStore.cleanupSession(sessionId);
+    mUnderFileSystemBlockStore.cleanupSession(sessionId);
+  }
+
   //add by li
   @Override
   public void addBlockAndUserInfo(String ower, long blockId) {
@@ -511,10 +527,47 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   }
 
   @Override
-  public void cleanupSession(long sessionId) {
-    mBlockStore.cleanupSession(sessionId);
-    mUnderFileSystemBlockStore.cleanupSession(sessionId);
+  public void onAccessBlockByUser(long sessionId, long blockId, String user) {
+    eventListener.onAccessBlockByUser(sessionId, blockId, user);
   }
+
+  @Override
+  public void onAbortBlockByUser(long sessionId, long blockId, String user) {
+    eventListener.onAccessBlockByUser(sessionId, blockId, user);
+
+  }
+
+  @Override
+  public void onCommitBlockByUser(long sessionId, long blockId, String user) {
+    eventListener.onCommitBlockByUser(sessionId, blockId, user);
+
+  }
+
+  @Override
+  public void onMoveBlockByClientByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
+    eventListener.onMoveBlockByClientByUser(sessionId, blockId, oldLocation, newLocation, user);
+
+  }
+
+  @Override
+  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
+    eventListener.onMoveBlockByWorkerByUser(sessionId, blockId, oldLocation, newLocation, user);
+
+  }
+
+  @Override
+  public void onRemoveBlockByClienByUsert(long sessionId, long blockId, String user) {
+    eventListener.onRemoveBlockByClienByUsert(sessionId, blockId, user);
+
+  }
+
+  @Override
+  public void onRemoveBlockByWorkerByUser(long sessionId, long blockId, String user) {
+    eventListener.onRemoveBlockByWorkerByUser(sessionId, blockId, user);
+
+  }
+
+
 
   /**
    * This class contains some metrics related to the block worker.

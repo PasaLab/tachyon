@@ -1857,6 +1857,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setDescription("The number of workers to run on an Alluxio host for YARN framework.")
           .build();
 
+  //add by li
+  public static final PropertyKey WORKER_TIERED_STORE_USER_LOCKS =
+      new Builder(Name.WORKER_TIERED_STORE_USER_LOCKS).setDefaultValue(100)
+              .setDescription("the number of users to run on an Alluxio woreker ").build();
+
 
   /**
    * A nested class to hold named string constants for their corresponding properties.
@@ -2307,6 +2312,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String SECURITY_GROUP_MAPPING_CLASS =
         "alluxio.security.group.mapping.class";
     public static final String SECURITY_LOGIN_USERNAME = "alluxio.security.login.username";
+
+    //
+    //add by li
+    //
+    public static final String WORKER_TIERED_STORE_USER_LOCKS = "worker.tiered.store.user.locks";
 
     private Name() {} // prevent instantiation
   }

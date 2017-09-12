@@ -21,6 +21,7 @@ import alluxio.proto.dataserver.Protocol;
 import alluxio.underfs.UfsManager;
 import alluxio.worker.block.BlockWorker;
 
+import alluxio.worker.block.UserBlockStoreEventListener;
 import com.google.common.base.Preconditions;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -129,6 +130,11 @@ public final class BlockWriteHandler extends AbstractWriteHandler<BlockWriteRequ
         context.getBlockWriter().close();
       }
       mWorker.commitBlock(request.getSessionId(), request.getId());
+      //add by li
+      if(mWorker instanceof UserBlockStoreEventListener) {
+        ((UserBlockStoreEventListener) mWorker)
+                .onAccessBlockByUser(request.getSessionId(), request.getId(), request.getUser());
+      }
     }
 
     @Override

@@ -27,9 +27,12 @@ class WriteRequest {
   /** The session id associated with all temporary resources of this request. */
   private final long mSessionId;
 
+  private final String mUser;
+
   WriteRequest(Protocol.WriteRequest request) {
     mId = request.getId();
     mSessionId = IdUtils.createSessionId();
+    mUser = request.getOwner();
   }
 
   /**
@@ -44,5 +47,9 @@ class WriteRequest {
    */
   public long getSessionId() {
     return mSessionId;
+  }
+
+  public String getUser() {
+    return mUser;
   }
 }

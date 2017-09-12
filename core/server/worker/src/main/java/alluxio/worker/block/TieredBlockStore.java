@@ -49,14 +49,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -89,7 +84,7 @@ import javax.annotation.concurrent.NotThreadSafe;
  * </ul>
  */
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1624)
-public final class TieredBlockStore implements BlockStore {
+public final class TieredBlockStore implements BlockStore, UserBlockStoreEventListener {
   private static final Logger LOG = LoggerFactory.getLogger(TieredBlockStore.class);
 
   private static final int MAX_RETRIES =
@@ -341,6 +336,9 @@ public final class TieredBlockStore implements BlockStore {
         listener.onRemoveBlockByClient(sessionId, blockId);
       }
     }
+
+    //add by li
+    FireRemoveBlockListener(blockId, sessionId);
   }
 
   @Override
@@ -650,6 +648,9 @@ public final class TieredBlockStore implements BlockStore {
           listener.onRemoveBlockByWorker(sessionId, blockInfo.getFirst());
         }
       }
+
+      //add by li
+      FireRemoveBlockListener(blockInfo.getFirst(), sessionId);
     }
     // 2. transfer blocks among tiers.
     // 2.1. group blocks move plan by the destination tier.
@@ -893,7 +894,84 @@ public final class TieredBlockStore implements BlockStore {
     LocalEvictor evictor = LocalEvictor.Factory.create(initManagerView, mAllocator, policy, user);
     mUserEvictor.putIfAbsent(user, evictor);
   }
-  //========================================add by li==============================================
+
+  private void FireRemoveBlockListener(long blockId, long sessionId) {
+    Set<String> owners = null;
+    LocalEvictor evictor;
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+      owners = mMetaManager.getUsersByBlockId(blockId);
+    }
+    for(String owner : owners) {
+      evictor = mUserEvictor.get(owner);
+      if( evictor instanceof BlockStoreEventListener) {
+        evictor.lock();
+        try {
+          ((BlockStoreEventListener) evictor).onRemoveBlockByClient(sessionId, blockId);
+        } finally {
+          evictor.unLock();
+        }
+      }
+    }
+
+  }
+
+  public Iterator<Long> getBlockIterator() {
+    try (LockResource r = new LockResource(mMetadataReadLock)) {
+
+    }
+  }
+
+  @Override
+  public void onAccessBlockByUser(long sessionId, long blockId, String user) {
+    LocalEvictor evictor = mUserEvictor.get(user);
+    if( evictor instanceof BlockStoreEventListener) {
+      evictor.lock();
+      try {
+        ((BlockStoreEventListener) evictor).onAccessBlock(sessionId, blockId);
+      } finally {
+        evictor.unLock();
+      }
+    }
+  }
+
+  @Override
+  public void onAbortBlockByUser(long sessionId, long blockId, String user) {
+
+  }
+
+  @Override
+  public void onCommitBlockByUser(long sessionId, long blockId, String user) {
+    LocalEvictor evictor = mUserEvictor.get(user);
+    if( evictor instanceof BlockStoreEventListener) {
+      evictor.lock();
+      try {
+        ((BlockStoreEventListener) evictor).onCommitBlock(sessionId, blockId, null);
+      } finally {
+        evictor.unLock();
+      }
+    }
+  }
+
+  @Override
+  public void onMoveBlockByClientByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
+
+  }
+
+  @Override
+  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
+
+  }
+
+  @Override
+  public void onRemoveBlockByClienByUser(long sessionId, long blockId, String user) {
+
+  }
+
+  @Override
+  public void onRemoveBlockByWorkerByUser(long sessionId, long blockId, String user) {
+
+  }
+//========================================add by li==============================================
 
   /**
    * A wrapper on necessary info after a move block operation.
