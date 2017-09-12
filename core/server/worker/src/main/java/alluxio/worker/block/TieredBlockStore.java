@@ -32,6 +32,7 @@ import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
 import alluxio.worker.block.evictor.EvictionPlan;
 import alluxio.worker.block.evictor.Evictor;
+import alluxio.worker.block.evictor.LocalEvictor;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.BlockWriter;
 import alluxio.worker.block.io.LocalFileBlockReader;
@@ -117,7 +118,7 @@ public final class TieredBlockStore implements BlockStore {
   private final StorageTierAssoc mStorageTierAssoc;
 
   //add by li
-  private final ConcurrentHashMap<String, Evictor> mUserEvictor = new ConcurrentHashMap<>();
+  private final ConcurrentHashMap<String, LocalEvictor> mUserEvictor = new ConcurrentHashMap<>();
 
   /**
    * Creates a new instance of {@link TieredBlockStore}.
@@ -859,7 +860,7 @@ public final class TieredBlockStore implements BlockStore {
     }
   }
 
-  //add by li
+  //========================================add by li==============================================
   @Override
   public void addBlockAndUserInfo(String owner, long blockId) {
     try (LockResource r = new LockResource(mMetadataReadLock)) {
@@ -887,9 +888,12 @@ public final class TieredBlockStore implements BlockStore {
 
   @Override
   public void setPolicy(String user, ClientPolicy policy) {
-    if(policy.)
-
+    BlockMetadataManagerView initManagerView = new BlockMetadataManagerView(mMetaManager,
+        Collections.<Long>emptySet(), Collections.<Long>emptySet());
+    LocalEvictor evictor = LocalEvictor.Factory.create(initManagerView, mAllocator, policy, user);
+    mUserEvictor.putIfAbsent(user, evictor);
   }
+  //========================================add by li==============================================
 
   /**
    * A wrapper on necessary info after a move block operation.

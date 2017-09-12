@@ -132,6 +132,8 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
               }
               mLockId = mWorker.lockBlock(mSessionId, request.getBlockId());
               mWorker.accessBlock(mSessionId, request.getBlockId());
+              //add by li
+              mWorker.FairRideDelay(request);
             } else {
               LOG.warn("Lock block {} without releasing previous block lock {}.",
                   request.getBlockId(), mLockId);

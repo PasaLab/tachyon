@@ -6,7 +6,7 @@ import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.StorageTierView;
 
-public class LocalLRUEvictor extends LRUEvictor {
+public class LocalLRUEvictor extends LRUEvictor implements LocalEvictor {
   private final String mUser;
   private static final boolean UNUSED_MAP_VALUE = true;
 
@@ -23,6 +23,4 @@ public class LocalLRUEvictor extends LRUEvictor {
       }
     }
   }
-
-
 }
