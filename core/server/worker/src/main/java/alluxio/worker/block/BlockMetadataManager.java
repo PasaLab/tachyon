@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -79,6 +80,8 @@ public final class BlockMetadataManager {
           return (int)(o2.getSecond() - o1.getSecond());
         }
       });
+
+  private final BlockMasterClientPool mBlockmasterClientPool;
 
   private BlockMetadataManager() {
     try {
@@ -525,8 +528,9 @@ public final class BlockMetadataManager {
     return mBlockUsersMap.get(blockId);
   }
 
-  public void UpdateUserSpaceQueue(BlockMasterClient client) throws
+  public void UpdateUserSpaceQueue() throws
       IOException{
+    BlockMasterClient client = mBlockmasterClientPool.acquire();
     mQueue.clear();
     for(Map.Entry entry: mUserBlocksMap.entrySet()) {
       String user = (String)entry.getKey();
@@ -535,6 +539,7 @@ public final class BlockMetadataManager {
       Pair<String, Long> userPair = new Pair<>(user, size);
       mQueue.add(userPair);
     }
+    mBlockmasterClientPool.release(client);
   }
 
   public Iterator<Pair<String, Long>> getUserSpaceIterator() {

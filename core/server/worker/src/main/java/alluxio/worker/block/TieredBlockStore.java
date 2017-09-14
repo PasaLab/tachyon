@@ -115,8 +115,6 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   //add by li
   private final ConcurrentHashMap<String, LocalEvictor> mUserEvictor = new ConcurrentHashMap<>();
 
-  private BlockMasterClient client;
-
   /**
    * Creates a new instance of {@link TieredBlockStore}.
    */

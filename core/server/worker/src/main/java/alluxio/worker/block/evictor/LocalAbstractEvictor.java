@@ -14,6 +14,7 @@ package alluxio.worker.block.evictor;
 import alluxio.Sessions;
 import alluxio.collections.Pair;
 import alluxio.exception.BlockDoesNotExistException;
+import alluxio.resource.LockResource;
 import alluxio.worker.block.AbstractBlockStoreEventListener;
 import alluxio.worker.block.BlockMasterClient;
 import alluxio.worker.block.BlockMetadataManagerView;
@@ -43,7 +44,6 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
   private static final Logger LOG = LoggerFactory.getLogger(AbstractEvictor.class);
   protected final Allocator mAllocator;
   protected BlockMetadataManagerView mManagerView;
-  protected
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -76,7 +76,9 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
    *         null if there is no plan
    */
   protected StorageDirView cascadingEvict(long bytesToBeAvailable, BlockStoreLocation location,
-                                          EvictionPlan plan) {
+                                          EvictionPlan plan) throws IOException{
+
+    mManagerView.UpdateUserSpaceQueue();
     location = updateBlockStoreLocation(bytesToBeAvailable, location);
 
     // 1. If bytesToBeAvailable can already be satisfied without eviction, return the eligible
@@ -216,8 +218,6 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
     return location;
   }
 
-  public void UpdateUserSpaceInfo(BlockMasterClient client) throws IOException{
-    mManagerView.UpdateUserSpaceQueue(client);
 
-  }
+
 }

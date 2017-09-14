@@ -245,8 +245,8 @@ public class BlockMetadataManagerView {
     return mMetadataManager.isUserOwnBlock(user, blockId);
   }
 
-  public void UpdateUserSpaceQueue(BlockMasterClient client) throws IOException {
-    mMetadataManager.UpdateUserSpaceQueue(client);
+  public void UpdateUserSpaceQueue() throws IOException {
+    mMetadataManager.UpdateUserSpaceQueue();
   }
 
   public Iterator<Pair<String, Long>> getUserSpaceIterator() {
