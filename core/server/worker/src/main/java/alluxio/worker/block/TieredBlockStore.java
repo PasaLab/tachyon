@@ -113,7 +113,11 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   private final StorageTierAssoc mStorageTierAssoc;
 
   //add by li
-  private final ConcurrentHashMap<String, LocalEvictor> mUserEvictor = new ConcurrentHashMap<>();
+  private final ReentrantReadWriteLock mUserdataLock = new ReentrantReadWriteLock();
+  private final Lock mUserdataReadLock = mMetadataLock.readLock();
+  private final Lock mUserdataWriteLock = mMetadataLock.writeLock();
+  private final UserInfoManager mUserInfoManager;
+
 
   /**
    * Creates a new instance of {@link TieredBlockStore}.
@@ -823,11 +827,15 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
       Files.delete(Paths.get(filePath));
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
         mMetaManager.removeBlockMeta(blockMeta);
-        //add by li
-        mMetaManager.removeUserBlockInfo(blockId);
       } catch (BlockDoesNotExistException e) {
         throw Throwables.propagate(e); // we shall never reach here
       }
+      //add by li
+      try (LockResource r = new LockResource(mUserdataWriteLock)) {
+        mUserInfoManager.removeUserBlockInfo(blockId);
+      }
+
+
     } finally {
       mLockManager.unlockBlock(lockId);
     }
@@ -865,27 +873,26 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   //========================================add by li==============================================
   @Override
   public void addBlockAndUserInfo(String owner, long blockId) {
-    try (LockResource r = new LockResource(mMetadataReadLock)) {
-      mMetaManager.addBlockForUser(owner,blockId);
-      mMetaManager.addUserForBlock(owner,blockId);
+    try (LockResource r = new LockResource(mUserdataReadLock)) {
+      mUserInfoManager.addBlockForUser(owner,blockId);
+      mUserInfoManager.addUserForBlock(owner,blockId);
     }
   }
 
   @Override
   public void fairRideDelay(String user, long blockId, long len) {
     boolean isValidUser;
-    try (LockResource r = new LockResource(mMetadataReadLock)) {
-      isValidUser = mMetaManager.isUserOwnBlock(user, blockId);
+    int users = 0;
+    try (LockResource r = new LockResource(mUserdataReadLock)) {
+      isValidUser = mUserInfoManager.isUserOwnBlock(user, blockId);
+      if(!isValidUser) {
+        users = mUserInfoManager.blockUsersNum(blockId);
+      }
     }
-    if(isValidUser) {
-      return;
+    if(!isValidUser) {
+      DelayExecutor delayExecutor = new DelayExecutor(users, len);
+      delayExecutor.delay();
     }
-    int users;
-    try (LockResource r = new LockResource(mMetadataReadLock)) {
-      users = mMetaManager.blockUsersNum(blockId);
-    }
-    DelayExecutor delayExecutor = new DelayExecutor(users, len);
-    delayExecutor.delay();
   }
 
   @Override
@@ -893,17 +900,17 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
     BlockMetadataManagerView initManagerView = new BlockMetadataManagerView(mMetaManager,
         Collections.<Long>emptySet(), Collections.<Long>emptySet());
     LocalEvictor evictor = LocalEvictor.Factory.create(initManagerView, mAllocator, policy, user);
-    mUserEvictor.putIfAbsent(user, evictor);
+    mUserInfoManager.mUserEvictor.putIfAbsent(user, evictor);
   }
 
   private void FireRemoveBlockListener(long blockId, long sessionId) {
     Set<String> owners = null;
     LocalEvictor evictor;
-    try (LockResource r = new LockResource(mMetadataReadLock)) {
-      owners = mMetaManager.getUsersByBlockId(blockId);
+    try (LockResource r = new LockResource(mUserdataReadLock)) {
+      owners = mUserInfoManager.getUsersByBlockId(blockId);
     }
     for(String owner : owners) {
-      evictor = mUserEvictor.get(owner);
+      evictor = mUserInfoManager.mUserEvictor.get(owner);
       if( evictor instanceof BlockStoreEventListener) {
         evictor.lock();
         try {
@@ -920,7 +927,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
 
   @Override
   public void onAccessBlockByUser(long sessionId, long blockId, String user) {
-    LocalEvictor evictor = mUserEvictor.get(user);
+    LocalEvictor evictor = mUserInfoManager.mUserEvictor.get(user);
     if( evictor instanceof BlockStoreEventListener) {
       evictor.lock();
       try {
@@ -938,7 +945,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
 
   @Override
   public void onCommitBlockByUser(long sessionId, long blockId, String user) {
-    LocalEvictor evictor = mUserEvictor.get(user);
+    LocalEvictor evictor = mUserInfoManager.mUserEvictor.get(user);
     if( evictor instanceof BlockStoreEventListener) {
       evictor.lock();
       try {

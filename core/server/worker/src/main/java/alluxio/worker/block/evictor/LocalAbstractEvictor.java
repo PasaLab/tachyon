@@ -15,10 +15,7 @@ import alluxio.Sessions;
 import alluxio.collections.Pair;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.resource.LockResource;
-import alluxio.worker.block.AbstractBlockStoreEventListener;
-import alluxio.worker.block.BlockMasterClient;
-import alluxio.worker.block.BlockMetadataManagerView;
-import alluxio.worker.block.BlockStoreLocation;
+import alluxio.worker.block.*;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
@@ -44,6 +41,7 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
   private static final Logger LOG = LoggerFactory.getLogger(AbstractEvictor.class);
   protected final Allocator mAllocator;
   protected BlockMetadataManagerView mManagerView;
+  protected final UserInfoManager mUserManager;
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -78,7 +76,7 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
   protected StorageDirView cascadingEvict(long bytesToBeAvailable, BlockStoreLocation location,
                                           EvictionPlan plan) throws IOException{
 
-    mManagerView.UpdateUserSpaceQueue();
+    mUserManager.UpdateUserSpaceQueue();
     location = updateBlockStoreLocation(bytesToBeAvailable, location);
 
     // 1. If bytesToBeAvailable can already be satisfied without eviction, return the eligible
@@ -92,6 +90,9 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
     // 2. Iterate over blocks in order until we find a StorageDirView that is in the range of
     // location and can satisfy bytesToBeAvailable after evicting its blocks iterated so far
     EvictionDirCandidates dirCandidates = new EvictionDirCandidates();
+
+    List<String> CandidateUsers = mUserManager.getEvictCandidateUsers(long bytesToBeAvailable);
+
     Iterator<Long> it = getBlockIterator();
     while (it.hasNext() && dirCandidates.candidateSize() < bytesToBeAvailable) {
       long blockId = it.next();
