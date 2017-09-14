@@ -6,6 +6,7 @@ import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.StorageTierView;
 
+import java.util.Iterator;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LocalLRUEvictor extends LRUEvictor implements LocalEvictor {
@@ -36,5 +37,10 @@ public class LocalLRUEvictor extends LRUEvictor implements LocalEvictor {
   @Override
   public void unLock() {
     lock.unlock();
+  }
+
+  @Override
+  public Iterator<Long> getBlockIterator() {
+    return super.getBlockIterator();
   }
 }

@@ -115,6 +115,8 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   //add by li
   private final ConcurrentHashMap<String, LocalEvictor> mUserEvictor = new ConcurrentHashMap<>();
 
+  private BlockMasterClient client;
+
   /**
    * Creates a new instance of {@link TieredBlockStore}.
    */
@@ -131,6 +133,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
 
     initManagerView = new BlockMetadataManagerView(mMetaManager, Collections.<Long>emptySet(),
         Collections.<Long>emptySet());
+    //add by li
     mEvictor = Evictor.Factory.create(initManagerView, mAllocator);
     if (mEvictor instanceof BlockStoreEventListener) {
       registerBlockStoreEventListener((BlockStoreEventListener) mEvictor);
@@ -915,11 +918,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
 
   }
 
-  public Iterator<Long> getBlockIterator() {
-    try (LockResource r = new LockResource(mMetadataReadLock)) {
 
-    }
-  }
 
   @Override
   public void onAccessBlockByUser(long sessionId, long blockId, String user) {
@@ -971,6 +970,12 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   public void onRemoveBlockByWorkerByUser(long sessionId, long blockId, String user) {
 
   }
+
+  @Override
+  public void setBlockMasterClient(BlockMasterClient vlient) {
+
+  }
+
 //========================================add by li==============================================
 
   /**

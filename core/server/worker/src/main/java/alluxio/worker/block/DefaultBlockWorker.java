@@ -526,6 +526,10 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     mBlockStore.setPolicy(user, policy);
   }
 
+
+  public void setBlockMasterClient() {
+    mBlockStore.setBlockMasterClient(mBlockMasterClientPool.createNewResource());
+  }
   @Override
   public void onAccessBlockByUser(long sessionId, long blockId, String user) {
     eventListener.onAccessBlockByUser(sessionId, blockId, user);

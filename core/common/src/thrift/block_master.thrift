@@ -85,6 +85,12 @@ struct GetWorkerIdTResponse {
 struct RegisterWorkerTOptions {}
 struct RegisterWorkerTResponse {}
 
+struct BlocksSizeTOptions {}
+
+struct BlocksSizeTResponse {
+  1: i64 size
+}
+
 /**
  * This interface contains block master service endpoints for Alluxio workers.
  */
@@ -136,4 +142,11 @@ service BlockMasterWorkerService extends common.AlluxioService {
     /** the method options */ 6: RegisterWorkerTOptions options,
     )
     throws (1: exception.AlluxioTException e)
+
+  BlocksSizeTResponse getBlocksSize(
+    1: list<i64> blocks,
+    2: BlocksSizeTOptions options,
+    )
+    throws (1: exception.AlluxioTException e)
+
 }

@@ -11,6 +11,7 @@
 
 package alluxio.worker.block;
 
+import alluxio.collections.Pair;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.exception.ExceptionMessage;
 import alluxio.master.block.BlockId;
@@ -21,10 +22,12 @@ import alluxio.worker.block.meta.StorageTierView;
 
 import com.google.common.base.Preconditions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,7 +46,9 @@ import javax.annotation.Nullable;
 @NotThreadSafe
 public class BlockMetadataManagerView {
 
-  /** The {@link BlockMetadataManager} this view is derived from. */
+  /**
+   * The {@link BlockMetadataManager} this view is derived from.
+   */
   private final BlockMetadataManager mMetadataManager;
 
   /**
@@ -52,26 +57,35 @@ public class BlockMetadataManagerView {
    */
   private List<StorageTierView> mTierViews = new ArrayList<>();
 
-  /** A list of pinned inodes. */
+  /**
+   * A list of pinned inodes.
+   */
   private final Set<Long> mPinnedInodes = new HashSet<>();
 
-  /** Indices of locks that are being used. */
+  /**
+   * Indices of locks that are being used.
+   */
   private final Set<Long> mInUseBlocks = new HashSet<>();
 
-  /** A map from tier alias to {@link StorageTierView}. */
+  /**
+   * A map from tier alias to {@link StorageTierView}.
+   */
   private Map<String, StorageTierView> mAliasToTierViews = new HashMap<>();
+
+  //add by li
+  private BlockMasterClient mClient;
 
   /**
    * Creates a new instance of {@link BlockMetadataManagerView}. Now we always create a new view
    * before freespace.
    *
-   * @param manager which the view should be constructed from
+   * @param manager      which the view should be constructed from
    * @param pinnedInodes a set of pinned inodes
    * @param lockedBlocks a set of locked blocks
    */
   // TODO(qifan): Incrementally update the view.
   public BlockMetadataManagerView(BlockMetadataManager manager, Set<Long> pinnedInodes,
-      Set<Long> lockedBlocks) {
+                                  Set<Long> lockedBlocks) {
     mMetadataManager = Preconditions.checkNotNull(manager, "manager");
     mPinnedInodes.addAll(Preconditions.checkNotNull(pinnedInodes, "pinnedInodes"));
     Preconditions.checkNotNull(lockedBlocks, "lockedBlocks");
@@ -226,7 +240,17 @@ public class BlockMetadataManagerView {
     }
   }
 
+  //add by li
   public boolean isUserOwnBlock(String user, long blockId) {
     return mMetadataManager.isUserOwnBlock(user, blockId);
   }
+
+  public void UpdateUserSpaceQueue(BlockMasterClient client) throws IOException {
+    mMetadataManager.UpdateUserSpaceQueue(client);
+  }
+
+  public Iterator<Pair<String, Long>> getUserSpaceIterator() {
+    return mMetadataManager.getUserSpaceIterator();
+  }
+
 }

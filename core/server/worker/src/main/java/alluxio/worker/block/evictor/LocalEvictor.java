@@ -8,6 +8,8 @@ import alluxio.worker.block.BlockMetadataManagerView;
 import alluxio.worker.block.allocator.Allocator;
 import com.google.common.base.Throwables;
 
+import java.util.Iterator;
+
 public interface LocalEvictor {
   class Factory {
     public static LocalEvictor create(BlockMetadataManagerView view, Allocator allocator, ClientPolicy
@@ -28,4 +30,6 @@ public interface LocalEvictor {
   void lock();
 
   void unLock();
+
+  Iterator<Long> getBlockIterator();
 }

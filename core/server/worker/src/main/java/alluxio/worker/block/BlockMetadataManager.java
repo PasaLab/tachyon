@@ -13,6 +13,7 @@ package alluxio.worker.block;
 
 import alluxio.StorageTierAssoc;
 import alluxio.WorkerStorageTierAssoc;
+import alluxio.collections.Pair;
 import alluxio.exception.BlockAlreadyExistsException;
 import alluxio.exception.BlockDoesNotExistException;
 import alluxio.exception.ExceptionMessage;
@@ -32,13 +33,17 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.PriorityBlockingQueue;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -64,6 +69,16 @@ public final class BlockMetadataManager {
   private final ConcurrentHashMap<String, HashSet<Long>> mUserBlocksMap = new
       ConcurrentHashMap<>();
   private final ConcurrentHashMap<Long, HashSet<String>> mBlockUsersMap = new ConcurrentHashMap<>();
+
+  private PriorityBlockingQueue<Pair<String, Long>> mQueue = new PriorityBlockingQueue<>
+      (mUserBlocksMap
+      .size(),new
+      Comparator<Pair<String, Long>>() {
+        @Override
+        public int compare(Pair<String, Long> o1, Pair<String, Long> o2) {
+          return (int)(o2.getSecond() - o1.getSecond());
+        }
+      });
 
   private BlockMetadataManager() {
     try {
@@ -510,14 +525,23 @@ public final class BlockMetadataManager {
     return mBlockUsersMap.get(blockId);
   }
 
-  public long getUserSpace(String user) {
-    int sum = 0;
-    HashSet<Long> blocks = mUserBlocksMap.get(user);
-    for(Long blockId : blocks) {
-      sum +=
-
+  public void UpdateUserSpaceQueue(BlockMasterClient client) throws
+      IOException{
+    mQueue.clear();
+    for(Map.Entry entry: mUserBlocksMap.entrySet()) {
+      String user = (String)entry.getKey();
+      List<Long> blocks = new ArrayList<Long>((HashSet)entry.getValue());
+      long size = client.getBlocksSize(blocks);
+      Pair<String, Long> userPair = new Pair<>(user, size);
+      mQueue.add(userPair);
     }
-
   }
+
+  public Iterator<Pair<String, Long>> getUserSpaceIterator() {
+    return mQueue.iterator();
+  }
+
+
+
   //=========================================add by li=============================================
 }

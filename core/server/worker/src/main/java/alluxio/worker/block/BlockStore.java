@@ -348,4 +348,6 @@ public interface BlockStore extends SessionCleanable {
   void fairRideDelay(String user, long blockId, long len);
 
   void setPolicy(String user, ClientPolicy policy);
+
+  void setBlockMasterClient(BlockMasterClient client);
 }

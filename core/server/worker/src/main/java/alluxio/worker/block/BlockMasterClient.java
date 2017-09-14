@@ -17,6 +17,7 @@ import alluxio.master.MasterClientConfig;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.BlockHeartbeatTOptions;
 import alluxio.thrift.BlockMasterWorkerService;
+import alluxio.thrift.BlocksSizeTOptions;
 import alluxio.thrift.Command;
 import alluxio.thrift.CommitBlockTOptions;
 import alluxio.thrift.GetWorkerIdTOptions;
@@ -148,6 +149,16 @@ public final class BlockMasterClient extends AbstractMasterClient {
         mClient.registerWorker(workerId, storageTierAliases, totalBytesOnTiers, usedBytesOnTiers,
             currentBlocksOnTiers, new RegisterWorkerTOptions());
         return null;
+      }
+    });
+  }
+
+  // add by li
+  public synchronized long getBlocksSize(final List<Long> blocks) throws IOException {
+    return retryRPC(new RpcCallable<Long>() {
+      @Override
+      public Long call() throws TException {
+        return mClient.getBlocksSize(blocks,  new BlocksSizeTOptions()).getSize();
       }
     });
   }
