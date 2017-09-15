@@ -66,8 +66,6 @@ public final class BlockMetadataManager {
   /** A map from tier alias to {@link StorageTier}. */
   private final Map<String, StorageTier> mAliasToTiers;
 
-  //add by li
-
 
 
   private BlockMetadataManager() {

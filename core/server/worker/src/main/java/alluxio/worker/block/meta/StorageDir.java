@@ -279,6 +279,8 @@ public final class StorageDir {
     }
     mBlockIdToBlockMap.put(blockId, blockMeta);
     reserveSpace(blockSize, true);
+    //add by li
+    mTier.addBlockMeta(blockId, blockMeta);
   }
 
   /**

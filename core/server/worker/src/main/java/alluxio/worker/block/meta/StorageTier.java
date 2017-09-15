@@ -33,7 +33,9 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -53,6 +55,14 @@ public final class StorageTier {
   /** Total capacity of all StorageDirs in bytes. */
   private long mCapacityBytes;
   private List<StorageDir> mDirs;
+  //add by li
+  public Map<Long, BlockMeta> mBlockIdToBlockMap = new HashMap<>();
+
+  public void addBlockMeta(long blockId, BlockMeta blockMeta) {
+    mBlockIdToBlockMap.put(blockId, blockMeta);
+  }
+
+
 
   private StorageTier(String tierAlias) {
     mTierAlias = tierAlias;

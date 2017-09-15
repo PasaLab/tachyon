@@ -1,7 +1,11 @@
 package alluxio.worker.block;
 
 import alluxio.collections.Pair;
+import alluxio.worker.block.evictor.Evictor;
 import alluxio.worker.block.evictor.LocalEvictor;
+import alluxio.worker.block.meta.BlockMeta;
+import alluxio.worker.block.meta.StorageDir;
+import alluxio.worker.block.meta.StorageTier;
 
 import java.io.IOException;
 import java.util.*;
@@ -25,8 +29,8 @@ public final class UserInfoManager {
                       return (int)(o2.getSecond() - o1.getSecond());
                     }
                   });
-  private
-  private final BlockMasterClientPool mBlockmasterClientPool;
+  private ConcurrentHashMap<String, PriorityBlockingQueue<Pair<String, Long>>> mTiredUserInfo =
+      new ConcurrentHashMap<>();
 
   public final ConcurrentHashMap<String, LocalEvictor> mUserEvictor = new ConcurrentHashMap<>();
 
@@ -72,22 +76,31 @@ public final class UserInfoManager {
     return mBlockUsersMap.get(blockId);
   }
 
-  public void UpdateUserSpaceQueue(BlockStoreLocation) throws
+  public void UpdateUserSpaceQueue(StorageTier tier) throws
           IOException {
-    BlockMasterClient client = mBlockmasterClientPool.acquire();
     mQueue.clear();
     for(Map.Entry entry: mUserBlocksMap.entrySet()) {
+      long sumSize = 0;
       String user = (String)entry.getKey();
       List<Long> blocks = new ArrayList<Long>((HashSet)entry.getValue());
-      long size = client.getBlocksSize(blocks);
-      Pair<String, Long> userPair = new Pair<>(user, size);
-      mQueue.add(userPair);
+      //long size = client.getBlocksSize(blocks);
+      for(Long block : blocks) {
+        if(tier.mBlockIdToBlockMap.containsKey(block))
+          sumSize += tier.mBlockIdToBlockMap.get(block).getBlockSize();
+      }
+      if(sumSize != 0) {
+        Pair<String, Long> userPair = new Pair<>(user, sumSize);
+        mQueue.add(userPair);
+      }
     }
-    mBlockmasterClientPool.release(client);
   }
 
   public Iterator<Pair<String, Long>> getUserSpaceIterator() {
     return mQueue.iterator();
+  }
+  public Iterator<Long> getBlockIterator(String user) {
+    return mUserEvictor.get(user).getBlockIterator();
+
   }
 }
 

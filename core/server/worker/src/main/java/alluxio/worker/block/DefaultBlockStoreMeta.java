@@ -161,4 +161,9 @@ public final class DefaultBlockStoreMeta implements BlockStoreMeta {
       mBlockIdsOnTiers = null;
     }
   }
+
+  @Override
+  public String gettierByBlockId(long blockId) {
+    mBlockIdsOnTiers
+  }
 }

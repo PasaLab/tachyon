@@ -199,4 +199,9 @@ public final class StorageDirView {
   public BlockStoreLocation toBlockStoreLocation() {
     return mDir.toBlockStoreLocation();
   }
+
+  //add by li
+  public StorageDir getStorageDir() {
+    return mDir;
+  }
 }

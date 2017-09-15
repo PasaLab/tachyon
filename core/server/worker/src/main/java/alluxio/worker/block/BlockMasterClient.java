@@ -152,14 +152,4 @@ public final class BlockMasterClient extends AbstractMasterClient {
       }
     });
   }
-
-  // add by li
-  public synchronized long getBlocksSize(final List<Long> blocks) throws IOException {
-    return retryRPC(new RpcCallable<Long>() {
-      @Override
-      public Long call() throws TException {
-        return mClient.getBlocksSize(blocks,  new BlocksSizeTOptions()).getSize();
-      }
-    });
-  }
 }

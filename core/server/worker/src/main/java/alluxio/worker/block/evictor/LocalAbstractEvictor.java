@@ -76,7 +76,7 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
   protected StorageDirView cascadingEvict(long bytesToBeAvailable, BlockStoreLocation location,
                                           EvictionPlan plan) throws IOException{
 
-    mUserManager.UpdateUserSpaceQueue();
+    mUserManager.UpdateUserSpaceQueue(mManagerView.getTier(location.tierAlias()));
     location = updateBlockStoreLocation(bytesToBeAvailable, location);
 
     // 1. If bytesToBeAvailable can already be satisfied without eviction, return the eligible
@@ -91,10 +91,22 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
     // location and can satisfy bytesToBeAvailable after evicting its blocks iterated so far
     EvictionDirCandidates dirCandidates = new EvictionDirCandidates();
 
-    List<String> CandidateUsers = mUserManager.getEvictCandidateUsers(long bytesToBeAvailable);
+    Iterator<Pair<String, Long>> userIterator = mUserManager.getUserSpaceIterator();
+    String maxUser = null;
+    if(userIterator.hasNext());
+      maxUser = userIterator.next().getFirst();
+    Iterator<Long> it = mUserManager.getBlockIterator(maxUser);
 
-    Iterator<Long> it = getBlockIterator();
-    while (it.hasNext() && dirCandidates.candidateSize() < bytesToBeAvailable) {
+    while(dirCandidates.candidateSize() < bytesToBeAvailable) {
+      if(!it.hasNext()) {
+        if(userIterator.hasNext())
+          //获取下一个user evictor 的 iterator
+          it = mUserManager.getBlockIterator(userIterator.next().getFirst());
+        else {
+          //所有用户遍历完了也没有到达　bytesToBeAvailable
+        }
+      }
+
       long blockId = it.next();
       try {
         BlockMeta block = mManagerView.getBlockMeta(blockId);
@@ -112,7 +124,9 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
         onRemoveBlockFromIterator(blockId);
         //add by li
       }
+
     }
+
 
     // 3. If there is no eligible StorageDirView, return null
     if (dirCandidates.candidateSize() < bytesToBeAvailable) {
@@ -217,6 +231,11 @@ public abstract class LocalAbstractEvictor extends AbstractBlockStoreEventListen
   protected BlockStoreLocation updateBlockStoreLocation(long bytesToBeAvailable,
                                                         BlockStoreLocation location) {
     return location;
+  }
+
+  private Iterator<Long> getUserBlockIterator() {
+    mUserManager.
+
   }
 
 

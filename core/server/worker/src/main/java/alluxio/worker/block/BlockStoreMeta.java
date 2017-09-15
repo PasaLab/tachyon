@@ -99,4 +99,7 @@ public interface BlockStoreMeta {
    * @return a mapping from tier directory-path pairs to used capacity in bytes
    */
   Map<Pair<String, String>, Long> getUsedBytesOnDirs();
+
+  //add by li
+  String gettierByBlockId(long blockId);
 }

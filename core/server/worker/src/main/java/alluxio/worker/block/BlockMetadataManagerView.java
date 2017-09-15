@@ -244,4 +244,8 @@ public class BlockMetadataManagerView {
   public boolean isUserOwnBlock(String user, long blockId) {
     return mMetadataManager.isUserOwnBlock(user, blockId);
   }
+
+  public StorageTier getTier(String tier) {
+    return mMetadataManager.getTier(tier);
+  }
 }
