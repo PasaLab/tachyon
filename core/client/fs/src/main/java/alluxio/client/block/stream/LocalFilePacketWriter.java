@@ -61,6 +61,7 @@ public final class LocalFilePacketWriter implements PacketWriter {
   private long mPosReserved;
 
   private boolean mClosed = false;
+  private String mOwner;
 
   /**
    * Creates an instance of {@link LocalFilePacketWriter}. This requires the block to be locked
@@ -137,6 +138,7 @@ public final class LocalFilePacketWriter implements PacketWriter {
     try {
       NettyRPC.call(mNettyRPCContext, new ProtoMessage(
           Protocol.LocalBlockCompleteRequest.newBuilder().setBlockId(mBlockId).setCancel(true)
+              .setOwner(mOwner)
               .build()));
     } catch (Exception e) {
       throw mCloser.rethrow(e);
@@ -159,7 +161,8 @@ public final class LocalFilePacketWriter implements PacketWriter {
       @Override
       public void close() throws IOException {
         Protocol.LocalBlockCompleteRequest request =
-            Protocol.LocalBlockCompleteRequest.newBuilder().setBlockId(mBlockId).build();
+            Protocol.LocalBlockCompleteRequest.newBuilder().setBlockId(mBlockId).setOwner(mOwner)
+                .build();
         NettyRPC.call(mNettyRPCContext, new ProtoMessage(request));
       }
     });
@@ -185,6 +188,8 @@ public final class LocalFilePacketWriter implements PacketWriter {
     mPosReserved += FILE_BUFFER_BYTES;
     mBlockId = blockId;
     mPacketSize = packetSize;
+    //add by li
+    mOwner = options.getOwner();
   }
 
   /**

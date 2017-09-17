@@ -116,7 +116,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   private final ReentrantReadWriteLock mUserdataLock = new ReentrantReadWriteLock();
   private final Lock mUserdataReadLock = mMetadataLock.readLock();
   private final Lock mUserdataWriteLock = mMetadataLock.writeLock();
-  private final UserInfoManager mUserInfoManager;
+  private final UserInfoManager mUserInfoManager = UserInfoManager.INSTANCE;
 
 
   /**
@@ -489,7 +489,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
     try (LockResource r = new LockResource(mMetadataWriteLock)) {
       mMetaManager.abortTempBlockMeta(tempBlockMeta);
       //add by li
-      mMetaManager.removeUserBlockInfo(blockId);
+      mUserInfoManager.removeUserBlockInfo(blockId);
 
     } catch (BlockDoesNotExistException e) {
       throw Throwables.propagate(e); // We shall never reach here
@@ -962,7 +962,7 @@ public final class TieredBlockStore implements BlockStore, UserBlockStoreEventLi
   }
 
   @Override
-  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
+  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, String user) {
 
   }
 

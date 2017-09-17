@@ -15,7 +15,9 @@ import java.util.concurrent.PriorityBlockingQueue;
 /**
  * Created by lenovo on 2017/9/14.
  */
-public final class UserInfoManager {
+public enum UserInfoManager {
+  INSTANCE;
+
   private final ConcurrentHashMap<String, HashSet<Long>> mUserBlocksMap = new
           ConcurrentHashMap<>();
   private final ConcurrentHashMap<Long, HashSet<String>> mBlockUsersMap = new ConcurrentHashMap<>();

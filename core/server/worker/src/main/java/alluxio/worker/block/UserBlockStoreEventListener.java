@@ -13,8 +13,7 @@ public interface UserBlockStoreEventListener {
                                   BlockStoreLocation newLocation, String user);
 
 
-   void onMoveBlockByWorkerByUser(long sessionId, long blockId, BlockStoreLocation oldLocation,
-                                  BlockStoreLocation newLocation, String user);
+   void onMoveBlockByWorkerByUser(long sessionId, long blockId, String user);
 
    void onRemoveBlockByClienByUser(long sessionId, long blockId, String user);
 

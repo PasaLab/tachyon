@@ -134,7 +134,8 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
               mLockId = mWorker.lockBlock(mSessionId, request.getBlockId());
               mWorker.accessBlock(mSessionId, request.getBlockId());
               //add by li
-              mWorker.FairRideDelay(request);
+              //TODO(li) move the dalay part to the Client side.
+              //mWorker.FairRideDelay(request.getUser(),request.getBlockId(), request.);
               if(mWorker instanceof UserBlockStoreEventListener) {
                 ((UserBlockStoreEventListener) mWorker)
                         .onAccessBlockByUser(mSessionId, request.getBlockId(), request.getUser());

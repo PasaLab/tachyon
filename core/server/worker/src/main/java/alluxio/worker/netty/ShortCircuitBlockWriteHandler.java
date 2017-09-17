@@ -183,7 +183,7 @@ class ShortCircuitBlockWriteHandler extends ChannelInboundHandlerAdapter {
               //add by li
               if(mBlockWorker instanceof UserBlockStoreEventListener) {
                 ((UserBlockStoreEventListener) mBlockWorker).
-                        onCommitBlockByUser(mSessionId, request.getBlockId(), request.getUser());
+                        onCommitBlockByUser(mSessionId, request.getBlockId(), request.getOwner());
               }
 
             }

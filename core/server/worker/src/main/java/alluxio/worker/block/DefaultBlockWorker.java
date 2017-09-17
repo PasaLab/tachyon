@@ -554,14 +554,14 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   }
 
   @Override
-  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation, String user) {
-    eventListener.onMoveBlockByWorkerByUser(sessionId, blockId, oldLocation, newLocation, user);
+  public void onMoveBlockByWorkerByUser(long sessionId, long blockId, String user) {
+    eventListener.onMoveBlockByWorkerByUser(sessionId, blockId, user);
 
   }
 
   @Override
-  public void onRemoveBlockByClienByUsert(long sessionId, long blockId, String user) {
-    eventListener.onRemoveBlockByClienByUsert(sessionId, blockId, user);
+  public void onRemoveBlockByClienByUser(long sessionId, long blockId, String user) {
+    eventListener.onRemoveBlockByClienByUser(sessionId, blockId, user);
 
   }
 
