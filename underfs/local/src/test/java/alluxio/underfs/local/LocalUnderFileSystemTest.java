@@ -42,7 +42,7 @@ public class LocalUnderFileSystemTest {
   @Before
   public void before() throws IOException {
     mLocalUfsRoot = mTemporaryFolder.getRoot().getAbsolutePath();
-    mLocalUfs = UnderFileSystem.Factory.get(mLocalUfsRoot);
+    mLocalUfs = UnderFileSystem.Factory.create(mLocalUfsRoot);
   }
 
   @Test
@@ -61,9 +61,6 @@ public class LocalUnderFileSystemTest {
   public void create() throws IOException {
     String filepath = PathUtils.concatPath(mLocalUfsRoot, getUniqueFileName());
     OutputStream os = mLocalUfs.create(filepath);
-
-    Assert.assertFalse(mLocalUfs.isFile(filepath));
-
     os.close();
 
     Assert.assertTrue(mLocalUfs.isFile(filepath));

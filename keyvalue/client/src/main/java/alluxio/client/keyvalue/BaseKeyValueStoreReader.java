@@ -12,8 +12,8 @@
 package alluxio.client.keyvalue;
 
 import alluxio.AlluxioURI;
-import alluxio.client.file.FileSystemContext;
 import alluxio.exception.AlluxioException;
+import alluxio.master.MasterClientConfig;
 import alluxio.thrift.PartitionInfo;
 import alluxio.util.io.BufferUtils;
 
@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -35,7 +34,6 @@ import javax.annotation.concurrent.NotThreadSafe;
 class BaseKeyValueStoreReader implements KeyValueStoreReader {
   private static final Logger LOG = LoggerFactory.getLogger(BaseKeyValueStoreReader.class);
 
-  private final InetSocketAddress mMasterAddress = FileSystemContext.INSTANCE.getMasterAddress();
   private final KeyValueMasterClient mMasterClient;
 
   /** A list of partitions of the store. */
@@ -45,13 +43,11 @@ class BaseKeyValueStoreReader implements KeyValueStoreReader {
    * Constructs a {@link BaseKeyValueStoreReader} instance.
    *
    * @param uri URI of the key-value store
-   * @throws IOException if non-Alluxio error occurs
-   * @throws AlluxioException if Alluxio error occurs
    */
-  BaseKeyValueStoreReader(AlluxioURI uri) throws IOException, AlluxioException {
+  BaseKeyValueStoreReader(AlluxioURI uri) throws IOException {
     // TODO(binfan): use a thread pool to manage the client.
     LOG.info("Create KeyValueStoreReader for {}", uri);
-    mMasterClient = new KeyValueMasterClient(mMasterAddress);
+    mMasterClient = new KeyValueMasterClient(MasterClientConfig.defaults());
     mPartitions = mMasterClient.getPartitionInfo(uri);
     mMasterClient.close();
   }
