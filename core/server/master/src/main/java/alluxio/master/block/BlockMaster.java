@@ -17,6 +17,7 @@ import alluxio.exception.NoWorkerException;
 import alluxio.master.Master;
 import alluxio.thrift.Command;
 import alluxio.wire.BlockInfo;
+import alluxio.wire.Capacity;
 import alluxio.wire.WorkerInfo;
 import alluxio.wire.WorkerNetAddress;
 
@@ -161,4 +162,8 @@ public interface BlockMaster extends Master, ContainerIdGenerable {
    * @param blockIds the ids of the lost blocks
    */
   void reportLostBlocks(List<Long> blockIds);
+
+  Map<String, Capacity> getWorkerTierInfo(long workerId);
+
+  long getLostBlocksNum();
 }

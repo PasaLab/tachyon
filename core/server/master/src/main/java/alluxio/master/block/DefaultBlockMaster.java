@@ -46,10 +46,7 @@ import alluxio.util.CommonUtils;
 import alluxio.util.IdUtils;
 import alluxio.util.executor.ExecutorServiceFactories;
 import alluxio.util.executor.ExecutorServiceFactory;
-import alluxio.wire.BlockInfo;
-import alluxio.wire.BlockLocation;
-import alluxio.wire.WorkerInfo;
-import alluxio.wire.WorkerNetAddress;
+import alluxio.wire.*;
 
 import com.codahale.metrics.Gauge;
 import com.google.common.collect.ImmutableSet;
@@ -57,6 +54,7 @@ import com.google.common.collect.Iterators;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.netty.util.internal.chmv8.ConcurrentHashMapV8;
 import org.apache.thrift.TProcessor;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -756,6 +754,21 @@ public final class DefaultBlockMaster extends AbstractMaster implements BlockMas
     mLostBlocks.addAll(blockIds);
   }
 
+  @Override
+  public Map<String, Capacity> getWorkerTierInfo(long workerId) {
+    if(mWorkers.contains(ID_INDEX, workerId)) {
+      return mWorkers.getFirstByField(ID_INDEX, workerId).getTierInfo();
+    }
+    if(mLostWorkers.contains(ID_INDEX, workerId)) {
+      return mLostWorkers.getFirstByField(ID_INDEX, workerId).getTierInfo();
+    }
+    return null;
+  }
+
+  @Override
+  public long getLostBlocksNum() {
+    return mLostBlocks.size();
+  }
   /**
    * Lost worker periodic check.
    */

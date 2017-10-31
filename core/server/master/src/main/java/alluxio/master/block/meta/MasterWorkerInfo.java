@@ -15,6 +15,7 @@ import alluxio.Constants;
 import alluxio.StorageTierAssoc;
 import alluxio.WorkerStorageTierAssoc;
 import alluxio.util.CommonUtils;
+import alluxio.wire.Capacity;
 import alluxio.wire.WorkerInfo;
 import alluxio.wire.WorkerNetAddress;
 
@@ -182,6 +183,18 @@ public final class MasterWorkerInfo {
             (int) ((CommonUtils.getCurrentMs() - mLastUpdatedTimeMs) / Constants.SECOND_MS))
         .setState("In Service").setCapacityBytes(mCapacityBytes).setUsedBytes(mUsedBytes)
         .setStartTimeMs(mStartTimeMs);
+  }
+
+  public Map<String, Capacity> getTierInfo() {
+    Map<String, Capacity> TierInfo= new HashMap<>();
+    for(Map.Entry entry : mTotalBytesOnTiers.entrySet()) {
+      String tier = entry.getKey().toString();
+      long total = (long)entry.getValue();
+      long used = mUsedBytesOnTiers.get(tier);
+      TierInfo.put(tier, new Capacity().setTotal(total).setUsed(used));
+
+    }
+    return TierInfo;
   }
 
   /**

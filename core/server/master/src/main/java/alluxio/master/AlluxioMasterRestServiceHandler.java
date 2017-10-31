@@ -70,6 +70,7 @@ public final class AlluxioMasterRestServiceHandler {
 
   // queries
   public static final String QUERY_RAW_CONFIGURATION = "raw_configuration";
+  public static final String QUERY_WORKER_ID = "worker_id";
 
   // log
   public static final String LOG_LEVEL = "logLevel";
@@ -93,6 +94,8 @@ public final class AlluxioMasterRestServiceHandler {
   public static final String GET_VERSION = "version";
   public static final String GET_WORKER_COUNT = "worker_count";
   public static final String GET_WORKER_INFO_LIST = "worker_info_list";
+  public static final String GET_WORKER_TIER_INFO = "woker_tier_info";
+  public static final String GET_LOST_BLOCKS = "lost_blocks_num";
 
   private final MasterProcess mMasterProcess;
   private final BlockMaster mBlockMaster;
@@ -485,6 +488,33 @@ public final class AlluxioMasterRestServiceHandler {
       }
     });
   }
+
+  @GET
+  @Path(GET_WORKER_TIER_INFO)
+  @ReturnType("java.util.Map<java.lang.String, alluxio.wire.Capacity>")
+  public Response getWorkerTierInfo(@QueryParam(QUERY_WORKER_ID) final long workerId) {
+    return RestUtils.call(new RestUtils.RestCallable<Map<String, Capacity>>() {
+      @Override
+      public Map<String, Capacity> call() throws Exception {
+        return mBlockMaster.getWorkerTierInfo(workerId);
+      }
+    });
+  }
+
+  @GET
+  @Path(GET_LOST_BLOCKS)
+  @ReturnType("java.lang.Long")
+  public Response getLostBlocksNum() {
+    return RestUtils.call(new RestUtils.RestCallable<Long>() {
+      @Override
+      public Long call() throws Exception {
+        return mBlockMaster.getLostBlocksNum();
+      }
+    });
+  }
+
+  @GET
+  @Path(GET_
 
   private Capacity getCapacityInternal() {
     return new Capacity().setTotal(mBlockMaster.getCapacityBytes())
