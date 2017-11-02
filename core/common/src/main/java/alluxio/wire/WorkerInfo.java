@@ -16,7 +16,6 @@ import com.google.common.base.Preconditions;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Map;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -34,7 +33,6 @@ public final class WorkerInfo implements Serializable {
   private long mCapacityBytes;
   private long mUsedBytes;
   private long mStartTimeMs;
-
 
   /**
    * Creates a new instance of {@link WorkerInfo}.

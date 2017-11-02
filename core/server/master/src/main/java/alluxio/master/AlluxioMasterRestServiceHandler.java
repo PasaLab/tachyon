@@ -94,8 +94,9 @@ public final class AlluxioMasterRestServiceHandler {
   public static final String GET_VERSION = "version";
   public static final String GET_WORKER_COUNT = "worker_count";
   public static final String GET_WORKER_INFO_LIST = "worker_info_list";
-  public static final String GET_WORKER_TIER_INFO = "woker_tier_info";
-  public static final String GET_LOST_BLOCKS = "lost_blocks_num";
+
+  public static final String GET_WORKER_TIER_INFO = "worker_tier_info";
+  public static final String GET_LOST_BLOCKS = "lost_blocks_number";
 
   private final MasterProcess mMasterProcess;
   private final BlockMaster mBlockMaster;
@@ -489,6 +490,11 @@ public final class AlluxioMasterRestServiceHandler {
     });
   }
 
+  /**
+   * @summary get the Map of worker Tier info
+   * @param workerId the worker id
+   * @return the response object
+   */
   @GET
   @Path(GET_WORKER_TIER_INFO)
   @ReturnType("java.util.Map<java.lang.String, alluxio.wire.Capacity>")
@@ -501,6 +507,10 @@ public final class AlluxioMasterRestServiceHandler {
     });
   }
 
+  /**
+   * @summary get the number of lost blocks.
+   * @return the response object
+   */
   @GET
   @Path(GET_LOST_BLOCKS)
   @ReturnType("java.lang.Long")
@@ -512,9 +522,6 @@ public final class AlluxioMasterRestServiceHandler {
       }
     });
   }
-
-  @GET
-  @Path(GET_
 
   private Capacity getCapacityInternal() {
     return new Capacity().setTotal(mBlockMaster.getCapacityBytes())

@@ -266,11 +266,10 @@ function main {
     runJavaClass "$@"
   ;;
    "admin")
-    CLASS="alluxio.cli.fs.AdminShell"
-    #CLASSPATH=${ALLUXIO_CLIENT_CLASSPATH}
+    CLASS="alluxio.cli.admin.AdminShell"
+    CLASSPATH=${ALLUXIO_CLIENT_CLASSPATH}
     runJavaClass "$@"
   ;;
-
   "getConf")
     CLASS="alluxio.cli.GetConf"
     CLASSPATH=${ALLUXIO_CLIENT_CLASSPATH}

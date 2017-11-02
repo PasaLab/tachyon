@@ -185,16 +185,19 @@ public final class MasterWorkerInfo {
         .setStartTimeMs(mStartTimeMs);
   }
 
+  /**
+   * @return tier info map
+   */
   public Map<String, Capacity> getTierInfo() {
-    Map<String, Capacity> TierInfo= new HashMap<>();
-    for(Map.Entry entry : mTotalBytesOnTiers.entrySet()) {
+    Map<String, Capacity> tierInfo = new HashMap<>();
+    for (Map.Entry entry : mTotalBytesOnTiers.entrySet()) {
       String tier = entry.getKey().toString();
-      long total = (long)entry.getValue();
+      long total = (long) entry.getValue();
       long used = mUsedBytesOnTiers.get(tier);
-      TierInfo.put(tier, new Capacity().setTotal(total).setUsed(used));
+      tierInfo.put(tier, new Capacity().setTotal(total).setUsed(used));
 
     }
-    return TierInfo;
+    return tierInfo;
   }
 
   /**

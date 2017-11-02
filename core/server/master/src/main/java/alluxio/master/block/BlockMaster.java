@@ -163,7 +163,14 @@ public interface BlockMaster extends Master, ContainerIdGenerable {
    */
   void reportLostBlocks(List<Long> blockIds);
 
+  /**
+   * @param workerId the worker id
+   * @return the Map include Tier name and Capacity
+   */
   Map<String, Capacity> getWorkerTierInfo(long workerId);
 
+  /**
+   * @return the number of lost blocks
+   */
   long getLostBlocksNum();
 }
