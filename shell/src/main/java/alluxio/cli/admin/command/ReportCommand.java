@@ -84,11 +84,11 @@ public class ReportCommand extends AbstractCommand {
   public int run(CommandLine cl) throws IOException {
     getClusterInfo();
 
-    System.out.println("Live workers information");
+    System.out.println("Live workers information: ");
     for (WorkerInfo workerInfo:mInfo.getWorkers()) {
       getNodeInfo(workerInfo);
     }
-    System.out.println("Dead workers information");
+    System.out.println("Dead workers information: ");
     for (WorkerInfo workerInfo:mInfo.getLostWorkers()) {
       getNodeInfo(workerInfo);
     }
@@ -97,21 +97,21 @@ public class ReportCommand extends AbstractCommand {
   }
 
   private void getClusterInfo() throws IOException {
-    System.out.println("Cluster-wide information");
+    System.out.println("Cluster-wide information: ");
 
     String result =
         new AdminRestCase(mHostname, mPort, getEndpoint(GET_INFO), NO_PARAMS  , "GET").call();
     mInfo = new ObjectMapper().readValue(result, AlluxioMasterInfo.class);
 
     Capacity capacity = mInfo.getCapacity();
-    System.out.println(String.format("Present capacity %d, Used capcity %d, remaining capacity %d",
+    System.out.println(String.format("Present capacity: %d, Used capcity: %d, remaining capacity: %d",
         capacity.getTotal(), capacity.getUsed(), capacity.getTotal() - capacity.getUsed()));
 
     for (Map.Entry entry : mInfo.getTierCapacity().entrySet()) {
       String tier = entry.getKey().toString();
       Capacity capacity1 = mInfo.getTierCapacity().get(tier);
-      System.out.println(String.format("tier name %s, Present capacity %d,"
-          + " Used capacity %d, remaining capacity %d", tier , capacity1.getTotal(),
+      System.out.println(String.format("tier name: %s, Present capacity: %d,"
+          + " Used capacity: %d, remaining capacity: %d", tier , capacity1.getTotal(),
               capacity1.getUsed(), capacity1.getTotal() - capacity1.getUsed()));
     }
 
@@ -134,9 +134,9 @@ public class ReportCommand extends AbstractCommand {
 
   private void getNodeInfo(WorkerInfo workerInfo) throws IOException {
     String hostName =  workerInfo.getAddress().getHost();
-    System.out.println(String.format("Work Information: id %d, host: %s",
+    System.out.println(String.format("Work Information: id: %d, host: %s",
         workerInfo.getId(), hostName));
-    System.out.println(String.format("Configured capacity %d, Used capacity %d",
+    System.out.println(String.format("Configured capacity: %d, Used capacity: %d",
         workerInfo.getCapacityBytes(), workerInfo.getUsedBytes()));
 
     Map<String, Capacity> tierInfo = getTierInfo(workerInfo.getId(), hostName);
@@ -144,7 +144,7 @@ public class ReportCommand extends AbstractCommand {
     for (Map.Entry entry : tierInfo.entrySet()) {
       String tierName = entry.getKey().toString();
       Capacity capacity = tierInfo.get(tierName);
-      System.out.println(String.format("tier name %s, Configured Capacity: %d, Used Capacity %d",
+      System.out.println(String.format("tier name: %s, Configured Capacity: %d, Used Capacity: %d",
           entry.getKey(), capacity.getTotal(), capacity.getUsed()));
     }
 
