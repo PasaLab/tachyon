@@ -176,7 +176,7 @@ class ShortCircuitBlockWriteHandler extends ChannelInboundHandlerAdapter {
             if (request.getCancel()) {
               mBlockWorker.abortBlock(mSessionId, request.getBlockId());
             } else {
-              mBlockWorker.commitBlock(mSessionId, request.getBlockId());
+              mBlockWorker.commitBlock(mSessionId, request.getBlockId(), user);
             }
             mSessionId = INVALID_SESSION_ID;
             ctx.writeAndFlush(RPCProtoMessage.createOkResponse(null));

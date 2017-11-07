@@ -25,6 +25,7 @@ import alluxio.util.proto.ProtoMessage;
 import alluxio.worker.block.BlockLockManager;
 import alluxio.worker.block.BlockWorker;
 
+import alluxio.worker.block.evictor.MT_LRU;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
@@ -131,7 +132,10 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
                 }
               }
               mLockId = mWorker.lockBlock(mSessionId, request.getBlockId());
-              mWorker.accessBlock(mSessionId, request.getBlockId());
+
+
+              mWorker.accessBlock(mSessionId, request.getBlockId(), user);
+
             } else {
               LOG.warn("Lock block {} without releasing previous block lock {}.",
                   request.getBlockId(), mLockId);

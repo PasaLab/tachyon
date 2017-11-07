@@ -74,6 +74,7 @@ public class LRUEvictor extends AbstractEvictor {
 
   @Override
   public void onAccessBlock(long sessionId, long blockId) {
+    mHitNum ++;
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
   }
 
@@ -97,4 +98,10 @@ public class LRUEvictor extends AbstractEvictor {
   protected void onRemoveBlockFromIterator(long blockId) {
     mLRUCache.remove(blockId);
   }
+
+  @Override
+  public int getBlocksNum() {
+    return mLRUCache.size();
+  }
+
 }

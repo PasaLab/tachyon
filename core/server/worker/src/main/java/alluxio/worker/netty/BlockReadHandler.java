@@ -32,6 +32,7 @@ import alluxio.util.proto.ProtoMessage;
 import alluxio.worker.block.BlockLockManager;
 import alluxio.worker.block.BlockWorker;
 import alluxio.worker.block.UnderFileSystemBlockReader;
+import alluxio.worker.block.evictor.MT_LRU;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.LocalFileBlockReader;
 
@@ -158,7 +159,19 @@ public final class BlockReadHandler extends AbstractReadHandler<BlockReadRequest
             String metricName = "BytesReadAlluxio";
             context.setBlockReader(reader);
             context.setCounter(MetricsSystem.workerCounter(metricName));
-            mWorker.accessBlock(request.getSessionId(), request.getId());
+
+            //mock access
+            MT_LRU.INSTANCE.executorService.submit(new Runnable() {
+              @Override
+              public void run() {
+                MT_LRU.INSTANCE.getMockBlockStore(user).accessBlock();
+              }
+            });
+
+            mWorker.accessBlock(request.getSessionId(), request.getId(), user);
+
+
+
             ((FileChannel) reader.getChannel()).position(request.getStart());
             return;
           } catch (Exception e) {

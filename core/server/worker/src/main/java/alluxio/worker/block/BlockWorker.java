@@ -68,7 +68,7 @@ public interface BlockWorker extends Worker, SessionCleanable {
    * @throws BlockDoesNotExistException this exception is not thrown in the tiered block store
    *         implementation
    */
-  void accessBlock(long sessionId, long blockId) throws BlockDoesNotExistException;
+  void accessBlock(long sessionId, long blockId, String user) throws BlockDoesNotExistException;
 
   /**
    * Commits a block to Alluxio managed space. The block must be temporary. The block is persisted
@@ -82,7 +82,7 @@ public interface BlockWorker extends Worker, SessionCleanable {
    * @throws InvalidWorkerStateException if blockId does not belong to sessionId
    * @throws WorkerOutOfSpaceException if there is no more space left to hold the block
    */
-  void commitBlock(long sessionId, long blockId)
+  void commitBlock(long sessionId, long blockId, String user)
       throws BlockAlreadyExistsException, BlockDoesNotExistException, InvalidWorkerStateException,
       IOException, WorkerOutOfSpaceException;
 

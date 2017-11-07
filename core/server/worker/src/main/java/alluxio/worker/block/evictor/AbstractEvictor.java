@@ -40,6 +40,8 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   private static final Logger LOG = LoggerFactory.getLogger(AbstractEvictor.class);
   protected final Allocator mAllocator;
   protected BlockMetadataManagerView mManagerView;
+  protected int mHitNum = 0;
+  protected int mMissNum = 0;
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -167,6 +169,7 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   @Override
   public EvictionPlan freeSpaceWithView(long bytesToBeAvailable, BlockStoreLocation location,
       BlockMetadataManagerView view) {
+    mMissNum ++;
     mManagerView = view;
 
     List<BlockTransferInfo> toMove = new ArrayList<>();
@@ -208,5 +211,12 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   protected BlockStoreLocation updateBlockStoreLocation(long bytesToBeAvailable,
       BlockStoreLocation location) {
     return location;
+  }
+
+  public abstract int getBlocksNum();
+
+  public long HRCompute() {
+    return (long) mHitNum / (long)(mHitNum + mMissNum);
+
   }
 }

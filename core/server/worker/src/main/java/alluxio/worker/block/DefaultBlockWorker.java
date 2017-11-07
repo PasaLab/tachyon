@@ -35,6 +35,7 @@ import alluxio.wire.FileInfo;
 import alluxio.wire.WorkerNetAddress;
 import alluxio.worker.AbstractWorker;
 import alluxio.worker.SessionCleaner;
+import alluxio.worker.block.evictor.MT_LRU;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.BlockWriter;
 import alluxio.worker.block.meta.BlockMeta;
@@ -44,6 +45,7 @@ import alluxio.worker.file.FileSystemMasterClient;
 import com.codahale.metrics.Gauge;
 import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -274,18 +276,44 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   }
 
   @Override
-  public void accessBlock(long sessionId, long blockId) throws BlockDoesNotExistException {
-    mBlockStore.accessBlock(sessionId, blockId);
+  public void accessBlock(long sessionId, long blockId, String user) throws BlockDoesNotExistException {
+    mBlockStore.accessBlock(sessionId, blockId, user);
+
+    //mock access
+    MT_LRU.INSTANCE.executorService.submit(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          MT_LRU.INSTANCE.getMockBlockStore(user).accessBlock(sessionId, blockId, user);
+
+        } catch (BlockDoesNotExistException e) {
+          throw Throwables.propagate(e);
+        }
+      }
+    });
   }
 
   @Override
-  public void commitBlock(long sessionId, long blockId)
+  public void commitBlock(long sessionId, long blockId, String user)
       throws BlockAlreadyExistsException, BlockDoesNotExistException, InvalidWorkerStateException,
       IOException, WorkerOutOfSpaceException {
     // NOTE: this may be invoked multiple times due to retry on client side.
     // TODO(binfan): find a better way to handle retry logic
+
+    MT_LRU.INSTANCE.executorService.submit(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          MT_LRU.INSTANCE.getMockBlockStore(user).commitBlock(sessionId, blockId, user);
+
+        } catch (Exception e) {
+          throw Throwables.propagate(e);
+        }
+      }
+    });
+
     try {
-      mBlockStore.commitBlock(sessionId, blockId);
+      mBlockStore.commitBlock(sessionId, blockId, user);
     } catch (BlockAlreadyExistsException e) {
       LOG.debug("Block {} has been in block store, this could be a retry due to master-side RPC "
           + "failure, therefore ignore the exception", blockId, e);
@@ -318,6 +346,8 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     TempBlockMeta createdBlock;
     try {
       createdBlock = mBlockStore.createBlock(sessionId, blockId, loc, initialBytes);
+
+
     } catch (WorkerOutOfSpaceException e) {
       InetSocketAddress address =
           InetSocketAddress.createUnresolved(mAddress.getHost(), mAddress.getRpcPort());
@@ -479,7 +509,7 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
     mUnderFileSystemBlockStore.closeReaderOrWriter(sessionId, blockId);
     if (mBlockStore.getTempBlockMeta(sessionId, blockId) != null) {
       try {
-        commitBlock(sessionId, blockId);
+        commitBlock(sessionId, blockId, null);
       } catch (BlockDoesNotExistException e) {
         // This can only happen if the session is expired. Ignore this exception if that happens.
         LOG.warn("Block {} does not exist while being committed.", blockId);

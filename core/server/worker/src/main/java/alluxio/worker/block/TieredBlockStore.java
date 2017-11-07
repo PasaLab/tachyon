@@ -27,6 +27,7 @@ import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.evictor.BlockTransferInfo;
 import alluxio.worker.block.evictor.EvictionPlan;
 import alluxio.worker.block.evictor.Evictor;
+import alluxio.worker.block.evictor.MT_LRU;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.BlockWriter;
 import alluxio.worker.block.io.LocalFileBlockReader;
@@ -110,6 +111,8 @@ public class TieredBlockStore implements BlockStore {
   /** Association between storage tier aliases and ordinals. */
   private final StorageTierAssoc mStorageTierAssoc;
 
+  public boolean isMock = false;
+
   /**
    * Creates a new instance of {@link TieredBlockStore}.
    */
@@ -126,9 +129,15 @@ public class TieredBlockStore implements BlockStore {
 
     initManagerView = new BlockMetadataManagerView(mMetaManager, Collections.<Long>emptySet(),
         Collections.<Long>emptySet());
-    mEvictor = Evictor.Factory.create(initManagerView, mAllocator);
-    if (mEvictor instanceof BlockStoreEventListener) {
-      registerBlockStoreEventListener((BlockStoreEventListener) mEvictor);
+    // Mock only one user so one Evictor
+    if(isMock) {
+      mEvictor = Evictor.Factory.create(initManagerView, mAllocator);
+      if (mEvictor instanceof BlockStoreEventListener) {
+        registerBlockStoreEventListener((BlockStoreEventListener) mEvictor);
+      }
+    }
+    else {
+      mEvictor = null;
     }
 
     mStorageTierAssoc = new WorkerStorageTierAssoc();
@@ -206,7 +215,10 @@ public class TieredBlockStore implements BlockStore {
       TempBlockMeta tempBlockMeta =
           createBlockMetaInternal(sessionId, blockId, location, initialBlockSize, true);
       if (tempBlockMeta != null) {
-        createBlockFile(tempBlockMeta.getPath());
+        //no Mock create real file
+        if(!isMock) {
+          createBlockFile(tempBlockMeta.getPath());
+        }
         return tempBlockMeta;
       }
       if (i < MAX_RETRIES) {
@@ -247,7 +259,7 @@ public class TieredBlockStore implements BlockStore {
   }
 
   @Override
-  public void commitBlock(long sessionId, long blockId) throws BlockAlreadyExistsException,
+  public void commitBlock(long sessionId, long blockId, String user) throws BlockAlreadyExistsException,
       InvalidWorkerStateException, BlockDoesNotExistException, IOException {
     BlockStoreLocation loc = commitBlockInternal(sessionId, blockId);
     synchronized (mBlockStoreEventListeners) {
@@ -255,6 +267,11 @@ public class TieredBlockStore implements BlockStore {
         listener.onCommitBlock(sessionId, blockId, loc);
       }
     }
+
+    if(!isMock) {
+      MT_LRU.INSTANCE.getUserEvictor(user).onCommitBlock(sessionId, blockId, loc);
+    }
+
   }
 
   @Override
@@ -331,10 +348,16 @@ public class TieredBlockStore implements BlockStore {
         listener.onRemoveBlockByClient(sessionId, blockId);
       }
     }
+    if(!isMock) {
+      List<String> users = MT_LRU.INSTANCE.mBlockToUsersMap.get(blockId);
+      for(String user : users) {
+        MT_LRU.INSTANCE.getUserEvictor(user).onRemoveBlockByClient(sessionId, blockId);
+      }
+    }
   }
 
   @Override
-  public void accessBlock(long sessionId, long blockId) throws BlockDoesNotExistException {
+  public void accessBlock(long sessionId, long blockId, String user) throws BlockDoesNotExistException {
     boolean hasBlock;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
       hasBlock = mMetaManager.hasBlockMeta(blockId);
@@ -342,11 +365,18 @@ public class TieredBlockStore implements BlockStore {
     if (!hasBlock) {
       throw new BlockDoesNotExistException(ExceptionMessage.NO_BLOCK_ID_FOUND, blockId);
     }
+
     synchronized (mBlockStoreEventListeners) {
       for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
         listener.onAccessBlock(sessionId, blockId);
       }
     }
+
+    if(!isMock) {
+      MT_LRU.INSTANCE.getUserEvictor(user).onAccessBlock(sessionId, blockId);
+      MT_LRU.INSTANCE.addBlockUserInfo(blockId, user);
+    }
+
   }
 
   @Override
@@ -471,7 +501,8 @@ public class TieredBlockStore implements BlockStore {
 
     // The metadata lock is released during heavy IO. The temp block is private to one session, so
     // we do not lock it.
-    Files.delete(Paths.get(path));
+    if(!isMock)
+      Files.delete(Paths.get(path));
 
     try (LockResource r = new LockResource(mMetadataWriteLock)) {
       mMetaManager.abortTempBlockMeta(tempBlockMeta);
@@ -511,7 +542,8 @@ public class TieredBlockStore implements BlockStore {
       }
 
       // Heavy IO is guarded by block lock but not metadata lock. This may throw IOException.
-      FileUtils.move(srcPath, dstPath);
+      if(!isMock)
+        FileUtils.move(srcPath, dstPath);
 
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
         mMetaManager.commitTempBlockMeta(tempBlockMeta);
@@ -612,8 +644,23 @@ public class TieredBlockStore implements BlockStore {
   private void freeSpaceInternal(long sessionId, long availableBytes, BlockStoreLocation location)
       throws WorkerOutOfSpaceException, IOException {
     EvictionPlan plan;
+    boolean isNeedRec =false;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
-      plan = mEvictor.freeSpaceWithView(availableBytes, location, getUpdatedView());
+      //TODO(li) fairRide
+      if(isMock)
+        plan = mEvictor.freeSpaceWithView(availableBytes, location, getUpdatedView());
+      else {
+        long space = MT_LRU.INSTANCE.getMMFUsedSpace();
+        Evictor evictor = MT_LRU.INSTANCE.getMMFEvictor();
+        if(space > availableBytes) {
+          plan = evictor.freeSpaceWithView(availableBytes, location, getUpdatedView());
+        }
+        else {
+          plan = evictor.freeSpaceWithView(space, location, getUpdatedView());
+        }
+
+
+      }
       // Absent plan means failed to evict enough space.
       if (plan == null) {
         throw new WorkerOutOfSpaceException(ExceptionMessage.NO_EVICTION_PLAN_TO_FREE_SPACE);
@@ -637,6 +684,16 @@ public class TieredBlockStore implements BlockStore {
           listener.onRemoveBlockByWorker(sessionId, blockInfo.getFirst());
         }
       }
+
+      if(!isMock) {
+        if(!isMock) {
+          List<String> users = MT_LRU.INSTANCE.mBlockToUsersMap.get(blockInfo.getFirst());
+          for(String user : users) {
+            MT_LRU.INSTANCE.getUserEvictor(user).onRemoveBlockByWorker(sessionId, blockInfo.getFirst());
+          }
+        }
+      }
+
     }
     // 2. transfer blocks among tiers.
     // 2.1. group blocks move plan by the destination tier.
@@ -758,6 +815,7 @@ public class TieredBlockStore implements BlockStore {
       dstFilePath = dstTempBlock.getCommitPath();
 
       // Heavy IO is guarded by block lock but not metadata lock. This may throw IOException.
+      if(!isMock)
       FileUtils.move(srcFilePath, dstFilePath);
 
       try (LockResource r = new LockResource(mMetadataWriteLock)) {
@@ -805,6 +863,7 @@ public class TieredBlockStore implements BlockStore {
             location);
       }
       // Heavy IO is guarded by block lock but not metadata lock. This may throw IOException.
+      if(isMock)
       Files.delete(Paths.get(filePath));
 
       try (LockResource r = new LockResource(mMetadataWriteLock)) {

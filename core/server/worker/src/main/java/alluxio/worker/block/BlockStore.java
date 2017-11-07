@@ -146,7 +146,7 @@ public interface BlockStore extends SessionCleanable {
    * @throws InvalidWorkerStateException if block id does not belong to session id
    * @throws WorkerOutOfSpaceException if there is no more space left to hold the block
    */
-  void commitBlock(long sessionId, long blockId) throws BlockAlreadyExistsException,
+  void commitBlock(long sessionId, long blockId, String user) throws BlockAlreadyExistsException,
       BlockDoesNotExistException, InvalidWorkerStateException, IOException,
       WorkerOutOfSpaceException;
 
@@ -279,7 +279,7 @@ public interface BlockStore extends SessionCleanable {
    * @param blockId the id of an accessed block
    * @throws BlockDoesNotExistException if the block id is not found
    */
-  void accessBlock(long sessionId, long blockId) throws BlockDoesNotExistException;
+  void accessBlock(long sessionId, long blockId, String user) throws BlockDoesNotExistException;
 
   /**
    * Gets the metadata of the entire store in a snapshot. There is no guarantee the state will be

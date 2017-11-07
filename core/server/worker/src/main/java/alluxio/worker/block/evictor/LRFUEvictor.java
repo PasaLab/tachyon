@@ -235,4 +235,9 @@ public final class LRFUEvictor extends AbstractEvictor {
       mBlockIdToLastUpdateTime.remove(blockId);
     }
   }
+
+  @Override
+  public int getBlocksNum() {
+    return mBlockIdToCRFValue.size();
+  }
 }
