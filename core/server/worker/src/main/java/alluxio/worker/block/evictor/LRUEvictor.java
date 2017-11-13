@@ -17,13 +17,10 @@ import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.StorageTierView;
+import com.google.common.base.Throwables;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -47,6 +44,9 @@ public class LRUEvictor extends AbstractEvictor {
       Collections.synchronizedMap(new LinkedHashMap<Long, Boolean>(LINKED_HASH_MAP_INIT_CAPACITY,
           LINKED_HASH_MAP_INIT_LOAD_FACTOR, LINKED_HASH_MAP_ACCESS_ORDERED));
 
+  protected Map<String, LinkedHashMap<Long, Boolean>> mLRUTierCache = Collections.synchronizedMap(new HashMap<>(3));
+
+
   /**
    * Creates a new instance of {@link LRUEvictor}.
    *
@@ -58,11 +58,19 @@ public class LRUEvictor extends AbstractEvictor {
 
     // preload existing blocks loaded by StorageDir to Evictor
     for (StorageTierView tierView : mManagerView.getTierViews()) {
+
+      String tier = tierView.getTierViewAlias();
+      mLRUTierCache.put(tier, new LinkedHashMap<Long, Boolean>(LINKED_HASH_MAP_INIT_CAPACITY,
+              LINKED_HASH_MAP_INIT_LOAD_FACTOR, LINKED_HASH_MAP_ACCESS_ORDERED));
+
       for (StorageDirView dirView : tierView.getDirViews()) {
         for (BlockMeta blockMeta : dirView.getEvictableBlocks()) { // all blocks with initial view
           mLRUCache.put(blockMeta.getBlockId(), UNUSED_MAP_VALUE);
+          mLRUTierCache.get(tier).put(blockMeta.getBlockId(), UNUSED_MAP_VALUE);
         }
       }
+
+
     }
   }
 
@@ -73,35 +81,102 @@ public class LRUEvictor extends AbstractEvictor {
   }
 
   @Override
+  protected  Iterator<Long> getTierBlockIterator(String tier) {
+    List<Long> blocks = new ArrayList<>(mLRUTierCache.get(tier).keySet());
+    return blocks.iterator();
+  }
+
+  @Override
   public void onAccessBlock(long sessionId, long blockId) {
-    mHitNum ++;
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
+    try {
+      String tier = mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierAlias();
+      mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
+      if(tier.compareTo("MEM") == 0) {
+        mMemHitNum ++;
+      }
+      else {
+        mMemMissNum ++;
+      }
+    }catch (Exception e) {
+      throw Throwables.propagate(e); // we shall never reach here
+    }
   }
 
   @Override
   public void onCommitBlock(long sessionId, long blockId, BlockStoreLocation location) {
     // Since the temp block has been committed, update Evictor about the new added blocks
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
+    try {
+      String tier = mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierAlias();
+      mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
+
+      Long temp = mTierSpace.getOrDefault(tier, new Long(0));
+      mTierSpace.put(tier, temp += mManagerView.getBlockMeta(blockId).getBlockSize());
+
+    } catch (Exception e) {
+      throw Throwables.propagate(e); // we shall never reach here
+    }
   }
 
   @Override
   public void onRemoveBlockByClient(long sessionId, long blockId) {
+
+    try {
+      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+
+      Long temp = mTierSpace.get(tier);
+      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+
+      mLRUTierCache.get(tier).remove(blockId);
+    }catch (Exception e) {
+      throw Throwables.propagate(e); // we shall never reach here
+    }
+
     mLRUCache.remove(blockId);
+
+
   }
 
   @Override
   public void onRemoveBlockByWorker(long sessionId, long blockId) {
+
+    try {
+      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+
+      Long temp = mTierSpace.get(tier);
+      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+
+      mLRUTierCache.get(tier).remove(blockId);
+    }catch (Exception e) {
+      throw Throwables.propagate(e); // we shall never reach here
+    }
+
     mLRUCache.remove(blockId);
   }
 
   @Override
   protected void onRemoveBlockFromIterator(long blockId) {
+
+    try {
+      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+
+      Long temp = mTierSpace.get(tier);
+      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+
+      mLRUTierCache.get(tier).remove(blockId);
+    }catch (Exception e) {
+      throw Throwables.propagate(e); // we shall never reach here
+    }
+
     mLRUCache.remove(blockId);
   }
 
   @Override
-  public int getBlocksNum() {
-    return mLRUCache.size();
+  public int getBlocksNum(String tier) {
+    return mLRUTierCache.get(tier).size();
   }
-
 }

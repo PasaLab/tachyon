@@ -17,6 +17,7 @@ import alluxio.exception.BlockDoesNotExistException;
 import alluxio.worker.block.AbstractBlockStoreEventListener;
 import alluxio.worker.block.BlockMetadataManagerView;
 import alluxio.worker.block.BlockStoreLocation;
+import alluxio.worker.block.TieredBlockStore;
 import alluxio.worker.block.allocator.Allocator;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
@@ -26,9 +27,8 @@ import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -40,8 +40,11 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   private static final Logger LOG = LoggerFactory.getLogger(AbstractEvictor.class);
   protected final Allocator mAllocator;
   protected BlockMetadataManagerView mManagerView;
-  protected int mHitNum = 0;
-  protected int mMissNum = 0;
+  int mMemHitNum = 0;
+  int mMemMissNum = 0;
+  public Map<String, Long> mTierSpace = new ConcurrentHashMap<>();
+  public TieredBlockStore mTieredBlockStore;
+
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -49,9 +52,10 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
    * @param view a view of block metadata information
    * @param allocator an allocation policy
    */
-  public AbstractEvictor(BlockMetadataManagerView view, Allocator allocator) {
+  public AbstractEvictor(BlockMetadataManagerView view, Allocator allocator, TieredBlockStore tieredBlockStore) {
     mManagerView = Preconditions.checkNotNull(view, "view");
     mAllocator = Preconditions.checkNotNull(allocator, "allocator");
+    mTieredBlockStore = tieredBlockStore;
   }
 
   /**
@@ -169,7 +173,6 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   @Override
   public EvictionPlan freeSpaceWithView(long bytesToBeAvailable, BlockStoreLocation location,
       BlockMetadataManagerView view) {
-    mMissNum ++;
     mManagerView = view;
 
     List<BlockTransferInfo> toMove = new ArrayList<>();
@@ -194,6 +197,8 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
    */
   protected abstract Iterator<Long> getBlockIterator();
 
+  protected abstract Iterator<Long> getTierBlockIterator(String tier);
+
   /**
    * Performs additional cleanup when a block is removed from the iterator returned by
    * {@link #getBlockIterator()}.
@@ -213,10 +218,9 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
     return location;
   }
 
-  public abstract int getBlocksNum();
+  public abstract int getBlocksNum(String tier);
 
   public long HRCompute() {
-    return (long) mHitNum / (long)(mHitNum + mMissNum);
-
+    return (long) mMemHitNum / (long) (mMemHitNum + mMemMissNum);
   }
 }

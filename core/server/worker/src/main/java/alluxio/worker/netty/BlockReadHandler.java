@@ -159,19 +159,7 @@ public final class BlockReadHandler extends AbstractReadHandler<BlockReadRequest
             String metricName = "BytesReadAlluxio";
             context.setBlockReader(reader);
             context.setCounter(MetricsSystem.workerCounter(metricName));
-
-            //mock access
-            MT_LRU.INSTANCE.executorService.submit(new Runnable() {
-              @Override
-              public void run() {
-                MT_LRU.INSTANCE.getMockBlockStore(user).accessBlock();
-              }
-            });
-
             mWorker.accessBlock(request.getSessionId(), request.getId(), user);
-
-
-
             ((FileChannel) reader.getChannel()).position(request.getStart());
             return;
           } catch (Exception e) {

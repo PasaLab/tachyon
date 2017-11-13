@@ -133,7 +133,6 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
               }
               mLockId = mWorker.lockBlock(mSessionId, request.getBlockId());
 
-
               mWorker.accessBlock(mSessionId, request.getBlockId(), user);
 
             } else {

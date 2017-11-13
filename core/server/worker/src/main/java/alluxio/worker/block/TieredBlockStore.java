@@ -24,10 +24,7 @@ import alluxio.exception.WorkerOutOfSpaceException;
 import alluxio.resource.LockResource;
 import alluxio.util.io.FileUtils;
 import alluxio.worker.block.allocator.Allocator;
-import alluxio.worker.block.evictor.BlockTransferInfo;
-import alluxio.worker.block.evictor.EvictionPlan;
-import alluxio.worker.block.evictor.Evictor;
-import alluxio.worker.block.evictor.MT_LRU;
+import alluxio.worker.block.evictor.*;
 import alluxio.worker.block.io.BlockReader;
 import alluxio.worker.block.io.BlockWriter;
 import alluxio.worker.block.io.LocalFileBlockReader;
@@ -92,7 +89,8 @@ public class TieredBlockStore implements BlockStore {
   private final BlockMetadataManager mMetaManager;
   private final BlockLockManager mLockManager;
   private final Allocator mAllocator;
-  private final Evictor mEvictor;
+  //used in Mock situation, in real situation use MT-URL evictors;
+  public final Evictor mEvictor;
 
   private final List<BlockStoreEventListener> mBlockStoreEventListeners = new ArrayList<>();
 
@@ -643,24 +641,25 @@ public class TieredBlockStore implements BlockStore {
    */
   private void freeSpaceInternal(long sessionId, long availableBytes, BlockStoreLocation location)
       throws WorkerOutOfSpaceException, IOException {
-    EvictionPlan plan;
-    boolean isNeedRec =false;
+    EvictionPlan plan = null;
+    long reserve = 0;
     try (LockResource r = new LockResource(mMetadataReadLock)) {
       //TODO(li) fairRide
       if(isMock)
         plan = mEvictor.freeSpaceWithView(availableBytes, location, getUpdatedView());
       else {
-        long space = MT_LRU.INSTANCE.getMMFUsedSpace();
-        Evictor evictor = MT_LRU.INSTANCE.getMMFEvictor();
-        if(space > availableBytes) {
+        AbstractEvictor evictor = MT_LRU.INSTANCE.getMMFEvictor(location.tierAlias());
+        long allSpace = evictor.mTierSpace.get(location.tierAlias());
+        if(allSpace > availableBytes) {
           plan = evictor.freeSpaceWithView(availableBytes, location, getUpdatedView());
         }
         else {
-          plan = evictor.freeSpaceWithView(space, location, getUpdatedView());
+          plan = evictor.freeSpaceWithView(allSpace, location, getUpdatedView());
+          reserve = availableBytes - allSpace;
         }
 
-
       }
+
       // Absent plan means failed to evict enough space.
       if (plan == null) {
         throw new WorkerOutOfSpaceException(ExceptionMessage.NO_EVICTION_PLAN_TO_FREE_SPACE);
@@ -739,6 +738,86 @@ public class TieredBlockStore implements BlockStore {
         }
       }
     }
+
+    // evict one user's space
+    if(!isMock && reserve > 0) {
+      freeSpaceInternal( sessionId, reserve, location);
+    }
+  }
+
+  public void freeSpaceByLRU(long sessionId, EvictionPlan plan) throws WorkerOutOfSpaceException, IOException {
+
+    for (Pair<Long, BlockStoreLocation> blockInfo : plan.toEvict()) {
+      try {
+        removeBlockInternal(sessionId, blockInfo.getFirst(), blockInfo.getSecond());
+      } catch (InvalidWorkerStateException e) {
+        // Evictor is not working properly
+        LOG.error("Failed to evict blockId {}, this is temp block", blockInfo.getFirst());
+        continue;
+      } catch (BlockDoesNotExistException e) {
+        LOG.info("Failed to evict blockId {}, it could be already deleted", blockInfo.getFirst());
+        continue;
+      }
+      synchronized (mBlockStoreEventListeners) {
+        for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
+          listener.onRemoveBlockByWorker(sessionId, blockInfo.getFirst());
+        }
+      }
+
+      if(!isMock) {
+        if(!isMock) {
+          List<String> users = MT_LRU.INSTANCE.mBlockToUsersMap.get(blockInfo.getFirst());
+          for(String user : users) {
+            MT_LRU.INSTANCE.getUserEvictor(user).onRemoveBlockByWorker(sessionId, blockInfo.getFirst());
+          }
+        }
+      }
+
+    }
+    // 2. transfer blocks among tiers.
+    // 2.1. group blocks move plan by the destination tier.
+    Map<String, Set<BlockTransferInfo>> blocksGroupedByDestTier = new HashMap<>();
+    for (BlockTransferInfo entry : plan.toMove()) {
+      String alias = entry.getDstLocation().tierAlias();
+      if (!blocksGroupedByDestTier.containsKey(alias)) {
+        blocksGroupedByDestTier.put(alias, new HashSet<BlockTransferInfo>());
+      }
+      blocksGroupedByDestTier.get(alias).add(entry);
+    }
+    // 2.2. move blocks in the order of their dst tiers, from bottom to top
+    for (int tierOrdinal = mStorageTierAssoc.size() - 1; tierOrdinal >= 0; --tierOrdinal) {
+      Set<BlockTransferInfo> toMove =
+              blocksGroupedByDestTier.get(mStorageTierAssoc.getAlias(tierOrdinal));
+      if (toMove == null) {
+        toMove = new HashSet<>();
+      }
+      for (BlockTransferInfo entry : toMove) {
+        long blockId = entry.getBlockId();
+        BlockStoreLocation oldLocation = entry.getSrcLocation();
+        BlockStoreLocation newLocation = entry.getDstLocation();
+        MoveBlockResult moveResult;
+        try {
+          moveResult = moveBlockInternal(sessionId, blockId, oldLocation, newLocation);
+        } catch (InvalidWorkerStateException e) {
+          // Evictor is not working properly
+          LOG.error("Failed to evict blockId {}, this is temp block", blockId);
+          continue;
+        } catch (BlockAlreadyExistsException e) {
+          continue;
+        } catch (BlockDoesNotExistException e) {
+          LOG.info("Failed to move blockId {}, it could be already deleted", blockId);
+          continue;
+        }
+        if (moveResult.getSuccess()) {
+          synchronized (mBlockStoreEventListeners) {
+            for (BlockStoreEventListener listener : mBlockStoreEventListeners) {
+              listener.onMoveBlockByWorker(sessionId, blockId, moveResult.getSrcLocation(),
+                      newLocation);
+            }
+          }
+        }
+      }
+    }
   }
 
   /**
@@ -747,7 +826,7 @@ public class TieredBlockStore implements BlockStore {
    *
    * @return {@link BlockMetadataManagerView}, an updated view with most recent information
    */
-  private BlockMetadataManagerView getUpdatedView() {
+  public BlockMetadataManagerView getUpdatedView() {
     // TODO(calvin): Update the view object instead of creating new one every time.
     synchronized (mPinnedInodes) {
       return new BlockMetadataManagerView(mMetaManager, mPinnedInodes,
