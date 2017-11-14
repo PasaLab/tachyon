@@ -25,6 +25,7 @@ public enum MT_LRU implements Runnable{
   private final ConcurrentHashMap<String, TieredBlockStore> mMockStorage = new ConcurrentHashMap<>();
   public final HashMap<Long, List<String>> mBlockToUsersMap = new HashMap<>();
   public ExecutorService executorService = Executors.newFixedThreadPool(4);
+  private TieredBlockStore mRealBlockStore;
 
   BlockMetadataManager metadataManager;
   private TreeMap<Long, Long> mBlockToShadowPrice = new TreeMap<>(new Comparator<Long>() {
@@ -44,6 +45,17 @@ public enum MT_LRU implements Runnable{
   private int mFraction;
   private long mSleepTimes;
 
+  public void init(TieredBlockStore blockStore, List<String> users, boolean isSample) {
+    mRealBlockStore = blockStore;
+    for(String user : users) {
+      TieredBlockStore tieredBlockStore = new TieredBlockStore();
+      //TODO set evictor
+      tieredBlockStore.isMock = true;
+      mMockStorage.putIfAbsent(user, tieredBlockStore);
+    }
+    mIsSample = isSample;
+  }
+
   public void addUserEvictorInfo(String user, AbstractEvictor evictor) {
     mUserEvictors.putIfAbsent(user, evictor);
   }
@@ -52,14 +64,6 @@ public enum MT_LRU implements Runnable{
     return mUserEvictors.get(user);
   }
 
-  public void addMockStorage(String user) {
-
-    TieredBlockStore tieredBlockStore = new TieredBlockStore();
-    //TODO set evictor
-    tieredBlockStore.isMock = true;
-    mMockStorage.putIfAbsent(user, tieredBlockStore);
-
-  }
 
   public TieredBlockStore getMockBlockStore(String user) {
     return mMockStorage.get(user);
@@ -135,7 +139,7 @@ public enum MT_LRU implements Runnable{
   }
 
   public void removeBlock0(List<Long> removeBlocks, AbstractEvictor evictor) {
-    BlockMetadataManagerView mManagerView = evictor.mTieredBlockStore.getUpdatedView();
+    BlockMetadataManagerView mManagerView = mRealBlockStore.getUpdatedView();
 
     List<BlockTransferInfo> toMove = new ArrayList<>();
     List<Pair<Long, BlockStoreLocation>> toEvict = new ArrayList<>();
@@ -159,8 +163,8 @@ public enum MT_LRU implements Runnable{
 
         }
       } catch (BlockDoesNotExistException e) {
-        it.remove();
-        onRemoveBlockFromIterator(blockId);
+        //it.remove();
+        evictor.onRemoveBlockFromIterator(blockId);
       }
     }
 
@@ -221,7 +225,7 @@ public enum MT_LRU implements Runnable{
     }*/
 
     try {
-      evictor.mTieredBlockStore.freeSpaceByLRU(0, plan);
+      mRealBlockStore.freeSpaceByLRU(0, plan);
     } catch (Exception e) {
 
     }

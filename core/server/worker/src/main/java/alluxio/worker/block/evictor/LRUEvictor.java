@@ -90,7 +90,8 @@ public class LRUEvictor extends AbstractEvictor {
   public void onAccessBlock(long sessionId, long blockId) {
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
     try {
-      String tier = mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierAlias();
+      String tier = getTier(blockId);
+
       mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
       if(tier.compareTo("MEM") == 0) {
         mMemHitNum ++;
@@ -108,7 +109,8 @@ public class LRUEvictor extends AbstractEvictor {
     // Since the temp block has been committed, update Evictor about the new added blocks
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
     try {
-      String tier = mManagerView.getBlockMeta(blockId).getParentDir().getParentTier().getTierAlias();
+      String tier = getTier(blockId);
+
       mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
 
       Long temp = mTierSpace.getOrDefault(tier, new Long(0));
@@ -123,8 +125,7 @@ public class LRUEvictor extends AbstractEvictor {
   public void onRemoveBlockByClient(long sessionId, long blockId) {
 
     try {
-      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+      String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
       mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
@@ -143,8 +144,7 @@ public class LRUEvictor extends AbstractEvictor {
   public void onRemoveBlockByWorker(long sessionId, long blockId) {
 
     try {
-      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+      String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
       mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
@@ -161,8 +161,7 @@ public class LRUEvictor extends AbstractEvictor {
   protected void onRemoveBlockFromIterator(long blockId) {
 
     try {
-      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+      String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
       mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());

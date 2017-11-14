@@ -43,8 +43,6 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   int mMemHitNum = 0;
   int mMemMissNum = 0;
   public Map<String, Long> mTierSpace = new ConcurrentHashMap<>();
-  public TieredBlockStore mTieredBlockStore;
-
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -52,10 +50,9 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
    * @param view a view of block metadata information
    * @param allocator an allocation policy
    */
-  public AbstractEvictor(BlockMetadataManagerView view, Allocator allocator, TieredBlockStore tieredBlockStore) {
+  public AbstractEvictor(BlockMetadataManagerView view, Allocator allocator) {
     mManagerView = Preconditions.checkNotNull(view, "view");
     mAllocator = Preconditions.checkNotNull(allocator, "allocator");
-    mTieredBlockStore = tieredBlockStore;
   }
 
   /**
@@ -223,4 +220,10 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   public long HRCompute() {
     return (long) mMemHitNum / (long) (mMemHitNum + mMemMissNum);
   }
+
+  public String getTier(long blockId) throws BlockDoesNotExistException{
+    BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
+    return blockMeta.getParentDir().getParentTier().getTierAlias();
+  }
+
 }
