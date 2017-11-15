@@ -44,7 +44,7 @@ public class LRUEvictor extends AbstractEvictor {
       Collections.synchronizedMap(new LinkedHashMap<Long, Boolean>(LINKED_HASH_MAP_INIT_CAPACITY,
           LINKED_HASH_MAP_INIT_LOAD_FACTOR, LINKED_HASH_MAP_ACCESS_ORDERED));
 
-  protected Map<String, LinkedHashMap<Long, Boolean>> mLRUTierCache = Collections.synchronizedMap(new HashMap<>(3));
+  protected Map<String, LinkedHashMap<Long, Boolean>> mLRUTierCache = new HashMap<>(3);
 
 
   /**
@@ -82,14 +82,22 @@ public class LRUEvictor extends AbstractEvictor {
 
   @Override
   protected  Iterator<Long> getTierBlockIterator(String tier) {
-    List<Long> blocks = new ArrayList<>(mLRUTierCache.get(tier).keySet());
-    return blocks.iterator();
+    try {
+      tierLock.readLock().lock();
+      List<Long> blocks = new ArrayList<>(mLRUTierCache.get(tier).keySet());
+      return blocks.iterator();
+    } finally {
+      tierLock.readLock().unlock();
+    }
+
   }
 
   @Override
   public void onAccessBlock(long sessionId, long blockId) {
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
     try {
+      tierLock.writeLock().lock();
+
       String tier = getTier(blockId);
 
       mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
@@ -101,6 +109,8 @@ public class LRUEvictor extends AbstractEvictor {
       }
     }catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    }finally {
+      tierLock.writeLock().unlock();
     }
   }
 
@@ -109,15 +119,19 @@ public class LRUEvictor extends AbstractEvictor {
     // Since the temp block has been committed, update Evictor about the new added blocks
     mLRUCache.put(blockId, UNUSED_MAP_VALUE);
     try {
+      tierLock.writeLock().lock();
+
       String tier = getTier(blockId);
 
       mLRUTierCache.get(tier).put(blockId, UNUSED_MAP_VALUE);
 
       Long temp = mTierSpace.getOrDefault(tier, new Long(0));
-      mTierSpace.put(tier, temp += mManagerView.getBlockMeta(blockId).getBlockSize());
+      mTierSpace.put(tier, temp + mManagerView.getBlockMeta(blockId).getBlockSize());
 
     } catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    }finally {
+      tierLock.writeLock().unlock();
     }
   }
 
@@ -125,14 +139,18 @@ public class LRUEvictor extends AbstractEvictor {
   public void onRemoveBlockByClient(long sessionId, long blockId) {
 
     try {
+      tierLock.writeLock().lock();
+
       String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
-      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+      mTierSpace.put(tier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
 
       mLRUTierCache.get(tier).remove(blockId);
     }catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    } finally {
+      tierLock.writeLock().unlock();
     }
 
     mLRUCache.remove(blockId);
@@ -144,14 +162,17 @@ public class LRUEvictor extends AbstractEvictor {
   public void onRemoveBlockByWorker(long sessionId, long blockId) {
 
     try {
+      tierLock.writeLock().lock();
       String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
-      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+      mTierSpace.put(tier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
 
       mLRUTierCache.get(tier).remove(blockId);
     }catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    } finally {
+      tierLock.writeLock().unlock();
     }
 
     mLRUCache.remove(blockId);
@@ -161,14 +182,17 @@ public class LRUEvictor extends AbstractEvictor {
   protected void onRemoveBlockFromIterator(long blockId) {
 
     try {
+      tierLock.writeLock().lock();
       String tier = getTier(blockId);
 
       Long temp = mTierSpace.get(tier);
-      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+      mTierSpace.put(tier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
 
       mLRUTierCache.get(tier).remove(blockId);
     }catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    } finally {
+      tierLock.writeLock().unlock();
     }
 
     mLRUCache.remove(blockId);
@@ -176,6 +200,42 @@ public class LRUEvictor extends AbstractEvictor {
 
   @Override
   public int getBlocksNum(String tier) {
-    return mLRUTierCache.get(tier).size();
+    try {
+      tierLock.readLock().lock();
+
+      return mLRUTierCache.get(tier).size();
+    } finally {
+      tierLock.readLock().unlock();
+    }
+  }
+
+  @Override
+  void moveBlock(long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation) {
+
+    String oldTier = oldLocation.tierAlias();
+    String newTier = newLocation.tierAlias();
+    if(oldTier.compareTo(newTier)!= 0) {
+
+        try {
+          tierLock.writeLock().lock();
+
+          Long temp = mTierSpace.get(oldTier);
+
+          mLRUTierCache.get(oldTier).remove(blockId);
+          mTierSpace.put(oldTier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
+          temp = mTierSpace.getOrDefault(newTier,new Long(0));
+          mLRUTierCache.get(newTier).put(blockId, UNUSED_MAP_VALUE);
+          mTierSpace.put(oldTier, temp + mManagerView.getBlockMeta(blockId).getBlockSize());
+
+        }catch (Exception e) {
+          throw Throwables.propagate(e); // we shall never reach here
+        } finally {
+          tierLock.writeLock().unlock();
+        }
+
+
+
+
+    }
   }
 }

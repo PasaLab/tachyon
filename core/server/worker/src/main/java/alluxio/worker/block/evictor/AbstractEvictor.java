@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
@@ -43,6 +44,8 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
   int mMemHitNum = 0;
   int mMemMissNum = 0;
   public Map<String, Long> mTierSpace = new ConcurrentHashMap<>();
+  ReentrantReadWriteLock tierLock = new ReentrantReadWriteLock();
+
 
   /**
    * Creates a new instance of {@link AbstractEvictor}.
@@ -185,6 +188,16 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
     return plan;
   }
 
+  @Override
+  public void onMoveBlockByClient(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation) {
+    moveBlock(blockId, oldLocation, newLocation);
+  }
+
+  @Override
+  public void onMoveBlockByWorker(long sessionId, long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation) {
+    moveBlock(blockId, oldLocation, newLocation);
+  }
+
   /**
    * Returns an iterator for evictor cache blocks. The evictor is responsible for specifying the
    * iteration order using its own strategy. For example, {@link LRUEvictor} returns an iterator
@@ -225,5 +238,7 @@ public abstract class AbstractEvictor extends AbstractBlockStoreEventListener im
     BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
     return blockMeta.getParentDir().getParentTier().getTierAlias();
   }
+
+  abstract void moveBlock(long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation);
 
 }

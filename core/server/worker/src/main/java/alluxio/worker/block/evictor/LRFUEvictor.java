@@ -32,6 +32,7 @@ import io.netty.util.internal.chmv8.ConcurrentHashMapV8;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.annotation.concurrent.NotThreadSafe;
 import javax.annotation.Nullable;
@@ -58,7 +59,8 @@ public final class LRFUEvictor extends AbstractEvictor {
   /** The attenuation factor is in the range of [2, INF]. */
   private final double mAttenuationFactor;
 
-  protected Map<String, Map<Long, Double>> mTierCache = Collections.synchronizedMap(new HashMap<>(3));
+  protected Map<String, Map<Long, Double>> mTierCache = new HashMap<>(3);
+
 
   /** Logic time count. */
   private AtomicLong mLogicTimeCount = new AtomicLong(0L);
@@ -145,27 +147,37 @@ public final class LRFUEvictor extends AbstractEvictor {
 
   @Override
   public int getBlocksNum(String tier) {
-    return mTierCache.get(tier).size();
+    try {
+      tierLock.readLock().lock();
+
+      return mTierCache.get(tier).size();
+    } finally {
+      tierLock.readLock().unlock();
+    }
   }
 
   @Override
   protected Iterator<Long> getTierBlockIterator(String tier) {
+    try {
+      tierLock.readLock().lock();
+      List<Map.Entry<Long, Double>> sortedTier = new ArrayList<>(mTierCache.get(tier).entrySet());
+      Collections.sort(sortedTier, new Comparator<Map.Entry<Long, Double>>() {
+        @Override
+        public int compare(Entry<Long, Double> o1, Entry<Long, Double> o2) {
+          return Double.compare(o1.getValue(), o2.getValue());
+        }
+      });
 
-    List<Map.Entry<Long, Double>> sortedTier = new ArrayList<>(mTierCache.get(tier).entrySet());
-    Collections.sort(sortedTier, new Comparator<Map.Entry<Long, Double>>() {
-      @Override
-      public int compare(Entry<Long, Double> o1, Entry<Long, Double> o2) {
-        return Double.compare(o1.getValue(), o2.getValue());
-      }
-    });
-
-    return Iterators.transform(sortedTier.iterator(),
-        new Function<Map.Entry<Long, Double>, Long>() {
-          @Override
-          public Long apply(Entry<Long, Double> input) {
-            return input.getKey();
-          }
-        });
+      return Iterators.transform(sortedTier.iterator(),
+          new Function<Map.Entry<Long, Double>, Long>() {
+            @Override
+            public Long apply(Entry<Long, Double> input) {
+              return input.getKey();
+            }
+          });
+    } finally {
+      tierLock.readLock().unlock();
+    }
   }
 
   /**
@@ -208,18 +220,39 @@ public final class LRFUEvictor extends AbstractEvictor {
   protected void onRemoveBlockFromIterator(long blockId) {
     mBlockIdToLastUpdateTime.remove(blockId);
     mBlockIdToCRFValue.remove(blockId);
+    removerTierBlockInfo(blockId);
 
-    try {
-      BlockMeta blockMeta = mManagerView.getBlockMeta(blockId);
-      String tier = blockMeta.getParentDir().getParentTier().getTierAlias();
+  }
 
-      Long temp = mTierSpace.get(tier);
-      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
 
-      mTierCache.get(tier).remove(blockId);
-    }catch (Exception e) {
-      throw Throwables.propagate(e); // we shall never reach here
-    }
+
+  @Override
+  void moveBlock(long blockId, BlockStoreLocation oldLocation, BlockStoreLocation newLocation) {
+
+    String oldTier = oldLocation.tierAlias();
+    String newTier = newLocation.tierAlias();
+    if(oldTier.compareTo(newTier)!= 0) {
+
+        try {
+          tierLock.writeLock().lock();
+          Long temp = mTierSpace.get(oldTier);
+          mTierCache.get(oldTier).remove(blockId);
+          mTierSpace.put(oldTier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
+          temp = mTierSpace.getOrDefault(newTier,new Long(0));
+          mTierCache.get(newTier).put(blockId, mBlockIdToCRFValue.get(blockId));
+          mTierSpace.put(oldTier, temp + mManagerView.getBlockMeta(blockId).getBlockSize());
+
+        }catch (Exception e) {
+          throw Throwables.propagate(e); // we shall never reach here
+        }
+        finally {
+          tierLock.writeLock().unlock();
+        }
+
+
+      }
+
+
   }
 
   /**
@@ -242,7 +275,7 @@ public final class LRFUEvictor extends AbstractEvictor {
       mBlockIdToCRFValue.put(blockId, newCrfValue);
       mBlockIdToLastUpdateTime.put(blockId, currentLogicTime);
 
-      putTierBlockInfo(blockId, newCrfValue, false);
+      putTierBlockInfo(blockId, newCrfValue, false, false);
 
     }
   }
@@ -258,6 +291,7 @@ public final class LRFUEvictor extends AbstractEvictor {
    */
   private void updateOnAccessAndCommit(long blockId) {
     synchronized (mBlockIdToLastUpdateTime) {
+
       long currentLogicTime = mLogicTimeCount.incrementAndGet();
       // update CRF value
       // CRF(currentLogicTime)=CRF(lastUpdateTime)*F(currentLogicTime-lastUpdateTime)+F(0)
@@ -278,7 +312,7 @@ public final class LRFUEvictor extends AbstractEvictor {
       // update currentLogicTime to lastUpdateTime
       mBlockIdToLastUpdateTime.put(blockId, currentLogicTime);
 
-      putTierBlockInfo(blockId, newCrfValue, isNew);
+      putTierBlockInfo(blockId, newCrfValue, isNew, true);
 
     }
   }
@@ -298,29 +332,46 @@ public final class LRFUEvictor extends AbstractEvictor {
     }
   }
 
-  private void putTierBlockInfo(long blockId, double value, boolean isNew) {
+  private void putTierBlockInfo(long blockId, double value, boolean isNew, boolean isHit) {
     try {
-      String tier = getTier(blockId);
-      mTierCache.get(tier).put(blockId, value);
-      if(isNew) {
-        Long temp = mTierSpace.getOrDefault(tier, new Long(0));
-        mTierSpace.put(tier, temp += mManagerView.getBlockMeta(blockId).getBlockSize());
-      }
+        tierLock.writeLock().lock();
+        String tier = getTier(blockId);
+
+        if(tier.compareTo("MEM") == 0) {
+          mMemHitNum ++;
+        }
+        else {
+          mMemMissNum ++;
+        }
+
+        mTierCache.get(tier).put(blockId, value);
+        if (isNew) {
+          Long temp = mTierSpace.getOrDefault(tier, new Long(0));
+          mTierSpace.put(tier, temp + mManagerView.getBlockMeta(blockId).getBlockSize());
+        }
+
     } catch (BlockDoesNotExistException e) {
       throw Throwables.propagate(e); // we shall never reach here
+    } finally {
+      tierLock.readLock().unlock();
     }
   }
 
   private void removerTierBlockInfo(long blockId) {
     try {
-      String tier = getTier(blockId);
+      tierLock.writeLock().lock();
 
-      Long temp = mTierSpace.get(tier);
-      mTierSpace.put(tier, temp -= mManagerView.getBlockMeta(blockId).getBlockSize());
+        String tier = getTier(blockId);
 
-      mTierCache.get(tier).remove(blockId);
+        Long temp = mTierSpace.get(tier);
+        mTierSpace.put(tier, temp - mManagerView.getBlockMeta(blockId).getBlockSize());
+
+        mTierCache.get(tier).remove(blockId);
+
     }catch (Exception e) {
       throw Throwables.propagate(e); // we shall never reach here
+    }finally {
+      tierLock.readLock().unlock();
     }
   }
 
