@@ -48,6 +48,7 @@ public final class CreateFileOptions {
   private Mode mMode;
   private int mWriteTier;
   private WriteType mWriteType;
+  private String mUser;
 
   /**
    * @return the default {@link CreateFileOptions}
@@ -230,6 +231,11 @@ public final class CreateFileOptions {
     return this;
   }
 
+  public CreateFileOptions setUser(String user) {
+    mUser = user;
+    return this;
+  }
+
   /**
    * @return representation of this object in the form of {@link OutStreamOptions}
    */
@@ -241,7 +247,8 @@ public final class CreateFileOptions {
         .setTtl(mTtl)
         .setTtlAction(mTtlAction)
         .setWriteTier(mWriteTier)
-        .setWriteType(mWriteType);
+        .setWriteType(mWriteType)
+        .setOwner(mUser);
   }
 
   @Override

@@ -22,6 +22,7 @@ import javax.annotation.concurrent.ThreadSafe;
 public final class BlockReadRequest extends ReadRequest {
   private final Protocol.OpenUfsBlockOptions mOpenUfsBlockOptions;
   private final boolean mPromote;
+  private String mUser;
 
   /**
    * Creates an instance of {@link BlockReadRequest}.
@@ -38,6 +39,7 @@ public final class BlockReadRequest extends ReadRequest {
       mOpenUfsBlockOptions = null;
     }
     mPromote = request.getPromote();
+    mUser = request.getUser();
     // Note that we do not need to seek to offset since the block worker is created at the offset.
   }
 
@@ -60,5 +62,9 @@ public final class BlockReadRequest extends ReadRequest {
    */
   public boolean isPersisted() {
     return mOpenUfsBlockOptions != null && mOpenUfsBlockOptions.hasUfsPath();
+  }
+
+  public String getUser() {
+    return mUser;
   }
 }

@@ -98,7 +98,7 @@ public class BlockInStream extends InputStream implements BoundedStream, Seekabl
       }
     }
     Protocol.ReadRequest.Builder builder = Protocol.ReadRequest.newBuilder().setBlockId(blockId)
-        .setPromote(options.getAlluxioStorageType().isPromote());
+        .setPromote(options.getAlluxioStorageType().isPromote()).setUser(options.getUser());
     if (openUfsBlockOptions != null) {
       builder.setOpenUfsBlockOptions(openUfsBlockOptions);
     }

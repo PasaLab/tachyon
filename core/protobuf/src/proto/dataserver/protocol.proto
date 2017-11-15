@@ -27,6 +27,8 @@ message ReadRequest {
 
   // This is only set for UFS block read.
   optional OpenUfsBlockOptions open_ufs_block_options = 6;
+  optional string user = 8;
+
 }
 
 // Options to open a UFS block.
@@ -61,6 +63,7 @@ message WriteRequest {
 
   // This is only applicable for ufs writes.
   optional CreateUfsFileOptions create_ufs_file_options = 7;
+  optional string user = 8;
 }
 
 // Options to create a UFS file.
@@ -102,6 +105,7 @@ message Heartbeat {
 message LocalBlockOpenRequest {
   optional int64 block_id = 1;
   optional bool promote = 2;
+  optional string user = 3;
 }
 
 // next available id: 2
@@ -121,6 +125,7 @@ message LocalBlockCreateRequest {
   optional int64 space_to_reserve = 4;
   // If set, only reserve space for the block.
   optional bool only_reserve_space = 5;
+  optional string user = 6;
 }
 
 // next available id: 2
@@ -132,4 +137,5 @@ message LocalBlockCreateResponse {
 message LocalBlockCompleteRequest {
   optional int64 block_id = 1;
   optional bool cancel = 2;
+  optional string user = 3;
 }

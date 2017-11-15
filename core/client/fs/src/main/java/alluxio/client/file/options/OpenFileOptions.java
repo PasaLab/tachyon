@@ -41,6 +41,7 @@ public final class OpenFileOptions {
   private int mMaxUfsReadConcurrency;
   /** The location policy to determine the worker location to serve UFS block reads. */
   private BlockLocationPolicy mUfsReadLocationPolicy;
+  private String mUser;
 
   /**
    * @return the default {@link InStreamOptions}
@@ -189,6 +190,14 @@ public final class OpenFileOptions {
     }
   }
 
+  public void setUser(String user) {
+    mUser = user;
+  }
+
+  public String getUser() {
+    return mUser;
+  }
+
   /**
    * @param className the location policy class to use when storing data to Alluxio
    * @return the updated options object
@@ -239,7 +248,8 @@ public final class OpenFileOptions {
   public InStreamOptions toInStreamOptions() {
     return InStreamOptions.defaults().setReadType(mReadType).setLocationPolicy(mCacheLocationPolicy)
         .setMaxUfsReadConcurrency(mMaxUfsReadConcurrency)
-        .setUfsReadLocationPolicy(mUfsReadLocationPolicy);
+        .setUfsReadLocationPolicy(mUfsReadLocationPolicy)
+        .setUser(mUser);
   }
 
   @Override
