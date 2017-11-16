@@ -268,6 +268,7 @@ public class TieredBlockStore implements BlockStore {
 
     if(!isMock) {
       MT_LRU.INSTANCE.getUserEvictor(user).onCommitBlock(sessionId, blockId, loc);
+      MT_LRU.INSTANCE.addBlockUserInfo(blockId, user);
     }
 
   }
@@ -372,7 +373,6 @@ public class TieredBlockStore implements BlockStore {
 
     if(!isMock) {
       MT_LRU.INSTANCE.getUserEvictor(user).onAccessBlock(sessionId, blockId);
-      MT_LRU.INSTANCE.addBlockUserInfo(blockId, user);
     }
 
   }
