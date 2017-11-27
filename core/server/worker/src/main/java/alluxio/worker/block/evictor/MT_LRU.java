@@ -1,24 +1,33 @@
 package alluxio.worker.block.evictor;
 
 
+import alluxio.Server;
 import alluxio.Sessions;
 import alluxio.collections.Pair;
 import alluxio.exception.BlockDoesNotExistException;
+import alluxio.master.AbstractMaster;
+import alluxio.master.Master;
+import alluxio.master.block.BlockId;
+import alluxio.proto.journal.Journal;
+import alluxio.thrift.BlockIdToCValue;
 import alluxio.worker.block.BlockMetadataManager;
 import alluxio.worker.block.BlockMetadataManagerView;
 import alluxio.worker.block.BlockStoreLocation;
 import alluxio.worker.block.TieredBlockStore;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
+import alluxio.worker.block.meta.StorageTier;
 import alluxio.worker.block.meta.StorageTierView;
 import com.google.common.base.Throwables;
+import org.apache.thrift.TProcessor;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.*;
 
 
-public enum MT_LRU implements Runnable{
+public enum MT_LRU implements Server, Runnable  {
   INSTANCE;
   //TODO consider block size
   private final ConcurrentHashMap<String, AbstractEvictor> mUserEvictors = new ConcurrentHashMap<>();
@@ -28,7 +37,7 @@ public enum MT_LRU implements Runnable{
   private TieredBlockStore mRealBlockStore;
 
   BlockMetadataManager metadataManager;
-  private TreeMap<Long, Long> mBlockToShadowPrice = new TreeMap<>(new Comparator<Long>() {
+  public final TreeMap<Long, Long> mBlockToShadowPrice = new TreeMap<>(new Comparator<Long>() {
     @Override
     public int compare(Long o1, Long o2) {
       return mBlockToShadowPrice.get(o1).compareTo(mBlockToShadowPrice.get(o2));
@@ -41,7 +50,7 @@ public enum MT_LRU implements Runnable{
 
   private long mAVC = 0;
   private int mCurrentTime;
-  private int mSampleNum;
+  private double mSampleFactor;
   private int mFraction;
   private long mSleepTimes;
 
@@ -252,12 +261,31 @@ public enum MT_LRU implements Runnable{
     Set<Integer> checker = new HashSet<>();
 
     Random random = new Random();
-    while(checker.size()!=mSampleNum) {
+    int sampleNum = (int)mSampleFactor * mBlockToUsersMap.size();
+    while(checker.size() != sampleNum) {
       int randomNumber =  random.nextInt(size-1)%(size);
       checker.add(randomNumber);
     }
     Integer[] res = (Integer[])checker.toArray();
     Arrays.sort(res);
+    return res;
+  }
+
+  public List<BlockIdToCValue> masterSample() {
+    for(Map.Entry entry : mUserEvictors.entrySet()) {
+      getUserBlock(entry.getKey().toString(), (AbstractEvictor)entry.getValue());
+    }
+    List<BlockIdToCValue> res = new ArrayList<>();
+    Long cricP, cricBlock;
+    Integer [] indexArray = Sample();
+    Long keyArray[] = (Long[])mBlockToShadowPrice.keySet().toArray();
+    Long valueArray[] = (Long[])mBlockToShadowPrice.values().toArray();
+    for(int i : indexArray) {
+      BlockIdToCValue temp = new BlockIdToCValue();
+      temp.setBlockId(keyArray[i]);
+      temp.setCValue(valueArray[i]);
+      res.add(temp);
+    }
     return res;
   }
 
@@ -273,6 +301,40 @@ public enum MT_LRU implements Runnable{
     }
     return maxEvictor;
   }
+
+  private synchronized long sendCric() {
+
+
+  }
+
+
+  @Override
+  public Set<Class<? extends Server>> getDependencies() {
+    return null;
+  }
+
+  @Override
+  public Map<String, TProcessor> getServices() {
+    return null;
+  }
+
+  @Override
+  public void start(Object options) throws IOException {
+
+  }
+
+  @Override
+  public void stop() throws IOException {
+
+  }
+
+
+  @Override
+  public String getName() {
+    return null;
+  }
+
+
 }
 
 

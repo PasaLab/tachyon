@@ -131,4 +131,6 @@ public final class FileSystemMasterClient extends AbstractMasterClient {
       }
     });
   }
+
+  public synchronized MTLRUInfo
 }
