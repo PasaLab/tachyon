@@ -37,7 +37,7 @@ public class BlockWorkerMasterServiceHandler implements BlockWorkerMasterService
         if(MT_LRU.INSTANCE.mBlockToUsersMap.containsKey(blockId)){
           value = MT_LRU.INSTANCE.mBlockToShadowPrice.get(blockId);
         }
-        return new MtLRUGetCricTResponse().setCritValue(value);;
+        return new MtLRUGetCricTResponse().setCritValue(value);
       }
     });
   }
@@ -47,7 +47,12 @@ public class BlockWorkerMasterServiceHandler implements BlockWorkerMasterService
     return RpcUtils.call(LOG, new RpcUtils.RpcCallable<MtLRUBroadCricTResponse>() {
       @Override
       public MtLRUBroadCricTResponse call() throws AlluxioException {
-        Thread MT_LRUEvict = new Thread(MT_LRU.INSTANCE);
+        Thread MT_LRUEvict = new Thread(new Runnable() {
+          @Override
+          public void run() {
+            MT_LRU.INSTANCE.removeFromMaster(options.getCricValue());
+          }
+        });
         MT_LRUEvict.start();
         return new MtLRUBroadCricTResponse();
       }

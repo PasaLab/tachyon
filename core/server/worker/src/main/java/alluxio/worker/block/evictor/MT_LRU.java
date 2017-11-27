@@ -1,6 +1,7 @@
 package alluxio.worker.block.evictor;
 
 
+import alluxio.Constants;
 import alluxio.Server;
 import alluxio.Sessions;
 import alluxio.collections.Pair;
@@ -10,10 +11,11 @@ import alluxio.master.Master;
 import alluxio.master.block.BlockId;
 import alluxio.proto.journal.Journal;
 import alluxio.thrift.BlockIdToCValue;
-import alluxio.worker.block.BlockMetadataManager;
-import alluxio.worker.block.BlockMetadataManagerView;
-import alluxio.worker.block.BlockStoreLocation;
-import alluxio.worker.block.TieredBlockStore;
+import alluxio.thrift.BlockMasterClientService;
+import alluxio.thrift.BlockWorkerMasterService;
+import alluxio.wire.WorkerNetAddress;
+import alluxio.worker.Worker;
+import alluxio.worker.block.*;
 import alluxio.worker.block.meta.BlockMeta;
 import alluxio.worker.block.meta.StorageDirView;
 import alluxio.worker.block.meta.StorageTier;
@@ -27,7 +29,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 
-public enum MT_LRU implements Server, Runnable  {
+public enum MT_LRU implements Worker, Runnable  {
   INSTANCE;
   //TODO consider block size
   private final ConcurrentHashMap<String, AbstractEvictor> mUserEvictors = new ConcurrentHashMap<>();
@@ -35,6 +37,7 @@ public enum MT_LRU implements Server, Runnable  {
   public final HashMap<Long, List<String>> mBlockToUsersMap = new HashMap<>();
   public ExecutorService executorService = Executors.newFixedThreadPool(4);
   private TieredBlockStore mRealBlockStore;
+  public BlockWorker mBlockWorker;
 
   BlockMetadataManager metadataManager;
   public final TreeMap<Long, Long> mBlockToShadowPrice = new TreeMap<>(new Comparator<Long>() {
@@ -54,7 +57,7 @@ public enum MT_LRU implements Server, Runnable  {
   private int mFraction;
   private long mSleepTimes;
 
-  public void init(TieredBlockStore blockStore, List<String> users, boolean isSample) {
+  public void init(TieredBlockStore blockStore, List<String> users, boolean isSample, BlockWorker blockWorker) {
     mRealBlockStore = blockStore;
     for(String user : users) {
       TieredBlockStore tieredBlockStore = new TieredBlockStore();
@@ -63,6 +66,7 @@ public enum MT_LRU implements Server, Runnable  {
       mMockStorage.putIfAbsent(user, tieredBlockStore);
     }
     mIsSample = isSample;
+    mBlockWorker = blockWorker;
   }
 
   public void addUserEvictorInfo(String user, AbstractEvictor evictor) {
@@ -126,6 +130,13 @@ public enum MT_LRU implements Server, Runnable  {
     }
   }
 
+  public void removeFromMaster(long cricP)
+  {
+    for(Map.Entry entry : mUserEvictors.entrySet()) {
+      removeBlock(cricP, (AbstractEvictor)entry.getValue());
+    }
+
+  }
   public void removeBlock(Long crip, AbstractEvictor evictor) {
     List<Long> removeBlock = new ArrayList<>();
     Iterator<Long> userIter = evictor.getTierBlockIterator("MEM");
@@ -146,6 +157,8 @@ public enum MT_LRU implements Server, Runnable  {
     }
     removeBlock0(removeBlock, evictor);
   }
+
+
 
   public void removeBlock0(List<Long> removeBlocks, AbstractEvictor evictor) {
     BlockMetadataManagerView mManagerView = mRealBlockStore.getUpdatedView();
@@ -315,11 +328,15 @@ public enum MT_LRU implements Server, Runnable  {
 
   @Override
   public Map<String, TProcessor> getServices() {
-    return null;
+    Map<String, TProcessor> services = new HashMap<>();
+    services.put("BlockWorkerMasterServiceHandler",
+        new BlockWorkerMasterService.Processor<>(
+            new BlockWorkerMasterServiceHandler(mBlockWorker)));
+    return services;
   }
 
   @Override
-  public void start(Object options) throws IOException {
+  public void start(WorkerNetAddress options) throws IOException {
 
   }
 

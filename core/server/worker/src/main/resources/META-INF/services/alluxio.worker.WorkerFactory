@@ -11,3 +11,4 @@
 
 alluxio.worker.block.BlockWorkerFactory
 alluxio.worker.file.FileSystemWorkerFactory
+alluxio.worker.block.MTLRUFactory
