@@ -13,6 +13,7 @@ package alluxio.client.block.stream;
 
 import alluxio.Configuration;
 import alluxio.PropertyKey;
+import alluxio.client.file.FileCache;
 import alluxio.client.file.FileSystemContext;
 import alluxio.client.file.options.InStreamOptions;
 import alluxio.client.netty.NettyRPC;
@@ -39,7 +40,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 public final class LocalFilePacketReader implements PacketReader {
   /** The file reader to read a local block. */
   private final LocalFileBlockReader mReader;
-
+  private final PacketCache mPacketCache;
   private long mPos;
   private final long mEnd;
   private final long mPacketSize;
@@ -54,22 +55,41 @@ public final class LocalFilePacketReader implements PacketReader {
    * @param len the length to read
    * @param packetSize the packet size
    */
-  private LocalFilePacketReader(String path, long offset, long len, long packetSize)
+  private LocalFilePacketReader(String path, long offset, long len, long packetSize
+      ,PacketCache packetCache)
       throws IOException {
-    mReader = new LocalFileBlockReader(path);
+        mReader = new LocalFileBlockReader(path);
     Preconditions.checkArgument(packetSize > 0);
     mPos = offset;
     mEnd = Math.min(mReader.getLength(), offset + len);
-    mPacketSize = packetSize;
+    mPacketSize = packetSize;//所以这个变量是没有用的，或者使用这个变量，而不要使用自己的常量
+    mPacketCache = packetCache;
   }
 
+  //实际改变了readPacket的语义，因为一次调用就把整个需要的都读完了
   @Override
-  public DataBuffer readPacket() throws IOException {
+  public DataBuffer readPacket() throws IOException {//这些都是设置的64KB的buffer，涉及到buffer的拼接问题
     if (mPos >= mEnd) {
       return null;
     }
-    ByteBuffer buffer = mReader.read(mPos, Math.min(mPacketSize, mEnd - mPos));
-    DataBuffer dataBuffer = new DataByteBuffer(buffer, buffer.remaining());
+    //应该不会有这么大的block吧
+    int startIndex = (int)(mPos/ FileCache.PACKET_SIZE);
+    int endIndex = (int)(mEnd/FileCache.PACKET_SIZE);
+    ByteBuffer [] buffers = new ByteBuffer[endIndex - startIndex + 1];
+    for (int i = startIndex; i <= endIndex; i++) {
+      buffers[i] = mPacketCache.getPacket(i);
+    }
+    for (int i = startIndex; i <= endIndex ; i++) {
+      if (buffers[i] == null) {
+        long currentOffset = i * FileCache.PACKET_SIZE;
+        ByteBuffer buffer = mReader.read(currentOffset
+            , Math.min(FileCache.PACKET_SIZE, mEnd - currentOffset));
+        mPacketCache.add(i, buffer);
+      }
+    }
+    int startOffset = (int)(mPos % FileCache.PACKET_SIZE);
+    int endOffset = (int)(mEnd % FileCache.PACKET_SIZE);
+    DataBuffer dataBuffer = new CompositeDataBuffer(buffers, startOffset, endOffset, mEnd - mPos);
     mPos += dataBuffer.getLength();
     return dataBuffer;
   }
@@ -101,6 +121,7 @@ public final class LocalFilePacketReader implements PacketReader {
     private final long mBlockId;
     private final String mPath;
     private final long mPacketSize;
+    private final PacketCache mPacketCache;
     private boolean mClosed;
 
     /**
@@ -113,12 +134,12 @@ public final class LocalFilePacketReader implements PacketReader {
      * @param options the instream options
      */
     public Factory(FileSystemContext context, WorkerNetAddress address, long blockId,
-        long packetSize, InStreamOptions options) throws IOException {
+        long packetSize, InStreamOptions options, PacketCache packetCache) throws IOException {
       mContext = context;
       mAddress = address;
       mBlockId = blockId;
       mPacketSize = packetSize;
-
+      mPacketCache = packetCache;
       mChannel = context.acquireNettyChannel(address);
       Protocol.LocalBlockOpenRequest request =
           Protocol.LocalBlockOpenRequest.newBuilder().setBlockId(mBlockId)
@@ -137,7 +158,7 @@ public final class LocalFilePacketReader implements PacketReader {
 
     @Override
     public PacketReader create(long offset, long len) throws IOException {
-      return new LocalFilePacketReader(mPath, offset, len, mPacketSize);
+      return new LocalFilePacketReader(mPath, offset, len, mPacketSize, mPacketCache);
     }
 
     @Override

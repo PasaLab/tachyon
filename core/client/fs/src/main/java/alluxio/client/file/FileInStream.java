@@ -20,9 +20,11 @@ import alluxio.client.AlluxioStorageType;
 import alluxio.client.BoundedStream;
 import alluxio.client.PositionedReadable;
 import alluxio.client.block.AlluxioBlockStore;
+import alluxio.client.block.stream.BlockCache;
 import alluxio.client.block.stream.BlockInStream;
 import alluxio.client.block.stream.BlockInStream.BlockInStreamSource;
 import alluxio.client.block.stream.BlockOutStream;
+import alluxio.client.block.stream.PacketCache;
 import alluxio.client.file.options.InStreamOptions;
 import alluxio.client.file.options.OutStreamOptions;
 import alluxio.exception.PreconditionMessage;
@@ -79,7 +81,8 @@ public class FileInStream extends InputStream
   private final AlluxioBlockStore mBlockStore;
   /** File information. */
   private final URIStatus mStatus;
-
+  /** Associated with a dedicated BlockCache.*/
+  private final BlockCache mBlockCache;
   /** If the stream is closed, this can only go from false to true. */
   private boolean mClosed;
 
@@ -367,6 +370,7 @@ public class FileInStream extends InputStream
     int seekBufferSizeBytes = Math.max((int) options.getSeekBufferSizeBytes(), 1);
     mSeekBuffer = new byte[seekBufferSizeBytes];
     mBlockStore = AlluxioBlockStore.create(context);
+    mBlockCache = mContext.getFileCache().getBlockCache(status.getFileId());
     LOG.debug("Init FileInStream with options {}", options);
   }
 
@@ -754,7 +758,8 @@ public class FileInStream extends InputStream
               .setNoCache(!mInStreamOptions.getAlluxioStorageType().isStore())
               .setMountId(mStatus.getMountId()).build();
     }
-    return mBlockStore.getInStream(blockId, openUfsBlockOptions, mInStreamOptions);
+    PacketCache packetCache = mBlockCache.getPacketCache(blockId);
+    return mBlockStore.getInStream(blockId, openUfsBlockOptions, mInStreamOptions, packetCache);
   }
 
   /**

@@ -16,6 +16,7 @@ import alluxio.client.block.policy.options.GetWorkerOptions;
 import alluxio.client.block.stream.BlockInStream;
 import alluxio.client.block.stream.BlockInStream.BlockInStreamSource;
 import alluxio.client.block.stream.BlockOutStream;
+import alluxio.client.block.stream.PacketCache;
 import alluxio.client.file.FileSystemContext;
 import alluxio.client.file.options.InStreamOptions;
 import alluxio.client.file.options.OutStreamOptions;
@@ -128,7 +129,7 @@ public final class AlluxioBlockStore {
    * @return an {@link InputStream} which can be used to read the data in a streaming fashion
    */
   public BlockInStream getInStream(long blockId, Protocol.OpenUfsBlockOptions openUfsBlockOptions,
-      InStreamOptions options) throws IOException {
+      InStreamOptions options, PacketCache packetCache) throws IOException {
     BlockInfo blockInfo;
     try (CloseableResource<BlockMasterClient> masterClientResource =
         mContext.acquireBlockMasterClientResource()) {
@@ -184,7 +185,7 @@ public final class AlluxioBlockStore {
             + " using source: {}, openUfsBlockOptions: {}, options: {}",
         blockId, blockInfo.getLength(), address, source, openUfsBlockOptions, options);
     return BlockInStream.create(mContext, blockId, blockInfo.getLength(), address, source,
-        openUfsBlockOptions, options);
+        openUfsBlockOptions, options, packetCache);
   }
 
   /**

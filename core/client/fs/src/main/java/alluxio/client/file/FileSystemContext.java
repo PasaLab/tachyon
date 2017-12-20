@@ -66,7 +66,8 @@ public final class FileSystemContext implements Closeable {
   // Master client pools.
   private volatile FileSystemMasterClientPool mFileSystemMasterClientPool;
   private volatile BlockMasterClientPool mBlockMasterClientPool;
-
+  //因为客户端缓存就是整个Client JVM只有一份，所以放在FileSystemContext中，因为
+  private volatile FileCache mFileCache;
   // The netty data server channel pools.
   private final ConcurrentHashMapV8<SocketAddress, NettyChannelPool>
       mNettyChannelPools = new ConcurrentHashMapV8<>();
@@ -137,6 +138,7 @@ public final class FileSystemContext implements Closeable {
     mFileSystemMasterClientPool =
         new FileSystemMasterClientPool(mParentSubject, mMasterInquireClient);
     mBlockMasterClientPool = new BlockMasterClientPool(mParentSubject, mMasterInquireClient);
+    mFileCache = new FileCache();
   }
 
   /**
@@ -194,6 +196,10 @@ public final class FileSystemContext implements Closeable {
    */
   public FileSystemMasterClient acquireMasterClient() {
     return mFileSystemMasterClientPool.acquire();
+  }
+
+  public FileCache getFileCache() {
+    return mFileCache;
   }
 
   /**

@@ -1535,6 +1535,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setDescription("The number of threads used by a lineage master client to talk to "
               + "the lineage master.")
           .build();
+  public static final PropertyKey USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES =
+      new Builder(Name.USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES)
+          .setDefaultValue("1GB")
+          .setDescription("The maximum cache size in client JVM direct memory.")
+          .build();
   public static final PropertyKey USER_LOCAL_READER_PACKET_SIZE_BYTES =
       new Builder(Name.USER_LOCAL_READER_PACKET_SIZE_BYTES)
           .setDefaultValue("8MB")
@@ -2282,6 +2287,8 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String USER_LINEAGE_ENABLED = "alluxio.user.lineage.enabled";
     public static final String USER_LINEAGE_MASTER_CLIENT_THREADS =
         "alluxio.user.lineage.master.client.threads";
+    public static final String USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES =
+        "alluxio.user.direct.memory.for.cache.use.size.bytes";
     public static final String USER_LOCAL_READER_PACKET_SIZE_BYTES =
         "alluxio.user.local.reader.packet.size.bytes";
     public static final String USER_LOCAL_WRITER_PACKET_SIZE_BYTES =

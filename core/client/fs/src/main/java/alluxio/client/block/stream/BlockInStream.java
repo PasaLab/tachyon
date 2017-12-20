@@ -83,14 +83,15 @@ public class BlockInStream extends InputStream implements BoundedStream, Seekabl
    */
   public static BlockInStream create(FileSystemContext context, long blockId, long blockSize,
       WorkerNetAddress address, BlockInStreamSource blockSource,
-      Protocol.OpenUfsBlockOptions openUfsBlockOptions, InStreamOptions options)
+      Protocol.OpenUfsBlockOptions openUfsBlockOptions, InStreamOptions options,
+      PacketCache packetCache)
           throws IOException {
     if (Configuration.getBoolean(PropertyKey.USER_SHORT_CIRCUIT_ENABLED)
         && !NettyUtils.isDomainSocketSupported(address)
         && blockSource == BlockInStreamSource.LOCAL) {
       try {
         LOG.debug("Creating short circuit input stream for block {} @ {}", blockId, address);
-        return createLocalBlockInStream(context, address, blockId, blockSize, options);
+        return createLocalBlockInStream(context, address, blockId, blockSize, options, packetCache);
       } catch (NotFoundException e) {
         // Failed to do short circuit read because the block is not available in Alluxio.
         // We will try to read from UFS via netty. So this exception is ignored.
@@ -120,11 +121,12 @@ public class BlockInStream extends InputStream implements BoundedStream, Seekabl
    * @return the {@link BlockInStream} created
    */
   private static BlockInStream createLocalBlockInStream(FileSystemContext context,
-      WorkerNetAddress address, long blockId, long length, InStreamOptions options)
+      WorkerNetAddress address, long blockId, long length, InStreamOptions options
+      , PacketCache packetCache)
       throws IOException {
     long packetSize = Configuration.getBytes(PropertyKey.USER_LOCAL_READER_PACKET_SIZE_BYTES);
     return new BlockInStream(
-        new LocalFilePacketReader.Factory(context, address, blockId, packetSize, options),
+        new LocalFilePacketReader.Factory(context, address, blockId, packetSize, options, packetCache),
         BlockInStreamSource.LOCAL, blockId, length);
   }
 
@@ -211,7 +213,6 @@ public class BlockInStream extends InputStream implements BoundedStream, Seekabl
     mPos += toRead;
     return toRead;
   }
-
   @Override
   public int positionedRead(long pos, byte[] b, int off, int len) throws IOException {
     if (len == 0) {
