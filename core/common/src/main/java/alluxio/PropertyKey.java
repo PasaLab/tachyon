@@ -59,7 +59,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
      * @param template template of the name of the property to build
      * @param params parameters of the template
      */
-    public Builder(PropertyKey.Template template, Object... params) {
+    public Builder(Template template, Object... params) {
       mName = String.format(template.mFormat, params);
     }
 
@@ -233,6 +233,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
       new Builder(Name.ZOOKEEPER_ADDRESS)
           .setDescription("Address of ZooKeeper.")
           .build();
+  public static final PropertyKey ZOOKEEPER_CONNECTION_TIMEOUT =
+      new Builder(Name.ZOOKEEPER_CONNECTION_TIMEOUT)
+          .setDefaultValue("15s") // matches Zookeeper's default
+          .setDescription("Connection timeout to use when connecting to Zookeeper")
+          .build();
   public static final PropertyKey ZOOKEEPER_ELECTION_PATH =
       new Builder(Name.ZOOKEEPER_ELECTION_PATH)
           .setDefaultValue("/election")
@@ -252,6 +257,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
       new Builder(Name.ZOOKEEPER_LEADER_PATH)
           .setDefaultValue("/leader")
           .setDescription("Leader directory in ZooKeeper.")
+          .build();
+  public static final PropertyKey ZOOKEEPER_SESSION_TIMEOUT =
+      new Builder(Name.ZOOKEEPER_SESSION_TIMEOUT)
+          .setDefaultValue("60s") // matches Zookeeper's default
+          .setDescription("Session timeout to use when connecting to Zookeeper")
           .build();
 
   /**
@@ -291,7 +301,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
       new Builder(Name.UNDERFS_HDFS_CONFIGURATION)
           .setDefaultValue(String.format(
               "${%s}/core-site.xml:${%s}/hdfs-site.xml", Name.CONF_DIR, Name.CONF_DIR))
-          .setDescription("Location of the hdfs configuration file.")
+          .setDescription("Location of the HDFS configuration file.")
           .build();
   public static final PropertyKey UNDERFS_HDFS_IMPL =
       new Builder(Name.UNDERFS_HDFS_IMPL)
@@ -301,8 +311,8 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   public static final PropertyKey UNDERFS_HDFS_PREFIXES =
       new Builder(Name.UNDERFS_HDFS_PREFIXES)
           .setDefaultValue("hdfs://,glusterfs:///,maprfs:///")
-          .setDescription("Optionally, specify which prefixes should run through the Apache "
-              + "Hadoop implementation of UnderFileSystem. The delimiter is any whitespace "
+          .setDescription("Optionally, specify which prefixes should run through the HDFS "
+              + "implementation of UnderFileSystem. The delimiter is any whitespace "
               + "and/or ','.")
           .build();
   public static final PropertyKey UNDERFS_HDFS_REMOTE =
@@ -482,7 +492,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   public static final PropertyKey SWIFT_API_KEY = new Builder(Name.SWIFT_API_KEY)
       .setDescription("(deprecated) The API key used for user:tenant authentication.").build();
   public static final PropertyKey SWIFT_AUTH_METHOD_KEY = new Builder(Name.SWIFT_AUTH_METHOD_KEY)
-      .setDescription("Choice of authenitcation method: "
+      .setDescription("Choice of authentication method: "
           + "[tempauth (default), swiftauth, keystone, keystonev3].")
       .build();
   public static final PropertyKey SWIFT_AUTH_URL_KEY = new Builder(Name.SWIFT_AUTH_URL_KEY)
@@ -573,7 +583,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setDefaultValue("_format_")
           .setDescription("The file prefix of the file generated in the journal directory "
               + "when the journal is formatted. The master will search for a file with this "
-              + "prefix when determining of the journal was once formatted.")
+              + "prefix when determining if the journal is formatted.")
           .build();
   public static final PropertyKey MASTER_HEARTBEAT_INTERVAL_MS =
       new Builder(Name.MASTER_HEARTBEAT_INTERVAL_MS)
@@ -720,6 +730,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
               + "underlying storage on startup. During the time the check is running, Alluxio "
               + "will be in read only mode. Enabled by default.")
           .build();
+  public static final PropertyKey MASTER_THRIFT_SHUTDOWN_TIMEOUT =
+         new Builder(Name.MASTER_THRIFT_SHUTDOWN_TIMEOUT)
+         .setDefaultValue("60sec")
+         .setDescription("Maximum time to wait for thrift servers to stop on shutdown")
+         .build();
   public static final PropertyKey MASTER_TIERED_STORE_GLOBAL_LEVEL0_ALIAS =
       new Builder(Name.MASTER_TIERED_STORE_GLOBAL_LEVEL0_ALIAS)
           .setDefaultValue("MEM")
@@ -868,7 +883,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .build();
   public static final PropertyKey WORKER_DATA_HOSTNAME =
       new Builder(Name.WORKER_DATA_HOSTNAME)
-          .setDescription("The hostname of Alluxio worker data service").build();
+          .setDescription("The hostname of Alluxio worker data service.").build();
   public static final PropertyKey WORKER_DATA_PORT =
       new Builder(Name.WORKER_DATA_PORT)
           .setDefaultValue(29999)
@@ -941,7 +956,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   public static final PropertyKey WORKER_FILE_BUFFER_SIZE =
       new Builder(Name.WORKER_FILE_BUFFER_SIZE)
           .setDefaultValue("1MB")
-          .setDescription("the buffer size for worker to write data into the tiered storage.")
+          .setDescription("The buffer size for worker to write data into the tiered storage.")
           .build();
   public static final PropertyKey WORKER_FILESYSTEM_HEARTBEAT_INTERVAL_MS =
       new Builder(Name.WORKER_FILESYSTEM_HEARTBEAT_INTERVAL_MS)
@@ -1520,6 +1535,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setDescription("The number of threads used by a lineage master client to talk to "
               + "the lineage master.")
           .build();
+  public static final PropertyKey USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES =
+      new Builder(Name.USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES)
+          .setDefaultValue("1GB")
+          .setDescription("The maximum cache size in client JVM direct memory.")
+          .build();
   public static final PropertyKey USER_LOCAL_READER_PACKET_SIZE_BYTES =
       new Builder(Name.USER_LOCAL_READER_PACKET_SIZE_BYTES)
           .setDefaultValue("8MB")
@@ -1706,21 +1726,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setDefaultValue("alluxio-fuse")
           .setDescription("The FUSE file system name.")
           .build();
-  public static final PropertyKey FUSE_FS_ROOT =
-      new Builder(Name.FUSE_FS_ROOT)
-          .setDefaultValue("/")
-          .setDescription("The Alluxio path mounted to the FUSE file system root.")
-          .build();
   public static final PropertyKey FUSE_MAXWRITE_BYTES =
       new Builder(Name.FUSE_MAXWRITE_BYTES)
           .setDefaultValue("128KB")
           .setDescription("Maximum granularity of write operations, capped by the kernel to 128KB "
               + "max (as of Linux 3.16.0).")
-          .build();
-  public static final PropertyKey FUSE_MOUNT_DEFAULT =
-      new Builder(Name.FUSE_MOUNT_DEFAULT)
-          .setDefaultValue("/mnt/alluxio")
-          .setDescription("Mount path in the local file system for the FUSE.")
           .build();
 
   //
@@ -1853,7 +1863,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   public static final PropertyKey INTEGRATION_MESOS_USER =
       new Builder(Name.INTEGRATION_MESOS_USER)
           .setDescription("The Mesos user for the Alluxio Mesos Framework. Defaults to the current "
-              + "user")
+              + "user.")
           .build();
   public static final PropertyKey INTEGRATION_WORKER_RESOURCE_CPU =
       new Builder(Name.INTEGRATION_WORKER_RESOURCE_CPU)
@@ -1869,6 +1879,35 @@ public final class PropertyKey implements Comparable<PropertyKey> {
       new Builder(Name.INTEGRATION_YARN_WORKERS_PER_HOST_MAX)
           .setDefaultValue(1)
           .setDescription("The number of workers to run on an Alluxio host for YARN framework.")
+          .build();
+
+  //
+  // JVM Monitor related properties
+  //
+  public static final PropertyKey JVM_MONITOR_WARN_THRESHOLD_MS =
+      new Builder(Name.JVM_MONITOR_WARN_THRESHOLD_MS)
+          .setDefaultValue("10sec")
+          .setDescription("Extra sleep time longer than this threshold, log WARN.")
+          .build();
+  public static final PropertyKey JVM_MONITOR_INFO_THRESHOLD_MS =
+      new Builder(Name.JVM_MONITOR_INFO_THRESHOLD_MS)
+          .setDefaultValue("1sec")
+          .setDescription("Extra sleep time longer than this threshold, log INFO.")
+          .build();
+  public static final PropertyKey JVM_MONITOR_SLEEP_INTERVAL_MS =
+      new Builder(Name.JVM_MONITOR_SLEEP_INTERVAL_MS)
+          .setDefaultValue("1sec")
+          .setDescription("The time for the JVM monitor thread to sleep.")
+          .build();
+  public static final PropertyKey MASTER_JVM_MONITOR_ENABLED =
+      new Builder(Name.MASTER_JVM_MONITOR_ENABLED)
+          .setDefaultValue(false)
+          .setDescription("Whether to enable start JVM monitor thread on master.")
+          .build();
+  public static final PropertyKey WORKER_JVM_MONITOR_ENABLED =
+      new Builder(Name.WORKER_JVM_MONITOR_ENABLED)
+          .setDefaultValue(false)
+          .setDescription("Whether to enable start JVM monitor thread on worker.")
           .build();
 
   /**
@@ -1924,11 +1963,14 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String WEB_THREADS = "alluxio.web.threads";
     public static final String WORK_DIR = "alluxio.work.dir";
     public static final String ZOOKEEPER_ADDRESS = "alluxio.zookeeper.address";
+    public static final String ZOOKEEPER_CONNECTION_TIMEOUT =
+        "alluxio.zookeeper.connection.timeout";
     public static final String ZOOKEEPER_ELECTION_PATH = "alluxio.zookeeper.election.path";
     public static final String ZOOKEEPER_ENABLED = "alluxio.zookeeper.enabled";
     public static final String ZOOKEEPER_LEADER_INQUIRY_RETRY_COUNT =
         "alluxio.zookeeper.leader.inquiry.retry";
     public static final String ZOOKEEPER_LEADER_PATH = "alluxio.zookeeper.leader.path";
+    public static final String ZOOKEEPER_SESSION_TIMEOUT = "alluxio.zookeeper.session.timeout";
 
     //
     // UFS related properties
@@ -2046,6 +2088,8 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String MASTER_RPC_PORT = "alluxio.master.port";
     public static final String MASTER_STARTUP_CONSISTENCY_CHECK_ENABLED =
         "alluxio.master.startup.consistency.check.enabled";
+    public static final String MASTER_THRIFT_SHUTDOWN_TIMEOUT =
+        "alluxio.master.thrift.shutdown.timeout";
     public static final String MASTER_TIERED_STORE_GLOBAL_LEVEL0_ALIAS =
         "alluxio.master.tieredstore.global.level0.alias";
     public static final String MASTER_TIERED_STORE_GLOBAL_LEVEL1_ALIAS =
@@ -2243,6 +2287,8 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String USER_LINEAGE_ENABLED = "alluxio.user.lineage.enabled";
     public static final String USER_LINEAGE_MASTER_CLIENT_THREADS =
         "alluxio.user.lineage.master.client.threads";
+    public static final String USER_DIRECT_MEMORY_FOR_CACHE_USE_SIZE_BYTES =
+        "alluxio.user.direct.memory.for.cache.use.size.bytes";
     public static final String USER_LOCAL_READER_PACKET_SIZE_BYTES =
         "alluxio.user.local.reader.packet.size.bytes";
     public static final String USER_LOCAL_WRITER_PACKET_SIZE_BYTES =
@@ -2296,9 +2342,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String FUSE_CACHED_PATHS_MAX = "alluxio.fuse.cached.paths.max";
     public static final String FUSE_DEBUG_ENABLED = "alluxio.fuse.debug.enabled";
     public static final String FUSE_FS_NAME = "alluxio.fuse.fs.name";
-    public static final String FUSE_FS_ROOT = "alluxio.fuse.fs.root";
     public static final String FUSE_MAXWRITE_BYTES = "alluxio.fuse.maxwrite.bytes";
-    public static final String FUSE_MOUNT_DEFAULT = "alluxio.fuse.mount.default";
 
     //
     // Security related properties
@@ -2320,6 +2364,18 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String SECURITY_GROUP_MAPPING_CLASS =
         "alluxio.security.group.mapping.class";
     public static final String SECURITY_LOGIN_USERNAME = "alluxio.security.login.username";
+
+    //
+    // JVM Monitor related properties
+    //
+    public static final String JVM_MONITOR_WARN_THRESHOLD_MS =
+        "alluxio.jvm.monitor.warn.threshold";
+    public static final String JVM_MONITOR_INFO_THRESHOLD_MS =
+        "alluxio.jvm.monitor.info.threshold";
+    public static final String JVM_MONITOR_SLEEP_INTERVAL_MS =
+        "alluxio.jvm.monitor.sleep.interval";
+    public static final String MASTER_JVM_MONITOR_ENABLED = "alluxio.master.jvm.monitor.enabled";
+    public static final String WORKER_JVM_MONITOR_ENABLED = "alluxio.worker.jvm.monitor.enabled";
 
     private Name() {} // prevent instantiation
   }
@@ -2350,6 +2406,9 @@ public final class PropertyKey implements Comparable<PropertyKey> {
         "alluxio\\.master\\.mount\\.table\\.root\\.option(\\.\\w+)++"),
     MASTER_TIERED_STORE_GLOBAL_LEVEL_ALIAS("alluxio.master.tieredstore.global.level%d.alias",
         "alluxio\\.master\\.tieredstore\\.global\\.level(\\d+)\\.alias"),
+    UNDERFS_AZURE_ACCOUNT_KEY(
+        "fs.azure.account.key.%s.blob.core.windows.net",
+        "fs\\.azure\\.account\\.key\\.(\\w+)\\.blob\\.core\\.windows\\.net"),
     WORKER_TIERED_STORE_LEVEL_ALIAS("alluxio.worker.tieredstore.level%d.alias",
         "alluxio\\.worker\\.tieredstore\\.level(\\d+)\\.alias"),
     WORKER_TIERED_STORE_LEVEL_DIRS_PATH("alluxio.worker.tieredstore.level%d.dirs.path",
@@ -2396,6 +2455,15 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public PropertyKey format(Object... params) {
       return new PropertyKey(String.format(mFormat, params));
     }
+
+    /**
+     * @param input the input property key string
+     * @return whether the input string matches this template
+     */
+    public boolean matches(String input) {
+      Matcher matcher = mPattern.matcher(input);
+      return matcher.matches();
+    }
   }
 
   /**
@@ -2409,8 +2477,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     }
     // Check if input matches any parameterized keys
     for (Template template : Template.values()) {
-      Matcher matcher = template.mPattern.matcher(input);
-      if (matcher.matches()) {
+      if (template.matches(input)) {
         return true;
       }
     }
@@ -2437,8 +2504,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     }
     // Try different templates and see if any template matches
     for (Template template : Template.values()) {
-      Matcher matcher = template.mPattern.matcher(input);
-      if (matcher.matches()) {
+      if (template.matches(input)) {
         return new PropertyKey(input);
       }
     }
