@@ -72,24 +72,28 @@ public final class LocalFilePacketReader implements PacketReader {
     if (mPos >= mEnd) {
       return null;
     }
-    //应该不会有这么大的block吧
+    //System.out.println("read packet calling: mPos" + mPos + " mEnd:" + mEnd);
+    long readLength = Math.min(mPacketSize, mEnd - mPos);
+    //System.out.println("readLength:" + readLength);
+    long end = mPos + readLength;
     int startIndex = (int)(mPos/ FileCache.PACKET_SIZE);
-    int endIndex = (int)(mEnd/FileCache.PACKET_SIZE);
+    int endIndex = (int)((end - 1)/FileCache.PACKET_SIZE);//防止缓存过多的packet
     ByteBuffer [] buffers = new ByteBuffer[endIndex - startIndex + 1];
     for (int i = startIndex; i <= endIndex; i++) {
-      buffers[i] = mPacketCache.getPacket(i);
+      buffers[i - startIndex] = mPacketCache.getPacket(i);
     }
     for (int i = startIndex; i <= endIndex ; i++) {
-      if (buffers[i] == null) {
+      int bufferIndex = i - startIndex;
+      if (buffers[bufferIndex] == null) {
         long currentOffset = i * FileCache.PACKET_SIZE;
-        ByteBuffer buffer = mReader.read(currentOffset
+        buffers[bufferIndex] = mReader.read(currentOffset
             , Math.min(FileCache.PACKET_SIZE, mEnd - currentOffset));
-        mPacketCache.add(i, buffer);
+        mPacketCache.add(i, buffers[bufferIndex]);
       }
     }
     int startOffset = (int)(mPos % FileCache.PACKET_SIZE);
-    int endOffset = (int)(mEnd % FileCache.PACKET_SIZE);
-    DataBuffer dataBuffer = new CompositeDataBuffer(buffers, startOffset, endOffset, mEnd - mPos);
+    int endOffset = (int)((end-1) % FileCache.PACKET_SIZE);
+    DataBuffer dataBuffer = new CompositeDataBuffer(buffers, startOffset, endOffset, end - mPos);
     mPos += dataBuffer.getLength();
     return dataBuffer;
   }

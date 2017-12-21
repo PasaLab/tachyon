@@ -26,6 +26,11 @@ public final class CompositeDataBuffer implements DataBuffer {
     mBuffers = buffers;
     this.mStart = start;
     mBuffers[0].position(mStart);
+    mBuffers[0].limit(mBuffers[0].capacity());
+    //System.out.println("construct composite data buffer");
+    //System.out.println("start:" + start + " end:" + end);
+    /*System.out.println("first buffer position: " + mBuffers[0].position() + " limit:"
+        + mBuffers[0].limit());*/
     if (mBuffers.length > 2) {
       for (int i = 1; i < mBuffers.length - 2; i++) {
         mBuffers[i].position(0);
@@ -33,7 +38,10 @@ public final class CompositeDataBuffer implements DataBuffer {
       }
     }
     this.mEnd = end;
-    mBuffers[mBuffers.length - 1].limit(mEnd);
+    mBuffers[mBuffers.length - 1].limit(mEnd+1);//因为这个end是可以读到的，而limit代表是读不到的
+    /*System.out.println("last buffer " + (mBuffers.length - 1) +" position:"
+        + mBuffers[mBuffers.length - 1].position() + " limit:"
+        + mBuffers[mBuffers.length - 1].limit());*/
     mLength = length;
   }
 
