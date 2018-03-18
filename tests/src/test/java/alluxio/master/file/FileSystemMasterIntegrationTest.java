@@ -18,12 +18,14 @@ import alluxio.Configuration;
 import alluxio.Constants;
 import alluxio.LocalAlluxioClusterResource;
 import alluxio.PropertyKey;
+import alluxio.exception.AccessControlException;
 import alluxio.exception.DirectoryNotEmptyException;
 import alluxio.exception.ExceptionMessage;
 import alluxio.exception.FileAlreadyCompletedException;
 import alluxio.exception.FileAlreadyExistsException;
 import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
+import alluxio.exception.status.FailedPreconditionException;
 import alluxio.heartbeat.HeartbeatContext;
 import alluxio.heartbeat.HeartbeatScheduler;
 import alluxio.heartbeat.ManuallyScheduleHeartbeat;
@@ -36,11 +38,21 @@ import alluxio.master.file.options.CreateDirectoryOptions;
 import alluxio.master.file.options.CreateFileOptions;
 import alluxio.master.file.options.DeleteOptions;
 import alluxio.master.file.options.FreeOptions;
+import alluxio.master.file.options.GetStatusOptions;
 import alluxio.master.file.options.ListStatusOptions;
+import alluxio.master.file.options.MountOptions;
 import alluxio.master.file.options.RenameOptions;
+import alluxio.master.file.options.SetAttributeOptions;
 import alluxio.security.authentication.AuthenticatedClientUser;
+import alluxio.security.authorization.Mode;
+import alluxio.underfs.UfsDirectoryStatus;
+import alluxio.underfs.UnderFileSystem;
+import alluxio.underfs.UnderFileSystemFactory;
+import alluxio.underfs.UnderFileSystemFactoryRegistry;
 import alluxio.util.CommonUtils;
 import alluxio.util.IdUtils;
+import alluxio.util.io.FileUtils;
+import alluxio.wire.CommonOptions;
 import alluxio.wire.FileInfo;
 import alluxio.wire.LoadMetadataType;
 import alluxio.wire.TtlAction;
@@ -53,7 +65,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.Timeout;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -61,6 +76,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
@@ -68,6 +84,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -715,6 +732,179 @@ public class FileSystemMasterIntegrationTest extends BaseIntegrationTest {
     }
   }
 
+  @Test
+  public void syncReplay() throws Exception {
+    AlluxioURI root = new AlluxioURI("/");
+    AlluxioURI alluxioFile = new AlluxioURI("/in_alluxio");
+
+    // Create a persisted Alluxio file (but no ufs file).
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+    mFsMaster.completeFile(alluxioFile,
+        CompleteFileOptions.defaults().setOperationTimeMs(TEST_TIME_MS).setUfsLength(0));
+
+    // List what is in Alluxio, without syncing.
+    List<FileInfo> files = mFsMaster.listStatus(root,
+        ListStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(-1)));
+    Assert.assertEquals(1, files.size());
+    Assert.assertEquals(alluxioFile.getName(), files.get(0).getName());
+
+    // Add ufs only paths
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    Files.createDirectory(Paths.get(ufs, "ufs_dir"));
+    Files.createFile(Paths.get(ufs, "ufs_file"));
+
+    // List with syncing, which will remove alluxio only path, and add ufs only paths.
+    files = mFsMaster.listStatus(root,
+        ListStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(0)));
+    Assert.assertEquals(2, files.size());
+    Set<String> filenames = files.stream().map(FileInfo::getName).collect(Collectors.toSet());
+    Assert.assertTrue(filenames.contains("ufs_dir"));
+    Assert.assertTrue(filenames.contains("ufs_file"));
+
+    // Stop Alluxio.
+    mLocalAlluxioClusterResource.get().stopFS();
+    // Create the master using the existing journal.
+    MasterRegistry registry = createFileSystemMasterFromJournal();
+    FileSystemMaster fsMaster = registry.get(FileSystemMaster.class);
+
+    // List what is in Alluxio, without syncing. Should match the last state.
+    files = fsMaster.listStatus(root,
+        ListStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(-1)));
+    Assert.assertEquals(2, files.size());
+    filenames = files.stream().map(FileInfo::getName).collect(Collectors.toSet());
+    Assert.assertTrue(filenames.contains("ufs_dir"));
+    Assert.assertTrue(filenames.contains("ufs_file"));
+  }
+
+  @Test
+  public void syncDirReplay() throws Exception {
+    AlluxioURI dir = new AlluxioURI("/dir/");
+
+    // Add ufs nested file.
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    Files.createDirectory(Paths.get(ufs, "dir"));
+    Files.createFile(Paths.get(ufs, "dir", "file"));
+
+    File ufsDir = new File(Paths.get(ufs, "dir").toString());
+    Assert.assertTrue(ufsDir.setReadable(true, false));
+    Assert.assertTrue(ufsDir.setWritable(true, false));
+    Assert.assertTrue(ufsDir.setExecutable(true, false));
+
+    // List dir with syncing
+    FileInfo info = mFsMaster.getFileInfo(dir,
+        GetStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(0)));
+    Assert.assertNotNull(info);
+    Assert.assertEquals("dir", info.getName());
+    // Retrieve the mode
+    int mode = info.getMode();
+
+    // Update mode of the ufs dir
+    Assert.assertTrue(ufsDir.setExecutable(false, false));
+
+    // List dir with syncing, should update the mode
+    info = mFsMaster.getFileInfo(dir,
+        GetStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(0)));
+    Assert.assertNotNull(info);
+    Assert.assertEquals("dir", info.getName());
+    Assert.assertNotEquals(mode, info.getMode());
+    // update the expected mode
+    mode = info.getMode();
+
+    // Stop Alluxio.
+    mLocalAlluxioClusterResource.get().stopFS();
+    // Create the master using the existing journal.
+    MasterRegistry registry = createFileSystemMasterFromJournal();
+    FileSystemMaster fsMaster = registry.get(FileSystemMaster.class);
+
+    // List what is in Alluxio, without syncing.
+    info = fsMaster.getFileInfo(dir,
+        GetStatusOptions.defaults().setLoadMetadataType(LoadMetadataType.Never)
+            .setCommonOptions(CommonOptions.defaults().setSyncIntervalMs(-1)));
+    Assert.assertNotNull(info);
+    Assert.assertEquals("dir", info.getName());
+    Assert.assertEquals(mode, info.getMode());
+  }
+
+  @Test
+  public void unavailableUfsRecursiveCreate() throws Exception {
+    String ufsBase = "test://test";
+
+    UnderFileSystemFactory mockUfsFactory = Mockito.mock(UnderFileSystemFactory.class);
+    Mockito.when(mockUfsFactory.supportsPath(Matchers.anyString(), Matchers.any()))
+        .thenReturn(Boolean.FALSE);
+    Mockito.when(mockUfsFactory.supportsPath(Matchers.eq(ufsBase), Matchers.any()))
+        .thenReturn(Boolean.TRUE);
+
+    UnderFileSystem mockUfs = Mockito.mock(UnderFileSystem.class);
+    UfsDirectoryStatus ufsStatus = new
+        UfsDirectoryStatus("test", "owner", "group", (short) 511);
+    Mockito.when(mockUfsFactory.create(Matchers.eq(ufsBase), Matchers.any())).thenReturn(mockUfs);
+    Mockito.when(mockUfs.isDirectory(ufsBase)).thenReturn(true);
+    Mockito.when(mockUfs.resolveUri(new AlluxioURI(ufsBase), ""))
+        .thenReturn(new AlluxioURI(ufsBase));
+    Mockito.when(mockUfs.resolveUri(new AlluxioURI(ufsBase), "/dir1"))
+        .thenReturn(new AlluxioURI(ufsBase + "/dir1"));
+    Mockito.when(mockUfs.getDirectoryStatus(ufsBase))
+        .thenReturn(ufsStatus);
+    Mockito.when(mockUfs.mkdirs(Matchers.eq(ufsBase + "/dir1"), Matchers.any()))
+        .thenThrow(new IOException("ufs unavailable"));
+    Mockito.when(mockUfs.getStatus(ufsBase))
+        .thenReturn(ufsStatus);
+
+    UnderFileSystemFactoryRegistry.register(mockUfsFactory);
+
+    mFsMaster.mount(new AlluxioURI("/mnt"), new AlluxioURI(ufsBase), MountOptions.defaults());
+
+    AlluxioURI root = new AlluxioURI("/mnt/");
+    AlluxioURI alluxioFile = new AlluxioURI("/mnt/dir1/dir2/file");
+
+    // Create a persisted Alluxio file (but no ufs file).
+    try {
+      mFsMaster.createFile(alluxioFile,
+          CreateFileOptions.defaults().setPersisted(true).setRecursive(true));
+      Assert.fail("persisted create should fail, when UFS is unavailable");
+    } catch (Exception e) {
+      // expected, ignore
+    }
+
+    List<FileInfo> files = mFsMaster.listStatus(root, ListStatusOptions.defaults());
+    Assert.assertTrue(files.isEmpty());
+
+    try {
+      // should not exist
+      files = mFsMaster.listStatus(new AlluxioURI("/mnt/dir1/"), ListStatusOptions.defaults());
+      Assert.fail("dir should not exist, when UFS is unavailable");
+    } catch (Exception e) {
+      // expected, ignore
+    }
+
+    try {
+      // should not exist
+      mFsMaster.delete(new AlluxioURI("/mnt/dir1/"), DeleteOptions.defaults().setRecursive(true));
+      Assert.fail("cannot delete non-existing directory, when UFS is unavailable");
+    } catch (Exception e) {
+      // expected, ignore
+      files = null;
+    }
+
+    files = mFsMaster.listStatus(new AlluxioURI("/mnt/"), ListStatusOptions.defaults());
+    Assert.assertTrue(files.isEmpty());
+
+    // Stop Alluxio.
+    mLocalAlluxioClusterResource.get().stopFS();
+    // Create the master using the existing journal.
+    MasterRegistry registry = MasterTestUtils.createLeaderFileSystemMasterFromJournal();
+    FileSystemMaster newFsMaster = registry.get(FileSystemMaster.class);
+
+    files = newFsMaster.listStatus(new AlluxioURI("/mnt/"), ListStatusOptions.defaults());
+    Assert.assertTrue(files.isEmpty());
+  }
+
   // TODO(gene): Journal format has changed, maybe add Version to the format and add this test back
   // or remove this test when we have better tests against journal checkpoint.
   // @Test
@@ -762,6 +952,233 @@ public class FileSystemMasterIntegrationTest extends BaseIntegrationTest {
   // Assert.assertEquals(0, checkpoint.getInt("editTransactionCounter").intValue());
   // Assert.assertEquals(0, checkpoint.getInt("dependencyCounter").intValue());
   // }
+
+  @Test
+  public void ufsModeCreateFile() throws Exception {
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    // Alluxio only should not be affected
+    mFsMaster.createFile(new AlluxioURI("/in_alluxio"),
+        CreateFileOptions.defaults().setPersisted(false));
+    // Ufs file creation should throw an exception
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.createFile(new AlluxioURI("/in_ufs"),
+        CreateFileOptions.defaults().setPersisted(true));
+  }
+
+  @Test
+  public void ufsModeCreateDirectory() throws Exception {
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    // Alluxio only should not be affected
+    mFsMaster.createDirectory(new AlluxioURI("/in_alluxio"),
+        CreateDirectoryOptions.defaults().setPersisted(false));
+    // Ufs file creation should throw an exception
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.createDirectory(new AlluxioURI("/in_ufs"),
+        CreateDirectoryOptions.defaults().setPersisted(true));
+  }
+
+  @Test
+  public void ufsModePersist() throws Exception {
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    AlluxioURI alluxioFile = new AlluxioURI("/in_alluxio");
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(false));
+
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.scheduleAsyncPersistence(alluxioFile);
+  }
+
+  @Test
+  public void ufsModeDeleteFile() throws Exception {
+    AlluxioURI alluxioFile = new AlluxioURI("/in_alluxio");
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    mThrown.expect(FailedPreconditionException.class);
+    mFsMaster.delete(alluxioFile, DeleteOptions.defaults().setAlluxioOnly(false));
+  }
+
+  @Test
+  public void ufsModeDeleteDirectory() throws Exception {
+    AlluxioURI alluxioDirectory = new AlluxioURI("/in_ufs_dir");
+    mFsMaster.createDirectory(alluxioDirectory,
+        CreateDirectoryOptions.defaults().setPersisted(true));
+    AlluxioURI alluxioFile = new AlluxioURI("/in_ufs_dir/in_ufs_file");
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    mThrown.expect(FailedPreconditionException.class);
+    mFsMaster.delete(alluxioDirectory,
+        DeleteOptions.defaults().setAlluxioOnly(false).setRecursive(true));
+
+    // Check Alluxio entries exist after failed delete
+    long dirId = mFsMaster.getFileId(alluxioDirectory);
+    Assert.assertNotEquals(-1, dirId);
+    long fileId = mFsMaster.getFileId(alluxioFile);
+    Assert.assertNotEquals(-1, fileId);
+  }
+
+  @Test
+  public void ufsModeRenameFile() throws Exception {
+    mFsMaster.createFile(new AlluxioURI("/in_ufs_src"),
+        CreateFileOptions.defaults().setPersisted(true));
+
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.rename(new AlluxioURI("/in_ufs_src"), new AlluxioURI("/in_ufs_dst"),
+        RenameOptions.defaults());
+  }
+
+  @Test
+  public void ufsModeRenameDirectory() throws Exception {
+    AlluxioURI alluxioDirectory = new AlluxioURI("/in_ufs_dir");
+    mFsMaster.createDirectory(alluxioDirectory,
+        CreateDirectoryOptions.defaults().setPersisted(true));
+    AlluxioURI alluxioFile = new AlluxioURI("/in_ufs_dir/in_ufs_file");
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.rename(alluxioDirectory, new AlluxioURI("/in_ufs_dst"), RenameOptions.defaults());
+
+    // Check Alluxio entries exist after failed rename
+    long dirId = mFsMaster.getFileId(alluxioDirectory);
+    Assert.assertNotEquals(-1, dirId);
+    long fileId = mFsMaster.getFileId(alluxioFile);
+    Assert.assertNotEquals(-1, fileId);
+  }
+
+  @Test
+  public void ufsModeSetAttribute() throws Exception {
+    AlluxioURI alluxioFile = new AlluxioURI("/in_alluxio");
+    mFsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.READ_ONLY);
+    long opTimeMs = TEST_TIME_MS;
+    mFsMaster.completeFile(alluxioFile,
+        CompleteFileOptions.defaults().setOperationTimeMs(opTimeMs).setUfsLength(0));
+
+    mThrown.expect(AccessControlException.class);
+    mFsMaster.setAttribute(alluxioFile, SetAttributeOptions.defaults().setMode((short) 0777));
+  }
+
+  @Test
+  public void ufsModeReplay() throws Exception {
+    mFsMaster.updateUfsMode(new AlluxioURI(mFsMaster.getUfsAddress()),
+        UnderFileSystem.UfsMode.NO_ACCESS);
+
+    // Stop Alluxio.
+    mLocalAlluxioClusterResource.get().stopFS();
+    // Create the master using the existing journal.
+    MasterRegistry registry = createFileSystemMasterFromJournal();
+    FileSystemMaster fsMaster = registry.get(FileSystemMaster.class);
+
+    AlluxioURI alluxioFile = new AlluxioURI("/in_alluxio");
+    // Create file should throw an Exception even after restart
+    mThrown.expect(AccessControlException.class);
+    fsMaster.createFile(alluxioFile, CreateFileOptions.defaults().setPersisted(true));
+  }
+
+  /**
+   * Tests creating a directory in a nested directory load the UFS status of Inodes on the path.
+   */
+  @Test
+  public void createDirectoryInNestedDirectories() throws Exception {
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    String targetPath = Paths.get(ufs, "d1", "d2", "d3").toString();
+    FileUtils.createDir(targetPath);
+    FileUtils.changeLocalFilePermission(targetPath, new Mode((short) 0755).toString());
+    String parentPath = Paths.get(ufs, "d1").toString();
+    FileUtils.changeLocalFilePermission(parentPath, new Mode((short) 0700).toString());
+    AlluxioURI path = new AlluxioURI(Paths.get("/d1", "d2", "d3", "d4").toString());
+
+    mFsMaster.createDirectory(path, CreateDirectoryOptions.defaults()
+        .setPersisted(true).setRecursive(true).setMode(new Mode((short) 0755)));
+
+    long fileId = mFsMaster.getFileId(new AlluxioURI("/d1"));
+    FileInfo fileInfo = mFsMaster.getFileInfo(fileId);
+    Assert.assertEquals("d1", fileInfo.getName());
+    Assert.assertTrue(fileInfo.isFolder());
+    Assert.assertTrue(fileInfo.isPersisted());
+    Assert.assertEquals(0700, (short) fileInfo.getMode());
+  }
+
+  /**
+   * Tests listing a directory in a nested directory load the UFS status of Inodes on the path.
+   */
+  @Test
+  public void loadMetadataInNestedDirectories() throws Exception {
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    String targetPath = Paths.get(ufs, "d1", "d2", "d3").toString();
+    FileUtils.createDir(targetPath);
+    FileUtils.changeLocalFilePermission(targetPath, new Mode((short) 0755).toString());
+    String parentPath = Paths.get(ufs, "d1").toString();
+    FileUtils.changeLocalFilePermission(parentPath, new Mode((short) 0700).toString());
+    AlluxioURI path = new AlluxioURI(Paths.get("/d1", "d2", "d3").toString());
+
+    mFsMaster.listStatus(path, ListStatusOptions.defaults()
+        .setLoadMetadataType(LoadMetadataType.Once));
+
+    long fileId = mFsMaster.getFileId(new AlluxioURI("/d1"));
+    FileInfo fileInfo = mFsMaster.getFileInfo(fileId);
+    Assert.assertEquals("d1", fileInfo.getName());
+    Assert.assertTrue(fileInfo.isFolder());
+    Assert.assertTrue(fileInfo.isPersisted());
+    Assert.assertEquals(0700, (short) fileInfo.getMode());
+  }
+
+  /**
+   * Tests creating nested directories.
+   */
+  @Test
+  public void createNestedDirectories() throws Exception {
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    String parentPath = Paths.get(ufs, "d1").toString();
+    FileUtils.createDir(parentPath);
+    FileUtils.changeLocalFilePermission(parentPath, new Mode((short) 0755).toString());
+    AlluxioURI path = new AlluxioURI(Paths.get("/d1", "d2", "d3", "d4").toString());
+    String ufsPath = Paths.get(ufs, "d1", "d2", "d3", "d4").toString();
+    mFsMaster.createDirectory(path, CreateDirectoryOptions.defaults()
+        .setPersisted(true).setRecursive(true).setMode(new Mode((short) 0700)));
+    long fileId = mFsMaster.getFileId(path);
+    FileInfo fileInfo = mFsMaster.getFileInfo(fileId);
+    Assert.assertEquals("d4", fileInfo.getName());
+    Assert.assertTrue(fileInfo.isFolder());
+    Assert.assertTrue(fileInfo.isPersisted());
+    Assert.assertEquals(0700, (short) fileInfo.getMode());
+    Assert.assertTrue(FileUtils.exists(ufsPath));
+    Assert.assertEquals(0700, FileUtils.getLocalFileMode(ufsPath));
+  }
+
+  /**
+   * Tests creating a directory in a nested directory without execute permission.
+   */
+  @Test(expected = IOException.class)
+  public void createDirectoryInNestedDirectoriesWithoutExecutePermission() throws Exception {
+    String ufs = Configuration.get(PropertyKey.MASTER_MOUNT_TABLE_ROOT_UFS);
+    String parentPath = Paths.get(ufs, "d1").toString();
+    FileUtils.createDir(parentPath);
+    FileUtils.changeLocalFilePermission(parentPath, new Mode((short) 600).toString());
+    AlluxioURI path = new AlluxioURI(Paths.get("/d1", "d2", "d3", "d4").toString());
+
+    // this should fail
+    mFsMaster.createDirectory(path, CreateDirectoryOptions.defaults()
+        .setPersisted(true).setRecursive(true).setMode(new Mode((short) 0755)));
+  }
 
   /**
    * This class provides multiple concurrent threads to create all files in one directory.

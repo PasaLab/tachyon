@@ -12,10 +12,12 @@
 package alluxio;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import alluxio.Configuration.Source;
+import alluxio.PropertyKey.Template;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -32,6 +34,7 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Unit tests for the {@link Configuration} class.
@@ -60,7 +63,8 @@ public class ConfigurationTest {
 
   @Test
   public void alias() {
-    Configuration.merge(ImmutableMap.of("alluxio.master.worker.timeout.ms", "100"));
+    Configuration.merge(ImmutableMap.of("alluxio.master.worker.timeout.ms", "100"),
+        Source.SYSTEM_PROPERTY);
     assertEquals(100, Configuration.getMs(PropertyKey.MASTER_WORKER_TIMEOUT_MS));
   }
 
@@ -341,6 +345,43 @@ public class ConfigurationTest {
   }
 
   @Test
+  public void getNegativeSyncInterval() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "-1");
+    assertEquals(-1, Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL));
+  }
+
+  @Test
+  public void getNegativeSyncIntervalS() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "-1s");
+    assertTrue(Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL) < 0);
+  }
+
+  @Test
+  public void getZeroSyncInterval() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "0");
+    assertEquals(0, Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL));
+  }
+
+  @Test
+  public void getZeroSyncIntervalS() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "0s");
+    assertEquals(0, Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL));
+  }
+
+  @Test
+  public void getPositiveSyncInterval() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "10");
+    assertEquals(10, Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL));
+  }
+
+  @Test
+  public void getPosiviteSyncIntervalS() {
+    Configuration.set(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL, "10s");
+    assertEquals(10 * Constants.SECOND_MS,
+        Configuration.getMs(PropertyKey.USER_FILE_METADATA_SYNC_INTERVAL));
+  }
+
+  @Test
   public void getNestedProperties() {
     Configuration.set(
         PropertyKey.Template.MASTER_MOUNT_TABLE_OPTION_PROPERTY.format("foo",
@@ -397,7 +438,8 @@ public class ConfigurationTest {
   public void variableSubstitution() {
     Configuration.merge(ImmutableMap.of(
         PropertyKey.WORK_DIR, "value",
-        PropertyKey.LOGS_DIR, "${alluxio.work.dir}/logs"));
+        PropertyKey.LOGS_DIR, "${alluxio.work.dir}/logs"),
+        Source.SYSTEM_PROPERTY);
     String substitution = Configuration.get(PropertyKey.LOGS_DIR);
     assertEquals("value/logs", substitution);
   }
@@ -407,7 +449,8 @@ public class ConfigurationTest {
     Configuration.merge(ImmutableMap.of(
         PropertyKey.MASTER_HOSTNAME, "value1",
         PropertyKey.MASTER_RPC_PORT, "value2",
-        PropertyKey.MASTER_JOURNAL_FOLDER, "${alluxio.master.hostname}-${alluxio.master.port}"));
+        PropertyKey.MASTER_JOURNAL_FOLDER, "${alluxio.master.hostname}-${alluxio.master.port}"),
+        Source.SYSTEM_PROPERTY);
     String substitution = Configuration.get(PropertyKey.MASTER_JOURNAL_FOLDER);
     assertEquals("value1-value2", substitution);
   }
@@ -417,7 +460,8 @@ public class ConfigurationTest {
     Configuration.merge(ImmutableMap.of(
         PropertyKey.WORK_DIR, "value",
         PropertyKey.LOGS_DIR, "${alluxio.work.dir}/logs",
-        PropertyKey.SITE_CONF_DIR, "${alluxio.logs.dir}/conf"));
+        PropertyKey.SITE_CONF_DIR, "${alluxio.logs.dir}/conf"),
+        Source.SYSTEM_PROPERTY);
     String substitution2 = Configuration.get(PropertyKey.SITE_CONF_DIR);
     assertEquals("value/logs/conf", substitution2);
   }
@@ -432,10 +476,31 @@ public class ConfigurationTest {
   }
 
   @Test
+  public void systemPropertySubstitution() throws Exception {
+    try (Closeable p = new SystemPropertyRule("user.home", "/home").toResource()) {
+      Configuration.init();
+      Configuration.merge(ImmutableMap.of(PropertyKey.WORK_DIR, "${user.home}/work"),
+          Source.SITE_PROPERTY);
+      assertEquals("/home/work", Configuration.get(PropertyKey.WORK_DIR));
+    }
+  }
+
+  @Test
+  public void circularSubstitution() throws Exception {
+    Configuration.merge(
+        ImmutableMap.of(PropertyKey.HOME, String.format("${%s}", PropertyKey.HOME.toString())),
+        Source.SITE_PROPERTY);
+    mThrown.expect(RuntimeException.class);
+    mThrown.expectMessage(PropertyKey.HOME.toString());
+    Configuration.get(PropertyKey.HOME);
+  }
+
+  @Test
   public void userFileBufferBytesOverFlowException() {
-    mThrown.expect(IllegalStateException.class);
     Configuration.set(PropertyKey.USER_FILE_BUFFER_BYTES,
         String.valueOf(Integer.MAX_VALUE + 1) + "B");
+    mThrown.expect(IllegalStateException.class);
+    Configuration.validate();
   }
 
   @Test
@@ -462,10 +527,18 @@ public class ConfigurationTest {
   }
 
   @Test
-  public void unsetDefaultValue() {
-    assertTrue(Configuration.containsKey(PropertyKey.USER_FILE_BUFFER_BYTES));
-    Configuration.unset(PropertyKey.USER_FILE_BUFFER_BYTES);
-    assertFalse(Configuration.containsKey(PropertyKey.USER_FILE_BUFFER_BYTES));
+  public void validateTieredLocality() throws Exception {
+    // Pre-load the Configuration class so that the exception is thrown when we call init(), not
+    // during class loading.
+    Configuration.init();
+    HashMap<String, String> sysProps = new HashMap<>();
+    sysProps.put(Template.LOCALITY_TIER.format("unknownTier").toString(), "val");
+    try (Closeable p = new SystemPropertyRule(sysProps).toResource()) {
+      mThrown.expect(IllegalStateException.class);
+      mThrown.expectMessage("Tier unknownTier is configured by alluxio.locality.unknownTier, but "
+          + "does not exist in the tier list [node, rack] configured by alluxio.locality.order");
+      Configuration.init();
+    }
   }
 
   @Test
@@ -510,9 +583,11 @@ public class ConfigurationTest {
   }
 
   @Test
-  public void discardIgnoredSiteProperties() throws Exception {
+  public void setIgnoredPropertiesInSiteProperties() throws Exception {
+    // Need to initialize the configuration instance first, other wise in after
+    // ConfigurationTestUtils.resetConfiguration() will fail due to failed class init.
+    Configuration.init();
     Properties siteProps = new Properties();
-    siteProps.setProperty(PropertyKey.MASTER_HOSTNAME.toString(), "host-1");
     siteProps.setProperty(PropertyKey.LOGS_DIR.toString(), "/tmp/logs1");
     File propsFile = mFolder.newFile(Constants.SITE_PROPERTIES);
     siteProps.store(new FileOutputStream(propsFile), "tmp site properties file");
@@ -520,9 +595,84 @@ public class ConfigurationTest {
     sysProps.put(PropertyKey.SITE_CONF_DIR.toString(), mFolder.getRoot().getAbsolutePath());
     sysProps.put(PropertyKey.TEST_MODE.toString(), "false");
     try (Closeable p = new SystemPropertyRule(sysProps).toResource()) {
+      mThrown.expect(IllegalStateException.class);
+      Configuration.init();
+    }
+  }
+
+  @Test
+  public void setIgnoredPropertiesInSystemProperties() throws Exception {
+    Properties siteProps = new Properties();
+    File propsFile = mFolder.newFile(Constants.SITE_PROPERTIES);
+    siteProps.store(new FileOutputStream(propsFile), "tmp site properties file");
+    Map<String, String> sysProps = new HashMap<>();
+    sysProps.put(PropertyKey.LOGS_DIR.toString(), "/tmp/logs1");
+    sysProps.put(PropertyKey.SITE_CONF_DIR.toString(), mFolder.getRoot().getAbsolutePath());
+    sysProps.put(PropertyKey.TEST_MODE.toString(), "false");
+    try (Closeable p = new SystemPropertyRule(sysProps).toResource()) {
+      Configuration.init();
+      assertEquals(
+          Source.SYSTEM_PROPERTY, Configuration.getSource(PropertyKey.LOGS_DIR));
+      assertEquals("/tmp/logs1", Configuration.get(PropertyKey.LOGS_DIR));
+    }
+  }
+
+  @Test
+  public void noWhitespaceTrailingInSiteProperties() throws Exception {
+    Properties siteProps = new Properties();
+    siteProps.setProperty(PropertyKey.MASTER_HOSTNAME.toString(), " host-1 ");
+    siteProps.setProperty(PropertyKey.WEB_THREADS.toString(), "\t123\t");
+    File propsFile = mFolder.newFile(Constants.SITE_PROPERTIES);
+    siteProps.store(new FileOutputStream(propsFile), "tmp site properties file");
+    // Avoid interference from system properties. Reset SITE_CONF_DIR to include the temp
+    // site-properties file
+    HashMap<String, String> sysProps = new HashMap<>();
+    sysProps.put(PropertyKey.SITE_CONF_DIR.toString(), mFolder.getRoot().getAbsolutePath());
+    sysProps.put(PropertyKey.TEST_MODE.toString(), "false");
+    try (Closeable p = new SystemPropertyRule(sysProps).toResource()) {
       Configuration.init();
       assertEquals("host-1", Configuration.get(PropertyKey.MASTER_HOSTNAME));
-      assertNotEquals("/tmp/logs1", Configuration.get(PropertyKey.LOGS_DIR));
+      assertEquals("123", Configuration.get(PropertyKey.WEB_THREADS));
     }
+  }
+
+  @Test
+  public void source() throws Exception {
+    Properties siteProps = new Properties();
+    File propsFile = mFolder.newFile(Constants.SITE_PROPERTIES);
+    siteProps.setProperty(PropertyKey.MASTER_HOSTNAME.toString(), "host-1");
+    siteProps.setProperty(PropertyKey.MASTER_WEB_PORT.toString(), "1234");
+    siteProps.store(new FileOutputStream(propsFile), "tmp site properties file");
+    Map<String, String> sysProps = new HashMap<>();
+    sysProps.put(PropertyKey.LOGS_DIR.toString(), "/tmp/logs1");
+    sysProps.put(PropertyKey.MASTER_WEB_PORT.toString(), "4321");
+    sysProps.put(PropertyKey.SITE_CONF_DIR.toString(), mFolder.getRoot().getAbsolutePath());
+    sysProps.put(PropertyKey.TEST_MODE.toString(), "false");
+    try (Closeable p = new SystemPropertyRule(sysProps).toResource()) {
+      Configuration.init();
+      // set only in site prop
+      assertEquals(Source.SITE_PROPERTY,
+          Configuration.getSource(PropertyKey.MASTER_HOSTNAME));
+      // set both in site and system prop
+      assertEquals(Source.SYSTEM_PROPERTY,
+          Configuration.getSource(PropertyKey.MASTER_WEB_PORT));
+      // set only in system prop
+      assertEquals(Source.SYSTEM_PROPERTY,
+          Configuration.getSource(PropertyKey.LOGS_DIR));
+      // set neither in system prop
+      assertEquals(Source.DEFAULT,
+          Configuration.getSource(PropertyKey.MASTER_RPC_PORT));
+    }
+  }
+
+  @Test
+  public void getRuntimeDefault() throws Exception {
+    AtomicInteger x = new AtomicInteger(100);
+    PropertyKey key = new PropertyKey.Builder("testKey")
+        .setDefaultSupplier(new DefaultSupplier(() -> x.get(), "finds x"))
+        .build();
+    assertEquals(100, Configuration.getInt(key));
+    x.set(20);
+    assertEquals(20, Configuration.getInt(key));
   }
 }

@@ -23,6 +23,7 @@ import alluxio.util.network.NetworkAddressUtils;
 import alluxio.wire.WorkerNetAddress;
 
 import com.google.common.base.Function;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
 import com.google.common.io.Closer;
@@ -50,6 +51,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.function.Supplier;
 
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -64,6 +66,7 @@ public final class CommonUtils {
       "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   private static final String DATE_FORMAT_PATTERN =
       Configuration.get(PropertyKey.USER_DATE_FORMAT_PATTERN);
+  private static final List<String> TMP_DIRS = Configuration.getList(PropertyKey.TMP_DIRS, ",");
   private static final Random RANDOM = new Random();
 
   /**
@@ -71,6 +74,18 @@ public final class CommonUtils {
    */
   public static long getCurrentMs() {
     return System.currentTimeMillis();
+  }
+
+  /**
+   * @return a path to a temporary directory based on the user configuration
+   */
+  public static String getTmpDir() {
+    Preconditions.checkState(!TMP_DIRS.isEmpty(), "No temporary directories configured");
+    if (TMP_DIRS.size() == 1) {
+      return TMP_DIRS.get(0);
+    }
+    // Use existing random instead of ThreadLocal because contention is not expected to be high.
+    return TMP_DIRS.get(RANDOM.nextInt(TMP_DIRS.size()));
   }
 
   /**
@@ -195,21 +210,22 @@ public final class CommonUtils {
    * @param ctorClassArgs parameters type list of the constructor to initiate, if null default
    *        constructor will be called
    * @param ctorArgs the arguments to pass the constructor
-   * @return new class object or null if not successful
-   * @throws InstantiationException if the instantiation fails
-   * @throws IllegalAccessException if the constructor cannot be accessed
-   * @throws NoSuchMethodException if the constructor does not exist
-   * @throws SecurityException if security violation has occurred
-   * @throws InvocationTargetException if the constructor invocation results in an exception
+   * @return new class object
+   * @throws RuntimeException if the class cannot be instantiated
    */
   public static <T> T createNewClassInstance(Class<T> cls, Class<?>[] ctorClassArgs,
-      Object[] ctorArgs) throws InstantiationException, IllegalAccessException,
-      NoSuchMethodException, SecurityException, InvocationTargetException {
-    if (ctorClassArgs == null) {
-      return cls.newInstance();
+      Object[] ctorArgs) {
+    try {
+      if (ctorClassArgs == null) {
+        return cls.newInstance();
+      }
+      Constructor<T> ctor = cls.getConstructor(ctorClassArgs);
+      return ctor.newInstance(ctorArgs);
+    } catch (InvocationTargetException e) {
+      throw new RuntimeException(e.getCause());
+    } catch (ReflectiveOperationException e) {
+      throw new RuntimeException(e);
     }
-    Constructor<T> ctor = cls.getConstructor(ctorClassArgs);
-    return ctor.newInstance(ctorArgs);
   }
 
   /**
@@ -240,7 +256,17 @@ public final class CommonUtils {
   /**
    * Waits for a condition to be satisfied.
    *
-   * @param description a description of what causes condition to evaluation to true
+   * @param description a description of what causes condition to evaluate to true
+   * @param condition the condition to wait on
+   */
+  public static void waitFor(String description, Supplier<Boolean> condition) {
+    waitFor(description, input -> condition.get(), WaitForOptions.defaults());
+  }
+
+  /**
+   * Waits for a condition to be satisfied.
+   *
+   * @param description a description of what causes condition to evaluate to true
    * @param condition the condition to wait on
    */
   public static void waitFor(String description, Function<Void, Boolean> condition) {
@@ -250,7 +276,7 @@ public final class CommonUtils {
   /**
    * Waits for a condition to be satisfied.
    *
-   * @param description a description of what causes condition to evaluation to true
+   * @param description a description of what causes condition to evaluate to true
    * @param condition the condition to wait on
    * @param options the options to use
    */
@@ -522,6 +548,23 @@ public final class CommonUtils {
       closer.close();
     }
   }
+
+  /** Alluxio process types. */
+  public enum ProcessType {
+    CLIENT,
+    MASTER,
+    PROXY,
+    WORKER;
+  }
+
+  /**
+   * Represents the type of Alluxio process running in this JVM.
+   *
+   * NOTE: This will only be set by main methods of Alluxio processes. It will not be set properly
+   * for tests. Avoid using this field if at all possible.
+   */
+  public static final java.util.concurrent.atomic.AtomicReference<ProcessType> PROCESS_TYPE =
+      new java.util.concurrent.atomic.AtomicReference<>(ProcessType.CLIENT);
 
   /**
    * Unwraps a {@link alluxio.proto.dataserver.Protocol.Response}.

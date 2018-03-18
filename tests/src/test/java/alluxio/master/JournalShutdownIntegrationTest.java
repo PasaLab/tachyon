@@ -11,6 +11,12 @@
 
 package alluxio.master;
 
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.spy;
+
 import alluxio.AlluxioURI;
 import alluxio.AuthenticatedUserRule;
 import alluxio.BaseIntegrationTest;
@@ -35,14 +41,15 @@ import alluxio.util.CommonUtils;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Rule;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.rules.TestRule;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -52,8 +59,21 @@ import java.util.concurrent.TimeUnit;
  * the correct state. Test both the single master and multi masters.
  */
 public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
-  @Rule
-  public AuthenticatedUserRule mAuthenticatedUser = new AuthenticatedUserRule("test");
+  @ClassRule
+  public static SystemPropertyRule sDisableHdfsCacheRule =
+      new SystemPropertyRule("fs.hdfs.impl.disable.cache", "true");
+
+  protected List<TestRule> rules() {
+    return Arrays.asList(
+        new AuthenticatedUserRule("test"),
+        new ConfigurationRule(new ImmutableMap.Builder<PropertyKey, String>()
+          .put(PropertyKey.MASTER_JOURNAL_TAILER_SHUTDOWN_QUIET_WAIT_TIME_MS, "100")
+          .put(PropertyKey.MASTER_JOURNAL_CHECKPOINT_PERIOD_ENTRIES, "2")
+          .put(PropertyKey.MASTER_JOURNAL_LOG_SIZE_BYTES_MAX, "32")
+          .put(PropertyKey.USER_RPC_RETRY_MAX_SLEEP_MS, "1sec")
+          .build())
+    );
+  }
 
   private static final long SHUTDOWN_TIME_MS = 15 * Constants.SECOND_MS;
   private static final String TEST_FILE_DIR = "/files/";
@@ -64,29 +84,16 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
   /** Executor for running client threads. */
   private ExecutorService mExecutorsForClient;
 
-  @Rule
-  public ConfigurationRule mConfigurationRule =
-      new ConfigurationRule(new ImmutableMap.Builder<PropertyKey, String>()
-          .put(PropertyKey.MASTER_JOURNAL_TAILER_SHUTDOWN_QUIET_WAIT_TIME_MS, "100")
-          .put(PropertyKey.MASTER_JOURNAL_CHECKPOINT_PERIOD_ENTRIES, "2")
-          .put(PropertyKey.MASTER_JOURNAL_LOG_SIZE_BYTES_MAX, "32")
-          .put(PropertyKey.USER_RPC_RETRY_MAX_SLEEP_MS, "1sec")
-          .build());
-
-  @ClassRule
-  public static SystemPropertyRule sDisableHdfsCacheRule =
-      new SystemPropertyRule("fs.hdfs.impl.disable.cache", "true");
+  @Before
+  public final void before() throws Exception {
+    mExecutorsForClient = Executors.newFixedThreadPool(1);
+  }
 
   @After
   public final void after() throws Exception {
     mExecutorsForClient.shutdown();
     ConfigurationTestUtils.resetConfiguration();
     FileSystemContext.INSTANCE.reset();
-  }
-
-  @Before
-  public final void before() throws Exception {
-    mExecutorsForClient = Executors.newFixedThreadPool(1);
   }
 
   @Test
@@ -100,12 +107,12 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
       cluster.start();
       FileSystem fs = cluster.getFileSystemClient();
       runCreateFileThread(fs);
-      cluster.waitForAndKillPrimaryMaster();
+      cluster.waitForAndKillPrimaryMaster(10 * Constants.SECOND_MS);
       awaitClientTermination();
       cluster.startMaster(0);
       int actualFiles = fs.listStatus(new AlluxioURI(TEST_FILE_DIR)).size();
       int successFiles = mCreateFileThread.getSuccessNum();
-      Assert.assertTrue(
+      assertTrue(
           String.format("successFiles: %s, actualFiles: %s", successFiles, actualFiles),
           (successFiles == actualFiles) || (successFiles + 1 == actualFiles));
       cluster.notifySuccess();
@@ -118,6 +125,7 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
    * We use the external cluster for this test due to flakiness issues when running in a single JVM.
    */
   @Test
+  @Ignore
   public void multiMasterJournalStopIntegration() throws Exception {
     MultiProcessCluster cluster = MultiProcessCluster.newBuilder()
         .setClusterName("multiMasterJournalStopIntegration")
@@ -133,13 +141,13 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
       FileSystem fs = cluster.getFileSystemClient();
       runCreateFileThread(fs);
       for (int i = 0; i < TEST_NUM_MASTERS; i++) {
-        cluster.waitForAndKillPrimaryMaster();
+        cluster.waitForAndKillPrimaryMaster(30 * Constants.SECOND_MS);
       }
       awaitClientTermination();
       cluster.startMaster(0);
       int actualFiles = fs.listStatus(new AlluxioURI(TEST_FILE_DIR)).size();
       int successFiles = mCreateFileThread.getSuccessNum();
-      Assert.assertTrue(
+      assertTrue(
           String.format("successFiles: %s, actualFiles: %s", successFiles, actualFiles),
           (successFiles == actualFiles) || (successFiles + 1 == actualFiles));
       cluster.notifySuccess();
@@ -157,8 +165,8 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
     CommonUtils.sleepMs(TEST_TIME_MS);
     awaitClientTermination();
     // Fail the creation of UFS
-    Mockito.doThrow(new RuntimeException()).when(factory).create(Mockito.anyString(),
-        Mockito.any(UnderFileSystemConfiguration.class));
+    doThrow(new RuntimeException()).when(factory).create(anyString(),
+        any(UnderFileSystemConfiguration.class));
     createFsMasterFromJournal();
   }
 
@@ -169,15 +177,15 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
     // Kill the leader one by one.
     for (int kills = 0; kills < TEST_NUM_MASTERS; kills++) {
       cluster.waitForNewMaster(120 * Constants.SECOND_MS);
-      Assert.assertTrue(cluster.stopLeader());
+      assertTrue(cluster.stopLeader());
     }
     // Shutdown the cluster
     cluster.stopFS();
     CommonUtils.sleepMs(TEST_TIME_MS);
     awaitClientTermination();
     // Fail the creation of UFS
-    Mockito.doThrow(new RuntimeException()).when(factory).create(Mockito.anyString(),
-        Mockito.any(UnderFileSystemConfiguration.class));
+    doThrow(new RuntimeException()).when(factory).create(anyString(),
+        any(UnderFileSystemConfiguration.class));
     createFsMasterFromJournal();
   }
 
@@ -193,7 +201,7 @@ public class JournalShutdownIntegrationTest extends BaseIntegrationTest {
     UnderFileSystemFactoryRegistry.register(sleepingUfsFactory);
     fs.mount(new AlluxioURI("/mnt"), new AlluxioURI("sleep:///"));
     fs.unmount(new AlluxioURI("/mnt"));
-    return Mockito.spy(sleepingUfsFactory);
+    return spy(sleepingUfsFactory);
   }
 
   /**

@@ -20,7 +20,7 @@ Alluxio为大数据软件栈带来了显著的性能提升。例如，[百度](h
 [Amazon EC2](Running-Alluxio-on-EC2.html),
 [Google Compute Engine](Running-Alluxio-on-GCE.html)运行Alluxio, 或者用
 [Apache Mesos](Running-Alluxio-on-Mesos.html)或
-[Apache Yarn](Running-Alluxio-on-EC2-Yarn.html)安装Alluxio。
+[Apache Yarn](Running-Alluxio-Yarn-Integration.html)安装Alluxio。
 
 Alluxio与Hadoop是兼容的。现有的数据分析应用，如Spark和MapReduce程序，可以不修改代码直接在Alluxio上运行。Alluxio是一个已在多家公司部署的开源项目([Apache License 2.0](https://github.com/alluxio/alluxio/blob/master/LICENSE))。
 Alluxio是发展最快的开源大数据项目之一。自2013年4月开源以来，已有超过100个组织机构的
@@ -43,7 +43,6 @@ Alluxio是发展最快的开源大数据项目之一。自2013年4月开源以�
 [ JIRA  ](https://alluxio.atlassian.net/browse/ALLUXIO) |
 [ 用户邮件列表  ](https://groups.google.com/forum/?fromgroups#!forum/alluxio-users) |
 [ 视频 ](https://www.youtube.com/channel/UCpibQsajhwqYPLYhke4RigA) |
-[ Powered By  ](Powered-By-Alluxio.html)
 
 <style>
 #current-features + ul li {height:210px;}
@@ -59,9 +58,9 @@ InputStream和OutputStream的接口和对内存映射I/O的高效支持。我们
 不同的底层存储系统。目前我们支持Microsoft Azure Blob Store，Amazon S3，Google Cloud Storage，OpenStack Swift，GlusterFS，
 HDFS，MaprFS，Ceph，NFS，Alibaba OSS，Minio以及单节点本地文件系统，后续也会支持很多其它的文件系统。
 
-* **[层次化存储](Tiered-Storage-on-Alluxio.html)** 通过分层存储，Alluxio不仅可以管理内存，也可以管理SSD
-和HDD,能够让更大的数据集存储在Alluxio上。数据在不同层之间自动被管理，保证热数据在更快的存储层上。自定义策
-略可以方便地加入Alluxio，而且pin的概念允许用户直接控制数据的存放位置。
+* **[Alluxio存储](Alluxio-Storage.html)** Alluxio可以管理内存和本地存储如SSD
+和HDD,以加速数据访问。如果需要更细粒度的控制，分层存储功能可以用于自动管理不同层之间的数据，保证热数据在更快的存储层上。
+自定义策略可以方便地加入Alluxio，而且pin的概念允许用户直接控制数据的存放位置。
 
 * **[统一命名空间](Unified-and-Transparent-Namespace.html)** Alluxio通过挂载功能在不同的存储系统之间实
 现高效的数据管理。并且，透明命名在持久化这些对象到底层存储系统时可以保留这些对象的文件名和目录层次结构。
@@ -78,6 +77,7 @@ HDFS，MaprFS，Ceph，NFS，Alibaba OSS，Minio以及单节点本地文件系�
 
 如果要快速地架设alluxio并运行，请阅读[快速入门](Getting-Started.html)页面，该页面描述了如何部署Alluxio并
 在本地环境下运行几个基本的样例。
+查看Alluxio的使用者名单[公司](https://alluxio.org/community/powered-by-alluxio)
 
 ## 下载
 

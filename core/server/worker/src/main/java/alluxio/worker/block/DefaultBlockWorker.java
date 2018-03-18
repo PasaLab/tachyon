@@ -27,6 +27,8 @@ import alluxio.heartbeat.HeartbeatThread;
 import alluxio.master.MasterClientConfig;
 import alluxio.metrics.MetricsSystem;
 import alluxio.proto.dataserver.Protocol;
+import alluxio.retry.RetryUtils;
+import alluxio.retry.ExponentialTimeBoundedRetry;
 import alluxio.thrift.BlockWorkerClientService;
 import alluxio.underfs.UfsManager;
 import alluxio.util.CommonUtils;
@@ -50,6 +52,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -197,7 +200,13 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   public void start(WorkerNetAddress address) throws IOException {
     mAddress = address;
     try {
-      mWorkerId.set(mBlockMasterClient.getId(address));
+      RetryUtils.retry("get worker id", () -> mWorkerId.set(mBlockMasterClient.getId(address)),
+          ExponentialTimeBoundedRetry.builder()
+              .withMaxDuration(Duration
+                  .ofMillis(Configuration.getMs(PropertyKey.WORKER_MASTER_CONNECT_RETRY_TIMEOUT)))
+              .withInitialSleep(Duration.ofMillis(100))
+              .withMaxSleep(Duration.ofSeconds(5))
+              .build());
     } catch (Exception e) {
       throw new RuntimeException("Failed to get a worker id from block master: " + e.getMessage());
     }
@@ -476,21 +485,24 @@ public final class DefaultBlockWorker extends AbstractWorker implements BlockWor
   @Override
   public void closeUfsBlock(long sessionId, long blockId)
       throws BlockAlreadyExistsException, IOException, WorkerOutOfSpaceException {
-    mUnderFileSystemBlockStore.closeReaderOrWriter(sessionId, blockId);
-    if (mBlockStore.getTempBlockMeta(sessionId, blockId) != null) {
-      try {
-        commitBlock(sessionId, blockId);
-      } catch (BlockDoesNotExistException e) {
-        // This can only happen if the session is expired. Ignore this exception if that happens.
-        LOG.warn("Block {} does not exist while being committed.", blockId);
-      } catch (InvalidWorkerStateException e) {
-        // This can happen if there are multiple sessions writing to the same block.
-        // BlockStore#getTempBlockMeta does not check whether the temp block belongs to
-        // the sessionId.
-        LOG.debug("Invalid worker state while committing block.", e);
+    try {
+      mUnderFileSystemBlockStore.closeReaderOrWriter(sessionId, blockId);
+      if (mBlockStore.getTempBlockMeta(sessionId, blockId) != null) {
+        try {
+          commitBlock(sessionId, blockId);
+        } catch (BlockDoesNotExistException e) {
+          // This can only happen if the session is expired. Ignore this exception if that happens.
+          LOG.warn("Block {} does not exist while being committed.", blockId);
+        } catch (InvalidWorkerStateException e) {
+          // This can happen if there are multiple sessions writing to the same block.
+          // BlockStore#getTempBlockMeta does not check whether the temp block belongs to
+          // the sessionId.
+          LOG.debug("Invalid worker state while committing block.", e);
+        }
       }
+    } finally {
+      mUnderFileSystemBlockStore.releaseAccess(sessionId, blockId);
     }
-    mUnderFileSystemBlockStore.releaseAccess(sessionId, blockId);
   }
 
   @Override

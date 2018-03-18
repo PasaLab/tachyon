@@ -43,7 +43,7 @@ MOPT (Mount Option) is one of:
   SudoMount is assumed if MOPT is not specified.
 
 -f  format Journal, UnderFS Data and Workers Folder on master
--N  do not try to kill prior running masters and/or workers in all or local
+-N  do not try to kill previous running processes before starting new ones
 -w  wait for processes to end before returning
 -h  display this help."
 
@@ -52,6 +52,14 @@ ensure_dirs() {
     echo "ALLUXIO_LOGS_DIR: ${ALLUXIO_LOGS_DIR}"
     mkdir -p ${ALLUXIO_LOGS_DIR}
   fi
+}
+
+# returns 1 if "$1" contains "$2", 0 otherwise.
+contains() {
+  if [[ "$1" = *"$2"* ]]; then
+    return 1
+  fi
+  return 0
 }
 
 get_env() {
@@ -162,6 +170,12 @@ start_master() {
       ALLUXIO_SECONDARY_MASTER_JAVA_OPTS=${ALLUXIO_JAVA_OPTS}
     fi
 
+    # use a default Xmx value for the master
+    contains "${ALLUXIO_SECONDARY_MASTER_JAVA_OPTS}" "Xmx"
+    if [[ $? -eq 0 ]]; then
+      ALLUXIO_SECONDARY_MASTER_JAVA_OPTS+=" -Xmx8g "
+    fi
+
     echo "Starting secondary master @ $(hostname -f). Logging to ${ALLUXIO_LOGS_DIR}"
     (nohup "${JAVA}" -cp ${CLASSPATH} \
      ${ALLUXIO_SECONDARY_MASTER_JAVA_OPTS} \
@@ -169,6 +183,12 @@ start_master() {
   else
     if [[ -z ${ALLUXIO_MASTER_JAVA_OPTS} ]]; then
       ALLUXIO_MASTER_JAVA_OPTS=${ALLUXIO_JAVA_OPTS}
+    fi
+
+    # use a default Xmx value for the master
+    contains "${ALLUXIO_MASTER_JAVA_OPTS}" "Xmx"
+    if [[ $? -eq 0 ]]; then
+      ALLUXIO_MASTER_JAVA_OPTS+=" -Xmx8g "
     fi
 
     echo "Starting master @ $(hostname -f). Logging to ${ALLUXIO_LOGS_DIR}"
@@ -207,6 +227,18 @@ start_worker() {
 
   if [[ -z ${ALLUXIO_WORKER_JAVA_OPTS} ]]; then
     ALLUXIO_WORKER_JAVA_OPTS=${ALLUXIO_JAVA_OPTS}
+  fi
+
+  # use a default Xmx value for the worker
+  contains "${ALLUXIO_WORKER_JAVA_OPTS}" "Xmx"
+  if [[ $? -eq 0 ]]; then
+    ALLUXIO_WORKER_JAVA_OPTS+=" -Xmx4g "
+  fi
+
+  # use a default MaxDirectMemorySize value for the worker
+  contains "${ALLUXIO_WORKER_JAVA_OPTS}" "XX:MaxDirectMemorySize"
+  if [[ $? -eq 0 ]]; then
+    ALLUXIO_WORKER_JAVA_OPTS+=" -XX:MaxDirectMemorySize=4g "
   fi
 
   echo "Starting worker @ $(hostname -f). Logging to ${ALLUXIO_LOGS_DIR}"
@@ -308,22 +340,22 @@ main() {
     exit 1
   fi
 
+  if [[ "${killonstart}" != "no" ]]; then
+    case "${ACTION}" in
+      all | local | master | masters | proxy | proxies | worker | workers | logserver)
+        stop ${ACTION}
+        sleep 1
+        ;;
+    esac
+  fi
   case "${ACTION}" in
     all)
-      if [[ "${killonstart}" != "no" ]]; then
-        stop all
-        sleep 1
-      fi
       start_masters "${FORMAT}"
       sleep 2
       start_workers "${MOPT}"
       start_proxies
       ;;
     local)
-      if [[ "${killonstart}" != "no" ]]; then
-        stop local
-        sleep 1
-      fi
       start_master "${FORMAT}"
       ALLUXIO_MASTER_SECONDARY=true
       start_master

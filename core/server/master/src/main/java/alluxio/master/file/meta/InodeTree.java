@@ -12,7 +12,6 @@
 package alluxio.master.file.meta;
 
 import alluxio.AlluxioURI;
-import alluxio.Constants;
 import alluxio.collections.ConcurrentHashSet;
 import alluxio.collections.FieldIndex;
 import alluxio.collections.IndexDefinition;
@@ -24,6 +23,7 @@ import alluxio.exception.FileAlreadyExistsException;
 import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
 import alluxio.exception.PreconditionMessage;
+import alluxio.exception.status.UnavailableException;
 import alluxio.master.block.ContainerIdGenerable;
 import alluxio.master.file.options.CreateDirectoryOptions;
 import alluxio.master.file.options.CreateFileOptions;
@@ -36,12 +36,13 @@ import alluxio.proto.journal.File;
 import alluxio.proto.journal.File.InodeDirectoryEntry;
 import alluxio.proto.journal.File.InodeFileEntry;
 import alluxio.proto.journal.Journal;
+import alluxio.resource.CloseableResource;
 import alluxio.retry.ExponentialBackoffRetry;
 import alluxio.retry.RetryPolicy;
 import alluxio.security.authorization.Mode;
+import alluxio.underfs.UfsStatus;
 import alluxio.underfs.UnderFileSystem;
 import alluxio.underfs.options.MkdirsOptions;
-import alluxio.util.SecurityUtils;
 import alluxio.util.io.PathUtils;
 import alluxio.wire.TtlAction;
 
@@ -54,7 +55,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
 
 /**
- * Represents the tree of Inode's.
+ * Represents the tree of Inodes.
  */
 @NotThreadSafe
 // TODO(jiri): Make this class thread-safe.
@@ -153,7 +153,7 @@ public class InodeTree implements JournalEntryIterable {
    * @param group the root group
    * @param mode the root mode
    */
-  public void initializeRoot(String owner, String group, Mode mode) {
+  public void initializeRoot(String owner, String group, Mode mode) throws UnavailableException {
     if (mRoot == null) {
       InodeDirectory root = InodeDirectory.create(mDirectoryIdGenerator.getNewDirectoryId(),
           NO_PARENT, ROOT_INODE_NAME,
@@ -602,11 +602,17 @@ public class InodeTree implements JournalEntryIterable {
             continue;
           }
         } else {
-          // Successfully added the child, while holding the write lock.
-          dir.setPinned(currentInodeDirectory.isPinned());
-          if (options.isPersisted()) {
-            // Do not journal the persist entry, since a creation entry will be journaled instead.
-            syncPersistDirectory(dir, NoopJournalContext.INSTANCE);
+          try {
+            // Successfully added the child, while holding the write lock.
+            dir.setPinned(currentInodeDirectory.isPinned());
+            if (options.isPersisted()) {
+              // Do not journal the persist entry, since a creation entry will be journaled instead.
+              syncPersistDirectory(dir, NoopJournalContext.INSTANCE);
+            }
+          } catch (Exception e) {
+            // Failed to persist the directory, so remove it from the parent.
+            currentInodeDirectory.removeChild(dir);
+            throw e;
           }
           // Journal the new inode.
           journalContext.append(dir.toJournalEntry());
@@ -937,12 +943,6 @@ public class InodeTree implements JournalEntryIterable {
       // This is the root inode. Clear all the state, and set the root.
       reset();
       setRoot(directory);
-      // If journal entry has no security enabled, change the replayed inode permission to be 0777
-      // for backwards-compatibility.
-      if (SecurityUtils.isSecurityEnabled() && mRoot.getOwner().isEmpty()
-          && mRoot.getGroup().isEmpty()) {
-        mRoot.setMode(Constants.DEFAULT_FILE_SYSTEM_MODE);
-      }
     } else {
       addInodeFromJournalInternal(directory);
     }
@@ -978,12 +978,6 @@ public class InodeTree implements JournalEntryIterable {
     }
     parentDirectory.addChild(inode);
     mInodes.add(inode);
-    // If journal entry has no security enabled, change the replayed inode permission to be 0777
-    // for backwards-compatibility.
-    if (SecurityUtils.isSecurityEnabled() && inode != null && inode.getOwner().isEmpty()
-        && inode.getGroup().isEmpty()) {
-      inode.setMode(Constants.DEFAULT_FILE_SYSTEM_MODE);
-    }
     // Update indexes.
     if (inode.isFile() && inode.isPinned()) {
       mPinnedInodeFileIds.add(inode.getId());
@@ -1004,7 +998,11 @@ public class InodeTree implements JournalEntryIterable {
     RetryPolicy retry =
         new ExponentialBackoffRetry(PERSIST_WAIT_BASE_SLEEP_MS, PERSIST_WAIT_MAX_SLEEP_MS,
             PERSIST_WAIT_MAX_RETRIES);
-    while (dir.getPersistenceState() != PersistenceState.PERSISTED) {
+    while (retry.attempt()) {
+      if (dir.getPersistenceState() == PersistenceState.PERSISTED) {
+        // The directory is persisted
+        return;
+      }
       if (dir.compareAndSwap(PersistenceState.NOT_PERSISTED,
           PersistenceState.TO_BE_PERSISTED)) {
         boolean success = false;
@@ -1012,11 +1010,28 @@ public class InodeTree implements JournalEntryIterable {
           AlluxioURI uri = getPath(dir);
           MountTable.Resolution resolution = mMountTable.resolve(uri);
           String ufsUri = resolution.getUri().toString();
-          UnderFileSystem ufs = resolution.getUfs();
-          MkdirsOptions mkdirsOptions =
-              MkdirsOptions.defaults().setCreateParent(false).setOwner(dir.getOwner())
-                  .setGroup(dir.getGroup()).setMode(new Mode(dir.getMode()));
-          ufs.mkdirs(ufsUri, mkdirsOptions);
+          try (CloseableResource<UnderFileSystem> ufsResource = resolution.acquireUfsResource()) {
+            UnderFileSystem ufs = ufsResource.get();
+            MkdirsOptions mkdirsOptions = MkdirsOptions.defaults().setCreateParent(false)
+                .setOwner(dir.getOwner()).setGroup(dir.getGroup()).setMode(new Mode(dir.getMode()));
+            if (!ufs.mkdirs(ufsUri, mkdirsOptions)) {
+              // Directory might already exist. Try loading the status from ufs.
+              UfsStatus status;
+              try {
+                status = ufs.getStatus(ufsUri);
+              } catch (Exception e) {
+                throw new IOException(String.format("Cannot sync UFS directory %s: %s.", ufsUri,
+                    e.getMessage()), e);
+              }
+              if (status.isFile()) {
+                throw new InvalidPathException(String.format(
+                    "Error persisting directory. A file exists at the UFS location %s.", ufsUri));
+              }
+              dir.setOwner(status.getOwner())
+                  .setGroup(status.getGroup())
+                  .setMode(status.getMode());
+            }
+          }
           dir.setPersistenceState(PersistenceState.PERSISTED);
 
           // Append the persist entry to the journal.
@@ -1031,12 +1046,9 @@ public class InodeTree implements JournalEntryIterable {
             dir.setPersistenceState(PersistenceState.NOT_PERSISTED);
           }
         }
-      } else {
-        if (!retry.attemptRetry()) {
-          throw new IOException(ExceptionMessage.FAILED_UFS_CREATE.getMessage(dir.getName()));
-        }
       }
     }
+    throw new IOException(ExceptionMessage.FAILED_UFS_CREATE.getMessage(dir.getName()));
   }
 
   @Override

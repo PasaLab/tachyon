@@ -21,11 +21,10 @@ Alluxio直接兼容Spark 1.1或更新版本而无需修改.
 
 * Alluxio集群根据向导搭建完成(可以是[本地模式](Running-Alluxio-Locally.html)或者[集群模式](Running-Alluxio-on-a-Cluster.html))。
 
-* Alluxio client需要在编译时指定Spark选项。在顶层`alluxio`目录中执行如下命令构建Alluxio:
+* 我们建议您从Alluxio[下载页面](http://www.alluxio.org/download)下载tarball.
+  另外，高级用户可以选择根据[这里](Building-Alluxio-Master-Branch.html#compute-framework-support)的说明将源代码编译为客户端jar包，并在本文余下部分使用于`{{site.ALLUXIO_CLIENT_JAR_PATH}}`路径处生成的jar包。
 
-```bash
-$ mvn clean package -Pspark -DskipTests
-```
+* 为使Spark应用程序能够在Alluxio中读写文件， 必须将Alluxio客户端jar包分布在不同节点的应用程序的classpath中（每个节点必须使客户端jar包具有相同的本地路径{{site.ALLUXIO_CLIENT_JAR_PATH}}）
 
 * 请添加如下代码到`spark/conf/spark-defaults.conf`。
 
@@ -33,8 +32,6 @@ $ mvn clean package -Pspark -DskipTests
 spark.driver.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
 spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
 ```
-
-高级用户可以选择通过源代码编译客户端jar包，参考说明[这里](Building-Alluxio-Master-Branch.html#compute-framework-support)，并在这篇说明剩余部分将生成的jar包应用在配置项`{{site.ALLUXIO_CLIENT_JAR_PATH_BUILD}}`中。
 
 ### 针对HDFS的额外设置
 
@@ -49,22 +46,51 @@ spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
 </configuration>
 ```
 
-
-* 如果你使用zookeeper让Alluxio运行在容错模式并且Hadoop集群是1.x，添加如下内容到先前创建的`spark/conf/core-site.xml`:
-
-```xml
-<property>
-  <name>fs.alluxio-ft.impl</name>
-  <value>alluxio.hadoop.FaultTolerantFileSystem</value>
-</property>
-```
-
-以及如下内容到`spark/conf/spark-defaults.conf`:
+* 如果你使用zookeeper让Alluxio运行在容错模式，添加如下内容到`${SPARK_HOME}/conf/spark-defaults.conf`:
 
 ```bash
 spark.driver.extraJavaOptions -Dalluxio.zookeeper.address=zookeeperHost1:2181,zookeeperHost2:2181 -Dalluxio.zookeeper.enabled=true
 spark.executor.extraJavaOptions -Dalluxio.zookeeper.address=zookeeperHost1:2181,zookeeperHost2:2181 -Dalluxio.zookeeper.enabled=true
 ```
+或者你可以添加内容到先前创建的Hadoop配置文件中`${SPARK_HOME}/conf/core-site.xml`:
+
+```xml
+<configuration>
+  <property>
+    <name>alluxio.zookeeper.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>alluxio.zookeeper.address</name>
+    <value>[zookeeper_hostname]:2181</value>
+  </property>
+</configuration>
+```
+
+## 检查Spark与Alluxio的集成性 (支持Spark 2.X)
+
+在Alluxio上运行Spark之前，你需要确认你的Spark配置已经正确设置集成了Alluxio。Spark集成检查器可以帮助你确认。 
+
+当你运行Saprk集群(或单机运行)时,你可以在Alluxio项目目录运行以下命令:
+
+```bash
+$ checker/bin/alluxio-checker.sh spark <spark master uri> <spark partition number(optional)>
+```
+
+## 检查Spark和Alluxio的一体化（支持Spark 2.x）
+
+在Alluxio上运行Spark前，你可能想确定你的Spark与Alluxio一体化的配置已经正确设置了。Spark一体化检查器可以帮你实现这一点。
+
+当你拥有一个正在运行的Spark集群（或者Spark单机），你可以在Alluxio项目目录下运行以下的命令：
+
+```bash
+$ checker/bin/alluxio-checker.sh spark <spark master uri> <spark partition number(optional)>
+```
+
+这将会报告可能阻止你在Alluxio上运行Spark的潜在问题。
+
+你可以使用`-h`来显示关于这个命令的有用信息。这条命令将报告潜在的问题，可能会阻碍你在Alluxio上运行Spark。 
+
 
 ## 使用Alluxio作为输入输出
 
@@ -91,7 +117,7 @@ $ bin/alluxio fs copyFromLocal LICENSE /LICENSE
 
 ### 使用来自HDFS的数据
 
-Alluxio支持在给出具体的路径时，透明的从底层文件系统中取数据。将文件`LICENSE`放到Alluxio所挂载的目录下（默认是/alluxio）的HDFS中，意味着在这个目录下的HDFS中的任何文件都能被Alluxio发现。通过改变位于Server上的alluxio-env.sh文件中的 `ALLUXIO_UNDERFS_ADDRESS`属性可以修改这个设置。假定namenode节点运行在`localhost`，并且Alluxio默认的挂载目录是`alluxio`:
+Alluxio支持在给出具体的路径时，透明的从底层文件系统中取数据。将文件`LICENSE`放到Alluxio所挂载的目录下（默认是`/alluxio`）的HDFS中，意味着在这个目录下的HDFS中的任何文件都能被Alluxio发现。通过改变位于Server上的`conf/alluxio-site.properties`文件中的 `alluxio.underfs.address`属性可以修改这个设置。假定namenode节点运行在`localhost`，并且Alluxio默认的挂载目录是`alluxio`:
 
 ```bash
 $ hadoop fs -put -f /alluxio/LICENSE hdfs://localhost:9000/alluxio/LICENSE

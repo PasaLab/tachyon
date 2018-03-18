@@ -19,7 +19,10 @@ import alluxio.clock.ManualClock;
 import alluxio.heartbeat.HeartbeatContext;
 import alluxio.heartbeat.HeartbeatScheduler;
 import alluxio.heartbeat.ManuallyScheduleHeartbeat;
+import alluxio.master.MasterContext;
 import alluxio.master.MasterRegistry;
+import alluxio.master.SafeModeManager;
+import alluxio.master.TestSafeModeManager;
 import alluxio.master.journal.JournalSystem;
 import alluxio.master.journal.noop.NoopJournalSystem;
 import alluxio.thrift.Command;
@@ -64,6 +67,7 @@ public class BlockMasterTest {
   private MasterRegistry mRegistry;
   private ManualClock mClock;
   private ExecutorService mExecutorService;
+  private SafeModeManager mSafeModeManager;
 
   /** Rule to create a new temporary folder during each test. */
   @Rule
@@ -83,12 +87,13 @@ public class BlockMasterTest {
   @Before
   public void before() throws Exception {
     mRegistry = new MasterRegistry();
+    mSafeModeManager = new TestSafeModeManager();
     JournalSystem journalSystem = new NoopJournalSystem();
     mClock = new ManualClock();
     mExecutorService =
         Executors.newFixedThreadPool(2, ThreadFactoryUtils.build("TestBlockMaster-%d", true));
-    mBlockMaster = new DefaultBlockMaster(journalSystem, mClock,
-        ExecutorServiceFactories.constantExecutorServiceFactory(mExecutorService));
+    mBlockMaster = new DefaultBlockMaster(new MasterContext(journalSystem, mSafeModeManager),
+        mClock, ExecutorServiceFactories.constantExecutorServiceFactory(mExecutorService));
     mRegistry.add(BlockMaster.class, mBlockMaster);
     mRegistry.start(true);
   }
@@ -192,6 +197,21 @@ public class BlockMasterTest {
     Command heartBeat = mBlockMaster
         .workerHeartbeat(worker1, memUsage, NO_BLOCKS, NO_BLOCKS_ON_TIERS);
     assertEquals(ImmutableList.of(1L), heartBeat.getData());
+  }
+
+  @Test
+  public void registerCleansUpOrphanedBlocks() throws Exception {
+    // Create a worker with unknown blocks.
+    long worker = mBlockMaster.getWorkerId(NET_ADDRESS_1);
+    List<Long> orphanedBlocks = Arrays.asList(1L, 2L);
+    Map<String, Long> memUsage = ImmutableMap.of("MEM", 10L);
+    mBlockMaster.workerRegister(worker, Arrays.asList("MEM"), ImmutableMap.of("MEM", 100L),
+        memUsage, ImmutableMap.of("MEM", orphanedBlocks));
+
+    // Check that the worker heartbeat tells the worker to remove the blocks.
+    Command heartBeat =
+        mBlockMaster.workerHeartbeat(worker, memUsage, NO_BLOCKS, NO_BLOCKS_ON_TIERS);
+    assertEquals(orphanedBlocks, heartBeat.getData());
   }
 
   @Test
