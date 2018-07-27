@@ -2,6 +2,7 @@
 layout: global
 group: Resources
 title: Developing Under Storage Extensions
+priority: 3
 ---
 
 * Table of Contents
@@ -43,7 +44,7 @@ Building a new under storage connector involves:
 - Bundling up the implementation and transitive dependencies in an uber JAR
 
 A reference implementation can be found in the [alluxio-extensions](https://github.com/Alluxio
-/alluxio-extensions/tree/master/underfs/template) repository. In the rest of this section we
+/alluxio-extensions/tree/master/underfs/tutorial) repository. In the rest of this section we
 describe the steps involved in writing a new under storage extension. The sample project, called
 `DummyUnderFileSystem`, uses maven as the build and dependency management tool, and forwards all
 operations to a local filesystem.

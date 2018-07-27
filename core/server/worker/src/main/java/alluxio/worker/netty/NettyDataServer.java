@@ -18,7 +18,6 @@ import alluxio.util.network.NettyUtils;
 import alluxio.worker.DataServer;
 import alluxio.worker.WorkerProcess;
 
-import com.google.common.base.Throwables;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -64,7 +63,8 @@ public final class NettyDataServer implements DataServer {
     try {
       mChannelFuture = mBootstrap.bind(address).sync();
     } catch (InterruptedException e) {
-      throw Throwables.propagate(e);
+      Thread.currentThread().interrupt();
+      throw new RuntimeException(e);
     }
   }
 
@@ -120,15 +120,15 @@ public final class NettyDataServer implements DataServer {
     // alluxio.worker.network.netty.backlog=50
     // alluxio.worker.network.netty.buffer.send=64KB
     // alluxio.worker.network.netty.buffer.receive=64KB
-    if (Configuration.containsKey(PropertyKey.WORKER_NETWORK_NETTY_BACKLOG)) {
+    if (Configuration.isSet(PropertyKey.WORKER_NETWORK_NETTY_BACKLOG)) {
       boot.option(ChannelOption.SO_BACKLOG,
           Configuration.getInt(PropertyKey.WORKER_NETWORK_NETTY_BACKLOG));
     }
-    if (Configuration.containsKey(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_SEND)) {
+    if (Configuration.isSet(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_SEND)) {
       boot.option(ChannelOption.SO_SNDBUF,
           (int) Configuration.getBytes(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_SEND));
     }
-    if (Configuration.containsKey(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_RECEIVE)) {
+    if (Configuration.isSet(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_RECEIVE)) {
       boot.option(ChannelOption.SO_RCVBUF,
           (int) Configuration.getBytes(PropertyKey.WORKER_NETWORK_NETTY_BUFFER_RECEIVE));
     }
@@ -162,10 +162,10 @@ public final class NettyDataServer implements DataServer {
         "data-server-" + ((mSocketAddress instanceof DomainSocketAddress) ? "domain-socket" :
             "tcp-socket");
     final EventLoopGroup bossGroup = NettyUtils
-        .createEventLoop(type, bossThreadCount, dataServerEventLoopNamePrefix + "-boss-%d", false);
+        .createEventLoop(type, bossThreadCount, dataServerEventLoopNamePrefix + "-boss-%d", true);
     final EventLoopGroup workerGroup = NettyUtils
         .createEventLoop(type, workerThreadCount, dataServerEventLoopNamePrefix + "-worker-%d",
-            false);
+            true);
 
     final Class<? extends ServerChannel> socketChannelClass = NettyUtils.getServerChannelClass(type,
          mSocketAddress instanceof DomainSocketAddress);
