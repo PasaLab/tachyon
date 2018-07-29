@@ -6,6 +6,9 @@ group: Clients
 priority: 6
 ---
 
+* Table of Contents
+{:toc}
+
 Alluxio supports a RESTFul API that is compatible with the basic operations of the Amazon 
 [S3 API](http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html).
 
@@ -172,7 +175,7 @@ Server: Jetty(9.2.z-SNAPSHOT)
 ### Upload part
 
 ```bash
-# curl -i -X PUT http://localhost:39999/api/v1/s3/testbucket/testobject?partNumber=1&uploadId=2
+# curl -i -X PUT 'http://localhost:39999/api/v1/s3/testbucket/testobject?partNumber=1&uploadId=2'
 HTTP/1.1 200 OK
 Date: Tue, 29 Aug 2017 22:43:22 GMT
 ETag: "b54357faf0632cce46e942fa68356b38"
@@ -207,7 +210,7 @@ Server: Jetty(9.2.z-SNAPSHOT)
 ### Complete a multipart upload
 
 ```bash
-# curl -i -X POST http://localhost:39999/api/v1/s3/testbucket/testobject?uploadId=2 -d '
+# curl -i -X POST http://localhost:39999/api/v1/s3/testbucket/testobject?uploadId=2
 <CompleteMultipartUpload>
   <Part>
     <PartNumber>1</PartNumber>
@@ -324,7 +327,7 @@ bucket.delete_key(largeObjectKey)
 ### Initiate a multipart upload
 
 ```python
-mp = b.initiate_multipart_upload(largeObjectFile)
+mp = bucket.initiate_multipart_upload(largeObjectFile)
 ```
 
 ### Upload parts
@@ -339,10 +342,10 @@ sourceSize = os.stat(largeObjectFile).st_size
 chunkSize = 1048576
 chunkCount = int(math.ceil(sourceSize / float(chunkSize)))
 
-for i in range(chunk_count):
-    offset = chunk_size * i
-    bytes = min(chunk_size, source_size - offset)
-    with FileChunkIO(source_path, 'r', offset=offset, bytes=bytes) as fp:
+for i in range(chunkCount):
+    offset = chunkSize * i
+    bytes = min(chunkSize, sourceSize - offset)
+    with FileChunkIO(largeObjectFile, 'r', offset=offset, bytes=bytes) as fp:
         mp.upload_part_from_file(fp, part_num=i + 1)
 ```
 
